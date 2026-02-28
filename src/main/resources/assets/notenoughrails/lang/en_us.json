@@ -2,6 +2,8 @@
   "item.notenoughrails.copper_plate": "Copper Plate",
   "item.notenoughrails.copper_rod": "Copper Rod",
   "item.notenoughrails.corite_block": "Corite Block",
+  "item.notenoughrails.corite_chiseled_block": "Chiseled Corite Block",
+  "item.notenoughrails.corite_cut_block": "Cut Corite Block",
   "item.notenoughrails.corite_grate": "Corite Grate",
   "item.notenoughrails.corite_ingot": "Corite Ingot",
   "item.notenoughrails.corite_plate": "Corite Plate",
@@ -20,5 +22,6 @@
   "item.notenoughrails.vermilion_block": "Vermilion Block",
   "item.notenoughrails.vermilion_ingot": "Vermilion Ingot",
   "item.notenoughrails.vermilion_rod": "Vermilion Rod",
-  "item.notenoughrails.wooden_frame": "Wooden Frame"
+  "item.notenoughrails.wooden_frame": "Wooden Frame",
+  "itemgroup.notenoughrails.main_item_group": "Not Enough Rails"
 }

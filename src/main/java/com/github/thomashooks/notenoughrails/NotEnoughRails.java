@@ -16,6 +16,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails;
 
 import com.github.thomashooks.notenoughrails.world.block.AllBlocks;
+import com.github.thomashooks.notenoughrails.world.item.AllItemGroups;
 import com.github.thomashooks.notenoughrails.world.item.AllItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -35,6 +36,7 @@ public class NotEnoughRails implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
+		AllItemGroups.registerAll();
 
 		AllItems.registerAll();
 		AllBlocks.registerAll();

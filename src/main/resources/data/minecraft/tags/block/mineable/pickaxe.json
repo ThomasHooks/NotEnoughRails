@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "notenoughrails:corite_block",
+    "notenoughrails:corite_chiseled_block",
+    "notenoughrails:corite_cut_block",
+    "notenoughrails:corite_grate",
+    "notenoughrails:fluxstone",
+    "notenoughrails:vermilion_block"
+  ]
+}
