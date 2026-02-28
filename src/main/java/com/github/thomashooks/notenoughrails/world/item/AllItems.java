@@ -60,8 +60,4 @@ public class AllItems {
         return Registry.register(Registries.ITEM, Identifier.of(NotEnoughRails.MOD_ID, name),
                 function.apply(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(NotEnoughRails.MOD_ID, name)))));
     }
-
-    private static Item registerItem(@NotNull String name, @NotNull Item item) {
-        return Registry.register(Registries.ITEM, Identifier.of(NotEnoughRails.MOD_ID, name), item);
-    }
 }

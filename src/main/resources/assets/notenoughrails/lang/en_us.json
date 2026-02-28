@@ -1,6 +1,8 @@
 {
   "item.notenoughrails.copper_plate": "Copper Plate",
   "item.notenoughrails.copper_rod": "Copper Rod",
+  "item.notenoughrails.corite_block": "Corite Block",
+  "item.notenoughrails.corite_grate": "Corite Grate",
   "item.notenoughrails.corite_ingot": "Corite Ingot",
   "item.notenoughrails.corite_plate": "Corite Plate",
   "item.notenoughrails.corite_rod": "Corite Rod",
@@ -10,10 +12,13 @@
   "item.notenoughrails.crushed_iron_ore": "Crushed Iron Ore",
   "item.notenoughrails.crushed_vermilion": "Crushed Vermilion",
   "item.notenoughrails.flux": "Flux",
+  "item.notenoughrails.fluxstone": "Fluxstone",
   "item.notenoughrails.gold_rod": "Gold Rod",
   "item.notenoughrails.iron_plate": "Iron Plate",
   "item.notenoughrails.iron_rod": "Iron Rod",
   "item.notenoughrails.kaolin": "Kaolin",
+  "item.notenoughrails.vermilion_block": "Vermilion Block",
   "item.notenoughrails.vermilion_ingot": "Vermilion Ingot",
-  "item.notenoughrails.vermilion_rod": "Vermilion Rod"
+  "item.notenoughrails.vermilion_rod": "Vermilion Rod",
+  "item.notenoughrails.wooden_frame": "Wooden Frame"
 }
