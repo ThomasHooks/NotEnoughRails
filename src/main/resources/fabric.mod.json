@@ -8,10 +8,10 @@
 		"Kilroy_790"
 	],
 	"contact": {
-		"homepage": "https://github.com/ThomasHooks/NotEnoughRails",
+		"homepage": "https://github.com/ThomasHooks/NotEnoughRails/wiki",
 		"sources": "https://github.com/ThomasHooks/NotEnoughRails"
 	},
-	"license": "MIT",
+	"license": "CC0 1.0 Universal",
 	"icon": "assets/notenoughrails/icon.png",
 	"environment": "*",
 	"entrypoints": {
