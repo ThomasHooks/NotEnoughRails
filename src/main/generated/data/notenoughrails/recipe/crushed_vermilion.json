@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "notenoughrails:crushed_vermilion",
+  "ingredients": [
+    "notenoughrails:crushed_copper_ore",
+    "minecraft:redstone",
+    "minecraft:redstone",
+    "minecraft:redstone",
+    "notenoughrails:flux"
+  ],
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:crushed_vermilion"
+  }
+}

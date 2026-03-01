@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_crushed_copper_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "notenoughrails:crushed_copper_ore"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "notenoughrails:copper_ingot_from_blasting_crushed_copper_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_crushed_copper_ore"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "notenoughrails:copper_ingot_from_blasting_crushed_copper_ore"
+    ]
+  }
+}

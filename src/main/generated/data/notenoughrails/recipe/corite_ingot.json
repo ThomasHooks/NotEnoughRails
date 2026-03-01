@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "notenoughrails:corite_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "notenoughrails:corite_ingot"
+  }
+}

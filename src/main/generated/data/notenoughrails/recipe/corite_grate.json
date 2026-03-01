@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "notenoughrails:corite_grate",
+  "key": {
+    "c": "notenoughrails:corite_block"
+  },
+  "pattern": [
+    " c ",
+    "c c",
+    " c "
+  ],
+  "result": {
+    "count": 4,
+    "id": "notenoughrails:corite_grate"
+  }
+}

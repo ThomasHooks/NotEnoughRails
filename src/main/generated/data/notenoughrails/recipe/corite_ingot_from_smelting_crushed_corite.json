@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "group": "notenoughrails:corite_ingot",
+  "ingredient": "notenoughrails:crushed_corite",
+  "result": {
+    "id": "notenoughrails:corite_ingot"
+  }
+}

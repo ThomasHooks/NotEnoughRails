@@ -1,0 +1,8 @@
+// 1.21.11	-999999999-01-01T00:00:00	Not Enough Rails/Block Loot Tables
+12f695351fb502db1286bb77980cd6e29ae0f1b8 data/notenoughrails/loot_table/blocks/corite_block.json
+2012adbda1e2846fc4a4bd3cdcb14f516b151f42 data/notenoughrails/loot_table/blocks/corite_chiseled_block.json
+ab38404a2dcaba68c58c2ccd819119a5c5e34f1b data/notenoughrails/loot_table/blocks/corite_cut_block.json
+41dfd7ab6222d8c67d1d5dff033e8ab338034161 data/notenoughrails/loot_table/blocks/corite_grate.json
+cf2f7a8230acaf19ddaee806858f572214018847 data/notenoughrails/loot_table/blocks/fluxstone.json
+ba4308d0ac3ceb502cb62682c9a505e2bd38484f data/notenoughrails/loot_table/blocks/vermilion_block.json
+fdc7f97c8952c26b35e2625a051f4efd65f3710f data/notenoughrails/loot_table/blocks/wooden_frame.json

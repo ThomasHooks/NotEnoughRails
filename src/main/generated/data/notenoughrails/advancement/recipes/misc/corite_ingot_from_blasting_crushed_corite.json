@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_crushed_corite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "notenoughrails:crushed_corite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "notenoughrails:corite_ingot_from_blasting_crushed_corite"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_crushed_corite"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "notenoughrails:corite_ingot_from_blasting_crushed_corite"
+    ]
+  }
+}

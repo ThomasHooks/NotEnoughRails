@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "notenoughrails:crushed_corite",
+  "ingredients": [
+    "notenoughrails:crushed_copper_ore",
+    "notenoughrails:crushed_copper_ore",
+    "notenoughrails:crushed_copper_ore",
+    "notenoughrails:crushed_copper_ore",
+    "notenoughrails:crushed_iron_ore",
+    "notenoughrails:flux"
+  ],
+  "result": {
+    "count": 2,
+    "id": "notenoughrails:crushed_corite"
+  }
+}

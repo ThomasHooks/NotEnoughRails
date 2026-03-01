@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "notenoughrails:kaolin",
+  "ingredients": [
+    "minecraft:clay_ball",
+    "notenoughrails:flux",
+    "notenoughrails:flux",
+    "notenoughrails:flux"
+  ],
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:kaolin"
+  }
+}

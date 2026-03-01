@@ -15,12 +15,24 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails;
 
+import com.github.thomashooks.notenoughrails.data.recipes.RecipeGenerator;
+import com.github.thomashooks.notenoughrails.data.loot.table.LootTableGenerator;
+import com.github.thomashooks.notenoughrails.data.models.ModelGenerator;
+import com.github.thomashooks.notenoughrails.data.tags.BlockTagGenerator;
+import com.github.thomashooks.notenoughrails.data.tags.ItemTagGenerator;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import org.jetbrains.annotations.NotNull;
 
 public class NotEnoughRailsDataGenerator implements DataGeneratorEntrypoint {
 	@Override
-	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
+	public void onInitializeDataGenerator(@NotNull FabricDataGenerator fabricDataGenerator) {
+		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
+		pack.addProvider(BlockTagGenerator::new);
+		pack.addProvider(ItemTagGenerator::new);
+		pack.addProvider(LootTableGenerator::new);
+		pack.addProvider(ModelGenerator::new);
+		pack.addProvider(RecipeGenerator::new);
 	}
 }

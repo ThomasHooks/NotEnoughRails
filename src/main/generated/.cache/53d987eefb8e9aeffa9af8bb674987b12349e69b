@@ -1,0 +1,4 @@
+// 1.21.11	-999999999-01-01T00:00:00	Not Enough Rails/Tags for minecraft:block
+66a0273d40ddeeb1e82fb944c462cce80e4cd6c4 data/minecraft/tags/block/mineable/pickaxe.json
+11a695819b3a48e537fea0840a8e8d05f1e1287f data/minecraft/tags/block/needs_iron_tool.json
+337942c16561e403751b81aea77335561e08c1d0 data/minecraft/tags/block/needs_stone_tool.json
