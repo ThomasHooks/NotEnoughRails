@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "notenoughrails:block/fluxstone_polished",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "notenoughrails:block/fluxstone_polished"
+    },
+    "axis=z": {
+      "model": "notenoughrails:block/fluxstone_polished",
+      "x": 90
+    }
+  }
+}

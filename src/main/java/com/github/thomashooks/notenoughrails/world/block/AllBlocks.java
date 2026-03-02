@@ -40,7 +40,7 @@ public class AllBlocks {
                     .mapColor(MapColor.ORANGE)
                     .requiresTool()
             ));
-    public static final Block CORITE_CHISELED = registerBlock("corite_chiseled_block",
+    public static final Block CORITE_CHISELED_BLOCK = registerBlock("corite_chiseled_block",
             settings -> new Block(settings
                     .strength(5.0F, 6.0F)
                     .sounds(BlockSoundGroup.COPPER)
@@ -48,13 +48,38 @@ public class AllBlocks {
                     .mapColor(MapColor.ORANGE)
                     .requiresTool()
             ));
-    public static final Block CORITE_CUT = registerBlock("corite_cut_block",
+    public static final Block CORITE_CUT_BLOCK = registerBlock("corite_cut_block",
             settings -> new Block(settings
                     .strength(5.0F, 6.0F)
                     .sounds(BlockSoundGroup.COPPER)
                     .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
                     .mapColor(MapColor.ORANGE)
                     .requiresTool()
+            ));
+    public static final Block CORITE_CUT_SLAB = registerBlock("corite_cut_slab",
+            settings -> new SlabBlock(settings
+                    .strength(5.0F, 6.0F)
+                    .sounds(BlockSoundGroup.COPPER)
+                    .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+                    .mapColor(MapColor.ORANGE)
+                    .requiresTool()
+            ));
+    public static final Block CORITE_CUT_STAIRS = registerBlock("corite_cut_stairs",
+            settings -> new StairsBlock(AllBlocks.CORITE_BLOCK.getDefaultState(), settings
+                    .strength(5.0F, 6.0F)
+                    .sounds(BlockSoundGroup.COPPER)
+                    .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+                    .mapColor(MapColor.ORANGE)
+                    .requiresTool()
+            ));
+    public static final Block CORITE_DOOR = registerBlock("corite_door",
+            settings -> new DoorBlock(BlockSetType.IRON, settings
+                    .strength(5.0F, 6.0F)
+                    .sounds(BlockSoundGroup.COPPER)
+                    .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+                    .mapColor(MapColor.ORANGE)
+                    .requiresTool()
+                    .nonOpaque()
             ));
     public static final Block CORITE_GRATE = registerBlock("corite_grate",
             settings -> new GrateBlock(settings
@@ -69,12 +94,36 @@ public class AllBlocks {
                     .suffocates(Blocks::never)
                     .blockVision(Blocks::never)
             ));
+    public static final Block CORITE_PLATE_BLOCK = registerBlock("corite_plate_block",
+            settings -> new PillarBlock(settings
+                    .strength(5.0F, 6.0F)
+                    .sounds(BlockSoundGroup.COPPER)
+                    .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+                    .mapColor(MapColor.ORANGE)
+                    .requiresTool()
+            ));
     public static final Block FLUXSTONE = registerBlock("fluxstone",
             settings -> new Block(settings
                     .strength(1.5F, 5.0F)
                     .sounds(BlockSoundGroup.DEEPSLATE)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .mapColor(MapColor.TERRACOTTA_LIGHT_BLUE)
+                    .requiresTool()
+            ));
+    public static final Block FLUXSTONE_POLISHED = registerBlock("fluxstone_polished",
+            settings -> new PillarBlock(settings
+                    .strength(1.5F, 5.0F)
+                    .sounds(BlockSoundGroup.DEEPSLATE)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .mapColor(MapColor.TERRACOTTA_LIGHT_BLUE)
+                    .requiresTool()
+            ));
+    public static final Block IRON_PLATE_BLOCK = registerBlock("iron_plate_block",
+            settings -> new PillarBlock(settings
+                    .strength(5.0F, 6.0F)
+                    .sounds(BlockSoundGroup.IRON)
+                    .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+                    .mapColor(MapColor.IRON_GRAY)
                     .requiresTool()
             ));
     public static final Block VERMILION_BLOCK = registerBlock("vermilion_block",
@@ -106,16 +155,25 @@ public class AllBlocks {
             //Stone Blocks
             //Order: full block -> stairs -> slab -> wall -> fence -> fence gate -> door -> trapdoor -> pressure plate -> button
             entries.add(AllBlocks.FLUXSTONE);
+            entries.add(AllBlocks.FLUXSTONE_POLISHED);
 
             //Fuel Blocks
 
             //Metal Blocks
             //Order: full block -> chiseled -> grate -> cut -> stairs -> slab -> bars -> door -> trapdoor -> pressure plate
             entries.add(AllBlocks.CORITE_BLOCK);
-            entries.add(AllBlocks.CORITE_CHISELED);
+            entries.add(AllBlocks.CORITE_PLATE_BLOCK);
+            entries.add(AllBlocks.CORITE_CHISELED_BLOCK);
             entries.add(AllBlocks.CORITE_GRATE);
-            entries.add(AllBlocks.CORITE_CUT);
+            entries.add(AllBlocks.CORITE_CUT_BLOCK);
+            entries.add(AllBlocks.CORITE_CUT_STAIRS);
+            entries.add(AllBlocks.CORITE_CUT_SLAB);
+            entries.add(AllBlocks.IRON_PLATE_BLOCK);
             entries.add(AllBlocks.VERMILION_BLOCK);
+        });
+
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
+            entries.add(AllBlocks.CORITE_DOOR);
         });
     }
 

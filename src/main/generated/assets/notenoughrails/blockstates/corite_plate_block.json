@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "notenoughrails:block/corite_plate_block",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "notenoughrails:block/corite_plate_block"
+    },
+    "axis=z": {
+      "model": "notenoughrails:block/corite_plate_block",
+      "x": 90
+    }
+  }
+}

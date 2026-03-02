@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_fluxstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "notenoughrails:fluxstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "notenoughrails:fluxstone_polished_from_blasting_fluxstone"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_fluxstone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "notenoughrails:fluxstone_polished_from_blasting_fluxstone"
+    ]
+  }
+}

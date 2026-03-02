@@ -22,6 +22,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.BlockStateModelGenerator;
 import net.minecraft.client.data.ItemModelGenerator;
 import net.minecraft.client.data.Models;
+import net.minecraft.client.data.TexturedModel;
 import org.jetbrains.annotations.NotNull;
 
 public class ModelGenerator extends FabricModelProvider {
@@ -32,10 +33,16 @@ public class ModelGenerator extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(@NotNull BlockStateModelGenerator blockStateModelGenerator) {
         blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_CHISELED);
-        blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_CUT);
+        blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_CHISELED_BLOCK);
+        BlockStateModelGenerator.BlockTexturePool coriteCutPool = blockStateModelGenerator.registerCubeAllModelTexturePool(AllBlocks.CORITE_CUT_BLOCK);
+        coriteCutPool.slab(AllBlocks.CORITE_CUT_SLAB);
+        coriteCutPool.stairs(AllBlocks.CORITE_CUT_STAIRS);
+        blockStateModelGenerator.registerDoor(AllBlocks.CORITE_DOOR);
         blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_GRATE);
+        blockStateModelGenerator.registerAxisRotated(AllBlocks.CORITE_PLATE_BLOCK, TexturedModel.CUBE_COLUMN);
         blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.FLUXSTONE);
+        blockStateModelGenerator.registerAxisRotated(AllBlocks.FLUXSTONE_POLISHED, TexturedModel.CUBE_COLUMN);
+        blockStateModelGenerator.registerAxisRotated(AllBlocks.IRON_PLATE_BLOCK, TexturedModel.CUBE_COLUMN);
         blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.VERMILION_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.WOODEN_FRAME);
     }

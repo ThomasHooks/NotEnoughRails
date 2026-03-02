@@ -23,6 +23,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import org.jetbrains.annotations.NotNull;
@@ -63,6 +64,9 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 offerBlasting(CORITE_INGOT_SMELTABLES, RecipeCategory.MISC, AllItems.CORITE_INGOT, 0.7F, 100, NotEnoughRails.MOD_ID + ":corite_ingot");
                 offerReversibleCompactingRecipes(RecipeCategory.MISC, AllItems.CORITE_INGOT,RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_BLOCK);
 
+                //Corite Plate
+                offerReversibleCompactingRecipes(RecipeCategory.MISC, AllItems.CORITE_PLATE,RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_PLATE_BLOCK);
+
                 //Gold Ingot
                 List<ItemConvertible> GOLD_INGOT_SMELTABLES = List.of(AllItems.CRUSHED_GOLD_ORE);
                 offerSmelting(GOLD_INGOT_SMELTABLES, RecipeCategory.MISC, Items.GOLD_INGOT, 1.0F, 200, NotEnoughRails.MOD_ID + ":gold_ingot");
@@ -72,6 +76,9 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 List<ItemConvertible> IRON_INGOT_SMELTABLES = List.of(AllItems.CRUSHED_IRON_ORE);
                 offerSmelting(IRON_INGOT_SMELTABLES, RecipeCategory.MISC, Items.IRON_INGOT, 0.7F, 200, NotEnoughRails.MOD_ID + ":iron_ingot");
                 offerBlasting(IRON_INGOT_SMELTABLES, RecipeCategory.MISC, Items.IRON_INGOT, 0.7F, 100, NotEnoughRails.MOD_ID + ":iron_ingot");
+
+                //Iron Plate
+                offerReversibleCompactingRecipes(RecipeCategory.MISC, AllItems.IRON_PLATE,RecipeCategory.BUILDING_BLOCKS, AllBlocks.IRON_PLATE_BLOCK);
 
                 //Crushed Vermilion
                 createShapeless(RecipeCategory.MISC, AllItems.CRUSHED_VERMILION, 1)
@@ -100,17 +107,51 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 //--------------------------------------------------------------------------------------------------------------
 
                 //Cut Corite
-                createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CUT, 4)
+                createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CUT_BLOCK, 4)
                         .input('c', AllBlocks.CORITE_BLOCK)
                         .pattern("cc")
                         .pattern("cc")
-                        .group(NotEnoughRails.MOD_ID + ":corite_chiseled")
+                        .group(NotEnoughRails.MOD_ID + ":corite_cut_block")
                         .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
                         .offerTo(exporter);
-                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CUT, AllBlocks.CORITE_BLOCK, 4);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CUT_BLOCK, AllBlocks.CORITE_BLOCK, 4);
 
-                //TODO Chiseled Corite from Cut Corite Slab
-                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CHISELED, AllBlocks.CORITE_BLOCK, 4);
+                //Cut Corite Slab
+                createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CUT_SLAB, 6)
+                        .input('c', AllBlocks.CORITE_CUT_BLOCK)
+                        .pattern("ccc")
+                        .group(NotEnoughRails.MOD_ID + ":corite_cut_slab")
+                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .offerTo(exporter);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CUT_SLAB, AllBlocks.CORITE_CUT_BLOCK, 2);
+
+                //Cut Corite Stairs
+                createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CUT_STAIRS, 4)
+                        .input('c', AllBlocks.CORITE_CUT_BLOCK)
+                        .pattern("c  ")
+                        .pattern("cc ")
+                        .pattern("ccc")
+                        .group(NotEnoughRails.MOD_ID + ":corite_cut_stairs")
+                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .offerTo(exporter);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CUT_STAIRS, AllBlocks.CORITE_CUT_BLOCK, 1);
+
+                //Chiseled Corite
+                createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CHISELED_BLOCK, 1)
+                        .input('c', AllBlocks.CORITE_CUT_SLAB)
+                        .pattern("c")
+                        .pattern("c")
+                        .group(NotEnoughRails.MOD_ID + ":corite_chiseled_block")
+                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .offerTo(exporter);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CHISELED_BLOCK, AllBlocks.CORITE_BLOCK, 4);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CHISELED_BLOCK, AllBlocks.CORITE_CUT_BLOCK, 1);
+
+                //Corite Door
+                createDoorRecipe(AllBlocks.CORITE_DOOR, Ingredient.ofItem(AllItems.CORITE_INGOT))
+                        .group(NotEnoughRails.MOD_ID + ":corite_door")
+                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .offerTo(exporter);
 
                 //Corite Grate
                 createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_GRATE, 4)
@@ -123,9 +164,10 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_GRATE, AllBlocks.CORITE_BLOCK, 4);
 
-                //TODO Cut Corite Slab
-
-                //TODO Cut Corite Stairs
+                //Polished Fluxstone
+                List<ItemConvertible> FULXSTONE_POLISHED_SMELTABLES = List.of(AllBlocks.FLUXSTONE);
+                offerSmelting(FULXSTONE_POLISHED_SMELTABLES, RecipeCategory.MISC, AllBlocks.FLUXSTONE_POLISHED, 0.15F, 200, NotEnoughRails.MOD_ID + ":fluxstone_polished");
+                offerBlasting(FULXSTONE_POLISHED_SMELTABLES, RecipeCategory.MISC, AllBlocks.FLUXSTONE_POLISHED, 0.15F, 100, NotEnoughRails.MOD_ID + ":fluxstone_polished");
             }
         };
     }

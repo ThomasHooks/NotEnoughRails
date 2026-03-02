@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "notenoughrails:corite_cut_slab",
+  "key": {
+    "c": "notenoughrails:corite_cut_block"
+  },
+  "pattern": [
+    "ccc"
+  ],
+  "result": {
+    "count": 6,
+    "id": "notenoughrails:corite_cut_slab"
+  }
+}

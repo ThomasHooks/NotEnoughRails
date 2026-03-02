@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "notenoughrails:corite_door",
+  "key": {
+    "#": "notenoughrails:corite_ingot"
+  },
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 3,
+    "id": "notenoughrails:corite_door"
+  }
+}

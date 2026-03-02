@@ -30,10 +30,16 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         addDrop(AllBlocks.CORITE_BLOCK);
-        addDrop(AllBlocks.CORITE_CHISELED);
-        addDrop(AllBlocks.CORITE_CUT);
+        addDrop(AllBlocks.CORITE_CHISELED_BLOCK);
+        addDrop(AllBlocks.CORITE_CUT_BLOCK);
+        addDrop(AllBlocks.CORITE_CUT_SLAB, slabDrops(AllBlocks.CORITE_CUT_SLAB));
+        addDrop(AllBlocks.CORITE_CUT_STAIRS);
+        addDrop(AllBlocks.CORITE_DOOR, doorDrops(AllBlocks.CORITE_DOOR));
         addDrop(AllBlocks.CORITE_GRATE);
+        addDrop(AllBlocks.CORITE_PLATE_BLOCK);
         addDrop(AllBlocks.FLUXSTONE);
+        addDrop(AllBlocks.FLUXSTONE_POLISHED);
+        addDrop(AllBlocks.IRON_PLATE_BLOCK);
         addDrop(AllBlocks.VERMILION_BLOCK);
         addDrop(AllBlocks.WOODEN_FRAME);
     }

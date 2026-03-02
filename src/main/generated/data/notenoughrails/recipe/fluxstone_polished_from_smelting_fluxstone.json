@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.15,
+  "group": "notenoughrails:fluxstone_polished",
+  "ingredient": "notenoughrails:fluxstone",
+  "result": {
+    "id": "notenoughrails:fluxstone_polished"
+  }
+}

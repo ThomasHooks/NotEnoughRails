@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_corite_cut_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "notenoughrails:corite_cut_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "notenoughrails:corite_cut_stairs_from_corite_cut_block_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_corite_cut_block"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "notenoughrails:corite_cut_stairs_from_corite_cut_block_stonecutting"
+    ]
+  }
+}

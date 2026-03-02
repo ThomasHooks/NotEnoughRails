@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "notenoughrails:block/fluxstone_polished_top",
+    "side": "notenoughrails:block/fluxstone_polished_side"
+  }
+}

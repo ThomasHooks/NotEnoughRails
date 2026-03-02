@@ -46,15 +46,21 @@ public class AllItemGroups {
         //Stone Blocks
         //Order: full block -> stairs -> slab -> wall -> fence -> fence gate -> door -> trapdoor -> pressure plate -> button
         entries.add(AllBlocks.FLUXSTONE);
+        entries.add(AllBlocks.FLUXSTONE_POLISHED);
 
         //Fuel Blocks
 
         //Metal Blocks
         //Order: full block -> chiseled -> grate -> cut -> stairs -> slab -> bars -> door -> trapdoor -> pressure plate
         entries.add(AllBlocks.CORITE_BLOCK);
-        entries.add(AllBlocks.CORITE_CHISELED);
+        entries.add(AllBlocks.CORITE_PLATE_BLOCK);
+        entries.add(AllBlocks.CORITE_CHISELED_BLOCK);
         entries.add(AllBlocks.CORITE_GRATE);
-        entries.add(AllBlocks.CORITE_CUT);
+        entries.add(AllBlocks.CORITE_CUT_BLOCK);
+        entries.add(AllBlocks.CORITE_CUT_STAIRS);
+        entries.add(AllBlocks.CORITE_CUT_SLAB);
+        entries.add(AllBlocks.CORITE_DOOR);
+        entries.add(AllBlocks.IRON_PLATE_BLOCK);
         entries.add(AllBlocks.VERMILION_BLOCK);
 
         //Cloth Blocks

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "notenoughrails:block/corite_plate_block_top",
+    "side": "notenoughrails:block/corite_plate_block_side"
+  }
+}

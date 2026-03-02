@@ -3,8 +3,14 @@
     "notenoughrails:corite_block",
     "notenoughrails:corite_chiseled_block",
     "notenoughrails:corite_cut_block",
+    "notenoughrails:corite_cut_slab",
+    "notenoughrails:corite_cut_stairs",
+    "notenoughrails:corite_door",
     "notenoughrails:corite_grate",
+    "notenoughrails:corite_plate_block",
     "notenoughrails:fluxstone",
+    "notenoughrails:fluxstone_polished",
+    "notenoughrails:iron_plate_block",
     "notenoughrails:vermilion_block"
   ]
 }

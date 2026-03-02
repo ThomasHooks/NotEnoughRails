@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "notenoughrails:block/corite_cut_slab"
+    },
+    "type=double": {
+      "model": "notenoughrails:block/corite_cut_block"
+    },
+    "type=top": {
+      "model": "notenoughrails:block/corite_cut_slab_top"
+    }
+  }
+}
