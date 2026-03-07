@@ -15,6 +15,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails;
 
+import com.github.thomashooks.notenoughrails.data.loot.modifier.FlaxseedsLootTables;
 import com.github.thomashooks.notenoughrails.world.block.AllBlocks;
 import com.github.thomashooks.notenoughrails.world.item.AllItemGroups;
 import com.github.thomashooks.notenoughrails.world.item.AllItems;
@@ -49,5 +50,6 @@ public class NotEnoughRails implements ModInitializer {
 
 		CompostingChanceRegistry.INSTANCE.add(AllItems.FLAX, 0.65F);
 		CompostingChanceRegistry.INSTANCE.add(AllItems.FLAXSEEDS, 0.3F);
+		FlaxseedsLootTables.modify();
 	}
 }
