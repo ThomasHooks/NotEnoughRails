@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_fluxstone": {
+    "has_flax": {
       "conditions": {
         "items": [
           {
-            "items": "notenoughrails:fluxstone"
+            "items": "notenoughrails:flax"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "notenoughrails:fluxstone_polished_from_smelting_fluxstone"
+        "recipe": "notenoughrails:flax_string"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_fluxstone"
+      "has_flax"
     ]
   ],
   "rewards": {
     "recipes": [
-      "notenoughrails:fluxstone_polished_from_smelting_fluxstone"
+      "notenoughrails:flax_string"
     ]
   }
 }

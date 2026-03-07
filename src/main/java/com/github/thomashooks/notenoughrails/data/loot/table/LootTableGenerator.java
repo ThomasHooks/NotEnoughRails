@@ -16,8 +16,12 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.data.loot.table;
 
 import com.github.thomashooks.notenoughrails.world.block.AllBlocks;
+import com.github.thomashooks.notenoughrails.world.block.FlaxCropBlock;
+import com.github.thomashooks.notenoughrails.world.item.AllItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
+import net.minecraft.predicate.StatePredicate;
 import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
@@ -29,6 +33,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
+        addDrop(AllBlocks.COKE_BLOCK);
         addDrop(AllBlocks.CORITE_BLOCK);
         addDrop(AllBlocks.CORITE_CHISELED_BLOCK);
         addDrop(AllBlocks.CORITE_CUT_BLOCK);
@@ -37,9 +42,16 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(AllBlocks.CORITE_DOOR, doorDrops(AllBlocks.CORITE_DOOR));
         addDrop(AllBlocks.CORITE_GRATE);
         addDrop(AllBlocks.CORITE_PLATE_BLOCK);
+        BlockStatePropertyLootCondition.Builder flaxCropBuilder = BlockStatePropertyLootCondition.builder(AllBlocks.FLAX_CROP)
+                .properties(StatePredicate.Builder.create().exactMatch(FlaxCropBlock.AGE, FlaxCropBlock.MAX_AGE));
+        this.addDrop(AllBlocks.FLAX_CROP, this.cropDrops(AllBlocks.FLAX_CROP, AllItems.FLAX, AllItems.FLAXSEEDS, flaxCropBuilder));
         addDrop(AllBlocks.FLUXSTONE);
         addDrop(AllBlocks.FLUXSTONE_POLISHED);
+        addDrop(AllBlocks.FLUXSTONE_SMOOTH);
+        addDrop(AllBlocks.FLUXSTONE_SMOOTH_SLAB, slabDrops(AllBlocks.FLUXSTONE_SMOOTH_SLAB));
+        addDrop(AllBlocks.FLUXSTONE_SMOOTH_STAIRS);
         addDrop(AllBlocks.IRON_PLATE_BLOCK);
+        addDrop(AllBlocks.LINEN_BLOCK);
         addDrop(AllBlocks.VERMILION_BLOCK);
         addDrop(AllBlocks.WOODEN_FRAME);
     }

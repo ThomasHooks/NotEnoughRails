@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "notenoughrails:block/flax_crop_stage1"
+  }
+}

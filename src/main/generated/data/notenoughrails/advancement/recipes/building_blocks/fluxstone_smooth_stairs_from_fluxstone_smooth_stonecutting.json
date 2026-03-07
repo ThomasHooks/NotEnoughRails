@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_fluxstone_smooth": {
+      "conditions": {
+        "items": [
+          {
+            "items": "notenoughrails:fluxstone_smooth"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "notenoughrails:fluxstone_smooth_stairs_from_fluxstone_smooth_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_fluxstone_smooth"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "notenoughrails:fluxstone_smooth_stairs_from_fluxstone_smooth_stonecutting"
+    ]
+  }
+}

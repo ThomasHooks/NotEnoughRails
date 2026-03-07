@@ -29,5 +29,6 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         //To make some parts of the block transparent (like glass, saplings and doors):
         BlockRenderLayerMap.putBlock(AllBlocks.CORITE_GRATE, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.CORITE_DOOR, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.FLAX_CROP, BlockRenderLayer.CUTOUT);
     }
 }

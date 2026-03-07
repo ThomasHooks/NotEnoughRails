@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "notenoughrails:fluxstone_smooth",
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:fluxstone_smooth_stairs"
+  }
+}

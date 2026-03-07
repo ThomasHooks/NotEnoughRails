@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "notenoughrails:linen",
+  "ingredients": [
+    "notenoughrails:flax_string",
+    "notenoughrails:flax_string",
+    "notenoughrails:flax_string",
+    "notenoughrails:flax_string",
+    "notenoughrails:flax_string",
+    "notenoughrails:flax_string",
+    "notenoughrails:flax_string",
+    "notenoughrails:flax_string",
+    "notenoughrails:flax_string"
+  ],
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:linen"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "notenoughrails:fluxstone_smooth_stairs",
+  "key": {
+    "c": "notenoughrails:fluxstone_smooth"
+  },
+  "pattern": [
+    "c  ",
+    "cc ",
+    "ccc"
+  ],
+  "result": {
+    "count": 4,
+    "id": "notenoughrails:fluxstone_smooth_stairs"
+  }
+}

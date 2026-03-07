@@ -47,8 +47,12 @@ public class AllItemGroups {
         //Order: full block -> stairs -> slab -> wall -> fence -> fence gate -> door -> trapdoor -> pressure plate -> button
         entries.add(AllBlocks.FLUXSTONE);
         entries.add(AllBlocks.FLUXSTONE_POLISHED);
+        entries.add(AllBlocks.FLUXSTONE_SMOOTH);
+        entries.add(AllBlocks.FLUXSTONE_SMOOTH_STAIRS);
+        entries.add(AllBlocks.FLUXSTONE_SMOOTH_SLAB);
 
         //Fuel Blocks
+        entries.add(AllBlocks.COKE_BLOCK);
 
         //Metal Blocks
         //Order: full block -> chiseled -> grate -> cut -> stairs -> slab -> bars -> door -> trapdoor -> pressure plate
@@ -64,6 +68,7 @@ public class AllItemGroups {
         entries.add(AllBlocks.VERMILION_BLOCK);
 
         //Cloth Blocks
+        entries.add(AllBlocks.LINEN_BLOCK);
 
         //Storage Blocks
 
@@ -93,9 +98,12 @@ public class AllItemGroups {
 
         //Armor
 
-        //Food
+        //Fuel Items
+        entries.add(AllItems.COKE);
 
-        //Fuel
+        //Raw Dust Items
+        entries.add(AllItems.FLUX);
+        entries.add(AllItems.KAOLIN);
 
         //Raw Ore
 
@@ -105,10 +113,6 @@ public class AllItemGroups {
         entries.add(AllItems.CRUSHED_GOLD_ORE);
         entries.add(AllItems.CRUSHED_IRON_ORE);
         entries.add(AllItems.CRUSHED_VERMILION);
-
-        //Raw Dust Items
-        entries.add(AllItems.FLUX);
-        entries.add(AllItems.KAOLIN);
 
         //Metal Ingots
         entries.add(AllItems.CORITE_INGOT);
@@ -129,6 +133,14 @@ public class AllItemGroups {
         //Bricks
 
         //Crop Items
+        entries.add(AllItems.FLAXSEEDS);
+        entries.add(AllItems.FLAX);
+        entries.add(AllItems.FLAX_STRING);
+        entries.add(AllItems.LINEN);
+        entries.add(AllItems.LINSEED_OIL);
+
+        //Food
+        entries.add(AllItems.FLOUR);
 
         //Misc Crafting Items
 

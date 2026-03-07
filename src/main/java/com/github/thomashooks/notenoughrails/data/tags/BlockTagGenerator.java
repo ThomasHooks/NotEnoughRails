@@ -32,6 +32,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
     @Override
     protected void configure(RegistryWrapper.@NotNull WrapperLookup wrapperLookup) {
         valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
+                .add(AllBlocks.COKE_BLOCK)
                 .add(AllBlocks.CORITE_BLOCK)
                 .add(AllBlocks.CORITE_CHISELED_BLOCK)
                 .add(AllBlocks.CORITE_CUT_BLOCK)
@@ -42,11 +43,15 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.CORITE_PLATE_BLOCK)
                 .add(AllBlocks.FLUXSTONE)
                 .add(AllBlocks.FLUXSTONE_POLISHED)
+                .add(AllBlocks.FLUXSTONE_SMOOTH)
+                .add(AllBlocks.FLUXSTONE_SMOOTH_SLAB)
+                .add(AllBlocks.FLUXSTONE_SMOOTH_STAIRS)
                 .add(AllBlocks.IRON_PLATE_BLOCK)
                 .add(AllBlocks.VERMILION_BLOCK)
         ;
 
         valueLookupBuilder(BlockTags.NEEDS_STONE_TOOL)
+                .add(AllBlocks.COKE_BLOCK)
                 .add(AllBlocks.CORITE_BLOCK)
                 .add(AllBlocks.CORITE_CHISELED_BLOCK)
                 .add(AllBlocks.CORITE_CUT_BLOCK)
@@ -57,6 +62,9 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.CORITE_PLATE_BLOCK)
                 .add(AllBlocks.FLUXSTONE)
                 .add(AllBlocks.FLUXSTONE_POLISHED)
+                .add(AllBlocks.FLUXSTONE_SMOOTH)
+                .add(AllBlocks.FLUXSTONE_SMOOTH_SLAB)
+                .add(AllBlocks.FLUXSTONE_SMOOTH_STAIRS)
                 .add(AllBlocks.IRON_PLATE_BLOCK)
         ;
 

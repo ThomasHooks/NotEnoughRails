@@ -24,6 +24,8 @@ import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.SmokingRecipe;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import org.jetbrains.annotations.NotNull;
@@ -43,6 +45,14 @@ public class RecipeGenerator extends FabricRecipeProvider {
             public void generate() {
                 //Items
                 //--------------------------------------------------------------------------------------------------------------
+
+                //Bread
+                List<ItemConvertible> BREAD_COOKABLES = List.of(AllItems.FLOUR);
+                offerSmelting(BREAD_COOKABLES, RecipeCategory.FOOD, Items.BREAD, 0.35F, 200, NotEnoughRails.MOD_ID + ":bread");
+                offerSmoking(BREAD_COOKABLES, RecipeCategory.FOOD, Items.BREAD, 0.35F, 100, NotEnoughRails.MOD_ID + ":bread");
+
+                //Coke & Coke Block
+                offerReversibleCompactingRecipes(RecipeCategory.MISC, AllItems.COKE,RecipeCategory.MISC, AllBlocks.COKE_BLOCK);
 
                 //Copper Ingot
                 List<ItemConvertible> COPPER_INGOT_SMELTABLES = List.of(AllItems.CRUSHED_COPPER_ORE);
@@ -66,6 +76,15 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Corite Plate
                 offerReversibleCompactingRecipes(RecipeCategory.MISC, AllItems.CORITE_PLATE,RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_PLATE_BLOCK);
+
+                //Flax String
+                createShaped(RecipeCategory.MISC, AllItems.FLAX_STRING, 3)
+                        .input('f', AllItems.FLAX)
+                        .pattern("f  ")
+                        .pattern("ff ")
+                        .group(NotEnoughRails.MOD_ID + ":flax_string")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
 
                 //Gold Ingot
                 List<ItemConvertible> GOLD_INGOT_SMELTABLES = List.of(AllItems.CRUSHED_GOLD_ORE);
@@ -101,6 +120,21 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .input(AllItems.FLUX, 3)
                         .group(NotEnoughRails.MOD_ID + ":kaolin")
                         .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
+                        .offerTo(exporter);
+
+                //Linen
+                createShapeless(RecipeCategory.MISC, AllItems.LINEN, 1)
+                        .input(AllItems.FLAX_STRING, 9)
+                        .group(NotEnoughRails.MOD_ID + ":linen")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+
+                //Linseed Oil
+                createShapeless(RecipeCategory.MISC, AllItems.LINSEED_OIL, 1)
+                        .input(AllItems.FLAXSEEDS, 6)
+                        .input(Items.GLASS_BOTTLE, 1)
+                        .group(NotEnoughRails.MOD_ID + ":linseed_oil")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
                         .offerTo(exporter);
 
                 //Blocks
@@ -165,9 +199,42 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_GRATE, AllBlocks.CORITE_BLOCK, 4);
 
                 //Polished Fluxstone
-                List<ItemConvertible> FULXSTONE_POLISHED_SMELTABLES = List.of(AllBlocks.FLUXSTONE);
-                offerSmelting(FULXSTONE_POLISHED_SMELTABLES, RecipeCategory.MISC, AllBlocks.FLUXSTONE_POLISHED, 0.15F, 200, NotEnoughRails.MOD_ID + ":fluxstone_polished");
-                offerBlasting(FULXSTONE_POLISHED_SMELTABLES, RecipeCategory.MISC, AllBlocks.FLUXSTONE_POLISHED, 0.15F, 100, NotEnoughRails.MOD_ID + ":fluxstone_polished");
+                createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.FLUXSTONE_POLISHED, 4)
+                        .input('c', AllBlocks.FLUXSTONE)
+                        .pattern("cc")
+                        .pattern("cc")
+                        .group(NotEnoughRails.MOD_ID + ":fluxstone_polished")
+                        .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
+                        .offerTo(exporter);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.FLUXSTONE_POLISHED, AllBlocks.FLUXSTONE, 1);
+
+                List<ItemConvertible> FULXSTONE_SMOOTH_SMELTABLES = List.of(AllBlocks.FLUXSTONE);
+                offerSmelting(FULXSTONE_SMOOTH_SMELTABLES, RecipeCategory.MISC, AllBlocks.FLUXSTONE_SMOOTH, 0.15F, 200, NotEnoughRails.MOD_ID + ":fluxstone_smooth");
+                offerBlasting(FULXSTONE_SMOOTH_SMELTABLES, RecipeCategory.MISC, AllBlocks.FLUXSTONE_SMOOTH, 0.15F, 100, NotEnoughRails.MOD_ID + ":fluxstone_smooth");
+
+                //Polished Fluxstone Slab
+                createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.FLUXSTONE_SMOOTH_SLAB, 6)
+                        .input('c', AllBlocks.FLUXSTONE_SMOOTH)
+                        .pattern("ccc")
+                        .group(NotEnoughRails.MOD_ID + ":fluxstone_smooth_slab")
+                        .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
+                        .offerTo(exporter);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.FLUXSTONE_SMOOTH_SLAB, AllBlocks.FLUXSTONE_SMOOTH, 2);
+
+                //Polished Fluxstone Stairs
+                createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.FLUXSTONE_SMOOTH_STAIRS, 4)
+                        .input('c', AllBlocks.FLUXSTONE_SMOOTH)
+                        .pattern("c  ")
+                        .pattern("cc ")
+                        .pattern("ccc")
+                        .group(NotEnoughRails.MOD_ID + ":fluxstone_smooth_stairs")
+                        .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
+                        .offerTo(exporter);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.FLUXSTONE_SMOOTH_STAIRS, AllBlocks.FLUXSTONE_SMOOTH, 1);
+            }
+
+            public void offerSmoking(List<ItemConvertible> inputs, RecipeCategory category, ItemConvertible output, float experience, int cookingTime, String group) {
+                this.offerMultipleOptions(RecipeSerializer.SMOKING, SmokingRecipe::new, inputs, category, output, experience, cookingTime, group, "_from_smoking");
             }
         };
     }

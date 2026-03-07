@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "notenoughrails:block/fluxstone_smooth_slab"
+    },
+    "type=double": {
+      "model": "notenoughrails:block/fluxstone_smooth"
+    },
+    "type=top": {
+      "model": "notenoughrails:block/fluxstone_smooth_slab_top"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "notenoughrails:fluxstone_polished",
+  "key": {
+    "c": "notenoughrails:fluxstone"
+  },
+  "pattern": [
+    "cc",
+    "cc"
+  ],
+  "result": {
+    "count": 4,
+    "id": "notenoughrails:fluxstone_polished"
+  }
+}

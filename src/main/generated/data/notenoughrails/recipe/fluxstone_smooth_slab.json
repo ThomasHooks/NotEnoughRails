@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "notenoughrails:fluxstone_smooth_slab",
+  "key": {
+    "c": "notenoughrails:fluxstone_smooth"
+  },
+  "pattern": [
+    "ccc"
+  ],
+  "result": {
+    "count": 6,
+    "id": "notenoughrails:fluxstone_smooth_slab"
+  }
+}

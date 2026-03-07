@@ -16,9 +16,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.world.item;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
+import com.github.thomashooks.notenoughrails.world.block.AllBlocks;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -29,6 +33,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Function;
 
 public class AllItems {
+    public static final Item COKE = registerItem("coke", Item::new);
     public static final Item COPPER_PLATE = registerItem("copper_plate", Item::new);
     public static final Item COPPER_ROD = registerItem("copper_rod", Item::new);
     public static final Item CORITE_INGOT = registerItem("corite_ingot", Item::new);
@@ -39,11 +44,23 @@ public class AllItems {
     public static final Item CRUSHED_GOLD_ORE = registerItem("crushed_gold_ore", Item::new);
     public static final Item CRUSHED_IRON_ORE = registerItem("crushed_iron_ore", Item::new);
     public static final Item CRUSHED_VERMILION = registerItem("crushed_vermilion", Item::new);
+    public static final Item FLAX = registerItem("flax", Item::new);
+    public static final Item FLAX_STRING = registerItem("flax_string", Item::new);
+    public static final Item FLAXSEEDS = registerItem("flaxseed", createBlockItemWithUniqueName(AllBlocks.FLAX_CROP));
+    public static final Item FLOUR = registerItem("flour", Item::new);
     public static final Item FLUX = registerItem("flux", Item::new);
     public static final Item GOLD_ROD = registerItem("gold_rod", Item::new);
     public static final Item IRON_PLATE = registerItem("iron_plate", Item::new);
     public static final Item IRON_ROD = registerItem("iron_rod", Item::new);
     public static final Item KAOLIN = registerItem("kaolin", settings -> new Item(settings.fireproof()));
+    public static final Item LINEN = registerItem("linen", Item::new);
+    public static final Item LINSEED_OIL = registerItem("linseed_oil",
+            settings -> new Item(settings
+                    .recipeRemainder(Items.GLASS_BOTTLE)
+                    .food(AllFoodComponents.LINSEED_OIL, AllConsumableComponents.LINSEED_OIL)
+                    .useRemainder(Items.GLASS_BOTTLE)
+                    .maxCount(16)
+            ));
     public static final Item VERMILION_INGOT = registerItem("vermilion_ingot", Item::new);
     public static final Item VERMILION_ROD = registerItem("vermilion_rod", Item::new);
 
@@ -51,46 +68,62 @@ public class AllItems {
         NotEnoughRails.LOGGER.info("Registering all Items for " + NotEnoughRails.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
-            //Raw Ore
-
-            //Raw Crushed Ore
-            entries.add(CRUSHED_COPPER_ORE);
-            entries.add(CRUSHED_CORITE);
-            entries.add(CRUSHED_GOLD_ORE);
-            entries.add(CRUSHED_IRON_ORE);
-            entries.add(CRUSHED_VERMILION);
+            //Fuel Items
+            entries.add(COKE);
 
             //Raw Dust Items
             entries.add(FLUX);
             entries.add(KAOLIN);
 
+            //Raw Ore
+
+            //Raw Crushed Ore
+            entries.add(AllItems.CRUSHED_COPPER_ORE);
+            entries.add(AllItems.CRUSHED_CORITE);
+            entries.add(AllItems.CRUSHED_GOLD_ORE);
+            entries.add(AllItems.CRUSHED_IRON_ORE);
+            entries.add(AllItems.CRUSHED_VERMILION);
+
             //Metal Ingots
-            entries.add(CORITE_INGOT);
-            entries.add(VERMILION_INGOT);
+            entries.add(AllItems.CORITE_INGOT);
+            entries.add(AllItems.VERMILION_INGOT);
 
             //Metal Plates
-            entries.add(COPPER_PLATE);
-            entries.add(CORITE_PLATE);
-            entries.add(IRON_PLATE);
+            entries.add(AllItems.COPPER_PLATE);
+            entries.add(AllItems.CORITE_PLATE);
+            entries.add(AllItems.IRON_PLATE);
 
             //Metal Rods
-            entries.add(COPPER_ROD);
-            entries.add(CORITE_ROD);
-            entries.add(GOLD_ROD);
-            entries.add(IRON_ROD);
-            entries.add(VERMILION_ROD);
+            entries.add(AllItems.COPPER_ROD);
+            entries.add(AllItems.CORITE_ROD);
+            entries.add(AllItems.GOLD_ROD);
+            entries.add(AllItems.IRON_ROD);
+            entries.add(AllItems.VERMILION_ROD);
 
             //Bricks
 
             //Crop Items
+            entries.add(AllItems.FLAXSEEDS);
+            entries.add(AllItems.FLAX);
+            entries.add(AllItems.FLAX_STRING);
+            entries.add(AllItems.LINEN);
+            entries.add(AllItems.LINSEED_OIL);
 
             //Misc Crafting Items
 
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
+            //Food Items
+            entries.add(AllItems.FLOUR);
         });
     }
 
     private static Item registerItem(@NotNull String name, Function<Item.Settings, Item> function) {
         return Registry.register(Registries.ITEM, Identifier.of(NotEnoughRails.MOD_ID, name),
                 function.apply(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(NotEnoughRails.MOD_ID, name)))));
+    }
+
+    private static Function<Item.Settings, Item> createBlockItemWithUniqueName(Block block) {
+        return settings -> new BlockItem(block, settings.useItemPrefixedTranslationKey());
     }
 }

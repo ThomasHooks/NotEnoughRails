@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "notenoughrails:block/fluxstone_smooth",
+    "side": "notenoughrails:block/fluxstone_smooth",
+    "top": "notenoughrails:block/fluxstone_smooth"
+  }
+}

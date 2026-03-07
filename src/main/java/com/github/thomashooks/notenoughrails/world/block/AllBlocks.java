@@ -19,6 +19,7 @@ import com.github.thomashooks.notenoughrails.NotEnoughRails;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -32,6 +33,13 @@ import net.minecraft.util.Identifier;
 import java.util.function.Function;
 
 public class AllBlocks {
+    public static final Block COKE_BLOCK = registerBlock("coke_block",
+            settings -> new Block(settings
+                    .strength(5.0F, 6.0F)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .mapColor(MapColor.GRAY)
+                    .requiresTool()
+            ));
     public static final Block CORITE_BLOCK = registerBlock("corite_block",
             settings -> new Block(settings
                     .strength(5.0F, 6.0F)
@@ -102,8 +110,17 @@ public class AllBlocks {
                     .mapColor(MapColor.ORANGE)
                     .requiresTool()
             ));
+    public static final Block FLAX_CROP = registerBlockWithoutItem("flax_crop",
+            settings -> new FlaxCropBlock(settings
+                    .mapColor(state -> state.get(FlaxCropBlock.AGE) >= 6 ? MapColor.CYAN : MapColor.DARK_GREEN)
+                    .noCollision()
+                    .ticksRandomly()
+                    .breakInstantly()
+                    .sounds(BlockSoundGroup.CROP)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+            ));
     public static final Block FLUXSTONE = registerBlock("fluxstone",
-            settings -> new Block(settings
+            settings -> new PillarBlock(settings
                     .strength(1.5F, 5.0F)
                     .sounds(BlockSoundGroup.DEEPSLATE)
                     .instrument(NoteBlockInstrument.BASEDRUM)
@@ -118,6 +135,30 @@ public class AllBlocks {
                     .mapColor(MapColor.TERRACOTTA_LIGHT_BLUE)
                     .requiresTool()
             ));
+    public static final Block FLUXSTONE_SMOOTH = registerBlock("fluxstone_smooth",
+            settings -> new Block(settings
+                    .strength(1.5F, 5.0F)
+                    .sounds(BlockSoundGroup.DEEPSLATE)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .mapColor(MapColor.TERRACOTTA_LIGHT_BLUE)
+                    .requiresTool()
+            ));
+    public static final Block FLUXSTONE_SMOOTH_SLAB = registerBlock("fluxstone_smooth_slab",
+            settings -> new SlabBlock(settings
+                    .strength(1.5F, 5.0F)
+                    .sounds(BlockSoundGroup.DEEPSLATE)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .mapColor(MapColor.TERRACOTTA_LIGHT_BLUE)
+                    .requiresTool()
+            ));
+    public static final Block FLUXSTONE_SMOOTH_STAIRS = registerBlock("fluxstone_smooth_stairs",
+            settings -> new StairsBlock(AllBlocks.CORITE_BLOCK.getDefaultState(), settings
+                    .strength(1.5F, 5.0F)
+                    .sounds(BlockSoundGroup.DEEPSLATE)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .mapColor(MapColor.TERRACOTTA_LIGHT_BLUE)
+                    .requiresTool()
+            ));
     public static final Block IRON_PLATE_BLOCK = registerBlock("iron_plate_block",
             settings -> new PillarBlock(settings
                     .strength(5.0F, 6.0F)
@@ -125,6 +166,14 @@ public class AllBlocks {
                     .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
                     .mapColor(MapColor.IRON_GRAY)
                     .requiresTool()
+            ));
+    public static final Block LINEN_BLOCK = registerBlock("linen_block",
+            settings -> new LinenBlock(settings
+                    .strength(0.8F, 2.0F)
+                    .sounds(BlockSoundGroup.WOOL)
+                    .instrument(NoteBlockInstrument.FLUTE)
+                    .mapColor(MapColor.WHITE)
+                    .burnable()
             ));
     public static final Block VERMILION_BLOCK = registerBlock("vermilion_block",
             settings -> new RedstoneBlock(settings
@@ -156,8 +205,12 @@ public class AllBlocks {
             //Order: full block -> stairs -> slab -> wall -> fence -> fence gate -> door -> trapdoor -> pressure plate -> button
             entries.add(AllBlocks.FLUXSTONE);
             entries.add(AllBlocks.FLUXSTONE_POLISHED);
+            entries.add(AllBlocks.FLUXSTONE_SMOOTH);
+            entries.add(AllBlocks.FLUXSTONE_SMOOTH_STAIRS);
+            entries.add(AllBlocks.FLUXSTONE_SMOOTH_SLAB);
 
             //Fuel Blocks
+            entries.add(AllBlocks.COKE_BLOCK);
 
             //Metal Blocks
             //Order: full block -> chiseled -> grate -> cut -> stairs -> slab -> bars -> door -> trapdoor -> pressure plate
@@ -172,9 +225,19 @@ public class AllBlocks {
             entries.add(AllBlocks.VERMILION_BLOCK);
         });
 
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register(entries -> {
+            //Cloth Blocks
+            entries.add(AllBlocks.LINEN_BLOCK);
+        });
+
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
             entries.add(AllBlocks.CORITE_DOOR);
         });
+    }
+
+    private static Block registerBlockWithoutItem(String name, Function<AbstractBlock.Settings, Block> function) {
+        return Registry.register(Registries.BLOCK, Identifier.of(NotEnoughRails.MOD_ID, name),
+                function.apply(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(NotEnoughRails.MOD_ID, name)))));
     }
 
     private static Block registerBlock(String name, Function<AbstractBlock.Settings, Block> function) {

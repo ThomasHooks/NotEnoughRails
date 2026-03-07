@@ -3,9 +3,9 @@
   "category": "blocks",
   "cookingtime": 100,
   "experience": 0.15,
-  "group": "notenoughrails:fluxstone_polished",
+  "group": "notenoughrails:fluxstone_smooth",
   "ingredient": "notenoughrails:fluxstone",
   "result": {
-    "id": "notenoughrails:fluxstone_polished"
+    "id": "notenoughrails:fluxstone_smooth"
   }
 }

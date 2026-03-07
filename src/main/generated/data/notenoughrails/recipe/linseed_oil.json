@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "notenoughrails:linseed_oil",
+  "ingredients": [
+    "notenoughrails:flaxseed",
+    "notenoughrails:flaxseed",
+    "notenoughrails:flaxseed",
+    "notenoughrails:flaxseed",
+    "notenoughrails:flaxseed",
+    "notenoughrails:flaxseed",
+    "minecraft:glass_bottle"
+  ],
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:linseed_oil"
+  }
+}

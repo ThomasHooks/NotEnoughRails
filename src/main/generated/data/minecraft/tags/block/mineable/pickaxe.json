@@ -1,5 +1,6 @@
 {
   "values": [
+    "notenoughrails:coke_block",
     "notenoughrails:corite_block",
     "notenoughrails:corite_chiseled_block",
     "notenoughrails:corite_cut_block",
@@ -10,6 +11,9 @@
     "notenoughrails:corite_plate_block",
     "notenoughrails:fluxstone",
     "notenoughrails:fluxstone_polished",
+    "notenoughrails:fluxstone_smooth",
+    "notenoughrails:fluxstone_smooth_slab",
+    "notenoughrails:fluxstone_smooth_stairs",
     "notenoughrails:iron_plate_block",
     "notenoughrails:vermilion_block"
   ]

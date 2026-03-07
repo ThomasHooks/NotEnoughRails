@@ -19,7 +19,8 @@ import com.github.thomashooks.notenoughrails.world.block.AllBlocks;
 import com.github.thomashooks.notenoughrails.world.item.AllItemGroups;
 import com.github.thomashooks.notenoughrails.world.item.AllItems;
 import net.fabricmc.api.ModInitializer;
-
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
+import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,5 +41,13 @@ public class NotEnoughRails implements ModInitializer {
 
 		AllItems.registerAll();
 		AllBlocks.registerAll();
+
+		FuelRegistryEvents.BUILD.register((builder, context) -> {
+			builder.add(AllItems.COKE, 3200);
+			builder.add(AllBlocks.COKE_BLOCK, 32000);
+		});
+
+		CompostingChanceRegistry.INSTANCE.add(AllItems.FLAX, 0.65F);
+		CompostingChanceRegistry.INSTANCE.add(AllItems.FLAXSEEDS, 0.3F);
 	}
 }
