@@ -13,7 +13,7 @@ AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
 ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.github.thomashooks.notenoughrails.world.block;
+package com.github.thomashooks.notenoughrails.block;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -203,7 +203,6 @@ public class AllBlocks {
 
             //Stone Blocks
             //Order: full block -> stairs -> slab -> wall -> fence -> fence gate -> door -> trapdoor -> pressure plate -> button
-            entries.add(AllBlocks.FLUXSTONE);
             entries.add(AllBlocks.FLUXSTONE_POLISHED);
             entries.add(AllBlocks.FLUXSTONE_SMOOTH);
             entries.add(AllBlocks.FLUXSTONE_SMOOTH_STAIRS);
@@ -224,14 +223,15 @@ public class AllBlocks {
             entries.add(AllBlocks.IRON_PLATE_BLOCK);
             entries.add(AllBlocks.VERMILION_BLOCK);
         });
-
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register(entries -> {
             //Cloth Blocks
             entries.add(AllBlocks.LINEN_BLOCK);
         });
-
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
             entries.add(AllBlocks.CORITE_DOOR);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
+            entries.add(AllBlocks.FLUXSTONE);
         });
     }
 

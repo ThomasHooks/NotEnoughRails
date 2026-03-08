@@ -15,18 +15,24 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails;
 
+import com.github.thomashooks.notenoughrails.data.DataGeneratorRegistry;
 import com.github.thomashooks.notenoughrails.data.recipes.RecipeGenerator;
 import com.github.thomashooks.notenoughrails.data.loot.table.LootTableGenerator;
 import com.github.thomashooks.notenoughrails.data.models.ModelGenerator;
 import com.github.thomashooks.notenoughrails.data.tags.BlockTagGenerator;
 import com.github.thomashooks.notenoughrails.data.tags.ItemTagGenerator;
+import com.github.thomashooks.notenoughrails.world.gen.feature.ConfiguredFeatures;
+import com.github.thomashooks.notenoughrails.world.gen.feature.PlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.registry.RegistryBuilder;
+import net.minecraft.registry.RegistryKeys;
 import org.jetbrains.annotations.NotNull;
 
 public class NotEnoughRailsDataGenerator implements DataGeneratorEntrypoint {
 	@Override
 	public void onInitializeDataGenerator(@NotNull FabricDataGenerator fabricDataGenerator) {
+		NotEnoughRails.LOGGER.info("Initializing all data generation for " + NotEnoughRails.MOD_ID);
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
 		pack.addProvider(BlockTagGenerator::new);
@@ -34,5 +40,13 @@ public class NotEnoughRailsDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(LootTableGenerator::new);
 		pack.addProvider(ModelGenerator::new);
 		pack.addProvider(RecipeGenerator::new);
+		pack.addProvider(DataGeneratorRegistry::new);
+	}
+
+	@Override
+	public void buildRegistry(@NotNull RegistryBuilder registryBuilder) {
+		NotEnoughRails.LOGGER.info("Building data generation registry for " + NotEnoughRails.MOD_ID);
+		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ConfiguredFeatures::bootstrap);
+		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, PlacedFeatures::bootstrap);
 	}
 }

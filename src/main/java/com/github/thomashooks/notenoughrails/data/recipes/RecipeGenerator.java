@@ -16,8 +16,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.data.recipes;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
-import com.github.thomashooks.notenoughrails.world.block.AllBlocks;
-import com.github.thomashooks.notenoughrails.world.item.AllItems;
+import com.github.thomashooks.notenoughrails.block.AllBlocks;
+import com.github.thomashooks.notenoughrails.item.AllItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.recipe.RecipeExporter;
@@ -43,6 +43,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
         return new net.minecraft.data.recipe.RecipeGenerator(wrapperLookup, recipeExporter) {
             @Override
             public void generate() {
+                NotEnoughRails.LOGGER.info("Generating all items recipes for " + NotEnoughRails.MOD_ID);
                 //Items
                 //--------------------------------------------------------------------------------------------------------------
 
@@ -65,8 +66,17 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .input(AllItems.CRUSHED_IRON_ORE, 1)
                         .input(AllItems.FLUX, 1)
                         .group(NotEnoughRails.MOD_ID + ":crushed_corite")
-                        .criterion(hasItem(Items.IRON_ORE), conditionsFromItem(Items.IRON_ORE))
+                        .criterion(hasItem(Items.RAW_COPPER), conditionsFromItem(Items.RAW_COPPER))
                         .offerTo(exporter);
+
+                //Crushed Corite
+                createShapeless(RecipeCategory.MISC, AllItems.CRUSHED_CORITE, 2)
+                        .input(Items.RAW_COPPER, 4)
+                        .input(Items.RAW_IRON, 1)
+                        .input(AllItems.FLUX, 1)
+                        .group(NotEnoughRails.MOD_ID + ":crushed_corite")
+                        .criterion(hasItem(Items.RAW_COPPER), conditionsFromItem(Items.RAW_COPPER))
+                        .offerTo(exporter, ":crushed_corite_from_raw_ore");
 
                 //Corite Ingot
                 List<ItemConvertible> CORITE_INGOT_SMELTABLES = List.of(AllItems.CRUSHED_CORITE);
@@ -105,8 +115,17 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .input(Items.REDSTONE, 3)
                         .input(AllItems.FLUX, 1)
                         .group(NotEnoughRails.MOD_ID + ":crushed_vermilion")
-                        .criterion(hasItem(Items.REDSTONE), conditionsFromItem(Items.REDSTONE))
+                        .criterion(hasItem(Items.RAW_COPPER), conditionsFromItem(Items.RAW_COPPER))
                         .offerTo(exporter);
+
+                //Crushed Vermilion
+                createShapeless(RecipeCategory.MISC, AllItems.CRUSHED_VERMILION, 1)
+                        .input(Items.RAW_COPPER, 1)
+                        .input(Items.REDSTONE, 3)
+                        .input(AllItems.FLUX, 1)
+                        .group(NotEnoughRails.MOD_ID + ":crushed_vermilion")
+                        .criterion(hasItem(Items.RAW_COPPER), conditionsFromItem(Items.RAW_COPPER))
+                        .offerTo(exporter, ":crushed_vermilion_from_raw_ore");
 
                 //Vermilion Ingot
                 List<ItemConvertible> VERMILION_INGOT_SMELTABLES = List.of(AllItems.CRUSHED_VERMILION);
@@ -139,6 +158,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Blocks
                 //--------------------------------------------------------------------------------------------------------------
+                NotEnoughRails.LOGGER.info("Generating all block recipes for " + NotEnoughRails.MOD_ID);
 
                 //Cut Corite
                 createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CUT_BLOCK, 4)

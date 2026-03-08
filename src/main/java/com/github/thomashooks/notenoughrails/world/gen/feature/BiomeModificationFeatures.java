@@ -13,22 +13,23 @@ AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
 ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.github.thomashooks.notenoughrails;
+package com.github.thomashooks.notenoughrails.world.gen.feature;
 
-import com.github.thomashooks.notenoughrails.block.AllBlocks;
-import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
-import net.minecraft.client.render.BlockRenderLayer;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.world.gen.GenerationStep;
 
-@Environment(EnvType.CLIENT)
-public class NotEnoughRailsClient implements ClientModInitializer {
-    @Override
-    public void onInitializeClient() {
-        //To make some parts of the block transparent (like glass, saplings and doors):
-        BlockRenderLayerMap.putBlock(AllBlocks.CORITE_GRATE, BlockRenderLayer.CUTOUT);
-        BlockRenderLayerMap.putBlock(AllBlocks.CORITE_DOOR, BlockRenderLayer.CUTOUT);
-        BlockRenderLayerMap.putBlock(AllBlocks.FLAX_CROP, BlockRenderLayer.CUTOUT);
+public class BiomeModificationFeatures {
+    public static void generateOverworld() {
+        BiomeModifications.addFeature(
+                BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES,
+                PlacedFeatures.ORE_FLUXSTONE_UPPER
+                );
+        BiomeModifications.addFeature(
+                BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES,
+                PlacedFeatures.ORE_FLUXSTONE_LOWER
+        );
     }
 }

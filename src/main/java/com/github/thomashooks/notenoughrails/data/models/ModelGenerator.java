@@ -15,9 +15,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.data.models;
 
-import com.github.thomashooks.notenoughrails.world.block.AllBlocks;
-import com.github.thomashooks.notenoughrails.world.block.FlaxCropBlock;
-import com.github.thomashooks.notenoughrails.world.item.AllItems;
+import com.github.thomashooks.notenoughrails.block.AllBlocks;
+import com.github.thomashooks.notenoughrails.block.FlaxCropBlock;
+import com.github.thomashooks.notenoughrails.item.AllItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.BlockStateModelGenerator;

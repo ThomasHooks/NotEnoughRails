@@ -13,10 +13,14 @@ AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
 ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.github.thomashooks.notenoughrails.world.item;
+package com.github.thomashooks.notenoughrails.world.gen;
 
-import net.minecraft.component.type.FoodComponent;
+import com.github.thomashooks.notenoughrails.NotEnoughRails;
+import com.github.thomashooks.notenoughrails.world.gen.feature.BiomeModificationFeatures;
 
-public class AllFoodComponents {
-    public static final FoodComponent LINSEED_OIL = new FoodComponent.Builder().nutrition(2).saturationModifier(0.3F).alwaysEdible().build();
+public class OverworldBiomeGenerator {
+    public static void addBasicFeatures() {
+        NotEnoughRails.LOGGER.info("Adding all basic Overworld biome features for " + NotEnoughRails.MOD_ID);
+        BiomeModificationFeatures.generateOverworld();
+    }
 }

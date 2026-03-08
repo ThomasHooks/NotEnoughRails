@@ -1,0 +1,4 @@
+// 1.21.11	-999999999-01-01T00:00:00	Not Enough Rails/notenoughrails
+be81373f1a6e6ebe8e29eee7e9f74406d7adeddf data/notenoughrails/worldgen/configured_feature/ore_fluxstone.json
+07ebdfe1e4020014432ea84708dcc7b07d11e0dd data/notenoughrails/worldgen/placed_feature/ore_fluxstone_lower.json
+d93a5b0c55098a4ec8797cd3901bc818c559140f data/notenoughrails/worldgen/placed_feature/ore_fluxstone_upper.json

@@ -15,10 +15,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails;
 
+import com.github.thomashooks.notenoughrails.block.AllBlocks;
 import com.github.thomashooks.notenoughrails.data.loot.modifier.FlaxseedsLootTables;
-import com.github.thomashooks.notenoughrails.world.block.AllBlocks;
-import com.github.thomashooks.notenoughrails.world.item.AllItemGroups;
-import com.github.thomashooks.notenoughrails.world.item.AllItems;
+import com.github.thomashooks.notenoughrails.item.AllItemGroups;
+import com.github.thomashooks.notenoughrails.item.AllItems;
+import com.github.thomashooks.notenoughrails.world.gen.OverworldBiomeGenerator;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
@@ -43,11 +44,15 @@ public class NotEnoughRails implements ModInitializer {
 		AllItems.registerAll();
 		AllBlocks.registerAll();
 
+		OverworldBiomeGenerator.addBasicFeatures();
+
+		NotEnoughRails.LOGGER.info("Registering all fuel items for " + NotEnoughRails.MOD_ID);
 		FuelRegistryEvents.BUILD.register((builder, context) -> {
 			builder.add(AllItems.COKE, 3200);
 			builder.add(AllBlocks.COKE_BLOCK, 32000);
 		});
 
+		NotEnoughRails.LOGGER.info("Registering all composting items for " + NotEnoughRails.MOD_ID);
 		CompostingChanceRegistry.INSTANCE.add(AllItems.FLAX, 0.65F);
 		CompostingChanceRegistry.INSTANCE.add(AllItems.FLAXSEEDS, 0.3F);
 		FlaxseedsLootTables.modify();

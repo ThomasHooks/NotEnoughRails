@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "notenoughrails:crushed_corite"
+        "recipe": "notenoughrails:crushed_corite_from_raw_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "notenoughrails:crushed_corite"
+      "notenoughrails:crushed_corite_from_raw_ore"
     ]
   }
 }

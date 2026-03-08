@@ -15,7 +15,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.data.loot.modifier;
 
-import com.github.thomashooks.notenoughrails.world.item.AllItems;
+import com.github.thomashooks.notenoughrails.NotEnoughRails;
+import com.github.thomashooks.notenoughrails.item.AllItems;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -42,6 +43,7 @@ public class FlaxseedsLootTables {
     private static final Identifier BUSH_BLOCK = Identifier.of("minecraft", "blocks/bush");
 
     public static void modify() {
+        NotEnoughRails.LOGGER.info("Modifying all Vanilla Minecraft loot tables for " + NotEnoughRails.MOD_ID);
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registry) -> {
             RegistryWrapper.Impl<Enchantment> impl = registry.getOrThrow(RegistryKeys.ENCHANTMENT);
             if (source.isBuiltin() && GRASS_BLOCK.equals(key.getValue())) {

@@ -13,22 +13,10 @@ AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
 ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.github.thomashooks.notenoughrails;
+package com.github.thomashooks.notenoughrails.item;
 
-import com.github.thomashooks.notenoughrails.block.AllBlocks;
-import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
-import net.minecraft.client.render.BlockRenderLayer;
+import net.minecraft.component.type.FoodComponent;
 
-@Environment(EnvType.CLIENT)
-public class NotEnoughRailsClient implements ClientModInitializer {
-    @Override
-    public void onInitializeClient() {
-        //To make some parts of the block transparent (like glass, saplings and doors):
-        BlockRenderLayerMap.putBlock(AllBlocks.CORITE_GRATE, BlockRenderLayer.CUTOUT);
-        BlockRenderLayerMap.putBlock(AllBlocks.CORITE_DOOR, BlockRenderLayer.CUTOUT);
-        BlockRenderLayerMap.putBlock(AllBlocks.FLAX_CROP, BlockRenderLayer.CUTOUT);
-    }
+public class AllFoodComponents {
+    public static final FoodComponent LINSEED_OIL = new FoodComponent.Builder().nutrition(2).saturationModifier(0.3F).alwaysEdible().build();
 }
