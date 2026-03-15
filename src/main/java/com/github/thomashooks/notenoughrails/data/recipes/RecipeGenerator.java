@@ -20,6 +20,7 @@ import com.github.thomashooks.notenoughrails.block.AllBlocks;
 import com.github.thomashooks.notenoughrails.item.AllItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
@@ -28,6 +29,7 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SmokingRecipe;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.ItemTags;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -46,6 +48,26 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 NotEnoughRails.LOGGER.info("Generating all items recipes for " + NotEnoughRails.MOD_ID);
                 //Items
                 //--------------------------------------------------------------------------------------------------------------
+
+                //Booster Rod
+                createShaped(RecipeCategory.TRANSPORTATION, AllItems.BOOSTER_ROD, 3)
+                        .input('i', AllItems.IRON_ROD)
+                        .input('g', AllItems.GOLD_ROD)
+                        .input('v', AllItems.VERMILION_ROD)
+                        .pattern("igv")
+                        .group(NotEnoughRails.MOD_ID + ":booster_rod")
+                        .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
+                        .offerTo(exporter);
+
+                //Booster Rod - Corite
+                createShaped(RecipeCategory.TRANSPORTATION, AllItems.BOOSTER_ROD_CORITE, 3)
+                        .input('c', AllItems.CORITE_ROD)
+                        .input('g', AllItems.GOLD_ROD)
+                        .input('v', AllItems.VERMILION_ROD)
+                        .pattern("cgv")
+                        .group(NotEnoughRails.MOD_ID + ":booster_rod_corite")
+                        .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
+                        .offerTo(exporter);
 
                 //Bread
                 List<ItemConvertible> BREAD_COOKABLES = List.of(AllItems.FLOUR);
@@ -156,9 +178,31 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
                         .offerTo(exporter);
 
+                //Railroad Tie
+                createShaped(RecipeCategory.TRANSPORTATION, AllItems.RAILROAD_TIE, 6)
+                        .input('o', AllItems.LINSEED_OIL)
+                        .input('s', ItemTags.WOODEN_SLABS)
+                        .pattern(" o ")
+                        .pattern("sss")
+                        .group(NotEnoughRails.MOD_ID + ":railroad_tie")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+
                 //Blocks
                 //--------------------------------------------------------------------------------------------------------------
                 NotEnoughRails.LOGGER.info("Generating all block recipes for " + NotEnoughRails.MOD_ID);
+
+                //Activator Rail
+                createShaped(RecipeCategory.TRANSPORTATION, Blocks.ACTIVATOR_RAIL, 16)
+                        .input('i', AllItems.IRON_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .input('r', Items.REDSTONE_TORCH)
+                        .pattern("i i")
+                        .pattern("iti")
+                        .pattern("iri")
+                        .group(NotEnoughRails.MOD_ID + ":activator_rail")
+                        .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                        .offerTo(exporter);
 
                 //Cut Corite
                 createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CUT_BLOCK, 4)
@@ -218,6 +262,19 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_GRATE, AllBlocks.CORITE_BLOCK, 4);
 
+                //Detector Rail
+                createShaped(RecipeCategory.TRANSPORTATION, Blocks.DETECTOR_RAIL, 16)
+                        .input('i', AllItems.IRON_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .input('r', Items.REDSTONE)
+                        .input('p', Items.STONE_PRESSURE_PLATE)
+                        .pattern("ipi")
+                        .pattern("iti")
+                        .pattern("iri")
+                        .group(NotEnoughRails.MOD_ID + ":detector_rail")
+                        .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                        .offerTo(exporter);
+
                 //Polished Fluxstone
                 createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.FLUXSTONE_POLISHED, 4)
                         .input('c', AllBlocks.FLUXSTONE)
@@ -251,6 +308,28 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.FLUXSTONE_SMOOTH_STAIRS, AllBlocks.FLUXSTONE_SMOOTH, 1);
+
+                //Powered Rail
+                createShaped(RecipeCategory.TRANSPORTATION, Blocks.POWERED_RAIL, 16)
+                        .input('b', AllItems.BOOSTER_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .pattern("b b")
+                        .pattern("btb")
+                        .pattern("b b")
+                        .group(NotEnoughRails.MOD_ID + ":powered_rail")
+                        .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
+                        .offerTo(exporter);
+
+                //Rail
+                createShaped(RecipeCategory.TRANSPORTATION, Blocks.RAIL, 24)
+                        .input('i', AllItems.IRON_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .pattern("i i")
+                        .pattern("iti")
+                        .pattern("i i")
+                        .group(NotEnoughRails.MOD_ID + ":rail")
+                        .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                        .offerTo(exporter);
             }
 
             public void offerSmoking(List<ItemConvertible> inputs, RecipeCategory category, ItemConvertible output, float experience, int cookingTime, String group) {

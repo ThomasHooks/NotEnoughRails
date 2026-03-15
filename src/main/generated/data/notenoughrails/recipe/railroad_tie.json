@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:railroad_tie",
+  "key": {
+    "o": "notenoughrails:linseed_oil",
+    "s": "#minecraft:wooden_slabs"
+  },
+  "pattern": [
+    " o ",
+    "sss"
+  ],
+  "result": {
+    "count": 6,
+    "id": "notenoughrails:railroad_tie"
+  }
+}

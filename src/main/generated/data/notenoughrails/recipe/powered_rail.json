@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:powered_rail",
+  "key": {
+    "b": "notenoughrails:booster_rod",
+    "t": "notenoughrails:railroad_tie"
+  },
+  "pattern": [
+    "b b",
+    "btb",
+    "b b"
+  ],
+  "result": {
+    "count": 16,
+    "id": "minecraft:powered_rail"
+  }
+}

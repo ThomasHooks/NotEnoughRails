@@ -56,6 +56,8 @@ public class ModelGenerator extends FabricModelProvider {
 
     @Override
     public void generateItemModels(@NotNull ItemModelGenerator modelGenerator) {
+        modelGenerator.register(AllItems.BOOSTER_ROD, Models.GENERATED);
+        modelGenerator.register(AllItems.BOOSTER_ROD_CORITE, Models.GENERATED);
         modelGenerator.register(AllItems.COKE, Models.GENERATED);
         modelGenerator.register(AllItems.COPPER_PLATE, Models.GENERATED);
         modelGenerator.register(AllItems.COPPER_ROD, Models.GENERATED);
@@ -69,12 +71,12 @@ public class ModelGenerator extends FabricModelProvider {
         modelGenerator.register(AllItems.CRUSHED_VERMILION, Models.GENERATED);
         modelGenerator.register(AllItems.FLAX, Models.GENERATED);
         modelGenerator.register(AllItems.FLAX_STRING, Models.GENERATED);
-//        modelGenerator.register(AllItems.FLAXSEEDS, Models.GENERATED);
         modelGenerator.register(AllItems.FLOUR, Models.GENERATED);
         modelGenerator.register(AllItems.FLUX, Models.GENERATED);
         modelGenerator.register(AllItems.GOLD_ROD, Models.GENERATED);
         modelGenerator.register(AllItems.IRON_PLATE, Models.GENERATED);
         modelGenerator.register(AllItems.IRON_ROD, Models.GENERATED);
+        modelGenerator.register(AllItems.RAILROAD_TIE, Models.GENERATED);
         modelGenerator.register(AllItems.KAOLIN, Models.GENERATED);
         modelGenerator.register(AllItems.LINEN, Models.GENERATED);
         modelGenerator.register(AllItems.LINSEED_OIL, Models.GENERATED);

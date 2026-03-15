@@ -1,4 +1,6 @@
 {
+  "item.notenoughrails.booster_rod": "Iron Booster Rod",
+  "item.notenoughrails.booster_rod_corite": "Corite Booster Rod",
   "item.notenoughrails.coke": "Coal Coke",
   "item.notenoughrails.coke_block": "Coal Coke Block",
   "item.notenoughrails.copper_plate": "Copper Plate",
@@ -37,6 +39,7 @@
   "item.notenoughrails.linen": "Linen",
   "item.notenoughrails.linen_block": "Linen Block",
   "item.notenoughrails.linseed_oil": "Linseed Oil",
+  "item.notenoughrails.railroad_tie": "Railroad Tie",
   "item.notenoughrails.vermilion_block": "Vermilion Block",
   "item.notenoughrails.vermilion_ingot": "Vermilion Ingot",
   "item.notenoughrails.vermilion_rod": "Vermilion Rod",

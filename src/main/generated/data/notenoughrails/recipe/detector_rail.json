@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:detector_rail",
+  "key": {
+    "i": "notenoughrails:iron_rod",
+    "p": "minecraft:stone_pressure_plate",
+    "r": "minecraft:redstone",
+    "t": "notenoughrails:railroad_tie"
+  },
+  "pattern": [
+    "ipi",
+    "iti",
+    "iri"
+  ],
+  "result": {
+    "count": 16,
+    "id": "minecraft:detector_rail"
+  }
+}

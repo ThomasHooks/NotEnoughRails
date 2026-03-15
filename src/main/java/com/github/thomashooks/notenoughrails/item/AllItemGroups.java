@@ -130,6 +130,11 @@ public class AllItemGroups {
         entries.add(AllItems.IRON_ROD);
         entries.add(AllItems.VERMILION_ROD);
 
+        //Minecart Rails Crafting Items
+        entries.add(AllItems.BOOSTER_ROD);
+        entries.add(AllItems.BOOSTER_ROD_CORITE);
+        entries.add(AllItems.RAILROAD_TIE);
+
         //Bricks
 
         //Crop Items
@@ -143,6 +148,5 @@ public class AllItemGroups {
         entries.add(AllItems.FLOUR);
 
         //Misc Crafting Items
-
     }
 }

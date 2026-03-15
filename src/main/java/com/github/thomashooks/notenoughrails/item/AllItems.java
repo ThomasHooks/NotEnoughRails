@@ -33,6 +33,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Function;
 
 public class AllItems {
+    public static final Item BOOSTER_ROD = registerItem("booster_rod", Item::new);
+    public static final Item BOOSTER_ROD_CORITE = registerItem("booster_rod_corite", Item::new);
     public static final Item COKE = registerItem("coke", Item::new);
     public static final Item COPPER_PLATE = registerItem("copper_plate", Item::new);
     public static final Item COPPER_ROD = registerItem("copper_rod", Item::new);
@@ -61,6 +63,7 @@ public class AllItems {
                     .useRemainder(Items.GLASS_BOTTLE)
                     .maxCount(16)
             ));
+    public static final Item RAILROAD_TIE = registerItem("railroad_tie", Item::new);
     public static final Item VERMILION_INGOT = registerItem("vermilion_ingot", Item::new);
     public static final Item VERMILION_ROD = registerItem("vermilion_rod", Item::new);
 
@@ -100,6 +103,11 @@ public class AllItems {
             entries.add(AllItems.IRON_ROD);
             entries.add(AllItems.VERMILION_ROD);
 
+            //Minecart Rails Crafting Items
+            entries.add(AllItems.BOOSTER_ROD);
+            entries.add(AllItems.BOOSTER_ROD_CORITE);
+            entries.add(AllItems.RAILROAD_TIE);
+
             //Bricks
 
             //Crop Items
@@ -110,7 +118,6 @@ public class AllItems {
             entries.add(AllItems.LINSEED_OIL);
 
             //Misc Crafting Items
-
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
             //Food Items
