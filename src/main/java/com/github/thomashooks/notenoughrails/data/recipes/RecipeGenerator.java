@@ -262,6 +262,12 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_GRATE, AllBlocks.CORITE_BLOCK, 4);
 
+                //Corite Trapdoor
+                createTrapdoorRecipe(AllBlocks.CORITE_TRAPDOOR, Ingredient.ofItem(AllItems.CORITE_INGOT))
+                        .group(NotEnoughRails.MOD_ID + ":corite_trapdoor")
+                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .offerTo(exporter);
+
                 //Detector Rail
                 createShaped(RecipeCategory.TRANSPORTATION, Blocks.DETECTOR_RAIL, 16)
                         .input('i', AllItems.IRON_ROD)

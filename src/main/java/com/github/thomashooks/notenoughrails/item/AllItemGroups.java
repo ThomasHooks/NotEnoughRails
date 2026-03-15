@@ -64,6 +64,7 @@ public class AllItemGroups {
         entries.add(AllBlocks.CORITE_CUT_STAIRS);
         entries.add(AllBlocks.CORITE_CUT_SLAB);
         entries.add(AllBlocks.CORITE_DOOR);
+        entries.add(AllBlocks.CORITE_TRAPDOOR);
         entries.add(AllBlocks.IRON_PLATE_BLOCK);
         entries.add(AllBlocks.VERMILION_BLOCK);
 

@@ -84,10 +84,10 @@ public class AllBlocks {
             settings -> new DoorBlock(BlockSetType.IRON, settings
                     .strength(5.0F, 6.0F)
                     .sounds(BlockSoundGroup.COPPER)
-                    .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
-                    .mapColor(MapColor.ORANGE)
+                    .mapColor(CORITE_BLOCK.getDefaultMapColor())
                     .requiresTool()
                     .nonOpaque()
+                    .pistonBehavior(PistonBehavior.DESTROY)
             ));
     public static final Block CORITE_GRATE = registerBlock("corite_grate",
             settings -> new GrateBlock(settings
@@ -109,6 +109,15 @@ public class AllBlocks {
                     .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
                     .mapColor(MapColor.ORANGE)
                     .requiresTool()
+            ));
+    public static final Block CORITE_TRAPDOOR = registerBlock("corite_trapdoor",
+            settings -> new TrapdoorBlock(BlockSetType.IRON, settings
+                    .strength(5.0F, 6.0F)
+                    .sounds(BlockSoundGroup.COPPER)
+                    .mapColor(CORITE_BLOCK.getDefaultMapColor())
+                    .requiresTool()
+                    .nonOpaque()
+                    .allowsSpawning(Blocks::never)
             ));
     public static final Block FLAX_CROP = registerBlockWithoutItem("flax_crop",
             settings -> new FlaxCropBlock(settings
@@ -220,6 +229,8 @@ public class AllBlocks {
             entries.add(AllBlocks.CORITE_CUT_BLOCK);
             entries.add(AllBlocks.CORITE_CUT_STAIRS);
             entries.add(AllBlocks.CORITE_CUT_SLAB);
+            entries.add(AllBlocks.CORITE_DOOR);
+            entries.add(AllBlocks.CORITE_TRAPDOOR);
             entries.add(AllBlocks.IRON_PLATE_BLOCK);
             entries.add(AllBlocks.VERMILION_BLOCK);
         });
@@ -228,7 +239,6 @@ public class AllBlocks {
             entries.add(AllBlocks.LINEN_BLOCK);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
-            entries.add(AllBlocks.CORITE_DOOR);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             entries.add(AllBlocks.FLUXSTONE);
