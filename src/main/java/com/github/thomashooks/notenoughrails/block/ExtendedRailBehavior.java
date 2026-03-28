@@ -2,10 +2,14 @@ package com.github.thomashooks.notenoughrails.block;
 
 import net.minecraft.block.AbstractRailBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.PoweredRailBlock;
 import net.minecraft.block.enums.RailShape;
 import net.minecraft.entity.vehicle.AbstractMinecartEntity;
-import net.minecraft.entity.vehicle.FurnaceMinecartEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jspecify.annotations.Nullable;
 
@@ -30,23 +34,18 @@ public interface ExtendedRailBehavior {
         if (state.getBlock() instanceof AbstractRailBlock railBlock) {
             return state.get(railBlock.getShapeProperty());
         } else {
-            throw new IllegalStateException("Block '" + state.getBlock().getTranslationKey() + "' at position (" + pos.toShortString() + ") is in an unknown state while getting rail direction!");
+            throw new IllegalStateException("Block '" + state.getBlock().getTranslationKey() + "' is in an unknown state while getting rail direction!");
         }
     }
 
     /**
      * @param state    - The Rail's current block state
-     * @param world    - The current world
      * @param pos      - The Rails position in the world
      * @param minecart - The minecart that is passing over the rail
      * @return Gets the maximum speed a minecart can have when passing over this rail
      */
-    default float notEnoughRails$getMaxSpeed(BlockState state, World world, BlockPos pos, AbstractMinecartEntity minecart) {
-        if (minecart instanceof FurnaceMinecartEntity) {
-            return minecart.isInFluid() ? 0.15F : 0.2F;
-        } else {
-            return minecart.isInFluid() ? 0.2F : 0.4F;
-        }
+    default float notEnoughRails$getMaxSpeed(BlockState state, BlockPos pos, AbstractMinecartEntity minecart) {
+        return minecart.isInFluid() ? 0.2F : 0.4F;
     }
 
     /**
@@ -56,5 +55,65 @@ public interface ExtendedRailBehavior {
      * @param pos      - The Rails position in the world
      * @param minecart - The minecart that is passing over the rail
      */
-    default void notEnoughRails$onMinecartPass(BlockState state, World world, BlockPos pos, AbstractMinecartEntity minecart) { }
+    default void notEnoughRails$onMinecartPass(BlockState state, ServerWorld world, BlockPos pos, AbstractMinecartEntity minecart) {
+        boolean boostMinecart = false;
+        boolean brakeMinecart = false;
+        if (state.isOf(Blocks.POWERED_RAIL)) {
+            boostMinecart = state.get(PoweredRailBlock.POWERED);
+            brakeMinecart = !boostMinecart;
+        }
+
+        if (minecart.getFirstPassenger() instanceof ServerPlayerEntity player) {
+            Vec3d playerInputVelocity = player.getInputVelocityForMinecart();
+            if (playerInputVelocity.lengthSquared() > 0.0) {
+                double lengthSquared = minecart.getVelocity().horizontalLengthSquared();
+                if (playerInputVelocity.normalize().lengthSquared() > 0.0 && lengthSquared < 0.01) {
+                    //When the player is trying to move the minecart the powered rail doesn't brake
+                    brakeMinecart = false;
+                }
+            }
+        }
+
+        //Default powered rail braking
+        if (brakeMinecart) {
+            double horizontalLength = minecart.getVelocity().horizontalLength();
+            if (horizontalLength < 0.03) {
+                minecart.setVelocity(Vec3d.ZERO);
+            } else {
+                minecart.setVelocity(minecart.getVelocity().multiply(0.5, 0.0, 0.5));
+            }
+        }
+
+        //Default powered rail boosting
+        if (boostMinecart) {
+            Vec3d velocity = minecart.getVelocity();
+            double horizontalLength = velocity.horizontalLength();
+            if (horizontalLength > 0.01) {
+                double y = 0.06;
+                minecart.setVelocity(velocity.add(velocity.x / horizontalLength * y, 0.0, velocity.z / horizontalLength * y));
+            } else {
+                double velocityX = velocity.x;
+                double velocityZ = velocity.z;
+                RailShape railShape = ((AbstractRailBlock)state.getBlock()).notEnoughRails$getRailDirection(state, world ,pos, minecart);
+                switch (railShape) {
+                    case EAST_WEST -> {
+                        if (minecart.willHitBlockAt(pos.west())) {
+                            velocityX = 0.02;
+                        } else if (minecart.willHitBlockAt(pos.east())) {
+                            velocityX = -0.02;
+                        }
+                    }
+                    case NORTH_SOUTH -> {
+                        if (minecart.willHitBlockAt(pos.north())) {
+                            velocityZ = 0.02;
+                        } else if (minecart.willHitBlockAt(pos.south())) {
+                            velocityZ = -0.02;
+                        }
+                    }
+                    default -> { return; } //We shouldn't get here as powered rails can't make turns
+                }
+                minecart.setVelocity(velocityX, velocity.y, velocityZ);
+            }
+        }
+    }
 }
