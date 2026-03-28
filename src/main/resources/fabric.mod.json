@@ -3,7 +3,7 @@
 	"id": "notenoughrails",
 	"version": "${version}",
 	"name": "Not Enough Rails",
-	"description": "This is a tech mod that adds more rails, machines, and automation",
+	"description": "Adds more rails, machines, and automation",
 	"authors": [
 		"Kilroy_790"
 	],
