@@ -193,7 +193,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 NotEnoughRails.LOGGER.info("Generating all block recipes for " + NotEnoughRails.MOD_ID);
 
                 //Activator Rail
-                createShaped(RecipeCategory.TRANSPORTATION, Blocks.ACTIVATOR_RAIL, 16)
+                createShaped(RecipeCategory.TRANSPORTATION, Blocks.ACTIVATOR_RAIL, 8)
                         .input('i', AllItems.IRON_ROD)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('r', Items.REDSTONE_TORCH)
@@ -288,7 +288,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .offerTo(exporter);
 
                 //Detector Rail
-                createShaped(RecipeCategory.TRANSPORTATION, Blocks.DETECTOR_RAIL, 16)
+                createShaped(RecipeCategory.TRANSPORTATION, Blocks.DETECTOR_RAIL, 8)
                         .input('i', AllItems.IRON_ROD)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('r', Items.REDSTONE)
