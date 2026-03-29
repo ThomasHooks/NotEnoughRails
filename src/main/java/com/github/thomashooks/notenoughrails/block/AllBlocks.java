@@ -33,6 +33,12 @@ import net.minecraft.util.Identifier;
 import java.util.function.Function;
 
 public class AllBlocks {
+    public static final Block CHIME_RAIL = registerBlock("chime_rail",
+            settings -> new ChimeRailBlock(settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .noCollision()
+            ));
     public static final Block COKE_BLOCK = registerBlock("coke_block",
             settings -> new Block(settings
                     .strength(5.0F, 6.0F)
@@ -238,9 +244,12 @@ public class AllBlocks {
             //Cloth Blocks
             entries.add(AllBlocks.LINEN_BLOCK);
         });
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
+            //Minecart Rails
+            entries.add(AllBlocks.CHIME_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
+            //Natural Stone Blocks
             entries.add(AllBlocks.FLUXSTONE);
         });
     }

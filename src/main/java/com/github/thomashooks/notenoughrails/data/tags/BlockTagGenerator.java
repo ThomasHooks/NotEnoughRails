@@ -32,6 +32,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
     @Override
     protected void configure(RegistryWrapper.@NotNull WrapperLookup wrapperLookup) {
         valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
+                .add(AllBlocks.CHIME_RAIL)
                 .add(AllBlocks.COKE_BLOCK)
                 .add(AllBlocks.CORITE_BLOCK)
                 .add(AllBlocks.CORITE_CHISELED_BLOCK)
@@ -72,6 +73,14 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
 
         valueLookupBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(AllBlocks.VERMILION_BLOCK)
+        ;
+
+        valueLookupBuilder(BlockTags.RAILS)
+                .add(AllBlocks.CHIME_RAIL)
+        ;
+
+        valueLookupBuilder(BlockTags.PREVENT_MOB_SPAWNING_INSIDE)
+                .add(AllBlocks.CHIME_RAIL)
         ;
     }
 }

@@ -204,6 +204,25 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                         .offerTo(exporter);
 
+                //Chime Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CHIME_RAIL, 8)
+                        .input('i', AllItems.IRON_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .input('p', Items.STONE_PRESSURE_PLATE)
+                        .input('n', Items.NOTE_BLOCK)
+                        .pattern("ipi")
+                        .pattern("iti")
+                        .pattern("ini")
+                        .group(NotEnoughRails.MOD_ID + ":chime_rail")
+                        .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.TRANSPORTATION, AllBlocks.CHIME_RAIL, 8)
+                        .input(Items.NOTE_BLOCK, 1)
+                        .input(Items.DETECTOR_RAIL, 8)
+                        .group(NotEnoughRails.MOD_ID + ":chime_rail")
+                        .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                        .offerTo(exporter, ":chime_rail_from_detector_rails");
+
                 //Cut Corite
                 createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CUT_BLOCK, 4)
                         .input('c', AllBlocks.CORITE_BLOCK)

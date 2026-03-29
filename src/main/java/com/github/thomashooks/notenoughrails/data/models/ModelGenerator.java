@@ -33,6 +33,7 @@ public class ModelGenerator extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(@NotNull BlockStateModelGenerator blockStateModelGenerator) {
+        blockStateModelGenerator.registerStraightRail(AllBlocks.CHIME_RAIL);
         blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.COKE_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_CHISELED_BLOCK);

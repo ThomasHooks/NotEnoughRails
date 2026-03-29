@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:chime_rail",
+  "key": {
+    "i": "notenoughrails:iron_rod",
+    "n": "minecraft:note_block",
+    "p": "minecraft:stone_pressure_plate",
+    "t": "notenoughrails:railroad_tie"
+  },
+  "pattern": [
+    "ipi",
+    "iti",
+    "ini"
+  ],
+  "result": {
+    "count": 8,
+    "id": "notenoughrails:chime_rail"
+  }
+}

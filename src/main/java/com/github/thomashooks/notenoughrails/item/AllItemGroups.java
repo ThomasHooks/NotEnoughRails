@@ -43,9 +43,11 @@ public class AllItemGroups {
         //Order: full block -> stairs -> slab -> wall -> fence -> fence gate -> door -> trapdoor -> pressure plate -> button
         entries.add(AllBlocks.WOODEN_FRAME);
 
+        //Natural Stone Blocks
+        entries.add(AllBlocks.FLUXSTONE);
+
         //Stone Blocks
         //Order: full block -> stairs -> slab -> wall -> fence -> fence gate -> door -> trapdoor -> pressure plate -> button
-        entries.add(AllBlocks.FLUXSTONE);
         entries.add(AllBlocks.FLUXSTONE_POLISHED);
         entries.add(AllBlocks.FLUXSTONE_SMOOTH);
         entries.add(AllBlocks.FLUXSTONE_SMOOTH_STAIRS);
@@ -90,6 +92,7 @@ public class AllItemGroups {
         //Item Transfer Blocks
 
         //Minecart Rails
+        entries.add(AllBlocks.CHIME_RAIL);
 
         //Minecarts
 
