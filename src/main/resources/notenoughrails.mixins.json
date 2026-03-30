@@ -5,7 +5,8 @@
   "mixins": [
     "ExampleMixin",
     "MixinAbstractMinecartEntity",
-    "MixinAbstractRailBlock"
+    "MixinAbstractRailBlock",
+    "MixinRailPlacementHelper"
   ],
   "injectors": {
     "defaultRequire": 1

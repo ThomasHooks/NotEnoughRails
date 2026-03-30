@@ -33,9 +33,9 @@ public interface ExtendedRailBehavior {
      * @param state    - The Rail's current block state
      * @param world    - The current world
      * @param pos      - The Rails position in the world
-     * @return True if the rail can make slopes
+     * @return Gets if the rail is forbidding from making slopes
      */
-    default boolean notEnoughRails$canMakeSlopes(BlockState state, World world, BlockPos pos) { return true; }
+    default boolean notEnoughRails$isFlatRail(BlockState state, World world, BlockPos pos) { return false; }
 
     /**
      * This can be used to trick minecarts into thinking the rail has a different shape
