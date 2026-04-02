@@ -93,6 +93,7 @@ public class AllItemGroups {
 
         //Minecart Rails
         entries.add(AllBlocks.CHIME_RAIL);
+        entries.add(AllBlocks.CROSSOVER_RAIL);
 
         //Minecarts
 

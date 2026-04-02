@@ -43,6 +43,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.CORITE_GRATE)
                 .add(AllBlocks.CORITE_PLATE_BLOCK)
                 .add(AllBlocks.CORITE_TRAPDOOR)
+                .add(AllBlocks.CROSSOVER_RAIL)
                 .add(AllBlocks.FLUXSTONE)
                 .add(AllBlocks.FLUXSTONE_POLISHED)
                 .add(AllBlocks.FLUXSTONE_SMOOTH)
@@ -77,10 +78,12 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
 
         valueLookupBuilder(BlockTags.RAILS)
                 .add(AllBlocks.CHIME_RAIL)
+                .add(AllBlocks.CROSSOVER_RAIL)
         ;
 
         valueLookupBuilder(BlockTags.PREVENT_MOB_SPAWNING_INSIDE)
                 .add(AllBlocks.CHIME_RAIL)
+                .add(AllBlocks.CROSSOVER_RAIL)
         ;
     }
 }

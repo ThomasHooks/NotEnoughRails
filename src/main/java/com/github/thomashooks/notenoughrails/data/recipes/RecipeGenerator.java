@@ -223,6 +223,17 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                         .offerTo(exporter, ":chime_rail_from_detector_rails");
 
+                //Crossover Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CROSSOVER_RAIL, 8)
+                        .input('i', AllItems.IRON_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .pattern("iii")
+                        .pattern("iti")
+                        .pattern("iii")
+                        .group(NotEnoughRails.MOD_ID + ":crossover_rail")
+                        .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                        .offerTo(exporter);
+
                 //Cut Corite
                 createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CUT_BLOCK, 4)
                         .input('c', AllBlocks.CORITE_BLOCK)

@@ -125,6 +125,12 @@ public class AllBlocks {
                     .nonOpaque()
                     .allowsSpawning(Blocks::never)
             ));
+    public static final Block CROSSOVER_RAIL = registerBlock("crossover_rail",
+            settings -> new CrossoverRailBlock(settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .noCollision()
+            ));
     public static final Block FLAX_CROP = registerBlockWithoutItem("flax_crop",
             settings -> new FlaxCropBlock(settings
                     .mapColor(state -> state.get(FlaxCropBlock.AGE) >= 6 ? MapColor.CYAN : MapColor.DARK_GREEN)
@@ -247,6 +253,12 @@ public class AllBlocks {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
             //Minecart Rails
             entries.add(AllBlocks.CHIME_RAIL);
+            entries.add(AllBlocks.CROSSOVER_RAIL);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
+            //Minecart Rails
+            entries.add(AllBlocks.CHIME_RAIL);
+            entries.add(AllBlocks.CROSSOVER_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             //Natural Stone Blocks

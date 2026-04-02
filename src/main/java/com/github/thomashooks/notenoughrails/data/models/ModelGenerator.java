@@ -17,13 +17,14 @@ package com.github.thomashooks.notenoughrails.data.models;
 
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
 import com.github.thomashooks.notenoughrails.block.FlaxCropBlock;
+import com.github.thomashooks.notenoughrails.block.property.AllProperties;
 import com.github.thomashooks.notenoughrails.item.AllItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.minecraft.client.data.BlockStateModelGenerator;
-import net.minecraft.client.data.ItemModelGenerator;
-import net.minecraft.client.data.Models;
-import net.minecraft.client.data.TexturedModel;
+import net.minecraft.block.Block;
+import net.minecraft.client.data.*;
+import net.minecraft.client.render.model.json.WeightedVariant;
+import net.minecraft.state.property.Properties;
 import org.jetbrains.annotations.NotNull;
 
 public class ModelGenerator extends FabricModelProvider {
@@ -32,28 +33,29 @@ public class ModelGenerator extends FabricModelProvider {
     }
 
     @Override
-    public void generateBlockStateModels(@NotNull BlockStateModelGenerator blockStateModelGenerator) {
-        blockStateModelGenerator.registerStraightRail(AllBlocks.CHIME_RAIL);
-        blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.COKE_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_CHISELED_BLOCK);
-        BlockStateModelGenerator.BlockTexturePool coriteCutPool = blockStateModelGenerator.registerCubeAllModelTexturePool(AllBlocks.CORITE_CUT_BLOCK);
+    public void generateBlockStateModels(@NotNull BlockStateModelGenerator modelGenerator) {
+        modelGenerator.registerStraightRail(AllBlocks.CHIME_RAIL);
+        modelGenerator.registerSimpleCubeAll(AllBlocks.COKE_BLOCK);
+        modelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_BLOCK);
+        modelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_CHISELED_BLOCK);
+        BlockStateModelGenerator.BlockTexturePool coriteCutPool = modelGenerator.registerCubeAllModelTexturePool(AllBlocks.CORITE_CUT_BLOCK);
         coriteCutPool.slab(AllBlocks.CORITE_CUT_SLAB);
         coriteCutPool.stairs(AllBlocks.CORITE_CUT_STAIRS);
-        blockStateModelGenerator.registerDoor(AllBlocks.CORITE_DOOR);
-        blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_GRATE);
-        blockStateModelGenerator.registerAxisRotated(AllBlocks.CORITE_PLATE_BLOCK, TexturedModel.CUBE_COLUMN);
-        blockStateModelGenerator.registerTrapdoor(AllBlocks.CORITE_TRAPDOOR);
-        blockStateModelGenerator.registerCrop(AllBlocks.FLAX_CROP, FlaxCropBlock.AGE, 0, 1, 2, 3, 4, 5, 6, 7);
-        blockStateModelGenerator.registerAxisRotated(AllBlocks.FLUXSTONE, TexturedModel.CUBE_COLUMN);
-        blockStateModelGenerator.registerAxisRotated(AllBlocks.FLUXSTONE_POLISHED, TexturedModel.CUBE_COLUMN);
-        BlockStateModelGenerator.BlockTexturePool fluxstoneSmoothPool = blockStateModelGenerator.registerCubeAllModelTexturePool(AllBlocks.FLUXSTONE_SMOOTH);
+        modelGenerator.registerDoor(AllBlocks.CORITE_DOOR);
+        modelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_GRATE);
+        modelGenerator.registerAxisRotated(AllBlocks.CORITE_PLATE_BLOCK, TexturedModel.CUBE_COLUMN);
+        modelGenerator.registerTrapdoor(AllBlocks.CORITE_TRAPDOOR);
+        registerPassiveFlatRail(AllBlocks.CROSSOVER_RAIL, modelGenerator);
+        modelGenerator.registerCrop(AllBlocks.FLAX_CROP, FlaxCropBlock.AGE, 0, 1, 2, 3, 4, 5, 6, 7);
+        modelGenerator.registerAxisRotated(AllBlocks.FLUXSTONE, TexturedModel.CUBE_COLUMN);
+        modelGenerator.registerAxisRotated(AllBlocks.FLUXSTONE_POLISHED, TexturedModel.CUBE_COLUMN);
+        BlockStateModelGenerator.BlockTexturePool fluxstoneSmoothPool = modelGenerator.registerCubeAllModelTexturePool(AllBlocks.FLUXSTONE_SMOOTH);
         fluxstoneSmoothPool.slab(AllBlocks.FLUXSTONE_SMOOTH_SLAB);
         fluxstoneSmoothPool.stairs(AllBlocks.FLUXSTONE_SMOOTH_STAIRS);
-        blockStateModelGenerator.registerAxisRotated(AllBlocks.IRON_PLATE_BLOCK, TexturedModel.CUBE_COLUMN);
-        blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.LINEN_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.VERMILION_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(AllBlocks.WOODEN_FRAME);
+        modelGenerator.registerAxisRotated(AllBlocks.IRON_PLATE_BLOCK, TexturedModel.CUBE_COLUMN);
+        modelGenerator.registerSimpleCubeAll(AllBlocks.LINEN_BLOCK);
+        modelGenerator.registerSimpleCubeAll(AllBlocks.VERMILION_BLOCK);
+        modelGenerator.registerSimpleCubeAll(AllBlocks.WOODEN_FRAME);
     }
 
     @Override
@@ -84,5 +86,39 @@ public class ModelGenerator extends FabricModelProvider {
         modelGenerator.register(AllItems.LINSEED_OIL, Models.GENERATED);
         modelGenerator.register(AllItems.VERMILION_INGOT, Models.GENERATED);
         modelGenerator.register(AllItems.VERMILION_ROD, Models.GENERATED);
+    }
+
+    public final void registerPassiveStraightRail(@NotNull Block rail, @NotNull BlockStateModelGenerator modelGenerator) {
+        WeightedVariant railFlat = BlockStateModelGenerator.createWeightedVariant(modelGenerator.createSubModel(rail, "", Models.RAIL_FLAT, TextureMap::rail));
+        WeightedVariant railRaisedNE = BlockStateModelGenerator.createWeightedVariant(modelGenerator.createSubModel(rail, "", Models.TEMPLATE_RAIL_RAISED_NE, TextureMap::rail));
+        WeightedVariant railRaisedSW = BlockStateModelGenerator.createWeightedVariant(modelGenerator.createSubModel(rail, "", Models.TEMPLATE_RAIL_RAISED_SW, TextureMap::rail));
+        modelGenerator.registerItemModel(rail);
+        modelGenerator.blockStateCollector.accept(VariantsBlockModelDefinitionCreator.of(rail)
+                .with(BlockStateVariantMap.models(Properties.STRAIGHT_RAIL_SHAPE).generate(shape -> {
+                    return switch (shape) {
+                        case NORTH_SOUTH -> railFlat;
+                        case EAST_WEST -> railFlat.apply(BlockStateModelGenerator.ROTATE_Y_90);
+                        case ASCENDING_EAST -> railRaisedNE.apply(BlockStateModelGenerator.ROTATE_Y_90);
+                        case ASCENDING_WEST -> railRaisedSW.apply(BlockStateModelGenerator.ROTATE_Y_90);
+                        case ASCENDING_NORTH -> railRaisedNE;
+                        case ASCENDING_SOUTH -> railRaisedSW;
+                        default -> throw new UnsupportedOperationException("Fix you generator!");
+                    };
+                }))
+        );
+    }
+
+    public final void registerPassiveFlatRail(@NotNull Block rail, @NotNull BlockStateModelGenerator modelGenerator) {
+        WeightedVariant railFlat = BlockStateModelGenerator.createWeightedVariant(modelGenerator.createSubModel(rail, "", Models.RAIL_FLAT, TextureMap::rail));
+        modelGenerator.registerItemModel(rail);
+        modelGenerator.blockStateCollector.accept(VariantsBlockModelDefinitionCreator.of(rail)
+                .with(BlockStateVariantMap.models(AllProperties.FLAT_RAIL_SHAPE).generate(shape -> {
+                    return switch (shape) {
+                        case NORTH_SOUTH -> railFlat;
+                        case EAST_WEST -> railFlat.apply(BlockStateModelGenerator.ROTATE_Y_90);
+                        default -> throw new UnsupportedOperationException("Fix you generator!");
+                    };
+                }))
+        );
     }
 }
