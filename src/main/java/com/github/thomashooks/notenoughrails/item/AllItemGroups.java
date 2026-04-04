@@ -92,9 +92,10 @@ public class AllItemGroups {
         //Item Transfer Blocks
 
         //Minecart Rails
-        entries.add(AllBlocks.CHIME_RAIL);
+        //Order: standard -> crossover -> buffer stop -> powered -> detector -> chime -> activator-> limiter -> check -> locking
         entries.add(AllBlocks.CROSSOVER_RAIL);
         entries.add(AllBlocks.BUFFER_STOP_RAIL);
+        entries.add(AllBlocks.CHIME_RAIL);
 
         //Minecarts
 

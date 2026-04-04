@@ -259,15 +259,17 @@ public class AllBlocks {
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
             //Minecart Rails
-            entries.add(AllBlocks.CHIME_RAIL);
-            entries.add(AllBlocks.CROSSOVER_RAIL);
-            entries.add(AllBlocks.BUFFER_STOP_RAIL);
+            //Order: standard -> crossover -> buffer stop -> powered -> detector -> chime -> activator-> limiter -> check -> locking
+            entries.addAfter(Blocks.RAIL, AllBlocks.CROSSOVER_RAIL);
+            entries.addAfter(AllBlocks.CROSSOVER_RAIL, AllBlocks.BUFFER_STOP_RAIL);
+            entries.addAfter(Blocks.DETECTOR_RAIL, AllBlocks.CHIME_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
             //Minecart Rails
-            entries.add(AllBlocks.CHIME_RAIL);
-            entries.add(AllBlocks.CROSSOVER_RAIL);
-            entries.add(AllBlocks.BUFFER_STOP_RAIL);
+            //Order: standard -> crossover -> buffer stop -> powered -> detector -> chime -> activator-> limiter -> check -> locking
+            entries.addAfter(Blocks.RAIL, AllBlocks.CROSSOVER_RAIL);
+            entries.addAfter(AllBlocks.CROSSOVER_RAIL, AllBlocks.BUFFER_STOP_RAIL);
+            entries.addAfter(Blocks.DETECTOR_RAIL, AllBlocks.CHIME_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             //Natural Stone Blocks
