@@ -130,6 +130,11 @@ public class AllItems {
                 function.apply(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(NotEnoughRails.MOD_ID, name)))));
     }
 
+    private static Item registerBlockItem(String name, Block block) {
+        return Registry.register(Registries.ITEM, Identifier.of(NotEnoughRails.MOD_ID, name),
+                new BlockItem(block, new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(NotEnoughRails.MOD_ID, name)))));
+    }
+
     private static Function<Item.Settings, Item> createBlockItemWithUniqueName(Block block) {
         return settings -> new BlockItem(block, settings.useItemPrefixedTranslationKey());
     }

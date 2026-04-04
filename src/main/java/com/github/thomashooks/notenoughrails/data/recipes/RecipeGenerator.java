@@ -204,6 +204,18 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                         .offerTo(exporter);
 
+                //Buffer Stop Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.BUFFER_STOP_RAIL, 8)
+                        .input('i', AllItems.IRON_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .input('x', Blocks.IRON_BLOCK)
+                        .pattern("iti")
+                        .pattern("ixi")
+                        .pattern("iti")
+                        .group(NotEnoughRails.MOD_ID + ":buffer_stop_rail")
+                        .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                        .offerTo(exporter);
+
                 //Chime Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CHIME_RAIL, 8)
                         .input('i', AllItems.IRON_ROD)

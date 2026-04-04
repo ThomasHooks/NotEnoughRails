@@ -33,6 +33,13 @@ import net.minecraft.util.Identifier;
 import java.util.function.Function;
 
 public class AllBlocks {
+    public static final Block BUFFER_STOP_RAIL = registerBlock("buffer_stop_rail",
+            settings -> new BufferStopRailBlock(settings
+                    .strength(1.05F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .nonOpaque()
+                    .solidBlock(Blocks::always)
+            ));
     public static final Block CHIME_RAIL = registerBlock("chime_rail",
             settings -> new ChimeRailBlock(settings
                     .strength(0.7F)
@@ -254,11 +261,13 @@ public class AllBlocks {
             //Minecart Rails
             entries.add(AllBlocks.CHIME_RAIL);
             entries.add(AllBlocks.CROSSOVER_RAIL);
+            entries.add(AllBlocks.BUFFER_STOP_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
             //Minecart Rails
             entries.add(AllBlocks.CHIME_RAIL);
             entries.add(AllBlocks.CROSSOVER_RAIL);
+            entries.add(AllBlocks.BUFFER_STOP_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             //Natural Stone Blocks

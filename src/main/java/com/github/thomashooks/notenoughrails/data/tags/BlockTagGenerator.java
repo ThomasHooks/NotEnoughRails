@@ -32,6 +32,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
     @Override
     protected void configure(RegistryWrapper.@NotNull WrapperLookup wrapperLookup) {
         valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
+                .add(AllBlocks.BUFFER_STOP_RAIL)
                 .add(AllBlocks.CHIME_RAIL)
                 .add(AllBlocks.COKE_BLOCK)
                 .add(AllBlocks.CORITE_BLOCK)
@@ -77,11 +78,13 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         ;
 
         valueLookupBuilder(BlockTags.RAILS)
+                .add(AllBlocks.BUFFER_STOP_RAIL)
                 .add(AllBlocks.CHIME_RAIL)
                 .add(AllBlocks.CROSSOVER_RAIL)
         ;
 
         valueLookupBuilder(BlockTags.PREVENT_MOB_SPAWNING_INSIDE)
+                .add(AllBlocks.BUFFER_STOP_RAIL)
                 .add(AllBlocks.CHIME_RAIL)
                 .add(AllBlocks.CROSSOVER_RAIL)
         ;

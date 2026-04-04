@@ -1,4 +1,5 @@
 // 1.21.11	-999999999-01-01T00:00:00	Not Enough Rails/Block Loot Tables
+b8d9ac5e77b95b53ff9ba7c0a18226521c5bcbba data/notenoughrails/loot_table/blocks/buffer_stop_rail.json
 1b7acfc7a31652a25f8e7d07ded92891eb1f9c4c data/notenoughrails/loot_table/blocks/chime_rail.json
 624127e76cd10e95fd04649a46c955b6e31de54a data/notenoughrails/loot_table/blocks/coke_block.json
 12f695351fb502db1286bb77980cd6e29ae0f1b8 data/notenoughrails/loot_table/blocks/corite_block.json
