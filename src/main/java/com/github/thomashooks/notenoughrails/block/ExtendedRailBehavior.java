@@ -15,10 +15,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.block;
 
-import net.minecraft.block.AbstractRailBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.PoweredRailBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.enums.RailShape;
 import net.minecraft.entity.vehicle.AbstractMinecartEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -36,6 +33,14 @@ public interface ExtendedRailBehavior {
      * @return Gets if the rail is forbidding from making slopes
      */
     default boolean notEnoughRails$isFlatRail(BlockState state, World world, BlockPos pos) { return false; }
+
+    /**
+     * @param state    - The Rail's current block state
+     * @param world    - The current world
+     * @param pos      - The Rails position in the world
+     * @return Gets if the rail is a powered rail and should be powered by other rails
+     */
+    default boolean notEnoughRails$isPoweredRail(BlockState state, World world, BlockPos pos) { return false; }
 
     /**
      * This can be used to trick minecarts into thinking the rail has a different shape
