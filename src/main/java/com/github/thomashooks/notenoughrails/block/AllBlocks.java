@@ -40,6 +40,12 @@ public class AllBlocks {
                     .nonOpaque()
                     .solidBlock(Blocks::always)
             ));
+    public static final Block CHECK_RAIL = registerBlock("check_rail",
+            settings -> new CheckRailBlock(settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .noCollision()
+            ));
     public static final Block CHIME_RAIL = registerBlock("chime_rail",
             settings -> new ChimeRailBlock(settings
                     .strength(0.7F)
@@ -259,17 +265,19 @@ public class AllBlocks {
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
             //Minecart Rails
-            //Order: standard -> crossover -> buffer stop -> powered -> detector -> chime -> activator-> limiter -> check -> locking
+            //Order: standard -> crossover -> buffer stop -> powered -> launching -> detector -> chime -> activator-> limiter -> check -> locking
             entries.addAfter(Blocks.RAIL, AllBlocks.CROSSOVER_RAIL);
             entries.addAfter(AllBlocks.CROSSOVER_RAIL, AllBlocks.BUFFER_STOP_RAIL);
             entries.addAfter(Blocks.DETECTOR_RAIL, AllBlocks.CHIME_RAIL);
+            entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.CHECK_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
             //Minecart Rails
-            //Order: standard -> crossover -> buffer stop -> powered -> detector -> chime -> activator-> limiter -> check -> locking
+            //Order: standard -> crossover -> buffer stop -> powered -> launching -> detector -> chime -> activator-> limiter -> check -> locking
             entries.addAfter(Blocks.RAIL, AllBlocks.CROSSOVER_RAIL);
             entries.addAfter(AllBlocks.CROSSOVER_RAIL, AllBlocks.BUFFER_STOP_RAIL);
             entries.addAfter(Blocks.DETECTOR_RAIL, AllBlocks.CHIME_RAIL);
+            entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.CHECK_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             //Natural Stone Blocks

@@ -216,6 +216,19 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                         .offerTo(exporter);
 
+                //Check Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CHECK_RAIL, 16)
+                        .input('i', AllItems.IRON_ROD)
+                        .input('l', AllItems.BOOSTER_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .input('r', Items.REPEATER)
+                        .pattern("i i")
+                        .pattern("ltl")
+                        .pattern("iri")
+                        .group(NotEnoughRails.MOD_ID + ":check_rail")
+                        .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                        .offerTo(exporter);
+
                 //Chime Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CHIME_RAIL, 8)
                         .input('i', AllItems.IRON_ROD)

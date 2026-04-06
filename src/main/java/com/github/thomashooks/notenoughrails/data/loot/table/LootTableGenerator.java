@@ -34,6 +34,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         addDrop(AllBlocks.BUFFER_STOP_RAIL);
+        addDrop(AllBlocks.CHECK_RAIL);
         addDrop(AllBlocks.CHIME_RAIL);
         addDrop(AllBlocks.COKE_BLOCK);
         addDrop(AllBlocks.CORITE_BLOCK);

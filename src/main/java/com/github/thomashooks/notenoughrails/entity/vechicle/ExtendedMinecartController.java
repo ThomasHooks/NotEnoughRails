@@ -46,6 +46,7 @@ public class ExtendedMinecartController extends DefaultMinecartController {
      */
     @Override
     public void moveOnRail(ServerWorld world) {
+        //This is mostly just a copy of DefaultMinecartController
         BlockPos blockPos = this.minecart.getRailOrMinecartPos();
         BlockState blockState = this.getWorld().getBlockState(blockPos);
         AbstractRailBlock railBlock = (AbstractRailBlock) blockState.getBlock();
@@ -137,10 +138,10 @@ public class ExtendedMinecartController extends DefaultMinecartController {
         d = n + h * r;
         f = o + i * r;
         this.setPos(d, e, f);
-        double s = this.minecart.hasPassengers() ? 0.75 : 1.0;
-        double t = this.getMaxSpeed(world);
+        double passengerFactor = this.minecart.hasPassengers() ? 0.75 : 1.0;
+        double maxSpeed = this.getMaxSpeed(world);
         velocity = this.getVelocity();
-        this.minecart.move(MovementType.SELF, new Vec3d(MathHelper.clamp(s * velocity.x, -t, t), 0.0, MathHelper.clamp(s * velocity.z, -t, t)));
+        this.minecart.move(MovementType.SELF, new Vec3d(MathHelper.clamp(passengerFactor * velocity.x, -maxSpeed, maxSpeed), 0.0, MathHelper.clamp(passengerFactor * velocity.z, -maxSpeed, maxSpeed)));
         if (vec3i.getY() != 0
                 && MathHelper.floor(this.minecart.getX()) - blockPos.getX() == vec3i.getX()
                 && MathHelper.floor(this.minecart.getZ()) - blockPos.getZ() == vec3i.getZ()) {

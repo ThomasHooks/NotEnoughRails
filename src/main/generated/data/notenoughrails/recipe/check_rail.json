@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:check_rail",
+  "key": {
+    "i": "notenoughrails:iron_rod",
+    "l": "notenoughrails:booster_rod",
+    "r": "minecraft:repeater",
+    "t": "notenoughrails:railroad_tie"
+  },
+  "pattern": [
+    "i i",
+    "ltl",
+    "iri"
+  ],
+  "result": {
+    "count": 16,
+    "id": "notenoughrails:check_rail"
+  }
+}

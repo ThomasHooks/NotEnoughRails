@@ -22,9 +22,11 @@ import com.github.thomashooks.notenoughrails.item.AllItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.block.Block;
+import net.minecraft.block.enums.RailShape;
 import net.minecraft.client.data.*;
 import net.minecraft.client.render.model.json.WeightedVariant;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.NotNull;
 
 public class ModelGenerator extends FabricModelProvider {
@@ -34,6 +36,7 @@ public class ModelGenerator extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(@NotNull BlockStateModelGenerator modelGenerator) {
+        registerDirectionalRail(AllBlocks.CHECK_RAIL, modelGenerator);
         modelGenerator.registerStraightRail(AllBlocks.CHIME_RAIL);
         modelGenerator.registerSimpleCubeAll(AllBlocks.COKE_BLOCK);
         modelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_BLOCK);
@@ -119,6 +122,40 @@ public class ModelGenerator extends FabricModelProvider {
                         default -> throw new UnsupportedOperationException("Fix you generator!");
                     };
                 }))
+        );
+    }
+
+    public final void registerDirectionalRail(@NotNull Block rail, @NotNull BlockStateModelGenerator modelGenerator) {
+        WeightedVariant railFlat = BlockStateModelGenerator.createWeightedVariant(modelGenerator.createSubModel(rail, "", Models.RAIL_FLAT, TextureMap::rail));
+        WeightedVariant railRaisedNE = BlockStateModelGenerator.createWeightedVariant(modelGenerator.createSubModel(rail, "", Models.TEMPLATE_RAIL_RAISED_NE, TextureMap::rail));
+        WeightedVariant railRaisedSW = BlockStateModelGenerator.createWeightedVariant(modelGenerator.createSubModel(rail, "", Models.TEMPLATE_RAIL_RAISED_SW, TextureMap::rail));
+        WeightedVariant railFlatOn = BlockStateModelGenerator.createWeightedVariant(modelGenerator.createSubModel(rail, "_on", Models.RAIL_FLAT, TextureMap::rail));
+        WeightedVariant railRaisedNEOn = BlockStateModelGenerator.createWeightedVariant(modelGenerator.createSubModel(rail, "_on", Models.TEMPLATE_RAIL_RAISED_NE, TextureMap::rail));
+        WeightedVariant railRaisedSWOn = BlockStateModelGenerator.createWeightedVariant(modelGenerator.createSubModel(rail, "_on", Models.TEMPLATE_RAIL_RAISED_SW, TextureMap::rail));
+        modelGenerator.registerItemModel(rail);
+        modelGenerator.blockStateCollector.accept(
+                VariantsBlockModelDefinitionCreator.of(rail)
+                        .with(BlockStateVariantMap.models(Properties.POWERED, Properties.STRAIGHT_RAIL_SHAPE, Properties.HORIZONTAL_FACING).generate((powered, shape, facing) -> {
+                            WeightedVariant variant = switch (shape) {
+                                case ASCENDING_NORTH, ASCENDING_EAST -> powered ? railRaisedNEOn : railRaisedNE;
+                                case ASCENDING_SOUTH, ASCENDING_WEST -> powered ? railRaisedSWOn : railRaisedSW;
+                                case NORTH_SOUTH, EAST_WEST -> powered ? railFlatOn : railFlat;
+                                default -> throw new UnsupportedOperationException("Fix you generator!");
+                            };
+
+                            if ((facing == Direction.SOUTH && shape == RailShape.ASCENDING_SOUTH) || (facing == Direction.WEST && shape == RailShape.ASCENDING_WEST))
+                                variant = powered ? railRaisedNEOn : railRaisedNE;
+                            else if ((facing == Direction.SOUTH && shape == RailShape.ASCENDING_NORTH) || (facing == Direction.WEST && shape == RailShape.ASCENDING_EAST))
+                                variant = powered ? railRaisedSWOn : railRaisedSW;
+
+                            return switch (facing) {
+                                case NORTH -> variant;
+                                case SOUTH -> variant.apply(BlockStateModelGenerator.ROTATE_Y_180);
+                                case WEST -> variant.apply(BlockStateModelGenerator.ROTATE_Y_270);
+                                case EAST -> variant.apply(BlockStateModelGenerator.ROTATE_Y_90);
+                                default -> throw new UnsupportedOperationException("Fix you generator!");
+                            };
+                        }))
         );
     }
 }
