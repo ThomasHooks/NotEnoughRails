@@ -24,7 +24,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
 
 public class CoritePoweredRail extends PoweredRailBlock {
     public static final double BOOSTING_FACTOR = 0.06D;
@@ -34,9 +33,6 @@ public class CoritePoweredRail extends PoweredRailBlock {
     public CoritePoweredRail(Settings settings) {
         super(settings);
     }
-
-    @Override
-    public boolean notEnoughRails$isPoweredRail(BlockState state, World world, BlockPos pos) { return true; }
 
     @Override
     public float notEnoughRails$getMaxSpeed(BlockState state, BlockPos pos, AbstractMinecartEntity minecart) {

@@ -35,14 +35,6 @@ public interface ExtendedRailBehavior {
     default boolean notEnoughRails$isFlatRail(BlockState state, World world, BlockPos pos) { return false; }
 
     /**
-     * @param state    - The Rail's current block state
-     * @param world    - The current world
-     * @param pos      - The Rails position in the world
-     * @return Gets if the rail is a powered rail and should be powered by other rails
-     */
-    default boolean notEnoughRails$isPoweredRail(BlockState state, World world, BlockPos pos) { return false; }
-
-    /**
      * This can be used to trick minecarts into thinking the rail has a different shape
      * @param state    - The Rail's current block state
      * @param world    - The current world

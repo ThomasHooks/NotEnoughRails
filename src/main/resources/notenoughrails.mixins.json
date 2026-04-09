@@ -6,7 +6,6 @@
     "ExampleMixin",
     "MixinAbstractMinecartEntity",
     "MixinAbstractRailBlock",
-    "MixinPoweredRailBlock",
     "MixinRailPlacementHelper"
   ],
   "injectors": {

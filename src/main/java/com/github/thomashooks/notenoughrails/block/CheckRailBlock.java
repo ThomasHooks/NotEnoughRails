@@ -114,9 +114,6 @@ public class CheckRailBlock extends PoweredRailBlock {
     }
 
     @Override
-    public boolean notEnoughRails$isPoweredRail(BlockState state, World world, BlockPos pos) { return true; }
-
-    @Override
     public void notEnoughRails$onMinecartPass(BlockState state, ServerWorld world, BlockPos pos, AbstractMinecartEntity minecart) {
         if (!state.get(POWERED)) {
             //When not powered the check rail acts like a normal rail
