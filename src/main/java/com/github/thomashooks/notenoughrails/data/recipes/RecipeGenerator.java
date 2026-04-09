@@ -317,6 +317,28 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_GRATE, AllBlocks.CORITE_BLOCK, 4);
 
+                //Corite Powered Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CORITE_POWERED_RAIL, 16)
+                        .input('b', AllItems.BOOSTER_ROD_CORITE)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .pattern("b b")
+                        .pattern("btb")
+                        .pattern("b b")
+                        .group(NotEnoughRails.MOD_ID + ":corite_powered_rail")
+                        .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
+                        .offerTo(exporter);
+
+                //Corite Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CORITE_RAIL, 24)
+                        .input('i', AllItems.CORITE_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .pattern("i i")
+                        .pattern("iti")
+                        .pattern("i i")
+                        .group(NotEnoughRails.MOD_ID + ":corite_rail")
+                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .offerTo(exporter);
+
                 //Corite Trapdoor
                 createTrapdoorRecipe(AllBlocks.CORITE_TRAPDOOR, Ingredient.ofItem(AllItems.CORITE_INGOT))
                         .group(NotEnoughRails.MOD_ID + ":corite_trapdoor")

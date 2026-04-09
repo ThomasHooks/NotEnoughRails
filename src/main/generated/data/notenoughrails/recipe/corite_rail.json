@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:corite_rail",
+  "key": {
+    "i": "notenoughrails:corite_rod",
+    "t": "notenoughrails:railroad_tie"
+  },
+  "pattern": [
+    "i i",
+    "iti",
+    "i i"
+  ],
+  "result": {
+    "count": 24,
+    "id": "notenoughrails:corite_rail"
+  }
+}

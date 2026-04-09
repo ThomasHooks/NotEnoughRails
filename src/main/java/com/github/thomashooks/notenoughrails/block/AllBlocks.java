@@ -129,6 +129,18 @@ public class AllBlocks {
                     .mapColor(MapColor.ORANGE)
                     .requiresTool()
             ));
+    public static final Block CORITE_POWERED_RAIL = registerBlock("corite_powered_rail",
+            settings -> new CoritePoweredRail(settings
+                    .strength(1.05F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block CORITE_RAIL = registerBlock("corite_rail",
+            settings -> new CoriteRailBlock(settings
+                    .strength(1.05F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
     public static final Block CORITE_TRAPDOOR = registerBlock("corite_trapdoor",
             settings -> new TrapdoorBlock(BlockSetType.IRON, settings
                     .strength(5.0F, 6.0F)
@@ -270,6 +282,8 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.CROSSOVER_RAIL, AllBlocks.BUFFER_STOP_RAIL);
             entries.addAfter(Blocks.DETECTOR_RAIL, AllBlocks.CHIME_RAIL);
             entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.CHECK_RAIL);
+            entries.addAfter(AllBlocks.CHECK_RAIL, AllBlocks.CORITE_RAIL);
+            entries.addAfter(AllBlocks.CORITE_RAIL, AllBlocks.CORITE_POWERED_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
             //Minecart Rails
@@ -278,6 +292,8 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.CROSSOVER_RAIL, AllBlocks.BUFFER_STOP_RAIL);
             entries.addAfter(Blocks.DETECTOR_RAIL, AllBlocks.CHIME_RAIL);
             entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.CHECK_RAIL);
+            entries.addAfter(AllBlocks.CHECK_RAIL, AllBlocks.CORITE_RAIL);
+            entries.addAfter(AllBlocks.CORITE_RAIL, AllBlocks.CORITE_POWERED_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             //Natural Stone Blocks

@@ -47,6 +47,8 @@ public class ModelGenerator extends FabricModelProvider {
         modelGenerator.registerDoor(AllBlocks.CORITE_DOOR);
         modelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_GRATE);
         modelGenerator.registerAxisRotated(AllBlocks.CORITE_PLATE_BLOCK, TexturedModel.CUBE_COLUMN);
+        modelGenerator.registerStraightRail(AllBlocks.CORITE_POWERED_RAIL);
+        modelGenerator.registerTurnableRail(AllBlocks.CORITE_RAIL);
         modelGenerator.registerTrapdoor(AllBlocks.CORITE_TRAPDOOR);
         registerPassiveFlatRail(AllBlocks.CROSSOVER_RAIL, modelGenerator);
         modelGenerator.registerCrop(AllBlocks.FLAX_CROP, FlaxCropBlock.AGE, 0, 1, 2, 3, 4, 5, 6, 7);

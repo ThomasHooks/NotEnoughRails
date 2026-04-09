@@ -97,6 +97,8 @@ public class AllItemGroups {
         entries.add(AllBlocks.BUFFER_STOP_RAIL);
         entries.add(AllBlocks.CHIME_RAIL);
         entries.add(AllBlocks.CHECK_RAIL);
+        entries.add(AllBlocks.CORITE_RAIL);
+        entries.add(AllBlocks.CORITE_POWERED_RAIL);
 
         //Minecarts
 

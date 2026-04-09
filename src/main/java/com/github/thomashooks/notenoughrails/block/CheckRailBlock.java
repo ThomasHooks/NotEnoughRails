@@ -140,7 +140,6 @@ public class CheckRailBlock extends PoweredRailBlock {
                 case EAST_WEST -> {
                     if (minecart.willHitBlockAt(pos.west()) || facing == Direction.EAST) {
                         velocityX = LAUNCHING_RATE;
-                        //minecart.setPosition(minecart.getX() - velocityX, minecart.getY(), minecart.getZ());
                     } else if (minecart.willHitBlockAt(pos.east()) || facing == Direction.WEST) {
                         velocityX = -LAUNCHING_RATE;
                     }
