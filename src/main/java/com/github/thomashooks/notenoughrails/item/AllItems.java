@@ -49,7 +49,6 @@ public class AllItems {
     public static final Item FLAX = registerItem("flax", Item::new);
     public static final Item FLAX_STRING = registerItem("flax_string", Item::new);
     public static final Item FLAXSEEDS = registerItem("flaxseed", createBlockItemWithUniqueName(AllBlocks.FLAX_CROP));
-    public static final Item FLOUR = registerItem("flour", Item::new);
     public static final Item FLUX = registerItem("flux", Item::new);
     public static final Item GOLD_ROD = registerItem("gold_rod", Item::new);
     public static final Item IRON_PLATE = registerItem("iron_plate", Item::new);
@@ -121,7 +120,7 @@ public class AllItems {
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
             //Food Items
-            entries.add(AllItems.FLOUR);
+            entries.add(AllItems.LINSEED_OIL);
         });
     }
 

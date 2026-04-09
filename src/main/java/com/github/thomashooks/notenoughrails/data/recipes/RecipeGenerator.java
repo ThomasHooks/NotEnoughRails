@@ -69,11 +69,6 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
                         .offerTo(exporter);
 
-                //Bread
-                List<ItemConvertible> BREAD_COOKABLES = List.of(AllItems.FLOUR);
-                offerSmelting(BREAD_COOKABLES, RecipeCategory.FOOD, Items.BREAD, 0.35F, 200, NotEnoughRails.MOD_ID + ":bread");
-                offerSmoking(BREAD_COOKABLES, RecipeCategory.FOOD, Items.BREAD, 0.35F, 100, NotEnoughRails.MOD_ID + ":bread");
-
                 //Coke & Coke Block
                 offerReversibleCompactingRecipes(RecipeCategory.MISC, AllItems.COKE,RecipeCategory.MISC, AllBlocks.COKE_BLOCK);
 
