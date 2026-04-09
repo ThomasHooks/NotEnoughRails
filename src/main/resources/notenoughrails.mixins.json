@@ -3,7 +3,6 @@
   "package": "com.github.thomashooks.notenoughrails.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ExampleMixin",
     "MixinAbstractMinecartEntity",
     "MixinAbstractRailBlock",
     "MixinRailPlacementHelper"
