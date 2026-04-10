@@ -16,7 +16,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.block;
 
 import com.github.thomashooks.notenoughrails.block.property.AllProperties;
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.AbstractRailBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -31,15 +33,22 @@ import net.minecraft.world.World;
 import org.jspecify.annotations.Nullable;
 
 public class CrossoverRailBlock extends AbstractRailBlock {
-    public static final MapCodec<CrossoverRailBlock> CODEC = createCodec(CrossoverRailBlock::new);
+    public static final MapCodec<CrossoverRailBlock> CODEC = RecordCodecBuilder.mapCodec(
+            instance -> instance.group(
+                    Codec.FLOAT.fieldOf("maxSpeed").forGetter(block -> block.maxSpeed),
+                    createSettingsCodec()
+            ).apply(instance, CrossoverRailBlock::new)
+    );
     public static final EnumProperty<RailShape> SHAPE = AllProperties.FLAT_RAIL_SHAPE;
+    protected final float maxSpeed;
 
-    public CrossoverRailBlock(Settings settings) {
+    public CrossoverRailBlock(float maxSpeedIn, Settings settings) {
         super(true, settings);
         this.setDefaultState(this.getDefaultState()
                 .with(SHAPE, RailShape.NORTH_SOUTH)
                 .with(WATERLOGGED, false)
         );
+        this.maxSpeed = maxSpeedIn;
     }
 
     @Override
@@ -63,6 +72,11 @@ public class CrossoverRailBlock extends AbstractRailBlock {
             }
         }
         return super.notEnoughRails$getRailDirection(state, world, pos, minecart);
+    }
+
+    @Override
+    public float notEnoughRails$getMaxSpeed(BlockState state, BlockPos pos, AbstractMinecartEntity minecart) {
+        return minecart.isInFluid() ? WATERLOGGED_MAX_SPEED : this.maxSpeed;
     }
 
     @Override

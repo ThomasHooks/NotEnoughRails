@@ -98,6 +98,11 @@ public class AllBlocks {
                     .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
                     .mapColor(MapColor.ORANGE)
                     .requiresTool()
+            ));public static final Block CORITE_CROSSOVER_RAIL = registerBlock("corite_crossover_rail",
+            settings -> new CrossoverRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
+                    .strength(1.05F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
             ));
     public static final Block CORITE_DOOR = registerBlock("corite_door",
             settings -> new DoorBlock(BlockSetType.IRON, settings
@@ -151,7 +156,7 @@ public class AllBlocks {
                     .allowsSpawning(Blocks::never)
             ));
     public static final Block CROSSOVER_RAIL = registerBlock("crossover_rail",
-            settings -> new CrossoverRailBlock(settings
+            settings -> new CrossoverRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.METAL)
                     .noCollision()
@@ -283,7 +288,8 @@ public class AllBlocks {
             entries.addAfter(Blocks.DETECTOR_RAIL, AllBlocks.CHIME_RAIL);
             entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.CHECK_RAIL);
             entries.addAfter(AllBlocks.CHECK_RAIL, AllBlocks.CORITE_RAIL);
-            entries.addAfter(AllBlocks.CORITE_RAIL, AllBlocks.CORITE_POWERED_RAIL);
+            entries.addAfter(AllBlocks.CORITE_RAIL, AllBlocks.CORITE_CROSSOVER_RAIL);
+            entries.addAfter(AllBlocks.CORITE_CROSSOVER_RAIL, AllBlocks.CORITE_POWERED_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
             //Minecart Rails
@@ -293,7 +299,8 @@ public class AllBlocks {
             entries.addAfter(Blocks.DETECTOR_RAIL, AllBlocks.CHIME_RAIL);
             entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.CHECK_RAIL);
             entries.addAfter(AllBlocks.CHECK_RAIL, AllBlocks.CORITE_RAIL);
-            entries.addAfter(AllBlocks.CORITE_RAIL, AllBlocks.CORITE_POWERED_RAIL);
+            entries.addAfter(AllBlocks.CORITE_RAIL, AllBlocks.CORITE_CROSSOVER_RAIL);
+            entries.addAfter(AllBlocks.CORITE_CROSSOVER_RAIL, AllBlocks.CORITE_POWERED_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             //Natural Stone Blocks

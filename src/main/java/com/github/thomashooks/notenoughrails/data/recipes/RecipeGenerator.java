@@ -46,8 +46,8 @@ public class RecipeGenerator extends FabricRecipeProvider {
             @Override
             public void generate() {
                 NotEnoughRails.LOGGER.info("Generating all items recipes for " + NotEnoughRails.MOD_ID);
-                //Items
                 //--------------------------------------------------------------------------------------------------------------
+                // region Item Recipes
 
                 //Booster Rod
                 createShaped(RecipeCategory.TRANSPORTATION, AllItems.BOOSTER_ROD, 3)
@@ -183,8 +183,10 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
                         .offerTo(exporter);
 
-                //Blocks
+                // endregion
+
                 //--------------------------------------------------------------------------------------------------------------
+                // region Block Recipes
                 NotEnoughRails.LOGGER.info("Generating all block recipes for " + NotEnoughRails.MOD_ID);
 
                 //Activator Rail
@@ -294,6 +296,17 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CHISELED_BLOCK, AllBlocks.CORITE_BLOCK, 4);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CHISELED_BLOCK, AllBlocks.CORITE_CUT_BLOCK, 1);
+
+                //Crossover Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CORITE_CROSSOVER_RAIL, 8)
+                        .input('i', AllItems.CORITE_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .pattern("iii")
+                        .pattern("iti")
+                        .pattern("iii")
+                        .group(NotEnoughRails.MOD_ID + ":corite_crossover_rail")
+                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .offerTo(exporter);
 
                 //Corite Door
                 createDoorRecipe(AllBlocks.CORITE_DOOR, Ingredient.ofItem(AllItems.CORITE_INGOT))
@@ -408,6 +421,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .group(NotEnoughRails.MOD_ID + ":rail")
                         .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                         .offerTo(exporter);
+                // endregion
             }
 
             public void offerSmoking(List<ItemConvertible> inputs, RecipeCategory category, ItemConvertible output, float experience, int cookingTime, String group) {
