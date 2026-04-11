@@ -99,6 +99,7 @@ public class AllItemGroups {
         entries.add(AllBlocks.CHECK_RAIL);
         entries.add(AllBlocks.CORITE_RAIL);
         entries.add(AllBlocks.CORITE_CROSSOVER_RAIL);
+        entries.add(AllBlocks.CORITE_BUFFER_STOP_RAIL);
         entries.add(AllBlocks.CORITE_POWERED_RAIL);
 
         //Minecarts

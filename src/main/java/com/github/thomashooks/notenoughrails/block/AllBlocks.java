@@ -67,6 +67,13 @@ public class AllBlocks {
                     .mapColor(MapColor.ORANGE)
                     .requiresTool()
             ));
+    public static final Block CORITE_BUFFER_STOP_RAIL = registerBlock("corite_buffer_stop_rail",
+            settings -> new BufferStopRailBlock(settings
+                    .strength(1.4F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .nonOpaque()
+                    .solidBlock(Blocks::always)
+            ));
     public static final Block CORITE_CHISELED_BLOCK = registerBlock("corite_chiseled_block",
             settings -> new Block(settings
                     .strength(5.0F, 6.0F)
@@ -289,7 +296,8 @@ public class AllBlocks {
             entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.CHECK_RAIL);
             entries.addAfter(AllBlocks.CHECK_RAIL, AllBlocks.CORITE_RAIL);
             entries.addAfter(AllBlocks.CORITE_RAIL, AllBlocks.CORITE_CROSSOVER_RAIL);
-            entries.addAfter(AllBlocks.CORITE_CROSSOVER_RAIL, AllBlocks.CORITE_POWERED_RAIL);
+            entries.addAfter(AllBlocks.CORITE_CROSSOVER_RAIL, AllBlocks.CORITE_BUFFER_STOP_RAIL);
+            entries.addAfter(AllBlocks.CORITE_BUFFER_STOP_RAIL, AllBlocks.CORITE_POWERED_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
             //Minecart Rails
@@ -300,7 +308,8 @@ public class AllBlocks {
             entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.CHECK_RAIL);
             entries.addAfter(AllBlocks.CHECK_RAIL, AllBlocks.CORITE_RAIL);
             entries.addAfter(AllBlocks.CORITE_RAIL, AllBlocks.CORITE_CROSSOVER_RAIL);
-            entries.addAfter(AllBlocks.CORITE_CROSSOVER_RAIL, AllBlocks.CORITE_POWERED_RAIL);
+            entries.addAfter(AllBlocks.CORITE_CROSSOVER_RAIL, AllBlocks.CORITE_BUFFER_STOP_RAIL);
+            entries.addAfter(AllBlocks.CORITE_BUFFER_STOP_RAIL, AllBlocks.CORITE_POWERED_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             //Natural Stone Blocks
