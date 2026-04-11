@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/rail_flat",
+  "textures": {
+    "rail": "notenoughrails:block/corite_activator_rail"
+  }
+}

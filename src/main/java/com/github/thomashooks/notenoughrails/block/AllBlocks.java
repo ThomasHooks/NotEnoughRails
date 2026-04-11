@@ -59,6 +59,12 @@ public class AllBlocks {
                     .mapColor(MapColor.GRAY)
                     .requiresTool()
             ));
+    public static final Block CORITE_ACTIVATOR_RAIL = registerBlock("corite_activator_rail",
+            settings -> new CoriteActivatorRailBlock(settings
+                    .strength(1.05F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
     public static final Block CORITE_BLOCK = registerBlock("corite_block",
             settings -> new Block(settings
                     .strength(5.0F, 6.0F)
@@ -305,6 +311,7 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.CORITE_CROSSOVER_RAIL, AllBlocks.CORITE_BUFFER_STOP_RAIL);
             entries.addAfter(AllBlocks.CORITE_BUFFER_STOP_RAIL, AllBlocks.CORITE_POWERED_RAIL);
             entries.addAfter(AllBlocks.CORITE_POWERED_RAIL, AllBlocks.CORITE_DETECTOR_RAIL);
+            entries.addAfter(AllBlocks.CORITE_DETECTOR_RAIL, AllBlocks.CORITE_ACTIVATOR_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
             //Minecart Rails
@@ -318,6 +325,7 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.CORITE_CROSSOVER_RAIL, AllBlocks.CORITE_BUFFER_STOP_RAIL);
             entries.addAfter(AllBlocks.CORITE_BUFFER_STOP_RAIL, AllBlocks.CORITE_POWERED_RAIL);
             entries.addAfter(AllBlocks.CORITE_POWERED_RAIL, AllBlocks.CORITE_DETECTOR_RAIL);
+            entries.addAfter(AllBlocks.CORITE_DETECTOR_RAIL, AllBlocks.CORITE_ACTIVATOR_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             //Natural Stone Blocks

@@ -308,6 +308,18 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
                         .offerTo(exporter);
 
+                //Corite Activator Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CORITE_ACTIVATOR_RAIL, 8)
+                        .input('i', AllItems.CORITE_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .input('r', Items.REDSTONE_TORCH)
+                        .pattern("i i")
+                        .pattern("iti")
+                        .pattern("iri")
+                        .group(NotEnoughRails.MOD_ID + ":corite_activator_rail")
+                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .offerTo(exporter);
+
                 //Corite Buffer Stop Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CORITE_BUFFER_STOP_RAIL, 8)
                         .input('i', AllItems.CORITE_ROD)

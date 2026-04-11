@@ -102,6 +102,7 @@ public class AllItemGroups {
         entries.add(AllBlocks.CORITE_BUFFER_STOP_RAIL);
         entries.add(AllBlocks.CORITE_POWERED_RAIL);
         entries.add(AllBlocks.CORITE_DETECTOR_RAIL);
+        entries.add(AllBlocks.CORITE_ACTIVATOR_RAIL);
 
         //Minecarts
 

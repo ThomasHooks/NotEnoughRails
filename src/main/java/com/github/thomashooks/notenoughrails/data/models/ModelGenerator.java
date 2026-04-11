@@ -39,6 +39,7 @@ public class ModelGenerator extends FabricModelProvider {
         registerDirectionalRail(AllBlocks.CHECK_RAIL, modelGenerator);
         modelGenerator.registerStraightRail(AllBlocks.CHIME_RAIL);
         modelGenerator.registerSimpleCubeAll(AllBlocks.COKE_BLOCK);
+        modelGenerator.registerStraightRail(AllBlocks.CORITE_ACTIVATOR_RAIL);
         modelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_BLOCK);
         modelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_CHISELED_BLOCK);
         BlockStateModelGenerator.BlockTexturePool coriteCutPool = modelGenerator.registerCubeAllModelTexturePool(AllBlocks.CORITE_CUT_BLOCK);

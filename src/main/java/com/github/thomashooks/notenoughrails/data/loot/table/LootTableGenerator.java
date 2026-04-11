@@ -37,6 +37,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(AllBlocks.CHECK_RAIL);
         addDrop(AllBlocks.CHIME_RAIL);
         addDrop(AllBlocks.COKE_BLOCK);
+        addDrop(AllBlocks.CORITE_ACTIVATOR_RAIL);
         addDrop(AllBlocks.CORITE_BLOCK);
         addDrop(AllBlocks.CORITE_CHISELED_BLOCK);
         addDrop(AllBlocks.CORITE_CUT_BLOCK);

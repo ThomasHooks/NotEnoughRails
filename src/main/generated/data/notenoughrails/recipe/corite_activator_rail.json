@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:corite_activator_rail",
+  "key": {
+    "i": "notenoughrails:corite_rod",
+    "r": "minecraft:redstone_torch",
+    "t": "notenoughrails:railroad_tie"
+  },
+  "pattern": [
+    "i i",
+    "iti",
+    "iri"
+  ],
+  "result": {
+    "count": 8,
+    "id": "notenoughrails:corite_activator_rail"
+  }
+}
