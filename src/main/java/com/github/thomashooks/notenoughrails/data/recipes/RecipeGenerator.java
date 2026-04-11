@@ -320,6 +320,19 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
                         .offerTo(exporter);
 
+                //Corite Detector Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CORITE_DETECTOR_RAIL, 8)
+                        .input('i', AllItems.CORITE_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .input('r', Items.REDSTONE)
+                        .input('p', Items.STONE_PRESSURE_PLATE)
+                        .pattern("ipi")
+                        .pattern("iti")
+                        .pattern("iri")
+                        .group(NotEnoughRails.MOD_ID + ":corite_detector_rail")
+                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .offerTo(exporter);
+
                 //Corite Door
                 createDoorRecipe(AllBlocks.CORITE_DOOR, Ingredient.ofItem(AllItems.CORITE_INGOT))
                         .group(NotEnoughRails.MOD_ID + ":corite_door")

@@ -33,6 +33,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(AllBlocks.CORITE_BUFFER_STOP_RAIL, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.CORITE_GRATE, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.CORITE_CROSSOVER_RAIL, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.CORITE_DETECTOR_RAIL, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.CORITE_DOOR, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.CORITE_POWERED_RAIL, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.CORITE_RAIL, BlockRenderLayer.CUTOUT);

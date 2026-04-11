@@ -45,6 +45,7 @@ public class ModelGenerator extends FabricModelProvider {
         coriteCutPool.slab(AllBlocks.CORITE_CUT_SLAB);
         coriteCutPool.stairs(AllBlocks.CORITE_CUT_STAIRS);
         registerPassiveFlatRail(AllBlocks.CORITE_CROSSOVER_RAIL, modelGenerator);
+        modelGenerator.registerStraightRail(AllBlocks.CORITE_DETECTOR_RAIL);
         modelGenerator.registerDoor(AllBlocks.CORITE_DOOR);
         modelGenerator.registerSimpleCubeAll(AllBlocks.CORITE_GRATE);
         modelGenerator.registerAxisRotated(AllBlocks.CORITE_PLATE_BLOCK, TexturedModel.CUBE_COLUMN);

@@ -111,6 +111,12 @@ public class AllBlocks {
                     .sounds(BlockSoundGroup.COPPER_GRATE)
                     .noCollision()
             ));
+    public static final Block CORITE_DETECTOR_RAIL = registerBlock("corite_detector_rail",
+            settings -> new CoriteDetectorRailBlock(settings
+                    .strength(1.05F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
     public static final Block CORITE_DOOR = registerBlock("corite_door",
             settings -> new DoorBlock(BlockSetType.IRON, settings
                     .strength(5.0F, 6.0F)
@@ -298,6 +304,7 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.CORITE_RAIL, AllBlocks.CORITE_CROSSOVER_RAIL);
             entries.addAfter(AllBlocks.CORITE_CROSSOVER_RAIL, AllBlocks.CORITE_BUFFER_STOP_RAIL);
             entries.addAfter(AllBlocks.CORITE_BUFFER_STOP_RAIL, AllBlocks.CORITE_POWERED_RAIL);
+            entries.addAfter(AllBlocks.CORITE_POWERED_RAIL, AllBlocks.CORITE_DETECTOR_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
             //Minecart Rails
@@ -310,6 +317,7 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.CORITE_RAIL, AllBlocks.CORITE_CROSSOVER_RAIL);
             entries.addAfter(AllBlocks.CORITE_CROSSOVER_RAIL, AllBlocks.CORITE_BUFFER_STOP_RAIL);
             entries.addAfter(AllBlocks.CORITE_BUFFER_STOP_RAIL, AllBlocks.CORITE_POWERED_RAIL);
+            entries.addAfter(AllBlocks.CORITE_POWERED_RAIL, AllBlocks.CORITE_DETECTOR_RAIL);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             //Natural Stone Blocks
