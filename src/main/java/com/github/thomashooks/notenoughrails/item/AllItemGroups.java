@@ -91,22 +91,44 @@ public class AllItemGroups {
 
         //Item Transfer Blocks
 
-        //Minecart Rails
+        //region Minecart Rails
         //Order: standard -> crossover -> buffer stop -> powered -> launching -> detector -> chime -> activator-> limiter -> check -> locking
+        //region Iron Rails
         entries.add(AllBlocks.CROSSOVER_RAIL);
         entries.add(AllBlocks.BUFFER_STOP_RAIL);
         entries.add(AllBlocks.CHIME_RAIL);
         entries.add(AllBlocks.CHECK_RAIL);
+        //endregion
+
+        //region Copper Rail
         entries.add(AllBlocks.COPPER_RAIL_WAXED);
+        entries.add(AllBlocks.COPPER_POWERED_RAIL_WAXED);
+        //endregion
+
+        //region Copper Rail Exposed
         entries.add(AllBlocks.COPPER_RAIL_EXPOSED_WAXED);
+        entries.add(AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED);
+        //endregion
+
+        //region Copper Rail Weathered
         entries.add(AllBlocks.COPPER_RAIL_WEATHERED_WAXED);
+        entries.add(AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED);
+        //endregion
+
+        //region Copper Rail Oxidized
         entries.add(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED);
+        entries.add(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED);
+        //endregion
+
+        //region Corite Rail
         entries.add(AllBlocks.CORITE_RAIL);
         entries.add(AllBlocks.CORITE_CROSSOVER_RAIL);
         entries.add(AllBlocks.CORITE_BUFFER_STOP_RAIL);
         entries.add(AllBlocks.CORITE_POWERED_RAIL);
         entries.add(AllBlocks.CORITE_DETECTOR_RAIL);
         entries.add(AllBlocks.CORITE_ACTIVATOR_RAIL);
+        //endregion
+        //endregion
 
         //Minecarts
 

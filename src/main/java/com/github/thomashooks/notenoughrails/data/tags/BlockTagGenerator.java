@@ -16,6 +16,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.data.tags;
 
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
+import com.github.thomashooks.notenoughrails.util.AllBlockTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -55,6 +56,10 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.COPPER_RAIL_EXPOSED_WAXED)
                 .add(AllBlocks.COPPER_RAIL_WEATHERED_WAXED)
                 .add(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED)
+                .add(AllBlocks.COPPER_POWERED_RAIL_WAXED)
+                .add(AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED)
+                .add(AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED)
+                .add(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED)
                 .add(AllBlocks.CROSSOVER_RAIL)
                 .add(AllBlocks.FLUXSTONE)
                 .add(AllBlocks.FLUXSTONE_POLISHED)
@@ -102,6 +107,10 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.COPPER_RAIL_EXPOSED_WAXED)
                 .add(AllBlocks.COPPER_RAIL_WEATHERED_WAXED)
                 .add(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED)
+                .add(AllBlocks.COPPER_POWERED_RAIL_WAXED)
+                .add(AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED)
+                .add(AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED)
+                .add(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED)
                 .add(AllBlocks.CROSSOVER_RAIL)
         ;
 
@@ -119,7 +128,18 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.COPPER_RAIL_EXPOSED_WAXED)
                 .add(AllBlocks.COPPER_RAIL_WEATHERED_WAXED)
                 .add(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED)
+                .add(AllBlocks.COPPER_POWERED_RAIL_WAXED)
+                .add(AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED)
+                .add(AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED)
+                .add(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED)
                 .add(AllBlocks.CROSSOVER_RAIL)
+        ;
+
+        valueLookupBuilder(AllBlockTags.COPPPER_POWERED_RAILS)
+                .add(AllBlocks.COPPER_POWERED_RAIL_WAXED)
+                .add(AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED)
+                .add(AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED)
+                .add(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED)
         ;
     }
 }

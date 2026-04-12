@@ -58,6 +58,10 @@
   "item.notenoughrails.waxed_copper_rail_exposed": "Waxed Exposed Copper Rail",
   "item.notenoughrails.waxed_copper_rail_weathered": "Waxed Weathered Copper Rail",
   "item.notenoughrails.waxed_copper_rail_oxidized": "Waxed Oxidized Copper Rail",
+  "item.notenoughrails.waxed_copper_powered_rail": "Waxed Copper Powered Rail",
+  "item.notenoughrails.waxed_copper_powered_rail_exposed": "Waxed Exposed Copper Powered Rail",
+  "item.notenoughrails.waxed_copper_powered_rail_weathered": "Waxed Weathered Copper Powered Rail",
+  "item.notenoughrails.waxed_copper_powered_rail_oxidized": "Waxed Oxidized Copper Powered Rail",
   "block.notenoughrails.flax_crop": "Flax Plant",
   "itemgroup.notenoughrails.main_item_group": "Not Enough Rails"
 }

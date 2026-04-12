@@ -25,18 +25,20 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-public class CoritePoweredRail extends PoweredRailBlock {
+public class AdjustablePoweredRail extends PoweredRailBlock {
     public static final double BOOSTING_FACTOR = 0.06D;
     public static final double LAUNCHING_RATE = 0.02D;
     public static final double BRAKING_FACTOR = 0.05D;
+    protected final float maxSpeed;
 
-    public CoritePoweredRail(Settings settings) {
+    public AdjustablePoweredRail(float maxSpeedIn, Settings settings) {
         super(settings);
+        this.maxSpeed = maxSpeedIn;
     }
 
     @Override
     public float notEnoughRails$getMaxSpeed(BlockState state, BlockPos pos, AbstractMinecartEntity minecart) {
-        return (DEFAULT_MAX_SPEED * 3.0F ) * (minecart.isTouchingWater() ? WATERLOGGED_MAX_SPEED_RATIO : 1.0F) / 20.0F;
+        return this.maxSpeed * (minecart.isTouchingWater() ? WATERLOGGED_MAX_SPEED_RATIO : 1.0F) / 20.0F;
     }
 
     @Override
