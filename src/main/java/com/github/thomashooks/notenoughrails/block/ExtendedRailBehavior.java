@@ -26,8 +26,9 @@ import net.minecraft.world.World;
 import org.jspecify.annotations.Nullable;
 
 public interface ExtendedRailBehavior {
-    float WATERLOGGED_MAX_SPEED = 0.2F;
-    float DEFAULT_MAX_SPEED = 0.4F;
+    float WATERLOGGED_MAX_SPEED_RATIO = 0.5F;
+    //In blocks/second
+    float DEFAULT_MAX_SPEED = 8.0F;
 
     /**
      * @param state    - The Rail's current block state
@@ -60,7 +61,7 @@ public interface ExtendedRailBehavior {
      * @return Gets the maximum speed a minecart can have when passing over this rail
      */
     default float notEnoughRails$getMaxSpeed(BlockState state, BlockPos pos, AbstractMinecartEntity minecart) {
-        return minecart.isInFluid() ? WATERLOGGED_MAX_SPEED : DEFAULT_MAX_SPEED;
+        return DEFAULT_MAX_SPEED * (minecart.isTouchingWater() ? WATERLOGGED_MAX_SPEED_RATIO : 1.0F) / 20.0F;
     }
 
     /**

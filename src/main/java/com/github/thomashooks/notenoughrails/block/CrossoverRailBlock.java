@@ -42,6 +42,10 @@ public class CrossoverRailBlock extends AbstractRailBlock {
     public static final EnumProperty<RailShape> SHAPE = AllProperties.FLAT_RAIL_SHAPE;
     protected final float maxSpeed;
 
+    /**
+     * @param maxSpeedIn - The maximum speed a minecart can move on this rail in blocks/second
+     * @param settings   - The settings for this block
+     */
     public CrossoverRailBlock(float maxSpeedIn, Settings settings) {
         super(true, settings);
         this.setDefaultState(this.getDefaultState()
@@ -76,7 +80,7 @@ public class CrossoverRailBlock extends AbstractRailBlock {
 
     @Override
     public float notEnoughRails$getMaxSpeed(BlockState state, BlockPos pos, AbstractMinecartEntity minecart) {
-        return minecart.isInFluid() ? WATERLOGGED_MAX_SPEED : this.maxSpeed;
+        return this.maxSpeed * (minecart.isTouchingWater() ? WATERLOGGED_MAX_SPEED_RATIO : 1.0F) / 20.0F;
     }
 
     @Override
