@@ -36,7 +36,7 @@ public class CoritePoweredRail extends PoweredRailBlock {
 
     @Override
     public float notEnoughRails$getMaxSpeed(BlockState state, BlockPos pos, AbstractMinecartEntity minecart) {
-        return (DEFAULT_MAX_SPEED * 4.0F ) * (minecart.isTouchingWater() ? WATERLOGGED_MAX_SPEED_RATIO : 1.0F) / 20.0F;
+        return (DEFAULT_MAX_SPEED * 3.0F ) * (minecart.isTouchingWater() ? WATERLOGGED_MAX_SPEED_RATIO : 1.0F) / 20.0F;
     }
 
     @Override

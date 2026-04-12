@@ -112,7 +112,7 @@ public class AllBlocks {
                     .mapColor(MapColor.ORANGE)
                     .requiresTool()
             ));public static final Block CORITE_CROSSOVER_RAIL = registerBlock("corite_crossover_rail",
-            settings -> new CrossoverRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
+            settings -> new CrossoverRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 3.0F, settings
                     .strength(1.05F)
                     .sounds(BlockSoundGroup.COPPER_GRATE)
                     .noCollision()
@@ -160,7 +160,7 @@ public class AllBlocks {
                     .noCollision()
             ));
     public static final Block CORITE_RAIL = registerBlock("corite_rail",
-            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
+            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 3.0F, settings
                     .strength(1.05F)
                     .sounds(BlockSoundGroup.COPPER_GRATE)
                     .noCollision()
