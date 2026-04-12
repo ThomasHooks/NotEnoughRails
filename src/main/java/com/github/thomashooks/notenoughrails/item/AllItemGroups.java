@@ -97,6 +97,10 @@ public class AllItemGroups {
         entries.add(AllBlocks.BUFFER_STOP_RAIL);
         entries.add(AllBlocks.CHIME_RAIL);
         entries.add(AllBlocks.CHECK_RAIL);
+        entries.add(AllBlocks.COPPER_RAIL_WAXED);
+        entries.add(AllBlocks.COPPER_RAIL_EXPOSED_WAXED);
+        entries.add(AllBlocks.COPPER_RAIL_WEATHERED_WAXED);
+        entries.add(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED);
         entries.add(AllBlocks.CORITE_RAIL);
         entries.add(AllBlocks.CORITE_CROSSOVER_RAIL);
         entries.add(AllBlocks.CORITE_BUFFER_STOP_RAIL);

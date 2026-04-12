@@ -160,7 +160,7 @@ public class AllBlocks {
                     .noCollision()
             ));
     public static final Block CORITE_RAIL = registerBlock("corite_rail",
-            settings -> new CoriteRailBlock(settings
+            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
                     .strength(1.05F)
                     .sounds(BlockSoundGroup.COPPER_GRATE)
                     .noCollision()
@@ -173,6 +173,30 @@ public class AllBlocks {
                     .requiresTool()
                     .nonOpaque()
                     .allowsSpawning(Blocks::never)
+            ));
+    public static final Block COPPER_RAIL_WAXED = registerBlock("waxed_copper_rail",
+            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_RAIL_EXPOSED_WAXED = registerBlock("waxed_copper_rail_exposed",
+            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_RAIL_WEATHERED_WAXED = registerBlock("waxed_copper_rail_weathered",
+            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_RAIL_OXIDIZED_WAXED = registerBlock("waxed_copper_rail_oxidized",
+            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
             ));
     public static final Block CROSSOVER_RAIL = registerBlock("crossover_rail",
             settings -> new CrossoverRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
@@ -306,7 +330,11 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.CROSSOVER_RAIL, AllBlocks.BUFFER_STOP_RAIL);
             entries.addAfter(Blocks.DETECTOR_RAIL, AllBlocks.CHIME_RAIL);
             entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.CHECK_RAIL);
-            entries.addAfter(AllBlocks.CHECK_RAIL, AllBlocks.CORITE_RAIL);
+            entries.addAfter(AllBlocks.CHECK_RAIL, AllBlocks.COPPER_RAIL_WAXED);
+            entries.addAfter(AllBlocks.COPPER_RAIL_WAXED, AllBlocks.COPPER_RAIL_EXPOSED_WAXED);
+            entries.addAfter(AllBlocks.COPPER_RAIL_EXPOSED_WAXED, AllBlocks.COPPER_RAIL_WEATHERED_WAXED);
+            entries.addAfter(AllBlocks.COPPER_RAIL_WEATHERED_WAXED, AllBlocks.COPPER_RAIL_OXIDIZED_WAXED);
+            entries.addAfter(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED, AllBlocks.CORITE_RAIL);
             entries.addAfter(AllBlocks.CORITE_RAIL, AllBlocks.CORITE_CROSSOVER_RAIL);
             entries.addAfter(AllBlocks.CORITE_CROSSOVER_RAIL, AllBlocks.CORITE_BUFFER_STOP_RAIL);
             entries.addAfter(AllBlocks.CORITE_BUFFER_STOP_RAIL, AllBlocks.CORITE_POWERED_RAIL);
@@ -320,7 +348,11 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.CROSSOVER_RAIL, AllBlocks.BUFFER_STOP_RAIL);
             entries.addAfter(Blocks.DETECTOR_RAIL, AllBlocks.CHIME_RAIL);
             entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.CHECK_RAIL);
-            entries.addAfter(AllBlocks.CHECK_RAIL, AllBlocks.CORITE_RAIL);
+            entries.addAfter(AllBlocks.CHECK_RAIL, AllBlocks.COPPER_RAIL_WAXED);
+            entries.addAfter(AllBlocks.COPPER_RAIL_WAXED, AllBlocks.COPPER_RAIL_EXPOSED_WAXED);
+            entries.addAfter(AllBlocks.COPPER_RAIL_EXPOSED_WAXED, AllBlocks.COPPER_RAIL_WEATHERED_WAXED);
+            entries.addAfter(AllBlocks.COPPER_RAIL_WEATHERED_WAXED, AllBlocks.COPPER_RAIL_OXIDIZED_WAXED);
+            entries.addAfter(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED, AllBlocks.CORITE_RAIL);
             entries.addAfter(AllBlocks.CORITE_RAIL, AllBlocks.CORITE_CROSSOVER_RAIL);
             entries.addAfter(AllBlocks.CORITE_CROSSOVER_RAIL, AllBlocks.CORITE_BUFFER_STOP_RAIL);
             entries.addAfter(AllBlocks.CORITE_BUFFER_STOP_RAIL, AllBlocks.CORITE_POWERED_RAIL);

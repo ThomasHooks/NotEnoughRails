@@ -54,6 +54,10 @@
   "item.notenoughrails.vermilion_ingot": "Vermilion Ingot",
   "item.notenoughrails.vermilion_rod": "Vermilion Rod",
   "item.notenoughrails.wooden_frame": "Wooden Frame",
+  "item.notenoughrails.waxed_copper_rail": "Waxed Copper Rail",
+  "item.notenoughrails.waxed_copper_rail_exposed": "Waxed Exposed Copper Rail",
+  "item.notenoughrails.waxed_copper_rail_weathered": "Waxed Weathered Copper Rail",
+  "item.notenoughrails.waxed_copper_rail_oxidized": "Waxed Oxidized Copper Rail",
   "block.notenoughrails.flax_crop": "Flax Plant",
   "itemgroup.notenoughrails.main_item_group": "Not Enough Rails"
 }
