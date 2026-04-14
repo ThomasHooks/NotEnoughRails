@@ -25,13 +25,13 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-public class AdjustablePoweredRail extends PoweredRailBlock {
+public class AdjustablePoweredRailBlock extends PoweredRailBlock {
     public static final double BOOSTING_FACTOR = 0.06D;
     public static final double LAUNCHING_RATE = 0.02D;
     public static final double BRAKING_FACTOR = 0.05D;
     protected final float maxSpeed;
 
-    public AdjustablePoweredRail(float maxSpeedIn, Settings settings) {
+    public AdjustablePoweredRailBlock(float maxSpeedIn, Settings settings) {
         super(settings);
         this.maxSpeed = maxSpeedIn;
     }

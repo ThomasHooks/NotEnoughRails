@@ -20,9 +20,13 @@ import net.minecraft.block.DetectorRailBlock;
 import net.minecraft.entity.vehicle.AbstractMinecartEntity;
 import net.minecraft.util.math.BlockPos;
 
-public class CoriteDetectorRailBlock extends DetectorRailBlock {
-    public CoriteDetectorRailBlock(Settings settings) {
+public class AdjustableDetectorRailBlock extends DetectorRailBlock {
+    protected final float maxSpeed;
+
+
+    public AdjustableDetectorRailBlock(float maxSpeedIn, Settings settings) {
         super(settings);
+        this.maxSpeed = maxSpeedIn;
     }
 
     @Override

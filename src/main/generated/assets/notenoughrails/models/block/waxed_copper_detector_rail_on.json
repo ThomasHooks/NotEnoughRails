@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/rail_flat",
+  "textures": {
+    "rail": "notenoughrails:block/waxed_copper_detector_rail_on"
+  }
+}

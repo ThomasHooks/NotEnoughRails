@@ -39,14 +39,18 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(AllBlocks.CORITE_POWERED_RAIL, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.CORITE_RAIL, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.CORITE_TRAPDOOR, BlockRenderLayer.CUTOUT);
-        BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL_WAXED, BlockRenderLayer.CUTOUT);
-        BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL_WEATHERED_WAXED, BlockRenderLayer.CUTOUT);
-        BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL_EXPOSED_WAXED, BlockRenderLayer.CUTOUT);
-        BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.COPPER_DETECTOR_RAIL_WAXED, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.COPPER_DETECTOR_RAIL_EXPOSED_WAXED, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.COPPER_DETECTOR_RAIL_WEATHERED_WAXED, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.COPPER_DETECTOR_RAIL_OXIDIZED_WAXED, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.COPPER_POWERED_RAIL_WAXED, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL_WAXED, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL_EXPOSED_WAXED, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL_WEATHERED_WAXED, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.CROSSOVER_RAIL, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.FLAX_CROP, BlockRenderLayer.CUTOUT);
     }

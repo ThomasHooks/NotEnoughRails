@@ -9,14 +9,18 @@
     "notenoughrails:corite_crossover_rail",
     "notenoughrails:corite_powered_rail",
     "notenoughrails:corite_rail",
-    "notenoughrails:waxed_copper_rail",
-    "notenoughrails:waxed_copper_rail_exposed",
-    "notenoughrails:waxed_copper_rail_weathered",
-    "notenoughrails:waxed_copper_rail_oxidized",
+    "notenoughrails:waxed_copper_detector_rail",
+    "notenoughrails:waxed_copper_detector_rail_exposed",
+    "notenoughrails:waxed_copper_detector_rail_weathered",
+    "notenoughrails:waxed_copper_detector_rail_oxidized",
     "notenoughrails:waxed_copper_powered_rail",
     "notenoughrails:waxed_copper_powered_rail_exposed",
     "notenoughrails:waxed_copper_powered_rail_weathered",
     "notenoughrails:waxed_copper_powered_rail_oxidized",
+    "notenoughrails:waxed_copper_rail",
+    "notenoughrails:waxed_copper_rail_exposed",
+    "notenoughrails:waxed_copper_rail_weathered",
+    "notenoughrails:waxed_copper_rail_oxidized",
     "notenoughrails:crossover_rail"
   ]
 }
