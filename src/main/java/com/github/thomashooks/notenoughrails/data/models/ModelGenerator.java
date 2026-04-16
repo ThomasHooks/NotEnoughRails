@@ -53,6 +53,10 @@ public class ModelGenerator extends FabricModelProvider {
         modelGenerator.registerStraightRail(AllBlocks.CORITE_POWERED_RAIL);
         modelGenerator.registerTurnableRail(AllBlocks.CORITE_RAIL);
         modelGenerator.registerTrapdoor(AllBlocks.CORITE_TRAPDOOR);
+        modelGenerator.registerStraightRail(AllBlocks.COPPER_ACTIVATOR_RAIL_WAXED);
+        modelGenerator.registerStraightRail(AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED);
+        modelGenerator.registerStraightRail(AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED);
+        modelGenerator.registerStraightRail(AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED);
         modelGenerator.registerStraightRail(AllBlocks.COPPER_DETECTOR_RAIL_WAXED);
         modelGenerator.registerStraightRail(AllBlocks.COPPER_DETECTOR_RAIL_EXPOSED_WAXED);
         modelGenerator.registerStraightRail(AllBlocks.COPPER_DETECTOR_RAIL_WEATHERED_WAXED);

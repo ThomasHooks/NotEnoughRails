@@ -52,6 +52,10 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.CORITE_POWERED_RAIL)
                 .add(AllBlocks.CORITE_RAIL)
                 .add(AllBlocks.CORITE_TRAPDOOR)
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_WAXED)
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED)
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED)
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED)
                 .add(AllBlocks.COPPER_DETECTOR_RAIL_WAXED)
                 .add(AllBlocks.COPPER_DETECTOR_RAIL_EXPOSED_WAXED)
                 .add(AllBlocks.COPPER_DETECTOR_RAIL_WEATHERED_WAXED)
@@ -107,6 +111,10 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.CORITE_CROSSOVER_RAIL)
                 .add(AllBlocks.CORITE_POWERED_RAIL)
                 .add(AllBlocks.CORITE_RAIL)
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_WAXED)
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED)
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED)
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED)
                 .add(AllBlocks.COPPER_DETECTOR_RAIL_WAXED)
                 .add(AllBlocks.COPPER_DETECTOR_RAIL_EXPOSED_WAXED)
                 .add(AllBlocks.COPPER_DETECTOR_RAIL_WEATHERED_WAXED)
@@ -132,6 +140,10 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.CORITE_CROSSOVER_RAIL)
                 .add(AllBlocks.CORITE_POWERED_RAIL)
                 .add(AllBlocks.CORITE_RAIL)
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_WAXED)
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED)
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED)
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED)
                 .add(AllBlocks.COPPER_DETECTOR_RAIL_WAXED)
                 .add(AllBlocks.COPPER_DETECTOR_RAIL_EXPOSED_WAXED)
                 .add(AllBlocks.COPPER_DETECTOR_RAIL_WEATHERED_WAXED)
@@ -152,6 +164,13 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED)
                 .add(AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED)
                 .add(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED)
+        ;
+
+        valueLookupBuilder(AllBlockTags.COPPPER_ACTIVATOR_RAILS)
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_WAXED)
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED)
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED)
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED)
         ;
     }
 }

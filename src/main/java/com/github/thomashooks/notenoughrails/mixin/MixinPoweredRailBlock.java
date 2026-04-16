@@ -32,13 +32,20 @@ public abstract class MixinPoweredRailBlock {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z"))
     private boolean isPoweredRail(boolean original, @Local(ordinal = 0)BlockState state) {
         Block block = ((PoweredRailBlock)(Object)this);
-        return original || isCopperPoweredRail(block, state);
+        return original || isCopperPoweredRail(block, state) || isCopperActivatorRail(block, state);
     }
     
     @Unique
     private boolean isCopperPoweredRail(Block current, BlockState other) {
         return other.isIn(AllBlockTags.COPPPER_POWERED_RAILS) && (
                 current == AllBlocks.COPPER_POWERED_RAIL_WAXED || current == AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED || current == AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED || current == AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED
+        );
+    }
+
+    @Unique
+    private boolean isCopperActivatorRail(Block current, BlockState other) {
+        return other.isIn(AllBlockTags.COPPPER_ACTIVATOR_RAILS) && (
+                current == AllBlocks.COPPER_ACTIVATOR_RAIL_WAXED || current == AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED || current == AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED || current == AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED
         );
     }
 }

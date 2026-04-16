@@ -1,7 +1,8 @@
 // 1.21.11	-999999999-01-01T00:00:00	Not Enough Rails/Tags for minecraft:block
-f741ac3cd0d7090710a584e76952d2ee43877f33 data/minecraft/tags/block/mineable/pickaxe.json
+9d0b9ca26e08c3abae88319e5763be1ba3e9e484 data/minecraft/tags/block/mineable/pickaxe.json
 11a695819b3a48e537fea0840a8e8d05f1e1287f data/minecraft/tags/block/needs_iron_tool.json
 b78ae47cb5d8d2b7e573da314c34800a1c79eb18 data/minecraft/tags/block/needs_stone_tool.json
-b8a125f54412871bfdc30551cbcd1ab7a65b81a9 data/minecraft/tags/block/prevent_mob_spawning_inside.json
-b8a125f54412871bfdc30551cbcd1ab7a65b81a9 data/minecraft/tags/block/rails.json
+556ef0bdca1421bcefb20b536ccfd080bb565be4 data/minecraft/tags/block/prevent_mob_spawning_inside.json
+556ef0bdca1421bcefb20b536ccfd080bb565be4 data/minecraft/tags/block/rails.json
+ec413a6005d6e4c6aeb36cc7410753344605043e data/notenoughrails/tags/block/copper_activator_rails.json
 5a4e44d5bdb734012e04e0a193e1cf5a0f97c9ad data/notenoughrails/tags/block/copper_powered_rails.json

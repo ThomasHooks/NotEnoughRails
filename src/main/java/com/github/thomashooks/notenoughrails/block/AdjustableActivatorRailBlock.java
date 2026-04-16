@@ -21,14 +21,17 @@ import net.minecraft.entity.vehicle.AbstractMinecartEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 
-public class CoriteActivatorRailBlock extends PoweredRailBlock {
-    public CoriteActivatorRailBlock(Settings settings) {
+public class AdjustableActivatorRailBlock extends PoweredRailBlock {
+    protected final float maxSpeed;
+
+    public AdjustableActivatorRailBlock(float maxSpeedIn, Settings settings) {
         super(settings);
+        this.maxSpeed = maxSpeedIn;
     }
 
     @Override
     public float notEnoughRails$getMaxSpeed(BlockState state, BlockPos pos, AbstractMinecartEntity minecart) {
-        return (DEFAULT_MAX_SPEED * 3.0F ) * (minecart.isTouchingWater() ? WATERLOGGED_MAX_SPEED_RATIO : 1.0F) / 20.0F;
+        return this.maxSpeed * (minecart.isTouchingWater() ? WATERLOGGED_MAX_SPEED_RATIO : 1.0F) / 20.0F;
     }
 
     @Override

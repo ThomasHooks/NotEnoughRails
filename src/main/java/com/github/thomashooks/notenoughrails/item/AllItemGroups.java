@@ -104,24 +104,28 @@ public class AllItemGroups {
         entries.add(AllBlocks.COPPER_RAIL_WAXED);
         entries.add(AllBlocks.COPPER_POWERED_RAIL_WAXED);
         entries.add(AllBlocks.COPPER_DETECTOR_RAIL_WAXED);
+        entries.add(AllBlocks.COPPER_ACTIVATOR_RAIL_WAXED);
         //endregion
 
         //region Copper Rail Exposed
         entries.add(AllBlocks.COPPER_RAIL_EXPOSED_WAXED);
         entries.add(AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED);
         entries.add(AllBlocks.COPPER_DETECTOR_RAIL_EXPOSED_WAXED);
+        entries.add(AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED);
         //endregion
 
         //region Copper Rail Weathered
         entries.add(AllBlocks.COPPER_RAIL_WEATHERED_WAXED);
         entries.add(AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED);
         entries.add(AllBlocks.COPPER_DETECTOR_RAIL_WEATHERED_WAXED);
+        entries.add(AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED);
         //endregion
 
         //region Copper Rail Oxidized
         entries.add(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED);
         entries.add(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED);
         entries.add(AllBlocks.COPPER_DETECTOR_RAIL_OXIDIZED_WAXED);
+        entries.add(AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED);
         //endregion
 
         //region Corite Rail
