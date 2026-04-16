@@ -60,7 +60,7 @@ public class AllBlocks {
                     .requiresTool()
             ));
     public static final Block CORITE_ACTIVATOR_RAIL = registerBlock("corite_activator_rail",
-            settings -> new AdjustableActivatorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 3.0F, settings
+            settings -> new AdjustableActivatorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F, settings
                     .strength(1.05F)
                     .sounds(BlockSoundGroup.COPPER_GRATE)
                     .noCollision()
@@ -112,13 +112,13 @@ public class AllBlocks {
                     .mapColor(MapColor.ORANGE)
                     .requiresTool()
             ));public static final Block CORITE_CROSSOVER_RAIL = registerBlock("corite_crossover_rail",
-            settings -> new CrossoverRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 3.0F, settings
+            settings -> new CrossoverRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F, settings
                     .strength(1.05F)
                     .sounds(BlockSoundGroup.COPPER_GRATE)
                     .noCollision()
             ));
     public static final Block CORITE_DETECTOR_RAIL = registerBlock("corite_detector_rail",
-            settings -> new AdjustableDetectorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 3.0F, settings
+            settings -> new AdjustableDetectorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F, settings
                     .strength(1.05F)
                     .sounds(BlockSoundGroup.COPPER_GRATE)
                     .noCollision()
@@ -154,13 +154,13 @@ public class AllBlocks {
                     .requiresTool()
             ));
     public static final Block CORITE_POWERED_RAIL = registerBlock("corite_powered_rail",
-            settings -> new AdjustablePoweredRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 3.0F, settings
+            settings -> new AdjustablePoweredRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F, settings
                     .strength(1.05F)
                     .sounds(BlockSoundGroup.COPPER_GRATE)
                     .noCollision()
             ));
     public static final Block CORITE_RAIL = registerBlock("corite_rail",
-            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 3.0F, settings
+            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F, settings
                     .strength(1.05F)
                     .sounds(BlockSoundGroup.COPPER_GRATE)
                     .noCollision()
