@@ -33,37 +33,12 @@ import net.minecraft.util.Identifier;
 import java.util.function.Function;
 
 public class AllBlocks {
-    public static final Block BUFFER_STOP_RAIL = registerBlock("buffer_stop_rail",
-            settings -> new BufferStopRailBlock(settings
-                    .strength(1.05F)
-                    .sounds(BlockSoundGroup.METAL)
-                    .nonOpaque()
-                    .solidBlock(Blocks::always)
-            ));
-    public static final Block CHECK_RAIL = registerBlock("check_rail",
-            settings -> new CheckRailBlock(settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.METAL)
-                    .noCollision()
-            ));
-    public static final Block CHIME_RAIL = registerBlock("chime_rail",
-            settings -> new ChimeRailBlock(settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.METAL)
-                    .noCollision()
-            ));
     public static final Block COKE_BLOCK = registerBlock("coke_block",
             settings -> new Block(settings
                     .strength(5.0F, 6.0F)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .mapColor(MapColor.GRAY)
                     .requiresTool()
-            ));
-    public static final Block CORITE_ACTIVATOR_RAIL = registerBlock("corite_activator_rail",
-            settings -> new AdjustableActivatorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F, settings
-                    .strength(1.05F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
             ));
     public static final Block CORITE_BLOCK = registerBlock("corite_block",
             settings -> new Block(settings
@@ -72,13 +47,6 @@ public class AllBlocks {
                     .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
                     .mapColor(MapColor.ORANGE)
                     .requiresTool()
-            ));
-    public static final Block CORITE_BUFFER_STOP_RAIL = registerBlock("corite_buffer_stop_rail",
-            settings -> new BufferStopRailBlock(settings
-                    .strength(1.4F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .nonOpaque()
-                    .solidBlock(Blocks::always)
             ));
     public static final Block CORITE_CHISELED_BLOCK = registerBlock("corite_chiseled_block",
             settings -> new Block(settings
@@ -111,17 +79,6 @@ public class AllBlocks {
                     .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
                     .mapColor(MapColor.ORANGE)
                     .requiresTool()
-            ));public static final Block CORITE_CROSSOVER_RAIL = registerBlock("corite_crossover_rail",
-            settings -> new CrossoverRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F, settings
-                    .strength(1.05F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block CORITE_DETECTOR_RAIL = registerBlock("corite_detector_rail",
-            settings -> new AdjustableDetectorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F, settings
-                    .strength(1.05F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
             ));
     public static final Block CORITE_DOOR = registerBlock("corite_door",
             settings -> new DoorBlock(BlockSetType.IRON, settings
@@ -153,18 +110,6 @@ public class AllBlocks {
                     .mapColor(MapColor.ORANGE)
                     .requiresTool()
             ));
-    public static final Block CORITE_POWERED_RAIL = registerBlock("corite_powered_rail",
-            settings -> new AdjustablePoweredRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F, settings
-                    .strength(1.05F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block CORITE_RAIL = registerBlock("corite_rail",
-            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F, settings
-                    .strength(1.05F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
     public static final Block CORITE_TRAPDOOR = registerBlock("corite_trapdoor",
             settings -> new TrapdoorBlock(BlockSetType.IRON, settings
                     .strength(5.0F, 6.0F)
@@ -173,108 +118,6 @@ public class AllBlocks {
                     .requiresTool()
                     .nonOpaque()
                     .allowsSpawning(Blocks::never)
-            ));
-    public static final Block COPPER_ACTIVATOR_RAIL_WAXED = registerBlock("waxed_copper_activator_rail",
-            settings -> new AdjustableActivatorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED = registerBlock("waxed_copper_activator_rail_exposed",
-            settings -> new AdjustableActivatorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED = registerBlock("waxed_copper_activator_rail_weathered",
-            settings -> new AdjustableActivatorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED = registerBlock("waxed_copper_activator_rail_oxidized",
-            settings -> new AdjustableActivatorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block COPPER_DETECTOR_RAIL_WAXED = registerBlock("waxed_copper_detector_rail",
-            settings -> new AdjustableDetectorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block COPPER_DETECTOR_RAIL_EXPOSED_WAXED = registerBlock("waxed_copper_detector_rail_exposed",
-            settings -> new AdjustableDetectorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block COPPER_DETECTOR_RAIL_WEATHERED_WAXED = registerBlock("waxed_copper_detector_rail_weathered",
-            settings -> new AdjustableDetectorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block COPPER_DETECTOR_RAIL_OXIDIZED_WAXED = registerBlock("waxed_copper_detector_rail_oxidized",
-            settings -> new AdjustableDetectorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block COPPER_POWERED_RAIL_WAXED = registerBlock("waxed_copper_powered_rail",
-            settings -> new AdjustablePoweredRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block COPPER_POWERED_RAIL_EXPOSED_WAXED = registerBlock("waxed_copper_powered_rail_exposed",
-            settings -> new AdjustablePoweredRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block COPPER_POWERED_RAIL_WEATHERED_WAXED = registerBlock("waxed_copper_powered_rail_weathered",
-            settings -> new AdjustablePoweredRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block COPPER_POWERED_RAIL_OXIDIZED_WAXED = registerBlock("waxed_copper_powered_rail_oxidized",
-            settings -> new AdjustablePoweredRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block COPPER_RAIL_WAXED = registerBlock("waxed_copper_rail",
-            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block COPPER_RAIL_EXPOSED_WAXED = registerBlock("waxed_copper_rail_exposed",
-            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block COPPER_RAIL_WEATHERED_WAXED = registerBlock("waxed_copper_rail_weathered",
-            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block COPPER_RAIL_OXIDIZED_WAXED = registerBlock("waxed_copper_rail_oxidized",
-            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.COPPER_GRATE)
-                    .noCollision()
-            ));
-    public static final Block CROSSOVER_RAIL = registerBlock("crossover_rail",
-            settings -> new CrossoverRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
-                    .strength(0.7F)
-                    .sounds(BlockSoundGroup.METAL)
-                    .noCollision()
             ));
     public static final Block FLAX_CROP = registerBlockWithoutItem("flax_crop",
             settings -> new FlaxCropBlock(settings
@@ -358,6 +201,176 @@ public class AllBlocks {
                     .mapColor(MapColor.OAK_TAN)
                     .burnable()
             ));
+
+    //region Iron Rails
+    public static final Block BUFFER_STOP_RAIL = registerBlock("buffer_stop_rail",
+            settings -> new BufferStopRailBlock(settings
+                    .strength(1.05F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .nonOpaque()
+                    .solidBlock(Blocks::always)
+            ));
+    public static final Block CHECK_RAIL = registerBlock("check_rail",
+            settings -> new CheckRailBlock(settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .noCollision()
+            ));
+    public static final Block CHIME_RAIL = registerBlock("chime_rail",
+            settings -> new ChimeRailBlock(settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .noCollision()
+            ));
+    public static final Block CROSSOVER_RAIL = registerBlock("crossover_rail",
+            settings -> new CrossoverRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .noCollision()
+            ));
+    //endregion
+    //------------------------------------------------------------------------------------------------------------------
+    //region Copper Rails
+    public static final Block COPPER_ACTIVATOR_RAIL_WAXED = registerBlock("waxed_copper_activator_rail",
+            settings -> new AdjustableActivatorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED = registerBlock("waxed_copper_activator_rail_exposed",
+            settings -> new AdjustableActivatorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED = registerBlock("waxed_copper_activator_rail_weathered",
+            settings -> new AdjustableActivatorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED = registerBlock("waxed_copper_activator_rail_oxidized",
+            settings -> new AdjustableActivatorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+
+    public static final Block COPPER_DETECTOR_RAIL_WAXED = registerBlock("waxed_copper_detector_rail",
+            settings -> new AdjustableDetectorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_DETECTOR_RAIL_EXPOSED_WAXED = registerBlock("waxed_copper_detector_rail_exposed",
+            settings -> new AdjustableDetectorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_DETECTOR_RAIL_WEATHERED_WAXED = registerBlock("waxed_copper_detector_rail_weathered",
+            settings -> new AdjustableDetectorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_DETECTOR_RAIL_OXIDIZED_WAXED = registerBlock("waxed_copper_detector_rail_oxidized",
+            settings -> new AdjustableDetectorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+
+    public static final Block COPPER_POWERED_RAIL_WAXED = registerBlock("waxed_copper_powered_rail",
+            settings -> new AdjustablePoweredRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_POWERED_RAIL_EXPOSED_WAXED = registerBlock("waxed_copper_powered_rail_exposed",
+            settings -> new AdjustablePoweredRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_POWERED_RAIL_WEATHERED_WAXED = registerBlock("waxed_copper_powered_rail_weathered",
+            settings -> new AdjustablePoweredRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_POWERED_RAIL_OXIDIZED_WAXED = registerBlock("waxed_copper_powered_rail_oxidized",
+            settings -> new AdjustablePoweredRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+
+    public static final Block COPPER_RAIL_WAXED = registerBlock("waxed_copper_rail",
+            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_RAIL_EXPOSED_WAXED = registerBlock("waxed_copper_rail_exposed",
+            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_RAIL_WEATHERED_WAXED = registerBlock("waxed_copper_rail_weathered",
+            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_RAIL_OXIDIZED_WAXED = registerBlock("waxed_copper_rail_oxidized",
+            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    //endregion
+    //------------------------------------------------------------------------------------------------------------------
+    //region Corite Rails
+    public static final Block CORITE_ACTIVATOR_RAIL = registerBlock("corite_activator_rail",
+            settings -> new AdjustableActivatorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F, settings
+                    .strength(1.05F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block CORITE_BUFFER_STOP_RAIL = registerBlock("corite_buffer_stop_rail",
+            settings -> new BufferStopRailBlock(settings
+                    .strength(1.4F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .nonOpaque()
+                    .solidBlock(Blocks::always)
+            ));
+    public static final Block CORITE_CROSSOVER_RAIL = registerBlock("corite_crossover_rail",
+            settings -> new CrossoverRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F, settings
+                    .strength(1.05F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block CORITE_DETECTOR_RAIL = registerBlock("corite_detector_rail",
+            settings -> new AdjustableDetectorRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F, settings
+                    .strength(1.05F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block CORITE_POWERED_RAIL = registerBlock("corite_powered_rail",
+            settings -> new AdjustablePoweredRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F, settings
+                    .strength(1.05F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block CORITE_RAIL = registerBlock("corite_rail",
+            settings -> new AdjustableRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F, settings
+                    .strength(1.05F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    //endregion
 
     public static void registerAll() {
         NotEnoughRails.LOGGER.info("Registering all Blocks for " + NotEnoughRails.MOD_ID);
