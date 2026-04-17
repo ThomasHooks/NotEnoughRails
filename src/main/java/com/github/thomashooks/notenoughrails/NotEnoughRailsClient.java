@@ -51,6 +51,10 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL_EXPOSED, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL_WEATHERED, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL_OXIDIZED, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL_WAXED, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL_EXPOSED_WAXED, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL_WEATHERED_WAXED, BlockRenderLayer.CUTOUT);

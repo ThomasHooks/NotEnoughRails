@@ -29,6 +29,11 @@ public interface ExtendedRailBehavior {
     float WATERLOGGED_MAX_SPEED_RATIO = 0.5F;
     //In blocks/second
     float DEFAULT_MAX_SPEED = 8.0F;
+    float CORITE_MAX_SPEED = ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F;
+    float UNAFFECTED_COPPER_MAX_SPEED = ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F;
+    float EXPOSED_COPPER_MAX_SPEED = ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F;
+    float WEATHERED_COPPER_MAX_SPEED = ExtendedRailBehavior.DEFAULT_MAX_SPEED;
+    float OXIDIZED_COPPER_MAX_SPEED = ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F;
 
     /**
      * @param state    - The Rail's current block state
@@ -62,6 +67,16 @@ public interface ExtendedRailBehavior {
      */
     default float notEnoughRails$getMaxSpeed(BlockState state, BlockPos pos, AbstractMinecartEntity minecart) {
         return DEFAULT_MAX_SPEED * (minecart.isTouchingWater() ? WATERLOGGED_MAX_SPEED_RATIO : 1.0F) / 20.0F;
+    }
+
+    /**
+     * @param state    - The Rail's current block state
+     * @param pos      - The Rails position in the world
+     * @param minecart - The minecart that is passing over the rail
+     * @return Gets the minecart's speed retention when on this rail
+     */
+    default double notEnoughRails$getSpeedRetention(BlockState state, BlockPos pos, AbstractMinecartEntity minecart) {
+        return minecart.hasPassengers() ? 0.997 : 0.96;
     }
 
     /**

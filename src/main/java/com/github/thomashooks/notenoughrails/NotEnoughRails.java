@@ -55,6 +55,9 @@ public class NotEnoughRails implements ModInitializer {
 		NotEnoughRails.LOGGER.info("Registering all composting items for " + NotEnoughRails.MOD_ID);
 		CompostingChanceRegistry.INSTANCE.add(AllItems.FLAX, 0.65F);
 		CompostingChanceRegistry.INSTANCE.add(AllItems.FLAXSEEDS, 0.3F);
+
 		FlaxseedsLootTables.modify();
+
+		AllBlocks.registerAllOxidizableBlocks();
 	}
 }

@@ -65,6 +65,10 @@ public class ModelGenerator extends FabricModelProvider {
         modelGenerator.registerStraightRail(AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED);
         modelGenerator.registerStraightRail(AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED);
         modelGenerator.registerStraightRail(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED);
+        modelGenerator.registerTurnableRail(AllBlocks.COPPER_RAIL);
+        modelGenerator.registerTurnableRail(AllBlocks.COPPER_RAIL_EXPOSED);
+        modelGenerator.registerTurnableRail(AllBlocks.COPPER_RAIL_WEATHERED);
+        modelGenerator.registerTurnableRail(AllBlocks.COPPER_RAIL_OXIDIZED);
         modelGenerator.registerTurnableRail(AllBlocks.COPPER_RAIL_WAXED);
         modelGenerator.registerTurnableRail(AllBlocks.COPPER_RAIL_EXPOSED_WAXED);
         modelGenerator.registerTurnableRail(AllBlocks.COPPER_RAIL_WEATHERED_WAXED);

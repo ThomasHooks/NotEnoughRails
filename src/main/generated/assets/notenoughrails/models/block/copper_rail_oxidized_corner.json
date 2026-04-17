@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/rail_curved",
+  "textures": {
+    "rail": "notenoughrails:block/copper_rail_oxidized_corner"
+  }
+}

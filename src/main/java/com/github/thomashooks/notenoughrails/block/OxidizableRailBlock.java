@@ -21,6 +21,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.RailShape;
 import net.minecraft.entity.vehicle.AbstractMinecartEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
@@ -29,21 +30,22 @@ import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
-public class AdjustableRailBlock extends AbstractRailBlock {
-    public static final MapCodec<AdjustableRailBlock> CODEC = RecordCodecBuilder.mapCodec(
+public class OxidizableRailBlock extends AbstractRailBlock implements Oxidizable {
+    public static final MapCodec<OxidizableRailBlock> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
-                    Oxidizable.OxidationLevel.CODEC.fieldOf("weathering_state").forGetter(AdjustableRailBlock::getDegradationLevel),
+                    Oxidizable.OxidationLevel.CODEC.fieldOf("weathering_state").forGetter(Degradable::getDegradationLevel),
                     Codec.FLOAT.fieldOf("max_speed").forGetter(block -> block.maxSpeed),
                     createSettingsCodec()
-            ).apply(instance, AdjustableRailBlock::new)
+            ).apply(instance, OxidizableRailBlock::new)
     );
     public static final EnumProperty<RailShape> SHAPE = Properties.RAIL_SHAPE;
     private final Oxidizable.OxidationLevel oxidationLevel;
     protected final float maxSpeed;
 
-    public AdjustableRailBlock(Oxidizable.OxidationLevel oxidationLevelIn, float maxSpeedIn, Settings settings) {
+    public OxidizableRailBlock(Oxidizable.OxidationLevel oxidationLevelIn, float maxSpeedIn, Settings settings) {
         super(false, settings);
         this.setDefaultState(this.stateManager.getDefaultState()
                 .with(SHAPE, RailShape.NORTH_SOUTH)
@@ -78,9 +80,20 @@ public class AdjustableRailBlock extends AbstractRailBlock {
     }
 
     @Override
+    protected void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        this.tickDegradation(state, world, pos, random);
+    }
+
+    @Override
+    protected boolean hasRandomTicks(BlockState state) {
+        return Oxidizable.getIncreasedOxidationBlock(state.getBlock()).isPresent();
+    }
+
+    @Override
     public Property<RailShape> getShapeProperty() { return SHAPE; }
 
-    public Oxidizable.OxidationLevel getDegradationLevel() { return this.oxidationLevel; }
+    @Override
+    public OxidationLevel getDegradationLevel() { return this.oxidationLevel; }
 
     @Override
     protected BlockState rotate(BlockState state, BlockRotation rotation) {

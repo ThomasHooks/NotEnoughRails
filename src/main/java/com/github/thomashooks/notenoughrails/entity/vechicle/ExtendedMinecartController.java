@@ -253,6 +253,16 @@ public class ExtendedMinecartController extends DefaultMinecartController {
         return super.getMaxSpeed(world);
     }
 
+    @Override
+    public double getSpeedRetention() {
+        BlockPos pos = this.minecart.getRailOrMinecartPos();
+        BlockState state = this.getWorld().getBlockState(pos);
+        if (state.getBlock() instanceof AbstractRailBlock railBlock) {
+            return railBlock.notEnoughRails$getSpeedRetention(state, pos, this.minecart);
+        }
+        return super.getSpeedRetention();
+    }
+
     protected Vec3d applySlowdown(@NonNull Vec3d velocityIn) {
         double speedRetention = this.getSpeedRetention();
         Vec3d velocity = velocityIn.multiply(speedRetention, 0.0D, speedRetention);
