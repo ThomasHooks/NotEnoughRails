@@ -21,8 +21,8 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 
-public class OxidizablePoweredRailBlock extends AdjustablePoweredRailBlock implements Oxidizable {
-    public OxidizablePoweredRailBlock(Oxidizable.OxidationLevel oxidationLevelIn, float maxSpeedIn, Settings settings) {
+public class OxidizableDetectorRailBlock extends AdjustableDetectorRailBlock implements Oxidizable {
+    public OxidizableDetectorRailBlock(Oxidizable.OxidationLevel oxidationLevelIn, float maxSpeedIn, Settings settings) {
         super(oxidationLevelIn, maxSpeedIn, settings);
     }
 

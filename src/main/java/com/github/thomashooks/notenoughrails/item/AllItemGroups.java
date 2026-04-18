@@ -103,21 +103,25 @@ public class AllItemGroups {
         //region Copper Rail
         entries.add(AllBlocks.COPPER_RAIL);
         entries.add(AllBlocks.COPPER_POWERED_RAIL);
+        entries.add(AllBlocks.COPPER_DETECTOR_RAIL);
         //endregion
 
         //region Copper Rail Exposed
         entries.add(AllBlocks.COPPER_RAIL_EXPOSED);
         entries.add(AllBlocks.COPPER_POWERED_RAIL_EXPOSED);
+        entries.add(AllBlocks.COPPER_DETECTOR_RAIL_EXPOSED);
         //endregion
 
         //region Copper Rail Weathered
         entries.add(AllBlocks.COPPER_RAIL_WEATHERED);
         entries.add(AllBlocks.COPPER_POWERED_RAIL_WEATHERED);
+        entries.add(AllBlocks.COPPER_DETECTOR_RAIL_WEATHERED);
         //endregion
 
         //region Copper Rail Oxidized
         entries.add(AllBlocks.COPPER_RAIL_OXIDIZED);
         entries.add(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED);
+        entries.add(AllBlocks.COPPER_DETECTOR_RAIL_OXIDIZED);
         //endregion
 
         //region Waxed Copper Rail

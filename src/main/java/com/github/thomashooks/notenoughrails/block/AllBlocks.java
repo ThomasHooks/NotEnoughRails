@@ -257,6 +257,30 @@ public class AllBlocks {
                     .noCollision()
             ));
 
+    public static final Block COPPER_DETECTOR_RAIL = registerBlock("copper_detector_rail",
+            settings -> new OxidizableDetectorRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_DETECTOR_RAIL_EXPOSED = registerBlock("copper_detector_rail_exposed",
+            settings -> new OxidizableDetectorRailBlock(Oxidizable.OxidationLevel.EXPOSED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_DETECTOR_RAIL_WEATHERED = registerBlock("copper_detector_rail_weathered",
+            settings -> new OxidizableDetectorRailBlock(Oxidizable.OxidationLevel.WEATHERED, ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_DETECTOR_RAIL_OXIDIZED = registerBlock("copper_detector_rail_oxidized",
+            settings -> new OxidizableDetectorRailBlock(Oxidizable.OxidationLevel.OXIDIZED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
     public static final Block COPPER_DETECTOR_RAIL_WAXED = registerBlock("waxed_copper_detector_rail",
             settings -> new AdjustableDetectorRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
                     .strength(0.7F)
@@ -516,14 +540,14 @@ public class AllBlocks {
     public static void registerAllOxidizableBlocks() {
         NotEnoughRails.LOGGER.info("Registering all oxidizable blocks for " + NotEnoughRails.MOD_ID);
         OxidizableBlocksRegistry.registerCopperBlockSet(new CopperBlockSet(
-                AllBlocks.COPPER_RAIL,
-                AllBlocks.COPPER_RAIL_EXPOSED,
-                AllBlocks.COPPER_RAIL_WEATHERED,
-                AllBlocks.COPPER_RAIL_OXIDIZED,
-                AllBlocks.COPPER_RAIL_WAXED,
-                AllBlocks.COPPER_RAIL_EXPOSED_WAXED,
-                AllBlocks.COPPER_RAIL_WEATHERED_WAXED,
-                AllBlocks.COPPER_RAIL_OXIDIZED_WAXED
+                AllBlocks.COPPER_DETECTOR_RAIL,
+                AllBlocks.COPPER_DETECTOR_RAIL_EXPOSED,
+                AllBlocks.COPPER_DETECTOR_RAIL_WEATHERED,
+                AllBlocks.COPPER_DETECTOR_RAIL_OXIDIZED,
+                AllBlocks.COPPER_DETECTOR_RAIL_WAXED,
+                AllBlocks.COPPER_DETECTOR_RAIL_EXPOSED_WAXED,
+                AllBlocks.COPPER_DETECTOR_RAIL_WEATHERED_WAXED,
+                AllBlocks.COPPER_DETECTOR_RAIL_OXIDIZED_WAXED
         ));
         OxidizableBlocksRegistry.registerCopperBlockSet(new CopperBlockSet(
                 AllBlocks.COPPER_POWERED_RAIL,
@@ -534,6 +558,16 @@ public class AllBlocks {
                 AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED,
                 AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED,
                 AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED
+        ));
+        OxidizableBlocksRegistry.registerCopperBlockSet(new CopperBlockSet(
+                AllBlocks.COPPER_RAIL,
+                AllBlocks.COPPER_RAIL_EXPOSED,
+                AllBlocks.COPPER_RAIL_WEATHERED,
+                AllBlocks.COPPER_RAIL_OXIDIZED,
+                AllBlocks.COPPER_RAIL_WAXED,
+                AllBlocks.COPPER_RAIL_EXPOSED_WAXED,
+                AllBlocks.COPPER_RAIL_WEATHERED_WAXED,
+                AllBlocks.COPPER_RAIL_OXIDIZED_WAXED
         ));
     }
 
