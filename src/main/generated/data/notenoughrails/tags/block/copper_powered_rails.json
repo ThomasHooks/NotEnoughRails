@@ -1,5 +1,9 @@
 {
   "values": [
+    "notenoughrails:copper_powered_rail",
+    "notenoughrails:copper_powered_rail_exposed",
+    "notenoughrails:copper_powered_rail_weathered",
+    "notenoughrails:copper_powered_rail_oxidized",
     "notenoughrails:waxed_copper_powered_rail",
     "notenoughrails:waxed_copper_powered_rail_exposed",
     "notenoughrails:waxed_copper_powered_rail_weathered",

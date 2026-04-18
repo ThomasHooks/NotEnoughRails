@@ -34,6 +34,7 @@ import java.util.function.Function;
 
 public class AllItems {
     public static final Item BOOSTER_ROD = registerItem("booster_rod", Item::new);
+    public static final Item BOOSTER_ROD_COPPER = registerItem("booster_rod_copper", Item::new);
     public static final Item BOOSTER_ROD_CORITE = registerItem("booster_rod_corite", Item::new);
     public static final Item COKE = registerItem("coke", Item::new);
     public static final Item COPPER_PLATE = registerItem("copper_plate", Item::new);
@@ -104,6 +105,7 @@ public class AllItems {
 
             //Minecart Rails Crafting Items
             entries.add(AllItems.BOOSTER_ROD);
+            entries.add(AllItems.BOOSTER_ROD_COPPER);
             entries.add(AllItems.BOOSTER_ROD_CORITE);
             entries.add(AllItems.RAILROAD_TIE);
 

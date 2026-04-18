@@ -61,10 +61,16 @@ public class ModelGenerator extends FabricModelProvider {
         modelGenerator.registerStraightRail(AllBlocks.COPPER_DETECTOR_RAIL_EXPOSED_WAXED);
         modelGenerator.registerStraightRail(AllBlocks.COPPER_DETECTOR_RAIL_WEATHERED_WAXED);
         modelGenerator.registerStraightRail(AllBlocks.COPPER_DETECTOR_RAIL_OXIDIZED_WAXED);
+        //TODO: changed waxed copper powered rail to use the same model as the nonwaxed
+        modelGenerator.registerStraightRail(AllBlocks.COPPER_POWERED_RAIL);
+        modelGenerator.registerStraightRail(AllBlocks.COPPER_POWERED_RAIL_EXPOSED);
+        modelGenerator.registerStraightRail(AllBlocks.COPPER_POWERED_RAIL_WEATHERED);
+        modelGenerator.registerStraightRail(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED);
         modelGenerator.registerStraightRail(AllBlocks.COPPER_POWERED_RAIL_WAXED);
         modelGenerator.registerStraightRail(AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED);
         modelGenerator.registerStraightRail(AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED);
         modelGenerator.registerStraightRail(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED);
+        //TODO: changed waxed copper rail to use the same model as the nonwaxed
         modelGenerator.registerTurnableRail(AllBlocks.COPPER_RAIL);
         modelGenerator.registerTurnableRail(AllBlocks.COPPER_RAIL_EXPOSED);
         modelGenerator.registerTurnableRail(AllBlocks.COPPER_RAIL_WEATHERED);
@@ -89,6 +95,7 @@ public class ModelGenerator extends FabricModelProvider {
     @Override
     public void generateItemModels(@NotNull ItemModelGenerator modelGenerator) {
         modelGenerator.register(AllItems.BOOSTER_ROD, Models.GENERATED);
+        modelGenerator.register(AllItems.BOOSTER_ROD_COPPER, Models.GENERATED);
         modelGenerator.register(AllItems.BOOSTER_ROD_CORITE, Models.GENERATED);
         modelGenerator.register(AllItems.COKE, Models.GENERATED);
         modelGenerator.register(AllItems.COPPER_PLATE, Models.GENERATED);

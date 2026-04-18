@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:booster_rod_copper",
+  "key": {
+    "g": "notenoughrails:gold_rod",
+    "i": "notenoughrails:copper_rod",
+    "v": "notenoughrails:vermilion_rod"
+  },
+  "pattern": [
+    "igv"
+  ],
+  "result": {
+    "count": 3,
+    "id": "notenoughrails:booster_rod_copper"
+  }
+}

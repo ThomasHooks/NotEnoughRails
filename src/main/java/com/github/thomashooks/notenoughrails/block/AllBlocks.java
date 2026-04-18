@@ -282,6 +282,30 @@ public class AllBlocks {
                     .noCollision()
             ));
 
+    public static final Block COPPER_POWERED_RAIL = registerBlock("copper_powered_rail",
+            settings -> new OxidizablePoweredRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_POWERED_RAIL_EXPOSED = registerBlock("copper_powered_rail_exposed",
+            settings -> new OxidizablePoweredRailBlock(Oxidizable.OxidationLevel.EXPOSED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_POWERED_RAIL_WEATHERED = registerBlock("copper_powered_rail_weathered",
+            settings -> new OxidizablePoweredRailBlock(Oxidizable.OxidationLevel.WEATHERED, ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_POWERED_RAIL_OXIDIZED = registerBlock("copper_powered_rail_oxidized",
+            settings -> new OxidizablePoweredRailBlock(Oxidizable.OxidationLevel.OXIDIZED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
     public static final Block COPPER_POWERED_RAIL_WAXED = registerBlock("waxed_copper_powered_rail",
             settings -> new AdjustablePoweredRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
                     .strength(0.7F)
@@ -500,6 +524,16 @@ public class AllBlocks {
                 AllBlocks.COPPER_RAIL_EXPOSED_WAXED,
                 AllBlocks.COPPER_RAIL_WEATHERED_WAXED,
                 AllBlocks.COPPER_RAIL_OXIDIZED_WAXED
+        ));
+        OxidizableBlocksRegistry.registerCopperBlockSet(new CopperBlockSet(
+                AllBlocks.COPPER_POWERED_RAIL,
+                AllBlocks.COPPER_POWERED_RAIL_EXPOSED,
+                AllBlocks.COPPER_POWERED_RAIL_WEATHERED,
+                AllBlocks.COPPER_POWERED_RAIL_OXIDIZED,
+                AllBlocks.COPPER_POWERED_RAIL_WAXED,
+                AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED,
+                AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED,
+                AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED
         ));
     }
 

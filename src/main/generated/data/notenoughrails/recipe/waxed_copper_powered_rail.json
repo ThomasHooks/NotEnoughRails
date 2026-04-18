@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:waxed_powered_copper_rail",
+  "key": {
+    "r": "notenoughrails:copper_powered_rail",
+    "w": "minecraft:honeycomb"
+  },
+  "pattern": [
+    "rrr",
+    "rwr",
+    "rrr"
+  ],
+  "result": {
+    "count": 8,
+    "id": "notenoughrails:waxed_copper_powered_rail"
+  }
+}

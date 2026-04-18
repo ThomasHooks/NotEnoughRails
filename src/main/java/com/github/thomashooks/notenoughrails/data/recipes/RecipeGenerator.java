@@ -59,7 +59,17 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
                         .offerTo(exporter);
 
-                //Booster Rod - Corite
+                //Booster Rod Ccpper
+                createShaped(RecipeCategory.TRANSPORTATION, AllItems.BOOSTER_ROD_COPPER, 3)
+                        .input('i', AllItems.COPPER_ROD)
+                        .input('g', AllItems.GOLD_ROD)
+                        .input('v', AllItems.VERMILION_ROD)
+                        .pattern("igv")
+                        .group(NotEnoughRails.MOD_ID + ":booster_rod_copper")
+                        .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
+                        .offerTo(exporter);
+
+                //Booster Rod Corite
                 createShaped(RecipeCategory.TRANSPORTATION, AllItems.BOOSTER_ROD_CORITE, 3)
                         .input('c', AllItems.CORITE_ROD)
                         .input('g', AllItems.GOLD_ROD)
@@ -296,6 +306,61 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CHISELED_BLOCK, AllBlocks.CORITE_BLOCK, 4);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CHISELED_BLOCK, AllBlocks.CORITE_CUT_BLOCK, 1);
+
+                //Copper Powered Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_POWERED_RAIL, 16)
+                        .input('b', AllItems.BOOSTER_ROD_COPPER)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .pattern("b b")
+                        .pattern("btb")
+                        .pattern("b b")
+                        .group(NotEnoughRails.MOD_ID + ":copper_powered_rail")
+                        .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
+                        .offerTo(exporter);
+
+                //Waxed Copper Powered Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_POWERED_RAIL_WAXED, 8)
+                        .input('r', AllBlocks.COPPER_POWERED_RAIL)
+                        .input('w', Items.HONEYCOMB)
+                        .pattern("rrr")
+                        .pattern("rwr")
+                        .pattern("rrr")
+                        .group(NotEnoughRails.MOD_ID + ":waxed_powered_copper_rail")
+                        .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
+                        .offerTo(exporter);
+
+                //Waxed Exposed Copper Powered Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED, 8)
+                        .input('r', AllBlocks.COPPER_POWERED_RAIL_EXPOSED)
+                        .input('w', Items.HONEYCOMB)
+                        .pattern("rrr")
+                        .pattern("rwr")
+                        .pattern("rrr")
+                        .group(NotEnoughRails.MOD_ID + ":waxed_copper_powered_rail_exposed")
+                        .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
+                        .offerTo(exporter);
+
+                //Waxed Weathered Copper Powered Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED, 8)
+                        .input('r', AllBlocks.COPPER_POWERED_RAIL_WEATHERED)
+                        .input('w', Items.HONEYCOMB)
+                        .pattern("rrr")
+                        .pattern("rwr")
+                        .pattern("rrr")
+                        .group(NotEnoughRails.MOD_ID + ":waxed_copper_powered_rail_weathered")
+                        .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
+                        .offerTo(exporter);
+
+                //Waxed Oxidized Copper Powered Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED, 8)
+                        .input('r', AllBlocks.COPPER_POWERED_RAIL_OXIDIZED)
+                        .input('w', Items.HONEYCOMB)
+                        .pattern("rrr")
+                        .pattern("rwr")
+                        .pattern("rrr")
+                        .group(NotEnoughRails.MOD_ID + ":waxed_copper_powered_rail_oxidized")
+                        .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
+                        .offerTo(exporter);
 
                 //Copper Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_RAIL, 24)
