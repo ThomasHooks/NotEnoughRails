@@ -17,6 +17,7 @@ package com.github.thomashooks.notenoughrails.block;
 
 import net.minecraft.block.AbstractRailBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Oxidizable;
 import net.minecraft.block.PoweredRailBlock;
 import net.minecraft.block.enums.RailShape;
 import net.minecraft.entity.vehicle.AbstractMinecartEntity;
@@ -29,16 +30,30 @@ public class AdjustablePoweredRailBlock extends PoweredRailBlock {
     public static final double BOOSTING_FACTOR = 0.06D;
     public static final double LAUNCHING_RATE = 0.02D;
     public static final double BRAKING_FACTOR = 0.05D;
+    private final Oxidizable.OxidationLevel oxidationLevel;
     protected final float maxSpeed;
 
-    public AdjustablePoweredRailBlock(float maxSpeedIn, Settings settings) {
+    public AdjustablePoweredRailBlock(Oxidizable.OxidationLevel oxidationLevelIn, float maxSpeedIn, Settings settings) {
         super(settings);
+        this.oxidationLevel = oxidationLevelIn;
         this.maxSpeed = maxSpeedIn;
     }
+
+    public Oxidizable.OxidationLevel getDegradationLevel() { return this.oxidationLevel; }
 
     @Override
     public float notEnoughRails$getMaxSpeed(BlockState state, BlockPos pos, AbstractMinecartEntity minecart) {
         return this.maxSpeed * (minecart.isTouchingWater() ? WATERLOGGED_MAX_SPEED_RATIO : 1.0F) / 20.0F;
+    }
+
+    @Override
+    public double notEnoughRails$getSpeedRetention(BlockState state, BlockPos pos, AbstractMinecartEntity minecart) {
+        return switch (this.getDegradationLevel()) {
+            case UNAFFECTED -> super.notEnoughRails$getSpeedRetention(state, pos, minecart);
+            case EXPOSED -> minecart.hasPassengers() ? 0.978 : 0.942;
+            case WEATHERED -> minecart.hasPassengers() ? 0.96 : 0.923;
+            case OXIDIZED -> minecart.hasPassengers() ? 0.941 : 0.905;
+        };
     }
 
     @Override
