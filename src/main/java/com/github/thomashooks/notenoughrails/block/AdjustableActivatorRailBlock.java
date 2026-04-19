@@ -16,18 +16,23 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.block;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Oxidizable;
 import net.minecraft.block.PoweredRailBlock;
 import net.minecraft.entity.vehicle.AbstractMinecartEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 
 public class AdjustableActivatorRailBlock extends PoweredRailBlock {
+    private final Oxidizable.OxidationLevel oxidationLevel;
     protected final float maxSpeed;
 
-    public AdjustableActivatorRailBlock(float maxSpeedIn, Settings settings) {
+    public AdjustableActivatorRailBlock(Oxidizable.OxidationLevel oxidationLevelIn, float maxSpeedIn, Settings settings) {
         super(settings);
         this.maxSpeed = maxSpeedIn;
+        this.oxidationLevel = oxidationLevelIn;
     }
+
+    public Oxidizable.OxidationLevel getDegradationLevel() { return this.oxidationLevel; }
 
     @Override
     public float notEnoughRails$getMaxSpeed(BlockState state, BlockPos pos, AbstractMinecartEntity minecart) {
@@ -37,5 +42,15 @@ public class AdjustableActivatorRailBlock extends PoweredRailBlock {
     @Override
     public void notEnoughRails$onMinecartPass(BlockState state, ServerWorld world, BlockPos pos, AbstractMinecartEntity minecart) {
         minecart.onActivatorRail(world, pos.getX(), pos.getY(), pos.getZ(), state.get(PoweredRailBlock.POWERED));
+    }
+
+    @Override
+    public double notEnoughRails$getSpeedRetention(BlockState state, BlockPos pos, AbstractMinecartEntity minecart) {
+        return switch (this.getDegradationLevel()) {
+            case UNAFFECTED -> super.notEnoughRails$getSpeedRetention(state, pos, minecart);
+            case EXPOSED -> minecart.hasPassengers() ? 0.978 : 0.942;
+            case WEATHERED -> minecart.hasPassengers() ? 0.96 : 0.923;
+            case OXIDIZED -> minecart.hasPassengers() ? 0.941 : 0.905;
+        };
     }
 }

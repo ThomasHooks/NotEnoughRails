@@ -307,6 +307,62 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CHISELED_BLOCK, AllBlocks.CORITE_BLOCK, 4);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CHISELED_BLOCK, AllBlocks.CORITE_CUT_BLOCK, 1);
 
+                //Copper Activator Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_ACTIVATOR_RAIL, 8)
+                        .input('i', AllItems.COPPER_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .input('r', Items.REDSTONE_TORCH)
+                        .pattern("i i")
+                        .pattern("iti")
+                        .pattern("iri")
+                        .group(NotEnoughRails.MOD_ID + ":copper_activator_rail")
+                        .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                        .offerTo(exporter);
+
+                //Waxed Copper Activator Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_ACTIVATOR_RAIL_WAXED, 8)
+                        .input('r', AllBlocks.COPPER_ACTIVATOR_RAIL)
+                        .input('w', Items.HONEYCOMB)
+                        .pattern("rrr")
+                        .pattern("rwr")
+                        .pattern("rrr")
+                        .group(NotEnoughRails.MOD_ID + ":waxed_activator_copper_rail")
+                        .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                        .offerTo(exporter);
+
+                //Waxed Exposed Copper Activator Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED, 8)
+                        .input('r', AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED)
+                        .input('w', Items.HONEYCOMB)
+                        .pattern("rrr")
+                        .pattern("rwr")
+                        .pattern("rrr")
+                        .group(NotEnoughRails.MOD_ID + ":waxed_copper_activator_rail_exposed")
+                        .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                        .offerTo(exporter);
+
+                //Waxed Weathered Copper Activator Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED, 8)
+                        .input('r', AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED)
+                        .input('w', Items.HONEYCOMB)
+                        .pattern("rrr")
+                        .pattern("rwr")
+                        .pattern("rrr")
+                        .group(NotEnoughRails.MOD_ID + ":waxed_copper_activator_rail_weathered")
+                        .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                        .offerTo(exporter);
+
+                //Waxed Oxidized Copper Activator Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED, 8)
+                        .input('r', AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED)
+                        .input('w', Items.HONEYCOMB)
+                        .pattern("rrr")
+                        .pattern("rwr")
+                        .pattern("rrr")
+                        .group(NotEnoughRails.MOD_ID + ":waxed_copper_activator_rail_oxidized")
+                        .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                        .offerTo(exporter);
+
                 //Copper Detector Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_DETECTOR_RAIL, 8)
                         .input('i', AllItems.COPPER_ROD)

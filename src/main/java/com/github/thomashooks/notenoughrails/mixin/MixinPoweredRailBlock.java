@@ -46,7 +46,8 @@ public abstract class MixinPoweredRailBlock {
     @Unique
     private boolean isCopperActivatorRail(Block current, BlockState other) {
         return other.isIn(AllBlockTags.COPPPER_ACTIVATOR_RAILS) && (
-                current == AllBlocks.COPPER_ACTIVATOR_RAIL_WAXED || current == AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED || current == AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED || current == AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED
+                current == AllBlocks.COPPER_ACTIVATOR_RAIL_WAXED || current == AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED || current == AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED || current == AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED ||
+                        current == AllBlocks.COPPER_ACTIVATOR_RAIL || current == AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED || current == AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED || current == AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED
         );
     }
 }
