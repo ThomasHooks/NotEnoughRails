@@ -224,7 +224,7 @@ public class AllBlocks {
                     .noCollision()
             ));
     public static final Block CROSSOVER_RAIL = registerBlock("crossover_rail",
-            settings -> new CrossoverRailBlock(ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
+            settings -> new CrossoverRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.METAL)
                     .noCollision()
@@ -444,7 +444,7 @@ public class AllBlocks {
                     .solidBlock(Blocks::always)
             ));
     public static final Block CORITE_CROSSOVER_RAIL = registerBlock("corite_crossover_rail",
-            settings -> new CrossoverRailBlock(ExtendedRailBehavior.CORITE_MAX_SPEED, settings
+            settings -> new CrossoverRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.CORITE_MAX_SPEED, settings
                     .strength(1.05F)
                     .sounds(BlockSoundGroup.COPPER_GRATE)
                     .noCollision()

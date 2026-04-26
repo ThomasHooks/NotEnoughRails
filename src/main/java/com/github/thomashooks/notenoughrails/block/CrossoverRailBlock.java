@@ -22,6 +22,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.AbstractRailBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Oxidizable;
 import net.minecraft.block.enums.RailShape;
 import net.minecraft.entity.vehicle.AbstractMinecartEntity;
 import net.minecraft.state.StateManager;
@@ -35,23 +36,26 @@ import org.jspecify.annotations.Nullable;
 public class CrossoverRailBlock extends AbstractRailBlock {
     public static final MapCodec<CrossoverRailBlock> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
+                    Oxidizable.OxidationLevel.CODEC.fieldOf("weathering_state").forGetter(CrossoverRailBlock::getDegradationLevel),
                     Codec.FLOAT.fieldOf("maxSpeed").forGetter(block -> block.maxSpeed),
                     createSettingsCodec()
             ).apply(instance, CrossoverRailBlock::new)
     );
     public static final EnumProperty<RailShape> SHAPE = AllProperties.FLAT_RAIL_SHAPE;
+    private final Oxidizable.OxidationLevel oxidationLevel;
     protected final float maxSpeed;
 
     /**
      * @param maxSpeedIn - The maximum speed a minecart can move on this rail in blocks/second
      * @param settings   - The settings for this block
      */
-    public CrossoverRailBlock(float maxSpeedIn, Settings settings) {
+    public CrossoverRailBlock(Oxidizable.OxidationLevel oxidationLevelIn, float maxSpeedIn, Settings settings) {
         super(true, settings);
         this.setDefaultState(this.getDefaultState()
                 .with(SHAPE, RailShape.NORTH_SOUTH)
                 .with(WATERLOGGED, false)
         );
+        this.oxidationLevel = oxidationLevelIn;
         this.maxSpeed = maxSpeedIn;
     }
 
@@ -60,6 +64,8 @@ public class CrossoverRailBlock extends AbstractRailBlock {
 
     @Override
     public Property<RailShape> getShapeProperty() { return SHAPE; }
+
+    public Oxidizable.OxidationLevel getDegradationLevel() { return this.oxidationLevel; }
 
     @Override
     public boolean notEnoughRails$isFlatRail(BlockState state, World world, BlockPos pos) { return true; }
@@ -81,6 +87,16 @@ public class CrossoverRailBlock extends AbstractRailBlock {
     @Override
     public float notEnoughRails$getMaxSpeed(BlockState state, BlockPos pos, AbstractMinecartEntity minecart) {
         return this.maxSpeed * (minecart.isTouchingWater() ? WATERLOGGED_MAX_SPEED_RATIO : 1.0F) / 20.0F;
+    }
+
+    @Override
+    public double notEnoughRails$getSpeedRetention(BlockState state, BlockPos pos, AbstractMinecartEntity minecart) {
+        return switch (this.getDegradationLevel()) {
+            case UNAFFECTED -> super.notEnoughRails$getSpeedRetention(state, pos, minecart);
+            case EXPOSED -> minecart.hasPassengers() ? 0.978 : 0.942;
+            case WEATHERED -> minecart.hasPassengers() ? 0.96 : 0.923;
+            case OXIDIZED -> minecart.hasPassengers() ? 0.941 : 0.905;
+        };
     }
 
     @Override
