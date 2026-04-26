@@ -363,6 +363,61 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
                         .offerTo(exporter);
 
+                //Copper Crossover Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_CROSSOVER_RAIL, 8)
+                        .input('c', AllItems.COPPER_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .pattern("ccc")
+                        .pattern("ctc")
+                        .pattern("ccc")
+                        .group(NotEnoughRails.MOD_ID + ":copper_crossover_rail")
+                        .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                        .offerTo(exporter);
+
+                //Waxed Copper Crossover Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_CROSSOVER_RAIL_WAXED, 8)
+                        .input('r', AllBlocks.COPPER_CROSSOVER_RAIL)
+                        .input('w', Items.HONEYCOMB)
+                        .pattern("rrr")
+                        .pattern("rwr")
+                        .pattern("rrr")
+                        .group(NotEnoughRails.MOD_ID + ":waxed_crossover_copper_rail")
+                        .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                        .offerTo(exporter);
+
+                //Waxed Exposed Copper Crossover Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_CROSSOVER_RAIL_EXPOSED_WAXED, 8)
+                        .input('r', AllBlocks.COPPER_CROSSOVER_RAIL_EXPOSED)
+                        .input('w', Items.HONEYCOMB)
+                        .pattern("rrr")
+                        .pattern("rwr")
+                        .pattern("rrr")
+                        .group(NotEnoughRails.MOD_ID + ":waxed_copper_crossover_rail_exposed")
+                        .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                        .offerTo(exporter);
+
+                //Waxed Weathered Copper Crossover Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_CROSSOVER_RAIL_WEATHERED_WAXED, 8)
+                        .input('r', AllBlocks.COPPER_CROSSOVER_RAIL_WEATHERED)
+                        .input('w', Items.HONEYCOMB)
+                        .pattern("rrr")
+                        .pattern("rwr")
+                        .pattern("rrr")
+                        .group(NotEnoughRails.MOD_ID + ":waxed_copper_crossover_rail_weathered")
+                        .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                        .offerTo(exporter);
+
+                //Waxed Oxidized Copper Crossover Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_CROSSOVER_RAIL_OXIDIZED_WAXED, 8)
+                        .input('r', AllBlocks.COPPER_CROSSOVER_RAIL_OXIDIZED)
+                        .input('w', Items.HONEYCOMB)
+                        .pattern("rrr")
+                        .pattern("rwr")
+                        .pattern("rrr")
+                        .group(NotEnoughRails.MOD_ID + ":waxed_copper_crossover_rail_oxidized")
+                        .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                        .offerTo(exporter);
+
                 //Copper Detector Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_DETECTOR_RAIL, 8)
                         .input('i', AllItems.COPPER_ROD)

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:copper_crossover_rail",
+  "key": {
+    "c": "notenoughrails:copper_rod",
+    "t": "notenoughrails:railroad_tie"
+  },
+  "pattern": [
+    "ccc",
+    "ctc",
+    "ccc"
+  ],
+  "result": {
+    "count": 8,
+    "id": "notenoughrails:copper_crossover_rail"
+  }
+}

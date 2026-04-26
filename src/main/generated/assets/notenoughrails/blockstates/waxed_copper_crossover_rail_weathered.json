@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "shape=east_west": {
+      "model": "notenoughrails:block/waxed_copper_crossover_rail_weathered",
+      "y": 90
+    },
+    "shape=north_south": {
+      "model": "notenoughrails:block/waxed_copper_crossover_rail_weathered"
+    }
+  }
+}

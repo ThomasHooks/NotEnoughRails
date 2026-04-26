@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/rail_flat",
+  "textures": {
+    "rail": "notenoughrails:block/copper_crossover_rail_exposed"
+  }
+}

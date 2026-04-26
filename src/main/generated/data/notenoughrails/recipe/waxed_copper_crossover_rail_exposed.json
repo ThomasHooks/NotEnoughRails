@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:waxed_copper_crossover_rail_exposed",
+  "key": {
+    "r": "notenoughrails:copper_crossover_rail_exposed",
+    "w": "minecraft:honeycomb"
+  },
+  "pattern": [
+    "rrr",
+    "rwr",
+    "rrr"
+  ],
+  "result": {
+    "count": 8,
+    "id": "notenoughrails:waxed_copper_crossover_rail_exposed"
+  }
+}

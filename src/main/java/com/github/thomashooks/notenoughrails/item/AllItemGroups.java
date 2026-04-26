@@ -102,6 +102,7 @@ public class AllItemGroups {
 
         //region Copper Rail
         entries.add(AllBlocks.COPPER_RAIL);
+        entries.add(AllBlocks.COPPER_CROSSOVER_RAIL);
         entries.add(AllBlocks.COPPER_POWERED_RAIL);
         entries.add(AllBlocks.COPPER_DETECTOR_RAIL);
         entries.add(AllBlocks.COPPER_ACTIVATOR_RAIL);
@@ -109,6 +110,7 @@ public class AllItemGroups {
 
         //region Copper Rail Exposed
         entries.add(AllBlocks.COPPER_RAIL_EXPOSED);
+        entries.add(AllBlocks.COPPER_CROSSOVER_RAIL_EXPOSED);
         entries.add(AllBlocks.COPPER_POWERED_RAIL_EXPOSED);
         entries.add(AllBlocks.COPPER_DETECTOR_RAIL_EXPOSED);
         entries.add(AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED);
@@ -116,6 +118,7 @@ public class AllItemGroups {
 
         //region Copper Rail Weathered
         entries.add(AllBlocks.COPPER_RAIL_WEATHERED);
+        entries.add(AllBlocks.COPPER_CROSSOVER_RAIL_WEATHERED);
         entries.add(AllBlocks.COPPER_POWERED_RAIL_WEATHERED);
         entries.add(AllBlocks.COPPER_DETECTOR_RAIL_WEATHERED);
         entries.add(AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED);
@@ -123,6 +126,7 @@ public class AllItemGroups {
 
         //region Copper Rail Oxidized
         entries.add(AllBlocks.COPPER_RAIL_OXIDIZED);
+        entries.add(AllBlocks.COPPER_CROSSOVER_RAIL_OXIDIZED);
         entries.add(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED);
         entries.add(AllBlocks.COPPER_DETECTOR_RAIL_OXIDIZED);
         entries.add(AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED);
@@ -130,6 +134,7 @@ public class AllItemGroups {
 
         //region Waxed Copper Rail
         entries.add(AllBlocks.COPPER_RAIL_WAXED);
+        entries.add(AllBlocks.COPPER_CROSSOVER_RAIL_WAXED);
         entries.add(AllBlocks.COPPER_POWERED_RAIL_WAXED);
         entries.add(AllBlocks.COPPER_DETECTOR_RAIL_WAXED);
         entries.add(AllBlocks.COPPER_ACTIVATOR_RAIL_WAXED);
@@ -137,6 +142,7 @@ public class AllItemGroups {
 
         //region Waxed Copper Rail Exposed
         entries.add(AllBlocks.COPPER_RAIL_EXPOSED_WAXED);
+        entries.add(AllBlocks.COPPER_CROSSOVER_RAIL_EXPOSED_WAXED);
         entries.add(AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED);
         entries.add(AllBlocks.COPPER_DETECTOR_RAIL_EXPOSED_WAXED);
         entries.add(AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED);
@@ -144,6 +150,7 @@ public class AllItemGroups {
 
         //region Waxed Copper Rail Weathered
         entries.add(AllBlocks.COPPER_RAIL_WEATHERED_WAXED);
+        entries.add(AllBlocks.COPPER_CROSSOVER_RAIL_WEATHERED_WAXED);
         entries.add(AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED);
         entries.add(AllBlocks.COPPER_DETECTOR_RAIL_WEATHERED_WAXED);
         entries.add(AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED);
@@ -151,6 +158,7 @@ public class AllItemGroups {
 
         //region Waxed Copper Rail Oxidized
         entries.add(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED);
+        entries.add(AllBlocks.COPPER_CROSSOVER_RAIL_OXIDIZED_WAXED);
         entries.add(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED);
         entries.add(AllBlocks.COPPER_DETECTOR_RAIL_OXIDIZED_WAXED);
         entries.add(AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED);

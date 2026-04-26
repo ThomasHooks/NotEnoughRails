@@ -281,6 +281,55 @@ public class AllBlocks {
                     .noCollision()
             ));
 
+    public static final Block COPPER_CROSSOVER_RAIL = registerBlock("copper_crossover_rail",
+            settings -> new OxidizableCrossoverRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.UNAFFECTED_COPPER_MAX_SPEED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_CROSSOVER_RAIL_EXPOSED = registerBlock("copper_crossover_rail_exposed",
+            settings -> new OxidizableCrossoverRailBlock(Oxidizable.OxidationLevel.EXPOSED, ExtendedRailBehavior.EXPOSED_COPPER_MAX_SPEED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_CROSSOVER_RAIL_WEATHERED = registerBlock("copper_crossover_rail_weathered",
+            settings -> new OxidizableCrossoverRailBlock(Oxidizable.OxidationLevel.WEATHERED, ExtendedRailBehavior.WEATHERED_COPPER_MAX_SPEED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_CROSSOVER_RAIL_OXIDIZED = registerBlock("copper_crossover_rail_oxidized",
+            settings -> new OxidizableCrossoverRailBlock(Oxidizable.OxidationLevel.OXIDIZED, ExtendedRailBehavior.OXIDIZED_COPPER_MAX_SPEED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_CROSSOVER_RAIL_WAXED = registerBlock("waxed_copper_crossover_rail",
+            settings -> new CrossoverRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.UNAFFECTED_COPPER_MAX_SPEED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_CROSSOVER_RAIL_EXPOSED_WAXED = registerBlock("waxed_copper_crossover_rail_exposed",
+            settings -> new CrossoverRailBlock(Oxidizable.OxidationLevel.EXPOSED, ExtendedRailBehavior.EXPOSED_COPPER_MAX_SPEED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_CROSSOVER_RAIL_WEATHERED_WAXED = registerBlock("waxed_copper_crossover_rail_weathered",
+            settings -> new CrossoverRailBlock(Oxidizable.OxidationLevel.WEATHERED, ExtendedRailBehavior.WEATHERED_COPPER_MAX_SPEED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+    public static final Block COPPER_CROSSOVER_RAIL_OXIDIZED_WAXED = registerBlock("waxed_copper_crossover_rail_oxidized",
+            settings -> new CrossoverRailBlock(Oxidizable.OxidationLevel.OXIDIZED, ExtendedRailBehavior.OXIDIZED_COPPER_MAX_SPEED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .noCollision()
+            ));
+
     public static final Block COPPER_DETECTOR_RAIL = registerBlock("copper_detector_rail",
             settings -> new OxidizableDetectorRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
                     .strength(0.7F)
@@ -516,7 +565,8 @@ public class AllBlocks {
 
             //region Copper Rail
             entries.addAfter(AllBlocks.CHECK_RAIL, AllBlocks.COPPER_RAIL);
-            entries.addAfter(AllBlocks.COPPER_RAIL, AllBlocks.COPPER_POWERED_RAIL);
+            entries.addAfter(AllBlocks.COPPER_RAIL, AllBlocks.COPPER_CROSSOVER_RAIL);
+            entries.addAfter(AllBlocks.COPPER_CROSSOVER_RAIL, AllBlocks.COPPER_POWERED_RAIL);
             entries.addAfter(AllBlocks.COPPER_POWERED_RAIL, AllBlocks.COPPER_DETECTOR_RAIL);
             entries.addAfter(AllBlocks.COPPER_DETECTOR_RAIL, AllBlocks.COPPER_ACTIVATOR_RAIL);
             //endregion
@@ -541,7 +591,8 @@ public class AllBlocks {
 
             //region Copper Rail
             entries.addAfter(AllBlocks.CHECK_RAIL, AllBlocks.COPPER_RAIL);
-            entries.addAfter(AllBlocks.COPPER_RAIL, AllBlocks.COPPER_POWERED_RAIL);
+            entries.addAfter(AllBlocks.COPPER_RAIL, AllBlocks.COPPER_CROSSOVER_RAIL);
+            entries.addAfter(AllBlocks.COPPER_CROSSOVER_RAIL, AllBlocks.COPPER_POWERED_RAIL);
             entries.addAfter(AllBlocks.COPPER_POWERED_RAIL, AllBlocks.COPPER_DETECTOR_RAIL);
             entries.addAfter(AllBlocks.COPPER_DETECTOR_RAIL, AllBlocks.COPPER_ACTIVATOR_RAIL);
             //endregion
@@ -572,6 +623,16 @@ public class AllBlocks {
                 AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED,
                 AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED,
                 AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED
+        ));
+        OxidizableBlocksRegistry.registerCopperBlockSet(new CopperBlockSet(
+                AllBlocks.COPPER_CROSSOVER_RAIL,
+                AllBlocks.COPPER_CROSSOVER_RAIL_EXPOSED,
+                AllBlocks.COPPER_CROSSOVER_RAIL_WEATHERED,
+                AllBlocks.COPPER_CROSSOVER_RAIL_OXIDIZED,
+                AllBlocks.COPPER_CROSSOVER_RAIL_WAXED,
+                AllBlocks.COPPER_CROSSOVER_RAIL_EXPOSED_WAXED,
+                AllBlocks.COPPER_CROSSOVER_RAIL_WEATHERED_WAXED,
+                AllBlocks.COPPER_CROSSOVER_RAIL_OXIDIZED_WAXED
         ));
         OxidizableBlocksRegistry.registerCopperBlockSet(new CopperBlockSet(
                 AllBlocks.COPPER_DETECTOR_RAIL,

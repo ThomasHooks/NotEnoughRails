@@ -62,6 +62,15 @@ public class ModelGenerator extends FabricModelProvider {
         modelGenerator.registerStraightRail(AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED);
         modelGenerator.registerStraightRail(AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED);
         modelGenerator.registerStraightRail(AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED);
+        //TODO: changed waxed copper crossover rail to use the same model as the nonwaxed
+        registerPassiveFlatRail(AllBlocks.COPPER_CROSSOVER_RAIL, modelGenerator);
+        registerPassiveFlatRail(AllBlocks.COPPER_CROSSOVER_RAIL_EXPOSED, modelGenerator);
+        registerPassiveFlatRail(AllBlocks.COPPER_CROSSOVER_RAIL_WEATHERED, modelGenerator);
+        registerPassiveFlatRail(AllBlocks.COPPER_CROSSOVER_RAIL_OXIDIZED, modelGenerator);
+        registerPassiveFlatRail(AllBlocks.COPPER_CROSSOVER_RAIL_WAXED, modelGenerator);
+        registerPassiveFlatRail(AllBlocks.COPPER_CROSSOVER_RAIL_EXPOSED_WAXED, modelGenerator);
+        registerPassiveFlatRail(AllBlocks.COPPER_CROSSOVER_RAIL_WEATHERED_WAXED, modelGenerator);
+        registerPassiveFlatRail(AllBlocks.COPPER_CROSSOVER_RAIL_OXIDIZED_WAXED, modelGenerator);
         //TODO: changed waxed copper detector rail to use the same model as the nonwaxed
         modelGenerator.registerStraightRail(AllBlocks.COPPER_DETECTOR_RAIL);
         modelGenerator.registerStraightRail(AllBlocks.COPPER_DETECTOR_RAIL_EXPOSED);
