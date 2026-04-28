@@ -363,6 +363,62 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
                         .offerTo(exporter);
 
+                //Copper Buffer Stop Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_BUFFER_STOP_RAIL, 8)
+                        .input('i', AllItems.COPPER_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .input('x', Blocks.IRON_BLOCK)
+                        .pattern("iti")
+                        .pattern("ixi")
+                        .pattern("iti")
+                        .group(NotEnoughRails.MOD_ID + ":copper_buffer_stop_rail")
+                        .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                        .offerTo(exporter);
+
+                //Waxed Copper Buffer Stop Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_BUFFER_STOP_RAIL_WAXED, 8)
+                        .input('r', AllBlocks.COPPER_BUFFER_STOP_RAIL)
+                        .input('w', Items.HONEYCOMB)
+                        .pattern("rrr")
+                        .pattern("rwr")
+                        .pattern("rrr")
+                        .group(NotEnoughRails.MOD_ID + ":waxed_buffer_stop_copper_rail")
+                        .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                        .offerTo(exporter);
+
+                //Waxed Exposed Copper Buffer Stop Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_BUFFER_STOP_RAIL_EXPOSED_WAXED, 8)
+                        .input('r', AllBlocks.COPPER_BUFFER_STOP_RAIL_EXPOSED)
+                        .input('w', Items.HONEYCOMB)
+                        .pattern("rrr")
+                        .pattern("rwr")
+                        .pattern("rrr")
+                        .group(NotEnoughRails.MOD_ID + ":waxed_copper_buffer_stop_rail_exposed")
+                        .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                        .offerTo(exporter);
+
+                //Waxed Weathered Copper Buffer Stop Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_BUFFER_STOP_RAIL_WEATHERED_WAXED, 8)
+                        .input('r', AllBlocks.COPPER_BUFFER_STOP_RAIL_WEATHERED)
+                        .input('w', Items.HONEYCOMB)
+                        .pattern("rrr")
+                        .pattern("rwr")
+                        .pattern("rrr")
+                        .group(NotEnoughRails.MOD_ID + ":waxed_copper_buffer_stop_rail_weathered")
+                        .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                        .offerTo(exporter);
+
+                //Waxed Oxidized Copper Buffer Stop Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_BUFFER_STOP_RAIL_OXIDIZED_WAXED, 8)
+                        .input('r', AllBlocks.COPPER_BUFFER_STOP_RAIL_OXIDIZED)
+                        .input('w', Items.HONEYCOMB)
+                        .pattern("rrr")
+                        .pattern("rwr")
+                        .pattern("rrr")
+                        .group(NotEnoughRails.MOD_ID + ":waxed_copper_buffer_stop_rail_oxidized")
+                        .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                        .offerTo(exporter);
+
                 //Copper Crossover Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_CROSSOVER_RAIL, 8)
                         .input('c', AllItems.COPPER_ROD)

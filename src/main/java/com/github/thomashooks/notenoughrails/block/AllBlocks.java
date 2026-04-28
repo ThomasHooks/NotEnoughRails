@@ -281,6 +281,63 @@ public class AllBlocks {
                     .noCollision()
             ));
 
+    public static final Block COPPER_BUFFER_STOP_RAIL = registerBlock("copper_buffer_stop_rail",
+            settings -> new OxidizableBufferStopRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .nonOpaque()
+                    .solidBlock(Blocks::always)
+            ));
+    public static final Block COPPER_BUFFER_STOP_RAIL_EXPOSED = registerBlock("copper_buffer_stop_rail_exposed",
+            settings -> new OxidizableBufferStopRailBlock(Oxidizable.OxidationLevel.EXPOSED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .nonOpaque()
+                    .solidBlock(Blocks::always)
+            ));
+    public static final Block COPPER_BUFFER_STOP_RAIL_WEATHERED = registerBlock("copper_buffer_stop_rail_weathered",
+            settings -> new OxidizableBufferStopRailBlock(Oxidizable.OxidationLevel.WEATHERED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .nonOpaque()
+                    .solidBlock(Blocks::always)
+            ));
+    public static final Block COPPER_BUFFER_STOP_RAIL_OXIDIZED = registerBlock("copper_buffer_stop_rail_oxidized",
+            settings -> new OxidizableBufferStopRailBlock(Oxidizable.OxidationLevel.OXIDIZED, settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .nonOpaque()
+                    .solidBlock(Blocks::always)
+            ));
+    public static final Block COPPER_BUFFER_STOP_RAIL_WAXED = registerBlock("waxed_copper_buffer_stop_rail",
+            settings -> new BufferStopRailBlock(settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .nonOpaque()
+                    .solidBlock(Blocks::always)
+            ));
+    public static final Block COPPER_BUFFER_STOP_RAIL_EXPOSED_WAXED = registerBlock("waxed_copper_buffer_stop_rail_exposed",
+            settings -> new BufferStopRailBlock(settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .nonOpaque()
+                    .solidBlock(Blocks::always)
+            ));
+    public static final Block COPPER_BUFFER_STOP_RAIL_WEATHERED_WAXED = registerBlock("waxed_copper_buffer_stop_rail_weathered",
+            settings -> new BufferStopRailBlock(settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .nonOpaque()
+                    .solidBlock(Blocks::always)
+            ));
+    public static final Block COPPER_BUFFER_STOP_RAIL_OXIDIZED_WAXED = registerBlock("waxed_copper_buffer_stop_rail_oxidized",
+            settings -> new BufferStopRailBlock(settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.COPPER_GRATE)
+                    .nonOpaque()
+                    .solidBlock(Blocks::always)
+            ));
+
     public static final Block COPPER_CROSSOVER_RAIL = registerBlock("copper_crossover_rail",
             settings -> new OxidizableCrossoverRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.UNAFFECTED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
@@ -566,7 +623,8 @@ public class AllBlocks {
             //region Copper Rail
             entries.addAfter(AllBlocks.CHECK_RAIL, AllBlocks.COPPER_RAIL);
             entries.addAfter(AllBlocks.COPPER_RAIL, AllBlocks.COPPER_CROSSOVER_RAIL);
-            entries.addAfter(AllBlocks.COPPER_CROSSOVER_RAIL, AllBlocks.COPPER_POWERED_RAIL);
+            entries.addAfter(AllBlocks.COPPER_CROSSOVER_RAIL, AllBlocks.COPPER_BUFFER_STOP_RAIL);
+            entries.addAfter(AllBlocks.COPPER_BUFFER_STOP_RAIL, AllBlocks.COPPER_POWERED_RAIL);
             entries.addAfter(AllBlocks.COPPER_POWERED_RAIL, AllBlocks.COPPER_DETECTOR_RAIL);
             entries.addAfter(AllBlocks.COPPER_DETECTOR_RAIL, AllBlocks.COPPER_ACTIVATOR_RAIL);
             //endregion
@@ -592,7 +650,8 @@ public class AllBlocks {
             //region Copper Rail
             entries.addAfter(AllBlocks.CHECK_RAIL, AllBlocks.COPPER_RAIL);
             entries.addAfter(AllBlocks.COPPER_RAIL, AllBlocks.COPPER_CROSSOVER_RAIL);
-            entries.addAfter(AllBlocks.COPPER_CROSSOVER_RAIL, AllBlocks.COPPER_POWERED_RAIL);
+            entries.addAfter(AllBlocks.COPPER_CROSSOVER_RAIL, AllBlocks.COPPER_BUFFER_STOP_RAIL);
+            entries.addAfter(AllBlocks.COPPER_BUFFER_STOP_RAIL, AllBlocks.COPPER_POWERED_RAIL);
             entries.addAfter(AllBlocks.COPPER_POWERED_RAIL, AllBlocks.COPPER_DETECTOR_RAIL);
             entries.addAfter(AllBlocks.COPPER_DETECTOR_RAIL, AllBlocks.COPPER_ACTIVATOR_RAIL);
             //endregion
@@ -623,6 +682,16 @@ public class AllBlocks {
                 AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED,
                 AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED,
                 AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED
+        ));
+        OxidizableBlocksRegistry.registerCopperBlockSet(new CopperBlockSet(
+                AllBlocks.COPPER_BUFFER_STOP_RAIL,
+                AllBlocks.COPPER_BUFFER_STOP_RAIL_EXPOSED,
+                AllBlocks.COPPER_BUFFER_STOP_RAIL_WEATHERED,
+                AllBlocks.COPPER_BUFFER_STOP_RAIL_OXIDIZED,
+                AllBlocks.COPPER_BUFFER_STOP_RAIL_WAXED,
+                AllBlocks.COPPER_BUFFER_STOP_RAIL_EXPOSED_WAXED,
+                AllBlocks.COPPER_BUFFER_STOP_RAIL_WEATHERED_WAXED,
+                AllBlocks.COPPER_BUFFER_STOP_RAIL_OXIDIZED_WAXED
         ));
         OxidizableBlocksRegistry.registerCopperBlockSet(new CopperBlockSet(
                 AllBlocks.COPPER_CROSSOVER_RAIL,

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:waxed_buffer_stop_copper_rail",
+  "key": {
+    "r": "notenoughrails:copper_buffer_stop_rail",
+    "w": "minecraft:honeycomb"
+  },
+  "pattern": [
+    "rrr",
+    "rwr",
+    "rrr"
+  ],
+  "result": {
+    "count": 8,
+    "id": "notenoughrails:waxed_copper_buffer_stop_rail"
+  }
+}
