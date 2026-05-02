@@ -201,9 +201,9 @@ public class AllItemGroups {
 
         //Raw Crushed Ore
         entries.add(AllItems.CRUSHED_COPPER_ORE);
+        entries.add(AllItems.CRUSHED_IRON_ORE);
         entries.add(AllItems.CRUSHED_CORITE);
         entries.add(AllItems.CRUSHED_GOLD_ORE);
-        entries.add(AllItems.CRUSHED_IRON_ORE);
         entries.add(AllItems.CRUSHED_VERMILION);
 
         //Metal Ingots
@@ -212,19 +212,19 @@ public class AllItemGroups {
 
         //Metal Plates
         entries.add(AllItems.COPPER_PLATE);
-        entries.add(AllItems.CORITE_PLATE);
         entries.add(AllItems.IRON_PLATE);
+        entries.add(AllItems.CORITE_PLATE);
 
         //Metal Rods
         entries.add(AllItems.COPPER_ROD);
+        entries.add(AllItems.IRON_ROD);
         entries.add(AllItems.CORITE_ROD);
         entries.add(AllItems.GOLD_ROD);
-        entries.add(AllItems.IRON_ROD);
         entries.add(AllItems.VERMILION_ROD);
 
         //Minecart Rails Crafting Items
-        entries.add(AllItems.BOOSTER_ROD);
         entries.add(AllItems.BOOSTER_ROD_COPPER);
+        entries.add(AllItems.BOOSTER_ROD);
         entries.add(AllItems.BOOSTER_ROD_CORITE);
         entries.add(AllItems.RAILROAD_TIE);
 

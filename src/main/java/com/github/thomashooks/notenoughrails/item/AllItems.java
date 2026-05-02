@@ -72,57 +72,60 @@ public class AllItems {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             //Fuel Items
-            entries.add(COKE);
+            entries.addAfter(Items.CHARCOAL, AllItems.COKE);
 
             //Raw Dust Items
-            entries.add(FLUX);
-            entries.add(KAOLIN);
+            entries.addAfter(AllItems.COKE, AllItems.FLUX);
+            entries.addAfter(AllItems.FLUX, AllItems.KAOLIN);
 
             //Raw Ore
 
             //Raw Crushed Ore
-            entries.add(AllItems.CRUSHED_COPPER_ORE);
-            entries.add(AllItems.CRUSHED_CORITE);
-            entries.add(AllItems.CRUSHED_GOLD_ORE);
-            entries.add(AllItems.CRUSHED_IRON_ORE);
-            entries.add(AllItems.CRUSHED_VERMILION);
+            entries.addAfter(Items.RAW_GOLD, AllItems.CRUSHED_COPPER_ORE);
+            entries.addAfter(AllItems.CRUSHED_COPPER_ORE, AllItems.CRUSHED_IRON_ORE);
+            entries.addAfter(AllItems.CRUSHED_IRON_ORE, AllItems.CRUSHED_CORITE);
+            entries.addAfter(AllItems.CRUSHED_CORITE, AllItems.CRUSHED_GOLD_ORE);
+            entries.addAfter(AllItems.CRUSHED_GOLD_ORE, AllItems.CRUSHED_VERMILION);
 
             //Metal Ingots
-            entries.add(AllItems.CORITE_INGOT);
-            entries.add(AllItems.VERMILION_INGOT);
+            entries.addAfter(Items.IRON_INGOT, AllItems.CORITE_INGOT);
+            entries.addAfter(Items.GOLD_INGOT, AllItems.VERMILION_INGOT);
 
             //Metal Plates
-            entries.add(AllItems.COPPER_PLATE);
-            entries.add(AllItems.CORITE_PLATE);
-            entries.add(AllItems.IRON_PLATE);
+            entries.addAfter(Items.NETHERITE_INGOT, AllItems.COPPER_PLATE);
+            entries.addAfter(AllItems.COPPER_PLATE, AllItems.IRON_PLATE);
+            entries.addAfter(AllItems.IRON_PLATE, AllItems.CORITE_PLATE);
 
             //Metal Rods
-            entries.add(AllItems.COPPER_ROD);
-            entries.add(AllItems.CORITE_ROD);
-            entries.add(AllItems.GOLD_ROD);
-            entries.add(AllItems.IRON_ROD);
-            entries.add(AllItems.VERMILION_ROD);
+            entries.addAfter(AllItems.CORITE_PLATE, AllItems.COPPER_ROD);
+            entries.addAfter(AllItems.COPPER_ROD, AllItems.IRON_ROD);
+            entries.addAfter(AllItems.IRON_ROD, AllItems.CORITE_ROD);
+            entries.addAfter(AllItems.CORITE_ROD, AllItems.GOLD_ROD);
+            entries.addAfter(AllItems.GOLD_ROD, AllItems.VERMILION_ROD);
 
             //Minecart Rails Crafting Items
-            entries.add(AllItems.BOOSTER_ROD);
-            entries.add(AllItems.BOOSTER_ROD_COPPER);
-            entries.add(AllItems.BOOSTER_ROD_CORITE);
-            entries.add(AllItems.RAILROAD_TIE);
+            entries.addAfter(AllItems.VERMILION_ROD, BOOSTER_ROD_COPPER);
+            entries.addAfter(AllItems.BOOSTER_ROD_COPPER, AllItems.BOOSTER_ROD);
+            entries.addAfter(AllItems.BOOSTER_ROD, BOOSTER_ROD_CORITE);
+            entries.addAfter(AllItems.BOOSTER_ROD_CORITE, RAILROAD_TIE);
 
             //Bricks
 
             //Crop Items
-            entries.add(AllItems.FLAXSEEDS);
-            entries.add(AllItems.FLAX);
-            entries.add(AllItems.FLAX_STRING);
-            entries.add(AllItems.LINEN);
-            entries.add(AllItems.LINSEED_OIL);
+            entries.addAfter(Items.WHEAT, AllItems.FLAX);
+            entries.addAfter(AllItems.FLAX, AllItems.FLAX_STRING);
+            entries.addAfter(AllItems.FLAX_STRING, AllItems.LINEN);
+            entries.addAfter(AllItems.LINEN, AllItems.LINSEED_OIL);
 
             //Misc Crafting Items
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
             //Food Items
-            entries.add(AllItems.LINSEED_OIL);
+            entries.addAfter(Items.HONEY_BOTTLE, AllItems.LINSEED_OIL);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
+            //Crop Items
+            entries.addAfter(Items.BEETROOT_SEEDS, AllItems.FLAXSEEDS);
         });
     }
 
