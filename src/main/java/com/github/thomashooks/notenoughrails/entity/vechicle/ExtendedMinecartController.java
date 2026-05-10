@@ -265,7 +265,8 @@ public class ExtendedMinecartController extends DefaultMinecartController {
 
     protected Vec3d applySlowdown(@NonNull Vec3d velocityIn) {
         double speedRetention = this.getSpeedRetention();
-        Vec3d velocity = velocityIn.multiply(speedRetention, 0.0D, speedRetention);
+        double maxSpeed = this.getMaxSpeed((ServerWorld) getWorld());
+        Vec3d velocity = new Vec3d(MathHelper.clamp(speedRetention * velocityIn.x, -maxSpeed, maxSpeed), 0.0, MathHelper.clamp(speedRetention * velocityIn.z, -maxSpeed, maxSpeed));
         if (this.minecart.isTouchingWater()) {
             velocity = velocity.multiply(0.95D);
         }
