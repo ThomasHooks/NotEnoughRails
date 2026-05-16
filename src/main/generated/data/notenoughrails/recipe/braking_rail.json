@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:braking_rail",
+  "key": {
+    "b": "notenoughrails:fire_brick",
+    "i": "notenoughrails:iron_rod",
+    "r": "minecraft:redstone_torch",
+    "t": "notenoughrails:railroad_tie"
+  },
+  "pattern": [
+    "i i",
+    "btb",
+    "iri"
+  ],
+  "result": {
+    "count": 16,
+    "id": "notenoughrails:braking_rail"
+  }
+}

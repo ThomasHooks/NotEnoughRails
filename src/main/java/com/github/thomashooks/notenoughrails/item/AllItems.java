@@ -47,6 +47,7 @@ public class AllItems {
     public static final Item CRUSHED_GOLD_ORE = registerItem("crushed_gold_ore", Item::new);
     public static final Item CRUSHED_IRON_ORE = registerItem("crushed_iron_ore", Item::new);
     public static final Item CRUSHED_VERMILION = registerItem("crushed_vermilion", Item::new);
+    public static final Item FIRE_BRICK = registerItem("fire_brick", settings -> new Item(settings.fireproof()));
     public static final Item FLAX = registerItem("flax", Item::new);
     public static final Item FLAX_STRING = registerItem("flax_string", Item::new);
     public static final Item FLAXSEEDS = registerItem("flaxseed", createBlockItemWithUniqueName(AllBlocks.FLAX_CROP));
@@ -110,6 +111,7 @@ public class AllItems {
             entries.addAfter(AllItems.BOOSTER_ROD_CORITE, RAILROAD_TIE);
 
             //Bricks
+            entries.addAfter(Items.NETHER_BRICK, AllItems.FIRE_BRICK);
 
             //Crop Items
             entries.addAfter(Items.WHEAT, AllItems.FLAX);

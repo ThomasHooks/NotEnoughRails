@@ -33,6 +33,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
     @Override
     protected void configure(RegistryWrapper.@NotNull WrapperLookup wrapperLookup) {
         valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
+                .add(AllBlocks.BRAKING_RAIL)
                 .add(AllBlocks.BUFFER_STOP_RAIL)
                 .add(AllBlocks.CHECK_RAIL)
                 .add(AllBlocks.CHIME_RAIL)
@@ -134,6 +135,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         ;
 
         valueLookupBuilder(BlockTags.RAILS)
+                .add(AllBlocks.BRAKING_RAIL)
                 .add(AllBlocks.BUFFER_STOP_RAIL)
                 .add(AllBlocks.CHECK_RAIL)
                 .add(AllBlocks.CHIME_RAIL)
@@ -195,6 +197,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         ;
 
         valueLookupBuilder(BlockTags.PREVENT_MOB_SPAWNING_INSIDE)
+                .add(AllBlocks.BRAKING_RAIL)
                 .add(AllBlocks.BUFFER_STOP_RAIL)
                 .add(AllBlocks.CHECK_RAIL)
                 .add(AllBlocks.CHIME_RAIL)

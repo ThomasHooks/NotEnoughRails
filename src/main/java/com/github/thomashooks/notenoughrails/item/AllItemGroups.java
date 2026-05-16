@@ -92,12 +92,13 @@ public class AllItemGroups {
         //Item Transfer Blocks
 
         //region Minecart Rails
-        //Order: standard -> crossover -> buffer stop -> powered -> launching -> detector -> chime -> activator-> limiter -> check -> locking
+        //Order: standard -> crossover -> buffer stop -> powered -> braking -> check -> detector -> chime -> activator -> locking
         //region Iron Rails
         entries.add(AllBlocks.CROSSOVER_RAIL);
         entries.add(AllBlocks.BUFFER_STOP_RAIL);
-        entries.add(AllBlocks.CHIME_RAIL);
+        entries.add(AllBlocks.BRAKING_RAIL);
         entries.add(AllBlocks.CHECK_RAIL);
+        entries.add(AllBlocks.CHIME_RAIL);
         //endregion
 
         //region Copper Rail
@@ -229,6 +230,7 @@ public class AllItemGroups {
         entries.add(AllItems.RAILROAD_TIE);
 
         //Bricks
+        entries.add(AllItems.FIRE_BRICK);
 
         //Crop Items
         entries.add(AllItems.FLAXSEEDS);

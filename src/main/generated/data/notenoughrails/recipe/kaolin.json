@@ -5,8 +5,7 @@
   "ingredients": [
     "minecraft:clay_ball",
     "notenoughrails:flux",
-    "notenoughrails:flux",
-    "notenoughrails:flux"
+    "minecraft:netherrack"
   ],
   "result": {
     "count": 1,

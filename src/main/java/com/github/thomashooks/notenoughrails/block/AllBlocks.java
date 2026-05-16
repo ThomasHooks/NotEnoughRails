@@ -204,6 +204,12 @@ public class AllBlocks {
             ));
 
     //region Iron Rails
+    public static final Block BRAKING_RAIL = registerBlock("braking_rail",
+            settings -> new BrakingRailBlock(settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .noCollision()
+            ));
     public static final Block BUFFER_STOP_RAIL = registerBlock("buffer_stop_rail",
             settings -> new BufferStopRailBlock(settings
                     .strength(1.05F)
@@ -612,16 +618,17 @@ public class AllBlocks {
             entries.add(AllBlocks.LINEN_BLOCK);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
-            //Order: standard -> crossover -> buffer stop -> powered -> launching -> detector -> chime -> activator-> limiter -> check -> locking
+            //Order: standard -> crossover -> buffer stop -> powered -> braking -> check -> detector -> chime -> activator -> locking
             //region Iron Rails
             entries.addAfter(Blocks.RAIL, AllBlocks.CROSSOVER_RAIL);
             entries.addAfter(AllBlocks.CROSSOVER_RAIL, AllBlocks.BUFFER_STOP_RAIL);
+            entries.addAfter(Blocks.POWERED_RAIL, AllBlocks.BRAKING_RAIL);
+            entries.addAfter(AllBlocks.BRAKING_RAIL, AllBlocks.CHECK_RAIL);
             entries.addAfter(Blocks.DETECTOR_RAIL, AllBlocks.CHIME_RAIL);
-            entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.CHECK_RAIL);
             //endregion
 
             //region Copper Rail
-            entries.addAfter(AllBlocks.CHECK_RAIL, AllBlocks.COPPER_RAIL);
+            entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.COPPER_RAIL);
             entries.addAfter(AllBlocks.COPPER_RAIL, AllBlocks.COPPER_CROSSOVER_RAIL);
             entries.addAfter(AllBlocks.COPPER_CROSSOVER_RAIL, AllBlocks.COPPER_BUFFER_STOP_RAIL);
             entries.addAfter(AllBlocks.COPPER_BUFFER_STOP_RAIL, AllBlocks.COPPER_POWERED_RAIL);
@@ -639,16 +646,17 @@ public class AllBlocks {
             //endregion
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
-            //Order: standard -> crossover -> buffer stop -> powered -> launching -> detector -> chime -> activator-> limiter -> check -> locking
+            //Order: standard -> crossover -> buffer stop -> powered -> braking -> check -> detector -> chime -> activator -> locking
             //region Iron Rails
             entries.addAfter(Blocks.RAIL, AllBlocks.CROSSOVER_RAIL);
             entries.addAfter(AllBlocks.CROSSOVER_RAIL, AllBlocks.BUFFER_STOP_RAIL);
+            entries.addAfter(Blocks.POWERED_RAIL, AllBlocks.BRAKING_RAIL);
+            entries.addAfter(AllBlocks.BRAKING_RAIL, AllBlocks.CHECK_RAIL);
             entries.addAfter(Blocks.DETECTOR_RAIL, AllBlocks.CHIME_RAIL);
-            entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.CHECK_RAIL);
             //endregion
 
             //region Copper Rail
-            entries.addAfter(AllBlocks.CHECK_RAIL, AllBlocks.COPPER_RAIL);
+            entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.COPPER_RAIL);
             entries.addAfter(AllBlocks.COPPER_RAIL, AllBlocks.COPPER_CROSSOVER_RAIL);
             entries.addAfter(AllBlocks.COPPER_CROSSOVER_RAIL, AllBlocks.COPPER_BUFFER_STOP_RAIL);
             entries.addAfter(AllBlocks.COPPER_BUFFER_STOP_RAIL, AllBlocks.COPPER_POWERED_RAIL);

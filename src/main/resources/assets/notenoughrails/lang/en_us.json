@@ -1,5 +1,6 @@
 {
   "item.notenoughrails.booster_rod": "Iron Booster Rod",
+  "item.notenoughrails.braking_rail": "Braking Rail",
   "item.notenoughrails.buffer_stop_rail": "Buffer Stop Rail",
   "item.notenoughrails.check_rail": "Check Rail",
   "item.notenoughrails.chime_rail": "Chime Rail",
@@ -33,6 +34,7 @@
   "item.notenoughrails.crushed_gold_ore": "Crushed Gold Ore",
   "item.notenoughrails.crushed_iron_ore": "Crushed Iron Ore",
   "item.notenoughrails.crushed_vermilion": "Crushed Vermilion",
+  "item.notenoughrails.fire_brick": "Fire Brick",
   "item.notenoughrails.flax": "Flax",
   "item.notenoughrails.flax_string": "Flax String",
   "item.notenoughrails.flaxseed": "Flaxseeds",

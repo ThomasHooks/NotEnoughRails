@@ -127,6 +127,7 @@ public class ModelGenerator extends FabricModelProvider {
         modelGenerator.register(AllItems.CRUSHED_GOLD_ORE, Models.GENERATED);
         modelGenerator.register(AllItems.CRUSHED_IRON_ORE, Models.GENERATED);
         modelGenerator.register(AllItems.CRUSHED_VERMILION, Models.GENERATED);
+        modelGenerator.register(AllItems.FIRE_BRICK, Models.GENERATED);
         modelGenerator.register(AllItems.FLAX, Models.GENERATED);
         modelGenerator.register(AllItems.FLAX_STRING, Models.GENERATED);
         modelGenerator.register(AllItems.FLUX, Models.GENERATED);

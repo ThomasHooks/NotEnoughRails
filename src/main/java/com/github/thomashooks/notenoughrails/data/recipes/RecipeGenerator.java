@@ -20,6 +20,7 @@ import com.github.thomashooks.notenoughrails.block.AllBlocks;
 import com.github.thomashooks.notenoughrails.item.AllItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.item.ItemConvertible;
@@ -163,10 +164,15 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 //Kaolin
                 createShapeless(RecipeCategory.MISC, AllItems.KAOLIN, 1)
                         .input(Items.CLAY_BALL, 1)
-                        .input(AllItems.FLUX, 3)
+                        .input(AllItems.FLUX, 1)
+                        .input(Blocks.NETHERRACK, 1)
                         .group(NotEnoughRails.MOD_ID + ":kaolin")
                         .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
                         .offerTo(exporter);
+
+                List<ItemConvertible> FIRE_BRICK_SMELTABLES = List.of(AllItems.KAOLIN);
+                offerSmelting(FIRE_BRICK_SMELTABLES, RecipeCategory.MISC, AllItems.FIRE_BRICK, 0.15F, 200, NotEnoughRails.MOD_ID + ":fire_brick");
+                offerBlasting(FIRE_BRICK_SMELTABLES, RecipeCategory.MISC, AllItems.FIRE_BRICK, 0.15F, 100, NotEnoughRails.MOD_ID + ":fire_brick");
 
                 //Linen
                 createShapeless(RecipeCategory.MISC, AllItems.LINEN, 1)
@@ -208,6 +214,19 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern("iti")
                         .pattern("iri")
                         .group(NotEnoughRails.MOD_ID + ":activator_rail")
+                        .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                        .offerTo(exporter);
+
+                //Braking Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.BRAKING_RAIL, 16)
+                        .input('i', AllItems.IRON_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .input('b', AllItems.FIRE_BRICK)
+                        .input('r', Items.REDSTONE_TORCH)
+                        .pattern("i i")
+                        .pattern("btb")
+                        .pattern("iri")
+                        .group(NotEnoughRails.MOD_ID + ":braking_rail")
                         .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                         .offerTo(exporter);
 

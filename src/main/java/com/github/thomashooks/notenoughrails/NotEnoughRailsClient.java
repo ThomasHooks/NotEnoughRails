@@ -20,13 +20,23 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.minecraft.block.RedstoneWireBlock;
 import net.minecraft.client.render.BlockRenderLayer;
 
 @Environment(EnvType.CLIENT)
 public class NotEnoughRailsClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        registerBlockRenderLayer();
+        registerColorProviderBlock();
+    }
+
+    private void registerBlockRenderLayer() {
+        NotEnoughRails.LOGGER.info("Registering BlockRenderLayer for " + NotEnoughRails.MOD_ID);
+
         //To make some parts of the block transparent (like glass, saplings and doors):
+        BlockRenderLayerMap.putBlock(AllBlocks.BRAKING_RAIL, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.BUFFER_STOP_RAIL, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.CHECK_RAIL, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.CHIME_RAIL, BlockRenderLayer.CUTOUT);
@@ -89,5 +99,14 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.CROSSOVER_RAIL, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.FLAX_CROP, BlockRenderLayer.CUTOUT);
+    }
+
+    private void registerColorProviderBlock() {
+        NotEnoughRails.LOGGER.info("Registering BlockColorProvider for " + NotEnoughRails.MOD_ID);
+
+        ColorProviderRegistry.BLOCK.register(
+                (state, view, pos, tintIndex) -> RedstoneWireBlock.getWireColor(state.get(RedstoneWireBlock.POWER)),
+                AllBlocks.BRAKING_RAIL
+        );
     }
 }
