@@ -33,7 +33,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
     }
 
     private void registerBlockRenderLayer() {
-        NotEnoughRails.LOGGER.info("Registering BlockRenderLayer for " + NotEnoughRails.MOD_ID);
+        NotEnoughRails.LOGGER.info("Registering BlockRenderLayer");
 
         //To make some parts of the block transparent (like glass, saplings and doors):
         BlockRenderLayerMap.putBlock(AllBlocks.BRAKING_RAIL, BlockRenderLayer.CUTOUT);
@@ -102,7 +102,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
     }
 
     private void registerColorProviderBlock() {
-        NotEnoughRails.LOGGER.info("Registering BlockColorProvider for " + NotEnoughRails.MOD_ID);
+        NotEnoughRails.LOGGER.info("Registering BlockColorProvider");
 
         ColorProviderRegistry.BLOCK.register(
                 (state, view, pos, tintIndex) -> RedstoneWireBlock.getWireColor(state.get(RedstoneWireBlock.POWER)),

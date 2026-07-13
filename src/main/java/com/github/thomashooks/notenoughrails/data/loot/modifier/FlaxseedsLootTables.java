@@ -43,7 +43,7 @@ public class FlaxseedsLootTables {
     private static final Identifier BUSH_BLOCK = Identifier.of("minecraft", "blocks/bush");
 
     public static void modify() {
-        NotEnoughRails.LOGGER.info("Modifying all Vanilla Minecraft loot tables for " + NotEnoughRails.MOD_ID);
+        NotEnoughRails.LOGGER.info("Modifying all Vanilla Minecraft loot tables");
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registry) -> {
             RegistryWrapper.Impl<Enchantment> impl = registry.getOrThrow(RegistryKeys.ENCHANTMENT);
             if (source.isBuiltin() && GRASS_BLOCK.equals(key.getValue())) {

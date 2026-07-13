@@ -35,7 +35,7 @@ public class ConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_FLUXSTONE = registryKey("ore_fluxstone");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
-        NotEnoughRails.LOGGER.info("Registering all configured features for " + NotEnoughRails.MOD_ID);
+        NotEnoughRails.LOGGER.info("Registering all configured features");
         RuleTest stoneReplaceables = new TagMatchRuleTest(BlockTags.BASE_STONE_OVERWORLD);
         List<OreFeatureConfig.Target> overworldFluxstoneOres = List.of(
                 OreFeatureConfig.createTarget(stoneReplaceables, AllBlocks.FLUXSTONE.getDefaultState())

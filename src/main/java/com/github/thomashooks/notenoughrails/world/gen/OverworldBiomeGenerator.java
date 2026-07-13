@@ -20,7 +20,7 @@ import com.github.thomashooks.notenoughrails.world.gen.feature.BiomeModification
 
 public class OverworldBiomeGenerator {
     public static void addBasicFeatures() {
-        NotEnoughRails.LOGGER.info("Adding all basic Overworld biome features for " + NotEnoughRails.MOD_ID);
+        NotEnoughRails.LOGGER.info("Adding all basic Overworld biome features");
         BiomeModificationFeatures.generateOverworld();
     }
 }

@@ -32,7 +32,7 @@ import org.jetbrains.annotations.NotNull;
 public class NotEnoughRailsDataGenerator implements DataGeneratorEntrypoint {
 	@Override
 	public void onInitializeDataGenerator(@NotNull FabricDataGenerator fabricDataGenerator) {
-		NotEnoughRails.LOGGER.info("Initializing all data generation for " + NotEnoughRails.MOD_ID);
+		NotEnoughRails.LOGGER.info("Initializing all data generation");
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
 		pack.addProvider(BlockTagGenerator::new);
@@ -45,7 +45,7 @@ public class NotEnoughRailsDataGenerator implements DataGeneratorEntrypoint {
 
 	@Override
 	public void buildRegistry(@NotNull RegistryBuilder registryBuilder) {
-		NotEnoughRails.LOGGER.info("Building data generation registry for " + NotEnoughRails.MOD_ID);
+		NotEnoughRails.LOGGER.info("Building data generation registry");
 		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ConfiguredFeatures::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, PlacedFeatures::bootstrap);
 	}

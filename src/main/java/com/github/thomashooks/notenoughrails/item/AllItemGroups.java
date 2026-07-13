@@ -35,7 +35,7 @@ public class AllItemGroups {
     );
 
     public static void registerAll() {
-        NotEnoughRails.LOGGER.info("Registering all Item Groups for " + NotEnoughRails.MOD_ID);
+        NotEnoughRails.LOGGER.info("Registering all Item Groups");
     }
 
     private static void displayItems(ItemGroup.DisplayContext displayContext, ItemGroup.Entries entries) {

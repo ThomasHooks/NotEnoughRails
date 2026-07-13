@@ -20,7 +20,6 @@ import com.github.thomashooks.notenoughrails.block.AllBlocks;
 import com.github.thomashooks.notenoughrails.item.AllItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.item.ItemConvertible;
@@ -46,7 +45,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
         return new net.minecraft.data.recipe.RecipeGenerator(wrapperLookup, recipeExporter) {
             @Override
             public void generate() {
-                NotEnoughRails.LOGGER.info("Generating all items recipes for " + NotEnoughRails.MOD_ID);
+                NotEnoughRails.LOGGER.info("Generating all items recipes");
                 //--------------------------------------------------------------------------------------------------------------
                 // region Item Recipes
 
@@ -203,7 +202,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //--------------------------------------------------------------------------------------------------------------
                 // region Block Recipes
-                NotEnoughRails.LOGGER.info("Generating all block recipes for " + NotEnoughRails.MOD_ID);
+                NotEnoughRails.LOGGER.info("Generating all block recipes");
 
                 //Activator Rail
                 createShaped(RecipeCategory.TRANSPORTATION, Blocks.ACTIVATOR_RAIL, 8)

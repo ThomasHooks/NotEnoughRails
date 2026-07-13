@@ -69,7 +69,7 @@ public class AllItems {
     public static final Item VERMILION_ROD = registerItem("vermilion_rod", Item::new);
 
     public static void registerAll() {
-        NotEnoughRails.LOGGER.info("Registering all Items for " + NotEnoughRails.MOD_ID);
+        NotEnoughRails.LOGGER.info("Registering all Items");
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             //Fuel Items

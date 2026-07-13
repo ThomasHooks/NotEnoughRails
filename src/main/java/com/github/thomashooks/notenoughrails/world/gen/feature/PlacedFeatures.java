@@ -33,7 +33,7 @@ public class PlacedFeatures {
     public static final RegistryKey<PlacedFeature> ORE_FLUXSTONE_LOWER = registerKey("ore_fluxstone_lower");
 
     public static void bootstrap(Registerable<PlacedFeature> featureRegisterable) {
-        NotEnoughRails.LOGGER.info("Registering all placed features for " + NotEnoughRails.MOD_ID);
+        NotEnoughRails.LOGGER.info("Registering all placed features");
         var registryEntryLookup = featureRegisterable.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
         RegistryEntry<ConfiguredFeature<?, ?>> registryFluxstone = registryEntryLookup.getOrThrow(ConfiguredFeatures.ORE_FLUXSTONE);
 

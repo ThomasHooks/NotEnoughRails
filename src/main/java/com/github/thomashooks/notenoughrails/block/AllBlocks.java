@@ -582,7 +582,7 @@ public class AllBlocks {
     //endregion
 
     public static void registerAll() {
-        NotEnoughRails.LOGGER.info("Registering all Blocks for " + NotEnoughRails.MOD_ID);
+        NotEnoughRails.LOGGER.info("Registering all Blocks");
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
             //Wood Blocks
@@ -680,7 +680,7 @@ public class AllBlocks {
     }
 
     public static void registerAllOxidizableBlocks() {
-        NotEnoughRails.LOGGER.info("Registering all oxidizable blocks for " + NotEnoughRails.MOD_ID);
+        NotEnoughRails.LOGGER.info("Registering all oxidizable blocks");
         OxidizableBlocksRegistry.registerCopperBlockSet(new CopperBlockSet(
                 AllBlocks.COPPER_ACTIVATOR_RAIL,
                 AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED,
