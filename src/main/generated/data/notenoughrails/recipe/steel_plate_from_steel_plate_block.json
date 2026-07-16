@@ -1,11 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
+  "group": "notenoughrails:steel_plate",
   "ingredients": [
     "notenoughrails:corite_plate_block"
   ],
   "result": {
-    "count": 9,
-    "id": "notenoughrails:corite_plate"
+    "count": 4,
+    "id": "notenoughrails:steel_plate"
   }
 }

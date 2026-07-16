@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_corite_plate_block": {
+    "has_raw_steel": {
       "conditions": {
         "items": [
           {
-            "items": "notenoughrails:corite_plate_block"
+            "items": "notenoughrails:raw_steel"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "notenoughrails:corite_plate"
+        "recipe": "notenoughrails:steel_ingot_from_smelting_raw_steel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_corite_plate_block"
+      "has_raw_steel"
     ]
   ],
   "rewards": {
     "recipes": [
-      "notenoughrails:corite_plate"
+      "notenoughrails:steel_ingot_from_smelting_raw_steel"
     ]
   }
 }

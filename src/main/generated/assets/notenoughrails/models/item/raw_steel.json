@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "notenoughrails:item/corite_rod"
+    "layer0": "notenoughrails:item/raw_steel"
   }
 }

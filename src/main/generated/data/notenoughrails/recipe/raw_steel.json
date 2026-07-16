@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "notenoughrails:raw_steel",
+  "ingredients": [
+    "minecraft:iron_nugget",
+    "minecraft:iron_nugget",
+    "minecraft:iron_nugget",
+    "notenoughrails:coke",
+    "notenoughrails:flux"
+  ],
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:raw_steel"
+  }
+}

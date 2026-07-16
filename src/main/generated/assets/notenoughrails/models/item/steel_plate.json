@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "notenoughrails:item/corite_plate"
+    "layer0": "notenoughrails:item/steel_plate"
   }
 }

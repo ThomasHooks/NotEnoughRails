@@ -115,15 +115,15 @@ public class ModelGenerator extends FabricModelProvider {
     public void generateItemModels(@NotNull ItemModelGenerator modelGenerator) {
         modelGenerator.register(AllItems.BOOSTER_ROD, Models.GENERATED);
         modelGenerator.register(AllItems.BOOSTER_ROD_COPPER, Models.GENERATED);
-        modelGenerator.register(AllItems.BOOSTER_ROD_CORITE, Models.GENERATED);
+        modelGenerator.register(AllItems.BOOSTER_ROD_STEEL, Models.GENERATED);
         modelGenerator.register(AllItems.COKE, Models.GENERATED);
         modelGenerator.register(AllItems.COPPER_PLATE, Models.GENERATED);
         modelGenerator.register(AllItems.COPPER_ROD, Models.GENERATED);
-        modelGenerator.register(AllItems.CORITE_INGOT, Models.GENERATED);
-        modelGenerator.register(AllItems.CORITE_PLATE, Models.GENERATED);
-        modelGenerator.register(AllItems.CORITE_ROD, Models.GENERATED);
+        modelGenerator.register(AllItems.STEEL_INGOT, Models.GENERATED);
+        modelGenerator.register(AllItems.STEEL_PLATE, Models.GENERATED);
+        modelGenerator.register(AllItems.STEEL_ROD, Models.GENERATED);
         modelGenerator.register(AllItems.CRUSHED_COPPER_ORE, Models.GENERATED);
-        modelGenerator.register(AllItems.CRUSHED_CORITE, Models.GENERATED);
+        modelGenerator.register(AllItems.RAW_STEEL, Models.GENERATED);
         modelGenerator.register(AllItems.CRUSHED_GOLD_ORE, Models.GENERATED);
         modelGenerator.register(AllItems.CRUSHED_IRON_ORE, Models.GENERATED);
         modelGenerator.register(AllItems.CRUSHED_VERMILION, Models.GENERATED);

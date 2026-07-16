@@ -3,7 +3,7 @@
   "category": "misc",
   "group": "notenoughrails:corite_buffer_stop_rail",
   "key": {
-    "i": "notenoughrails:corite_rod",
+    "i": "notenoughrails:steel_rod",
     "t": "notenoughrails:railroad_tie",
     "x": "minecraft:iron_block"
   },

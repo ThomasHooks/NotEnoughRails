@@ -35,15 +35,11 @@ import java.util.function.Function;
 public class AllItems {
     public static final Item BOOSTER_ROD = registerItem("booster_rod", Item::new);
     public static final Item BOOSTER_ROD_COPPER = registerItem("booster_rod_copper", Item::new);
-    public static final Item BOOSTER_ROD_CORITE = registerItem("booster_rod_corite", Item::new);
+    public static final Item BOOSTER_ROD_STEEL = registerItem("booster_rod_steel", Item::new);
     public static final Item COKE = registerItem("coke", Item::new);
     public static final Item COPPER_PLATE = registerItem("copper_plate", Item::new);
     public static final Item COPPER_ROD = registerItem("copper_rod", Item::new);
-    public static final Item CORITE_INGOT = registerItem("corite_ingot", Item::new);
-    public static final Item CORITE_PLATE = registerItem("corite_plate", Item::new);
-    public static final Item CORITE_ROD = registerItem("corite_rod", Item::new);
     public static final Item CRUSHED_COPPER_ORE = registerItem("crushed_copper_ore", Item::new);
-    public static final Item CRUSHED_CORITE = registerItem("crushed_corite", Item::new);
     public static final Item CRUSHED_GOLD_ORE = registerItem("crushed_gold_ore", Item::new);
     public static final Item CRUSHED_IRON_ORE = registerItem("crushed_iron_ore", Item::new);
     public static final Item CRUSHED_VERMILION = registerItem("crushed_vermilion", Item::new);
@@ -65,6 +61,10 @@ public class AllItems {
                     .maxCount(16)
             ));
     public static final Item RAILROAD_TIE = registerItem("railroad_tie", Item::new);
+    public static final Item RAW_STEEL = registerItem("raw_steel", Item::new);
+    public static final Item STEEL_INGOT = registerItem("steel_ingot", Item::new);
+    public static final Item STEEL_PLATE = registerItem("steel_plate", Item::new);
+    public static final Item STEEL_ROD = registerItem("steel_rod", Item::new);
     public static final Item VERMILION_INGOT = registerItem("vermilion_ingot", Item::new);
     public static final Item VERMILION_ROD = registerItem("vermilion_rod", Item::new);
 
@@ -84,31 +84,31 @@ public class AllItems {
             //Raw Crushed Ore
             entries.addAfter(Items.RAW_GOLD, AllItems.CRUSHED_COPPER_ORE);
             entries.addAfter(AllItems.CRUSHED_COPPER_ORE, AllItems.CRUSHED_IRON_ORE);
-            entries.addAfter(AllItems.CRUSHED_IRON_ORE, AllItems.CRUSHED_CORITE);
-            entries.addAfter(AllItems.CRUSHED_CORITE, AllItems.CRUSHED_GOLD_ORE);
+            entries.addAfter(AllItems.CRUSHED_IRON_ORE, AllItems.RAW_STEEL);
+            entries.addAfter(AllItems.RAW_STEEL, AllItems.CRUSHED_GOLD_ORE);
             entries.addAfter(AllItems.CRUSHED_GOLD_ORE, AllItems.CRUSHED_VERMILION);
 
             //Metal Ingots
-            entries.addAfter(Items.IRON_INGOT, AllItems.CORITE_INGOT);
+            entries.addAfter(Items.IRON_INGOT, AllItems.STEEL_INGOT);
             entries.addAfter(Items.GOLD_INGOT, AllItems.VERMILION_INGOT);
 
             //Metal Plates
             entries.addAfter(Items.NETHERITE_INGOT, AllItems.COPPER_PLATE);
             entries.addAfter(AllItems.COPPER_PLATE, AllItems.IRON_PLATE);
-            entries.addAfter(AllItems.IRON_PLATE, AllItems.CORITE_PLATE);
+            entries.addAfter(AllItems.IRON_PLATE, AllItems.STEEL_PLATE);
 
             //Metal Rods
-            entries.addAfter(AllItems.CORITE_PLATE, AllItems.COPPER_ROD);
+            entries.addAfter(AllItems.STEEL_PLATE, AllItems.COPPER_ROD);
             entries.addAfter(AllItems.COPPER_ROD, AllItems.IRON_ROD);
-            entries.addAfter(AllItems.IRON_ROD, AllItems.CORITE_ROD);
-            entries.addAfter(AllItems.CORITE_ROD, AllItems.GOLD_ROD);
+            entries.addAfter(AllItems.IRON_ROD, AllItems.STEEL_ROD);
+            entries.addAfter(AllItems.STEEL_ROD, AllItems.GOLD_ROD);
             entries.addAfter(AllItems.GOLD_ROD, AllItems.VERMILION_ROD);
 
             //Minecart Rails Crafting Items
             entries.addAfter(AllItems.VERMILION_ROD, BOOSTER_ROD_COPPER);
             entries.addAfter(AllItems.BOOSTER_ROD_COPPER, AllItems.BOOSTER_ROD);
-            entries.addAfter(AllItems.BOOSTER_ROD, BOOSTER_ROD_CORITE);
-            entries.addAfter(AllItems.BOOSTER_ROD_CORITE, RAILROAD_TIE);
+            entries.addAfter(AllItems.BOOSTER_ROD, BOOSTER_ROD_STEEL);
+            entries.addAfter(AllItems.BOOSTER_ROD_STEEL, RAILROAD_TIE);
 
             //Bricks
             entries.addAfter(Items.NETHER_BRICK, AllItems.FIRE_BRICK);

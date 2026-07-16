@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "group": "notenoughrails:booster_rod_corite",
+  "group": "notenoughrails:booster_rod_steel",
   "key": {
-    "c": "notenoughrails:corite_rod",
+    "c": "notenoughrails:steel_rod",
     "g": "notenoughrails:gold_rod",
     "v": "notenoughrails:vermilion_rod"
   },
@@ -12,6 +12,6 @@
   ],
   "result": {
     "count": 3,
-    "id": "notenoughrails:booster_rod_corite"
+    "id": "notenoughrails:booster_rod_steel"
   }
 }

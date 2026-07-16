@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_raw_copper": {
+    "has_iron_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:raw_copper"
+            "items": "minecraft:iron_ingot"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "notenoughrails:crushed_corite_from_raw_ore"
+        "recipe": "notenoughrails:raw_steel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_raw_copper"
+      "has_iron_ingot"
     ]
   ],
   "rewards": {
     "recipes": [
-      "notenoughrails:crushed_corite_from_raw_ore"
+      "notenoughrails:raw_steel"
     ]
   }
 }

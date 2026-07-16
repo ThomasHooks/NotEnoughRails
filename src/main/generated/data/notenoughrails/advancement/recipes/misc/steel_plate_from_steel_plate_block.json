@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_crushed_corite": {
+    "has_steel_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "notenoughrails:crushed_corite"
+            "items": "notenoughrails:steel_ingot"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "notenoughrails:corite_ingot_from_blasting_crushed_corite"
+        "recipe": "notenoughrails:steel_plate_from_steel_plate_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_crushed_corite"
+      "has_steel_ingot"
     ]
   ],
   "rewards": {
     "recipes": [
-      "notenoughrails:corite_ingot_from_blasting_crushed_corite"
+      "notenoughrails:steel_plate_from_steel_plate_block"
     ]
   }
 }

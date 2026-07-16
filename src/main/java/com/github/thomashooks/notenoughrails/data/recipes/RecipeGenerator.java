@@ -59,7 +59,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
                         .offerTo(exporter);
 
-                //Booster Rod Ccpper
+                //Booster Rod Copper
                 createShaped(RecipeCategory.TRANSPORTATION, AllItems.BOOSTER_ROD_COPPER, 3)
                         .input('i', AllItems.COPPER_ROD)
                         .input('g', AllItems.GOLD_ROD)
@@ -69,13 +69,13 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
                         .offerTo(exporter);
 
-                //Booster Rod Corite
-                createShaped(RecipeCategory.TRANSPORTATION, AllItems.BOOSTER_ROD_CORITE, 3)
-                        .input('c', AllItems.CORITE_ROD)
+                //Booster Rod Steel
+                createShaped(RecipeCategory.TRANSPORTATION, AllItems.BOOSTER_ROD_STEEL, 3)
+                        .input('c', AllItems.STEEL_ROD)
                         .input('g', AllItems.GOLD_ROD)
                         .input('v', AllItems.VERMILION_ROD)
                         .pattern("cgv")
-                        .group(NotEnoughRails.MOD_ID + ":booster_rod_corite")
+                        .group(NotEnoughRails.MOD_ID + ":booster_rod_steel")
                         .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
                         .offerTo(exporter);
 
@@ -87,32 +87,34 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 offerSmelting(COPPER_INGOT_SMELTABLES, RecipeCategory.MISC, Items.COPPER_INGOT, 0.7F, 200, NotEnoughRails.MOD_ID + ":copper_ingot");
                 offerBlasting(COPPER_INGOT_SMELTABLES, RecipeCategory.MISC, Items.COPPER_INGOT, 0.7F, 100, NotEnoughRails.MOD_ID + ":copper_ingot");
 
-                //Crushed Corite
-                createShapeless(RecipeCategory.MISC, AllItems.CRUSHED_CORITE, 2)
-                        .input(AllItems.CRUSHED_COPPER_ORE, 4)
-                        .input(AllItems.CRUSHED_IRON_ORE, 1)
+                //Raw Steel
+                createShapeless(RecipeCategory.MISC, AllItems.RAW_STEEL, 1)
+                        .input(Items.IRON_NUGGET, 3)
+                        .input(AllItems.COKE, 1)
                         .input(AllItems.FLUX, 1)
-                        .group(NotEnoughRails.MOD_ID + ":crushed_corite")
-                        .criterion(hasItem(Items.RAW_COPPER), conditionsFromItem(Items.RAW_COPPER))
+                        .group(NotEnoughRails.MOD_ID + ":raw_steel")
+                        .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                         .offerTo(exporter);
 
-                //Crushed Corite
-                createShapeless(RecipeCategory.MISC, AllItems.CRUSHED_CORITE, 2)
-                        .input(Items.RAW_COPPER, 4)
-                        .input(Items.RAW_IRON, 1)
-                        .input(AllItems.FLUX, 1)
-                        .group(NotEnoughRails.MOD_ID + ":crushed_corite")
-                        .criterion(hasItem(Items.RAW_COPPER), conditionsFromItem(Items.RAW_COPPER))
-                        .offerTo(exporter, ":crushed_corite_from_raw_ore");
+                //Steel Ingot
+                List<ItemConvertible> CORITE_INGOT_SMELTABLES = List.of(AllItems.RAW_STEEL);
+                offerSmelting(CORITE_INGOT_SMELTABLES, RecipeCategory.MISC, AllItems.STEEL_INGOT, 0.7F, 200, NotEnoughRails.MOD_ID + ":steel_ingot");
+                offerBlasting(CORITE_INGOT_SMELTABLES, RecipeCategory.MISC, AllItems.STEEL_INGOT, 0.7F, 100, NotEnoughRails.MOD_ID + ":steel_ingot");
+                offerReversibleCompactingRecipes(RecipeCategory.MISC, AllItems.STEEL_INGOT,RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_BLOCK);
 
-                //Corite Ingot
-                List<ItemConvertible> CORITE_INGOT_SMELTABLES = List.of(AllItems.CRUSHED_CORITE);
-                offerSmelting(CORITE_INGOT_SMELTABLES, RecipeCategory.MISC, AllItems.CORITE_INGOT, 0.7F, 200, NotEnoughRails.MOD_ID + ":corite_ingot");
-                offerBlasting(CORITE_INGOT_SMELTABLES, RecipeCategory.MISC, AllItems.CORITE_INGOT, 0.7F, 100, NotEnoughRails.MOD_ID + ":corite_ingot");
-                offerReversibleCompactingRecipes(RecipeCategory.MISC, AllItems.CORITE_INGOT,RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_BLOCK);
-
-                //Corite Plate
-                offerReversibleCompactingRecipes(RecipeCategory.MISC, AllItems.CORITE_PLATE,RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_PLATE_BLOCK);
+                //Steel Plate
+                createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_PLATE_BLOCK, 1)
+                        .input('p', AllItems.STEEL_PLATE)
+                        .pattern("pp")
+                        .pattern("pp")
+                        .group(NotEnoughRails.MOD_ID + ":steel_plate_block")
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.MISC, AllItems.STEEL_PLATE, 4)
+                        .input(AllBlocks.CORITE_PLATE_BLOCK, 1)
+                        .group(NotEnoughRails.MOD_ID + ":steel_plate")
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .offerTo(exporter, ":steel_plate_from_steel_plate_block");
 
                 //Flax String
                 createShaped(RecipeCategory.MISC, AllItems.FLAX_STRING, 3)
@@ -290,7 +292,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern("cc")
                         .pattern("cc")
                         .group(NotEnoughRails.MOD_ID + ":corite_cut_block")
-                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CUT_BLOCK, AllBlocks.CORITE_BLOCK, 4);
 
@@ -299,7 +301,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .input('c', AllBlocks.CORITE_CUT_BLOCK)
                         .pattern("ccc")
                         .group(NotEnoughRails.MOD_ID + ":corite_cut_slab")
-                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CUT_SLAB, AllBlocks.CORITE_CUT_BLOCK, 2);
 
@@ -310,7 +312,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern("cc ")
                         .pattern("ccc")
                         .group(NotEnoughRails.MOD_ID + ":corite_cut_stairs")
-                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CUT_STAIRS, AllBlocks.CORITE_CUT_BLOCK, 1);
 
@@ -320,7 +322,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern("c")
                         .pattern("c")
                         .group(NotEnoughRails.MOD_ID + ":corite_chiseled_block")
-                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CHISELED_BLOCK, AllBlocks.CORITE_BLOCK, 4);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_CHISELED_BLOCK, AllBlocks.CORITE_CUT_BLOCK, 1);
@@ -659,44 +661,44 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
                         .offerTo(exporter);
 
-                //Crossover Rail
+                //Corite Crossover Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CORITE_CROSSOVER_RAIL, 8)
-                        .input('i', AllItems.CORITE_ROD)
+                        .input('i', AllItems.STEEL_ROD)
                         .input('t', AllItems.RAILROAD_TIE)
                         .pattern("iii")
                         .pattern("iti")
                         .pattern("iii")
                         .group(NotEnoughRails.MOD_ID + ":corite_crossover_rail")
-                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
                         .offerTo(exporter);
 
                 //Corite Activator Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CORITE_ACTIVATOR_RAIL, 8)
-                        .input('i', AllItems.CORITE_ROD)
+                        .input('i', AllItems.STEEL_ROD)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('r', Items.REDSTONE_TORCH)
                         .pattern("i i")
                         .pattern("iti")
                         .pattern("iri")
                         .group(NotEnoughRails.MOD_ID + ":corite_activator_rail")
-                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
                         .offerTo(exporter);
 
                 //Corite Buffer Stop Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CORITE_BUFFER_STOP_RAIL, 8)
-                        .input('i', AllItems.CORITE_ROD)
+                        .input('i', AllItems.STEEL_ROD)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('x', Blocks.IRON_BLOCK)
                         .pattern("iti")
                         .pattern("ixi")
                         .pattern("iti")
                         .group(NotEnoughRails.MOD_ID + ":corite_buffer_stop_rail")
-                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
                         .offerTo(exporter);
 
                 //Corite Detector Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CORITE_DETECTOR_RAIL, 8)
-                        .input('i', AllItems.CORITE_ROD)
+                        .input('i', AllItems.STEEL_ROD)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('r', Items.REDSTONE)
                         .input('p', Items.STONE_PRESSURE_PLATE)
@@ -704,13 +706,13 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern("iti")
                         .pattern("iri")
                         .group(NotEnoughRails.MOD_ID + ":corite_detector_rail")
-                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
                         .offerTo(exporter);
 
                 //Corite Door
-                createDoorRecipe(AllBlocks.CORITE_DOOR, Ingredient.ofItem(AllItems.CORITE_INGOT))
+                createDoorRecipe(AllBlocks.CORITE_DOOR, Ingredient.ofItem(AllItems.STEEL_INGOT))
                         .group(NotEnoughRails.MOD_ID + ":corite_door")
-                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
                         .offerTo(exporter);
 
                 //Corite Grate
@@ -720,13 +722,13 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern("c c")
                         .pattern(" c ")
                         .group(NotEnoughRails.MOD_ID + ":corite_grate")
-                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.CORITE_GRATE, AllBlocks.CORITE_BLOCK, 4);
 
                 //Corite Powered Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CORITE_POWERED_RAIL, 16)
-                        .input('b', AllItems.BOOSTER_ROD_CORITE)
+                        .input('b', AllItems.BOOSTER_ROD_STEEL)
                         .input('t', AllItems.RAILROAD_TIE)
                         .pattern("b b")
                         .pattern("btb")
@@ -737,19 +739,19 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Corite Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CORITE_RAIL, 24)
-                        .input('i', AllItems.CORITE_ROD)
+                        .input('i', AllItems.STEEL_ROD)
                         .input('t', AllItems.RAILROAD_TIE)
                         .pattern("i i")
                         .pattern("iti")
                         .pattern("i i")
                         .group(NotEnoughRails.MOD_ID + ":corite_rail")
-                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
                         .offerTo(exporter);
 
                 //Corite Trapdoor
-                createTrapdoorRecipe(AllBlocks.CORITE_TRAPDOOR, Ingredient.ofItem(AllItems.CORITE_INGOT))
+                createTrapdoorRecipe(AllBlocks.CORITE_TRAPDOOR, Ingredient.ofItem(AllItems.STEEL_INGOT))
                         .group(NotEnoughRails.MOD_ID + ":corite_trapdoor")
-                        .criterion(hasItem(AllItems.CORITE_INGOT), conditionsFromItem(AllItems.CORITE_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
                         .offerTo(exporter);
 
                 //Detector Rail

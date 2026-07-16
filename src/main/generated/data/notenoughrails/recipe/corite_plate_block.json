@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "building",
+  "group": "notenoughrails:steel_plate_block",
   "key": {
-    "#": "notenoughrails:corite_plate"
+    "p": "notenoughrails:steel_plate"
   },
   "pattern": [
-    "###",
-    "###",
-    "###"
+    "pp",
+    "pp"
   ],
   "result": {
     "count": 1,
