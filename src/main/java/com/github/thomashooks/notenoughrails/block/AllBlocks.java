@@ -240,6 +240,12 @@ public class AllBlocks {
                     .sounds(BlockSoundGroup.METAL)
                     .noCollision()
             ));
+    public static final Block LOCKING_RAIL = registerBlock("locking_rail",
+            settings -> new LockingRailBlock(settings
+                    .strength(0.7F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .noCollision()
+            ));
     //endregion
 
     //------------------------------------------------------------------------------------------------------------------
@@ -613,6 +619,7 @@ public class AllBlocks {
 
             //Metal Blocks
             //Order: full block -> chiseled -> grate -> cut -> stairs -> slab -> bars -> door -> trapdoor -> pressure plate
+            entries.add(AllBlocks.IRON_PLATE_BLOCK);
             entries.add(AllBlocks.STEEL_BLOCK);
             entries.add(AllBlocks.STEEL_PLATE_BLOCK);
             entries.add(AllBlocks.STEEL_CHISELED_BLOCK);
@@ -622,7 +629,6 @@ public class AllBlocks {
             entries.add(AllBlocks.STEEL_CUT_SLAB);
             entries.add(AllBlocks.STEEL_DOOR);
             entries.add(AllBlocks.STEEL_TRAPDOOR);
-            entries.add(AllBlocks.IRON_PLATE_BLOCK);
             entries.add(AllBlocks.VERMILION_BLOCK);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register(entries -> {
@@ -637,10 +643,11 @@ public class AllBlocks {
             entries.addAfter(Blocks.POWERED_RAIL, AllBlocks.BRAKING_RAIL);
             entries.addAfter(AllBlocks.BRAKING_RAIL, AllBlocks.CHECK_RAIL);
             entries.addAfter(Blocks.DETECTOR_RAIL, AllBlocks.CHIME_RAIL);
+            entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.LOCKING_RAIL);
             //endregion
 
             //region Copper Rail
-            entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.COPPER_RAIL);
+            entries.addAfter(AllBlocks.LOCKING_RAIL, AllBlocks.COPPER_RAIL);
             entries.addAfter(AllBlocks.COPPER_RAIL, AllBlocks.COPPER_CROSSOVER_RAIL);
             entries.addAfter(AllBlocks.COPPER_CROSSOVER_RAIL, AllBlocks.COPPER_BUFFER_STOP_RAIL);
             entries.addAfter(AllBlocks.COPPER_BUFFER_STOP_RAIL, AllBlocks.COPPER_POWERED_RAIL);
@@ -665,10 +672,11 @@ public class AllBlocks {
             entries.addAfter(Blocks.POWERED_RAIL, AllBlocks.BRAKING_RAIL);
             entries.addAfter(AllBlocks.BRAKING_RAIL, AllBlocks.CHECK_RAIL);
             entries.addAfter(Blocks.DETECTOR_RAIL, AllBlocks.CHIME_RAIL);
+            entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.LOCKING_RAIL);
             //endregion
 
             //region Copper Rail
-            entries.addAfter(Blocks.ACTIVATOR_RAIL, AllBlocks.COPPER_RAIL);
+            entries.addAfter(AllBlocks.LOCKING_RAIL, AllBlocks.COPPER_RAIL);
             entries.addAfter(AllBlocks.COPPER_RAIL, AllBlocks.COPPER_CROSSOVER_RAIL);
             entries.addAfter(AllBlocks.COPPER_CROSSOVER_RAIL, AllBlocks.COPPER_BUFFER_STOP_RAIL);
             entries.addAfter(AllBlocks.COPPER_BUFFER_STOP_RAIL, AllBlocks.COPPER_POWERED_RAIL);

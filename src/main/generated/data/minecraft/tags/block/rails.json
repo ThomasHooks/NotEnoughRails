@@ -4,12 +4,6 @@
     "notenoughrails:buffer_stop_rail",
     "notenoughrails:check_rail",
     "notenoughrails:chime_rail",
-    "notenoughrails:steel_activator_rail",
-    "notenoughrails:steel_buffer_stop_rail",
-    "notenoughrails:steel_detector_rail",
-    "notenoughrails:steel_crossover_rail",
-    "notenoughrails:steel_powered_rail",
-    "notenoughrails:steel_rail",
     "notenoughrails:copper_activator_rail",
     "notenoughrails:copper_activator_rail_exposed",
     "notenoughrails:copper_activator_rail_weathered",
@@ -58,6 +52,13 @@
     "notenoughrails:waxed_copper_rail_exposed",
     "notenoughrails:waxed_copper_rail_weathered",
     "notenoughrails:waxed_copper_rail_oxidized",
-    "notenoughrails:crossover_rail"
+    "notenoughrails:crossover_rail",
+    "notenoughrails:locking_rail",
+    "notenoughrails:steel_activator_rail",
+    "notenoughrails:steel_buffer_stop_rail",
+    "notenoughrails:steel_detector_rail",
+    "notenoughrails:steel_crossover_rail",
+    "notenoughrails:steel_powered_rail",
+    "notenoughrails:steel_rail"
   ]
 }

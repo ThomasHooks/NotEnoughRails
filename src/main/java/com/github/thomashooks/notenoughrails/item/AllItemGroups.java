@@ -18,6 +18,7 @@ package com.github.thomashooks.notenoughrails.item;
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -58,6 +59,7 @@ public class AllItemGroups {
 
         //Metal Blocks
         //Order: full block -> chiseled -> grate -> cut -> stairs -> slab -> bars -> door -> trapdoor -> pressure plate
+        entries.add(AllBlocks.IRON_PLATE_BLOCK);
         entries.add(AllBlocks.STEEL_BLOCK);
         entries.add(AllBlocks.STEEL_PLATE_BLOCK);
         entries.add(AllBlocks.STEEL_CHISELED_BLOCK);
@@ -67,7 +69,6 @@ public class AllItemGroups {
         entries.add(AllBlocks.STEEL_CUT_SLAB);
         entries.add(AllBlocks.STEEL_DOOR);
         entries.add(AllBlocks.STEEL_TRAPDOOR);
-        entries.add(AllBlocks.IRON_PLATE_BLOCK);
         entries.add(AllBlocks.VERMILION_BLOCK);
 
         //Cloth Blocks
@@ -94,11 +95,16 @@ public class AllItemGroups {
         //region Minecart Rails
         //Order: standard -> crossover -> buffer stop -> powered -> braking -> check -> detector -> chime -> activator -> locking
         //region Iron Rails
+        entries.add(Blocks.RAIL);
         entries.add(AllBlocks.CROSSOVER_RAIL);
         entries.add(AllBlocks.BUFFER_STOP_RAIL);
+        entries.add(Blocks.POWERED_RAIL);
         entries.add(AllBlocks.BRAKING_RAIL);
         entries.add(AllBlocks.CHECK_RAIL);
+        entries.add(Blocks.DETECTOR_RAIL);
         entries.add(AllBlocks.CHIME_RAIL);
+        entries.add(Blocks.ACTIVATOR_RAIL);
+        entries.add(AllBlocks.LOCKING_RAIL);
         //endregion
 
         //region Copper Rail

@@ -113,6 +113,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(AllBlocks.FLUXSTONE_SMOOTH_STAIRS);
         addDrop(AllBlocks.IRON_PLATE_BLOCK);
         addDrop(AllBlocks.LINEN_BLOCK);
+        addDrop(AllBlocks.LOCKING_RAIL);
         addDrop(AllBlocks.VERMILION_BLOCK);
         addDrop(AllBlocks.WOODEN_FRAME);
     }

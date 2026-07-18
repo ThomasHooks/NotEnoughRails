@@ -835,6 +835,19 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
                         .offerTo(exporter);
 
+                //Locking Rail
+                createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.LOCKING_RAIL, 8)
+                        .input('i', AllItems.IRON_ROD)
+                        .input('t', AllItems.RAILROAD_TIE)
+                        .input('b', AllItems.BOOSTER_ROD)
+                        .input('p', Blocks.PISTON)
+                        .pattern("iti")
+                        .pattern("bpb")
+                        .pattern("iti")
+                        .group(NotEnoughRails.MOD_ID + ":locking_rail")
+                        .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
+                        .offerTo(exporter);
+
                 //Rail
                 createShaped(RecipeCategory.TRANSPORTATION, Blocks.RAIL, 24)
                         .input('i', AllItems.IRON_ROD)

@@ -16,6 +16,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails;
 
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
+import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
 import com.github.thomashooks.notenoughrails.data.loot.modifier.FlaxseedsLootTables;
 import com.github.thomashooks.notenoughrails.item.AllItemGroups;
 import com.github.thomashooks.notenoughrails.item.AllItems;
@@ -44,6 +45,7 @@ public class NotEnoughRails implements ModInitializer {
 
 		AllItems.registerAll();
 		AllBlocks.registerAll();
+		AllBlockEntities.registerAll();
 
 		OverworldBiomeGenerator.addBasicFeatures();
 

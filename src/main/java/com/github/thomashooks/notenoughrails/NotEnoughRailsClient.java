@@ -99,6 +99,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.CROSSOVER_RAIL, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.FLAX_CROP, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.LOCKING_RAIL, BlockRenderLayer.CUTOUT);
     }
 
     private void registerColorProviderBlock() {

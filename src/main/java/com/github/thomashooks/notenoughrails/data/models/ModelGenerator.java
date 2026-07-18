@@ -107,6 +107,7 @@ public class ModelGenerator extends FabricModelProvider {
         fluxstoneSmoothPool.stairs(AllBlocks.FLUXSTONE_SMOOTH_STAIRS);
         modelGenerator.registerAxisRotated(AllBlocks.IRON_PLATE_BLOCK, TexturedModel.CUBE_COLUMN);
         modelGenerator.registerSimpleCubeAll(AllBlocks.LINEN_BLOCK);
+        registerActiveFlatRail(AllBlocks.LOCKING_RAIL, modelGenerator);
         modelGenerator.registerSimpleCubeAll(AllBlocks.VERMILION_BLOCK);
         modelGenerator.registerSimpleCubeAll(AllBlocks.WOODEN_FRAME);
     }
@@ -157,7 +158,7 @@ public class ModelGenerator extends FabricModelProvider {
                         case ASCENDING_WEST -> railRaisedSW.apply(BlockStateModelGenerator.ROTATE_Y_90);
                         case ASCENDING_NORTH -> railRaisedNE;
                         case ASCENDING_SOUTH -> railRaisedSW;
-                        default -> throw new UnsupportedOperationException("Fix you generator!");
+                        default -> throw new UnsupportedOperationException("Fix your generator!");
                     };
                 }))
         );
@@ -171,7 +172,22 @@ public class ModelGenerator extends FabricModelProvider {
                     return switch (shape) {
                         case NORTH_SOUTH -> railFlat;
                         case EAST_WEST -> railFlat.apply(BlockStateModelGenerator.ROTATE_Y_90);
-                        default -> throw new UnsupportedOperationException("Fix you generator!");
+                        default -> throw new UnsupportedOperationException("Fix your generator!");
+                    };
+                }))
+        );
+    }
+
+    public final void registerActiveFlatRail(@NotNull Block rail, @NotNull BlockStateModelGenerator modelGenerator) {
+        WeightedVariant railFlat = BlockStateModelGenerator.createWeightedVariant(modelGenerator.createSubModel(rail, "", Models.RAIL_FLAT, TextureMap::rail));
+        WeightedVariant railFlatOn = BlockStateModelGenerator.createWeightedVariant(modelGenerator.createSubModel(rail, "_on", Models.RAIL_FLAT, TextureMap::rail));
+        modelGenerator.registerItemModel(rail);
+        modelGenerator.blockStateCollector.accept(VariantsBlockModelDefinitionCreator.of(rail)
+                .with(BlockStateVariantMap.models(Properties.POWERED, AllProperties.FLAT_RAIL_SHAPE).generate((powered, shape) -> {
+                    return switch (shape) {
+                        case NORTH_SOUTH -> powered ? railFlatOn : railFlat;
+                        case EAST_WEST -> powered ? railFlatOn.apply(BlockStateModelGenerator.ROTATE_Y_90) : railFlat.apply(BlockStateModelGenerator.ROTATE_Y_90);
+                        default -> throw new UnsupportedOperationException("Fix your generator!");
                     };
                 }))
         );
@@ -192,7 +208,7 @@ public class ModelGenerator extends FabricModelProvider {
                                 case ASCENDING_NORTH, ASCENDING_EAST -> powered ? railRaisedNEOn : railRaisedNE;
                                 case ASCENDING_SOUTH, ASCENDING_WEST -> powered ? railRaisedSWOn : railRaisedSW;
                                 case NORTH_SOUTH, EAST_WEST -> powered ? railFlatOn : railFlat;
-                                default -> throw new UnsupportedOperationException("Fix you generator!");
+                                default -> throw new UnsupportedOperationException("Fix your generator!");
                             };
 
                             if ((facing == Direction.SOUTH && shape == RailShape.ASCENDING_SOUTH) || (facing == Direction.WEST && shape == RailShape.ASCENDING_WEST))
@@ -205,7 +221,7 @@ public class ModelGenerator extends FabricModelProvider {
                                 case SOUTH -> variant.apply(BlockStateModelGenerator.ROTATE_Y_180);
                                 case WEST -> variant.apply(BlockStateModelGenerator.ROTATE_Y_270);
                                 case EAST -> variant.apply(BlockStateModelGenerator.ROTATE_Y_90);
-                                default -> throw new UnsupportedOperationException("Fix you generator!");
+                                default -> throw new UnsupportedOperationException("Fix your generator!");
                             };
                         }))
         );

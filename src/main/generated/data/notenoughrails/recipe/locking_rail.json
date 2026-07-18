@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:locking_rail",
+  "key": {
+    "b": "notenoughrails:booster_rod",
+    "i": "notenoughrails:iron_rod",
+    "p": "minecraft:piston",
+    "t": "notenoughrails:railroad_tie"
+  },
+  "pattern": [
+    "iti",
+    "bpb",
+    "iti"
+  ],
+  "result": {
+    "count": 8,
+    "id": "notenoughrails:locking_rail"
+  }
+}

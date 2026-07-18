@@ -35,7 +35,7 @@ import java.util.function.Function;
 public class AllItems {
     public static final Item BOOSTER_ROD = registerItem("booster_rod", Item::new);
     public static final Item BOOSTER_ROD_COPPER = registerItem("booster_rod_copper", Item::new);
-    public static final Item BOOSTER_ROD_STEEL = registerItem("booster_rod_steel", Item::new);
+    public static final Item BOOSTER_ROD_STEEL = registerItem("booster_rod_steel", settings -> new Item(settings.fireproof()));
     public static final Item COKE = registerItem("coke", Item::new);
     public static final Item COPPER_PLATE = registerItem("copper_plate", Item::new);
     public static final Item COPPER_ROD = registerItem("copper_rod", Item::new);
@@ -62,10 +62,10 @@ public class AllItems {
             ));
     public static final Item RAILROAD_TIE = registerItem("railroad_tie", Item::new);
     public static final Item RAW_STEEL = registerItem("raw_steel", Item::new);
-    public static final Item STEEL_INGOT = registerItem("steel_ingot", Item::new);
-    public static final Item STEEL_NUGGET = registerItem("steel_nugget", Item::new);
-    public static final Item STEEL_PLATE = registerItem("steel_plate", Item::new);
-    public static final Item STEEL_ROD = registerItem("steel_rod", Item::new);
+    public static final Item STEEL_INGOT = registerItem("steel_ingot", settings -> new Item(settings.fireproof()));
+    public static final Item STEEL_NUGGET = registerItem("steel_nugget", settings -> new Item(settings.fireproof()));
+    public static final Item STEEL_PLATE = registerItem("steel_plate", settings -> new Item(settings.fireproof()));
+    public static final Item STEEL_ROD = registerItem("steel_rod", settings -> new Item(settings.fireproof()));
     public static final Item VERMILION_INGOT = registerItem("vermilion_ingot", Item::new);
     public static final Item VERMILION_ROD = registerItem("vermilion_rod", Item::new);
 
