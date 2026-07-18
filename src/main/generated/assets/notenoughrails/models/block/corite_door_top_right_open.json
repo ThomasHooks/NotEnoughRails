@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_top_right_open",
-  "textures": {
-    "bottom": "notenoughrails:block/corite_door_bottom",
-    "top": "notenoughrails:block/corite_door_top"
-  }
-}

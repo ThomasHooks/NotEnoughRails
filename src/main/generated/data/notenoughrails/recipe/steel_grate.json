@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "notenoughrails:steel_grate",
+  "key": {
+    "c": "notenoughrails:steel_block"
+  },
+  "pattern": [
+    " c ",
+    "c c",
+    " c "
+  ],
+  "result": {
+    "count": 4,
+    "id": "notenoughrails:steel_grate"
+  }
+}

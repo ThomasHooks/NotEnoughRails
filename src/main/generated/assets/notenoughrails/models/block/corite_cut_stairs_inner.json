@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "notenoughrails:block/corite_cut_block",
-    "side": "notenoughrails:block/corite_cut_block",
-    "top": "notenoughrails:block/corite_cut_block"
-  }
-}

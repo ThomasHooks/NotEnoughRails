@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "notenoughrails:steel_cut_block",
+  "result": {
+    "count": 2,
+    "id": "notenoughrails:steel_cut_slab"
+  }
+}

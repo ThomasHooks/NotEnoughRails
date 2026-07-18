@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "shape=east_west": {
+      "model": "notenoughrails:block/steel_buffer_stop_rail",
+      "y": 90
+    },
+    "shape=north_south": {
+      "model": "notenoughrails:block/steel_buffer_stop_rail"
+    }
+  }
+}

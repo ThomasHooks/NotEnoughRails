@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_corite_block": {
+    "has_steel_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "notenoughrails:corite_block"
+            "items": "notenoughrails:steel_ingot"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_corite_block"
+      "has_steel_ingot"
     ]
   ],
   "rewards": {

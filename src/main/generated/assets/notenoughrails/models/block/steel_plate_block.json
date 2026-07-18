@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "notenoughrails:block/steel_plate_block_top",
+    "side": "notenoughrails:block/steel_plate_block_side"
+  }
+}

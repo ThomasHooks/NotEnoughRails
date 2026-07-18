@@ -58,15 +58,15 @@ public class AllItemGroups {
 
         //Metal Blocks
         //Order: full block -> chiseled -> grate -> cut -> stairs -> slab -> bars -> door -> trapdoor -> pressure plate
-        entries.add(AllBlocks.CORITE_BLOCK);
-        entries.add(AllBlocks.CORITE_PLATE_BLOCK);
-        entries.add(AllBlocks.CORITE_CHISELED_BLOCK);
-        entries.add(AllBlocks.CORITE_GRATE);
-        entries.add(AllBlocks.CORITE_CUT_BLOCK);
-        entries.add(AllBlocks.CORITE_CUT_STAIRS);
-        entries.add(AllBlocks.CORITE_CUT_SLAB);
-        entries.add(AllBlocks.CORITE_DOOR);
-        entries.add(AllBlocks.CORITE_TRAPDOOR);
+        entries.add(AllBlocks.STEEL_BLOCK);
+        entries.add(AllBlocks.STEEL_PLATE_BLOCK);
+        entries.add(AllBlocks.STEEL_CHISELED_BLOCK);
+        entries.add(AllBlocks.STEEL_GRATE);
+        entries.add(AllBlocks.STEEL_CUT_BLOCK);
+        entries.add(AllBlocks.STEEL_CUT_STAIRS);
+        entries.add(AllBlocks.STEEL_CUT_SLAB);
+        entries.add(AllBlocks.STEEL_DOOR);
+        entries.add(AllBlocks.STEEL_TRAPDOOR);
         entries.add(AllBlocks.IRON_PLATE_BLOCK);
         entries.add(AllBlocks.VERMILION_BLOCK);
 
@@ -173,13 +173,13 @@ public class AllItemGroups {
         entries.add(AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED);
         //endregion
 
-        //region Corite Rail
-        entries.add(AllBlocks.CORITE_RAIL);
-        entries.add(AllBlocks.CORITE_CROSSOVER_RAIL);
-        entries.add(AllBlocks.CORITE_BUFFER_STOP_RAIL);
-        entries.add(AllBlocks.CORITE_POWERED_RAIL);
-        entries.add(AllBlocks.CORITE_DETECTOR_RAIL);
-        entries.add(AllBlocks.CORITE_ACTIVATOR_RAIL);
+        //region Steel Rail
+        entries.add(AllBlocks.STEEL_RAIL);
+        entries.add(AllBlocks.STEEL_CROSSOVER_RAIL);
+        entries.add(AllBlocks.STEEL_BUFFER_STOP_RAIL);
+        entries.add(AllBlocks.STEEL_POWERED_RAIL);
+        entries.add(AllBlocks.STEEL_DETECTOR_RAIL);
+        entries.add(AllBlocks.STEEL_ACTIVATOR_RAIL);
         //endregion
         //endregion
 
@@ -199,13 +199,16 @@ public class AllItemGroups {
         entries.add(AllItems.KAOLIN);
 
         //Raw Ore
+        entries.add(AllItems.RAW_STEEL);
 
-        //Raw Crushed Ore
+        //Crushed Ore
         entries.add(AllItems.CRUSHED_COPPER_ORE);
         entries.add(AllItems.CRUSHED_IRON_ORE);
-        entries.add(AllItems.RAW_STEEL);
         entries.add(AllItems.CRUSHED_GOLD_ORE);
         entries.add(AllItems.CRUSHED_VERMILION);
+
+        //Metal Nuggets
+        entries.add(AllItems.STEEL_NUGGET);
 
         //Metal Ingots
         entries.add(AllItems.STEEL_INGOT);

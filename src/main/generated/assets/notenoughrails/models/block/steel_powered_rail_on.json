@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/rail_flat",
+  "textures": {
+    "rail": "notenoughrails:block/steel_powered_rail_on"
+  }
+}

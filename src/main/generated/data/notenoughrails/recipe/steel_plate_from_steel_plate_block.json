@@ -3,7 +3,7 @@
   "category": "misc",
   "group": "notenoughrails:steel_plate",
   "ingredients": [
-    "notenoughrails:corite_plate_block"
+    "notenoughrails:steel_plate_block"
   ],
   "result": {
     "count": 4,

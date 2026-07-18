@@ -63,6 +63,7 @@ public class AllItems {
     public static final Item RAILROAD_TIE = registerItem("railroad_tie", Item::new);
     public static final Item RAW_STEEL = registerItem("raw_steel", Item::new);
     public static final Item STEEL_INGOT = registerItem("steel_ingot", Item::new);
+    public static final Item STEEL_NUGGET = registerItem("steel_nugget", Item::new);
     public static final Item STEEL_PLATE = registerItem("steel_plate", Item::new);
     public static final Item STEEL_ROD = registerItem("steel_rod", Item::new);
     public static final Item VERMILION_INGOT = registerItem("vermilion_ingot", Item::new);
@@ -80,13 +81,16 @@ public class AllItems {
             entries.addAfter(AllItems.FLUX, AllItems.KAOLIN);
 
             //Raw Ore
+            entries.addAfter(Items.RAW_IRON, AllItems.RAW_STEEL);
 
             //Raw Crushed Ore
             entries.addAfter(Items.RAW_GOLD, AllItems.CRUSHED_COPPER_ORE);
             entries.addAfter(AllItems.CRUSHED_COPPER_ORE, AllItems.CRUSHED_IRON_ORE);
-            entries.addAfter(AllItems.CRUSHED_IRON_ORE, AllItems.RAW_STEEL);
-            entries.addAfter(AllItems.RAW_STEEL, AllItems.CRUSHED_GOLD_ORE);
+            entries.addAfter(AllItems.CRUSHED_IRON_ORE, AllItems.CRUSHED_GOLD_ORE);
             entries.addAfter(AllItems.CRUSHED_GOLD_ORE, AllItems.CRUSHED_VERMILION);
+
+            //Nuggets
+            entries.addAfter(Items.IRON_NUGGET, AllItems.STEEL_NUGGET);
 
             //Metal Ingots
             entries.addAfter(Items.IRON_INGOT, AllItems.STEEL_INGOT);

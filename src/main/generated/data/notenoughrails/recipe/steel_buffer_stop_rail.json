@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:steel_buffer_stop_rail",
+  "key": {
+    "i": "notenoughrails:steel_rod",
+    "t": "notenoughrails:railroad_tie",
+    "x": "minecraft:iron_block"
+  },
+  "pattern": [
+    "iti",
+    "ixi",
+    "iti"
+  ],
+  "result": {
+    "count": 8,
+    "id": "notenoughrails:steel_buffer_stop_rail"
+  }
+}
