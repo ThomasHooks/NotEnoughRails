@@ -18,6 +18,8 @@ package com.github.thomashooks.notenoughrails.data.recipes;
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
 import com.github.thomashooks.notenoughrails.item.AllItems;
+import com.github.thomashooks.notenoughrails.util.AllBlockTags;
+import com.github.thomashooks.notenoughrails.util.AllItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
@@ -682,6 +684,111 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern("rrr")
                         .group(NotEnoughRails.MOD_ID + ":waxed_copper_rail_oxidized")
                         .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                        .offerTo(exporter);
+
+                //Linen Blocks
+                createShaped(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK, 1)
+                        .input('#', AllItems.LINEN)
+                        .pattern("##")
+                        .pattern("##")
+                        .group(NotEnoughRails.MOD_ID + ":linen_block")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK_WHITE, 1)
+                        .input(Items.WHITE_DYE, 1)
+                        .input(AllItemTags.LINEN_BLOCKS)
+                        .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK_LIGHT_GRAY, 1)
+                        .input(Items.LIGHT_GRAY_DYE, 1)
+                        .input(AllItemTags.LINEN_BLOCKS)
+                        .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK_GRAY, 1)
+                        .input(Items.GRAY_DYE, 1)
+                        .input(AllItemTags.LINEN_BLOCKS)
+                        .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK_BLACK, 1)
+                        .input(Items.BLACK_DYE, 1)
+                        .input(AllItemTags.LINEN_BLOCKS)
+                        .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK_BROWN, 1)
+                        .input(Items.BROWN_DYE, 1)
+                        .input(AllItemTags.LINEN_BLOCKS)
+                        .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK_RED, 1)
+                        .input(Items.RED_DYE, 1)
+                        .input(AllItemTags.LINEN_BLOCKS)
+                        .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK_ORANGE, 1)
+                        .input(Items.ORANGE_DYE, 1)
+                        .input(AllItemTags.LINEN_BLOCKS)
+                        .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK_YELLOW, 1)
+                        .input(Items.YELLOW_DYE, 1)
+                        .input(AllItemTags.LINEN_BLOCKS)
+                        .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK_LIME, 1)
+                        .input(Items.LIME_DYE, 1)
+                        .input(AllItemTags.LINEN_BLOCKS)
+                        .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK_GREEN, 1)
+                        .input(Items.GREEN_DYE, 1)
+                        .input(AllItemTags.LINEN_BLOCKS)
+                        .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK_CYAN, 1)
+                        .input(Items.CYAN_DYE, 1)
+                        .input(AllItemTags.LINEN_BLOCKS)
+                        .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK_LIGHT_BLUE, 1)
+                        .input(Items.LIGHT_BLUE_DYE, 1)
+                        .input(AllItemTags.LINEN_BLOCKS)
+                        .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK_BLUE, 1)
+                        .input(Items.BLUE_DYE, 1)
+                        .input(AllItemTags.LINEN_BLOCKS)
+                        .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK_PURPLE, 1)
+                        .input(Items.PURPLE_DYE, 1)
+                        .input(AllItemTags.LINEN_BLOCKS)
+                        .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK_MAGENTA, 1)
+                        .input(Items.MAGENTA_DYE, 1)
+                        .input(AllItemTags.LINEN_BLOCKS)
+                        .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK_PINK, 1)
+                        .input(Items.PINK_DYE, 1)
+                        .input(AllItemTags.LINEN_BLOCKS)
+                        .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
+                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
                         .offerTo(exporter);
 
                 //Steel Crossover Rail

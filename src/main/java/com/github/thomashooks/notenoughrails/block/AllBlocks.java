@@ -98,31 +98,79 @@ public class AllBlocks {
                     .mapColor(MapColor.IRON_GRAY)
                     .requiresTool()
             ));
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    //region Linen Blocks
     public static final Block LINEN_BLOCK = registerBlock("linen_block",
-            settings -> new LinenBlock(settings
-                    .strength(0.8F, 2.0F)
-                    .sounds(BlockSoundGroup.WOOL)
-                    .instrument(NoteBlockInstrument.FLUTE)
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
+                    .mapColor(MapColor.OFF_WHITE)
+            ));
+    public static final Block LINEN_BLOCK_BLACK = registerBlock("linen_block_black",
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
+                    .mapColor(MapColor.BLACK)
+            ));
+    public static final Block LINEN_BLOCK_BLUE = registerBlock("linen_block_blue",
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
+                    .mapColor(MapColor.BLUE)
+            ));
+    public static final Block LINEN_BLOCK_BROWN = registerBlock("linen_block_brown",
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
+                    .mapColor(MapColor.BROWN)
+            ));
+    public static final Block LINEN_BLOCK_CYAN = registerBlock("linen_block_cyan",
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
+                    .mapColor(MapColor.CYAN)
+            ));
+    public static final Block LINEN_BLOCK_GRAY = registerBlock("linen_block_gray",
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
+                    .mapColor(MapColor.GRAY)
+            ));
+    public static final Block LINEN_BLOCK_GREEN = registerBlock("linen_block_green",
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
+                    .mapColor(MapColor.GREEN)
+            ));
+    public static final Block LINEN_BLOCK_LIGHT_BLUE = registerBlock("linen_block_light_blue",
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
+                    .mapColor(MapColor.LIGHT_BLUE)
+            ));
+    public static final Block LINEN_BLOCK_LIGHT_GRAY = registerBlock("linen_block_light_gray",
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
+                    .mapColor(MapColor.LIGHT_GRAY)
+            ));
+    public static final Block LINEN_BLOCK_LIME = registerBlock("linen_block_lime",
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
+                    .mapColor(MapColor.LIME)
+            ));
+    public static final Block LINEN_BLOCK_MAGENTA = registerBlock("linen_block_magenta",
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
+                    .mapColor(MapColor.MAGENTA)
+            ));
+    public static final Block LINEN_BLOCK_ORANGE = registerBlock("linen_block_orange",
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
+                    .mapColor(MapColor.ORANGE)
+            ));
+    public static final Block LINEN_BLOCK_PINK = registerBlock("linen_block_pink",
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
+                    .mapColor(MapColor.PINK)
+            ));
+    public static final Block LINEN_BLOCK_PURPLE = registerBlock("linen_block_purple",
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
+                    .mapColor(MapColor.PURPLE)
+            ));
+    public static final Block LINEN_BLOCK_RED = registerBlock("linen_block_red",
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
+                    .mapColor(MapColor.RED)
+            ));
+    public static final Block LINEN_BLOCK_WHITE = registerBlock("linen_block_white",
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
                     .mapColor(MapColor.WHITE)
-                    .burnable()
             ));
-    public static final Block VERMILION_BLOCK = registerBlock("vermilion_block",
-            settings -> new RedstoneBlock(settings
-                    .strength(5.0F, 6.0F)
-                    .sounds(BlockSoundGroup.METAL)
-                    .mapColor(MapColor.BRIGHT_RED)
-                    .requiresTool()
-                    .luminance(state -> 7)
-                    .solidBlock(Blocks::never)
+    public static final Block LINEN_BLOCK_YELLOW = registerBlock("linen_block_yellow",
+            settings -> new LinenBlock(getDefaultLinenBlockSettings(settings)
+                    .mapColor(MapColor.YELLOW)
             ));
-    public static final Block WOODEN_FRAME = registerBlock("wooden_frame",
-            settings -> new Block(settings
-                    .strength(2.0F, 3.0F)
-                    .sounds(BlockSoundGroup.WOOD)
-                    .instrument(NoteBlockInstrument.BASS)
-                    .mapColor(MapColor.OAK_TAN)
-                    .burnable()
-            ));
+    //endregion
 
     //------------------------------------------------------------------------------------------------------------------
 
@@ -205,6 +253,26 @@ public class AllBlocks {
                     .allowsSpawning(Blocks::never)
             ));
     //endregion
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    public static final Block VERMILION_BLOCK = registerBlock("vermilion_block",
+            settings -> new RedstoneBlock(settings
+                    .strength(5.0F, 6.0F)
+                    .sounds(BlockSoundGroup.METAL)
+                    .mapColor(MapColor.BRIGHT_RED)
+                    .requiresTool()
+                    .luminance(state -> 7)
+                    .solidBlock(Blocks::never)
+            ));
+    public static final Block WOODEN_FRAME = registerBlock("wooden_frame",
+            settings -> new Block(settings
+                    .strength(2.0F, 3.0F)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .mapColor(MapColor.OAK_TAN)
+                    .burnable()
+            ));
 
     //------------------------------------------------------------------------------------------------------------------
 
@@ -634,6 +702,22 @@ public class AllBlocks {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register(entries -> {
             //Cloth Blocks
             entries.add(AllBlocks.LINEN_BLOCK);
+            entries.add(AllBlocks.LINEN_BLOCK_WHITE);
+            entries.add(AllBlocks.LINEN_BLOCK_LIGHT_GRAY);
+            entries.add(AllBlocks.LINEN_BLOCK_GRAY);
+            entries.add(AllBlocks.LINEN_BLOCK_BLACK);
+            entries.add(AllBlocks.LINEN_BLOCK_BROWN);
+            entries.add(AllBlocks.LINEN_BLOCK_RED);
+            entries.add(AllBlocks.LINEN_BLOCK_ORANGE);
+            entries.add(AllBlocks.LINEN_BLOCK_YELLOW);
+            entries.add(AllBlocks.LINEN_BLOCK_LIME);
+            entries.add(AllBlocks.LINEN_BLOCK_GREEN);
+            entries.add(AllBlocks.LINEN_BLOCK_CYAN);
+            entries.add(AllBlocks.LINEN_BLOCK_LIGHT_BLUE);
+            entries.add(AllBlocks.LINEN_BLOCK_BLUE);
+            entries.add(AllBlocks.LINEN_BLOCK_PURPLE);
+            entries.add(AllBlocks.LINEN_BLOCK_MAGENTA);
+            entries.add(AllBlocks.LINEN_BLOCK_PINK);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
             //Order: standard -> crossover -> buffer stop -> powered -> braking -> check -> detector -> chime -> activator -> locking
@@ -781,4 +865,10 @@ public class AllBlocks {
     }
     //endregion
 
+    private static AbstractBlock.Settings getDefaultLinenBlockSettings(AbstractBlock.Settings settings) {
+        return settings.strength(0.8F, 2.0F)
+                .sounds(BlockSoundGroup.WOOL)
+                .instrument(NoteBlockInstrument.FLUTE)
+                .burnable();
+    }
 }

@@ -22,8 +22,8 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
 public class AllBlockTags {
-    public static final TagKey<Block> COPPPER_POWERED_RAILS = create("copper_powered_rails");
-    public static final TagKey<Block> COPPPER_ACTIVATOR_RAILS = create("copper_activator_rails");
+    public static final TagKey<Block> COPPER_POWERED_RAILS = create("copper_powered_rails");
+    public static final TagKey<Block> COPPER_ACTIVATOR_RAILS = create("copper_activator_rails");
 
     public static TagKey<Block> create(String name) {
         return TagKey.of(RegistryKeys.BLOCK, Identifier.of(NotEnoughRails.MOD_ID, name));

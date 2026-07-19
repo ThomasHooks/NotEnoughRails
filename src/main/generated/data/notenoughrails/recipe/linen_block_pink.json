@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "notenoughrails:linen_block_dyed",
+  "ingredients": [
+    "minecraft:pink_dye",
+    "#notenoughrails:linen_blocks"
+  ],
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:linen_block_pink"
+  }
+}

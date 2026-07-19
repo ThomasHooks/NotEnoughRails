@@ -261,7 +261,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.STEEL_RAIL)
         ;
 
-        valueLookupBuilder(AllBlockTags.COPPPER_POWERED_RAILS)
+        valueLookupBuilder(AllBlockTags.COPPER_POWERED_RAILS)
                 .add(AllBlocks.COPPER_POWERED_RAIL)
                 .add(AllBlocks.COPPER_POWERED_RAIL_EXPOSED)
                 .add(AllBlocks.COPPER_POWERED_RAIL_WEATHERED)
@@ -272,7 +272,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED)
         ;
 
-        valueLookupBuilder(AllBlockTags.COPPPER_ACTIVATOR_RAILS)
+        valueLookupBuilder(AllBlockTags.COPPER_ACTIVATOR_RAILS)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED)

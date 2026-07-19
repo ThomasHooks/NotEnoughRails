@@ -73,6 +73,22 @@ public class AllItemGroups {
 
         //Cloth Blocks
         entries.add(AllBlocks.LINEN_BLOCK);
+        entries.add(AllBlocks.LINEN_BLOCK_WHITE);
+        entries.add(AllBlocks.LINEN_BLOCK_LIGHT_GRAY);
+        entries.add(AllBlocks.LINEN_BLOCK_GRAY);
+        entries.add(AllBlocks.LINEN_BLOCK_BLACK);
+        entries.add(AllBlocks.LINEN_BLOCK_BROWN);
+        entries.add(AllBlocks.LINEN_BLOCK_RED);
+        entries.add(AllBlocks.LINEN_BLOCK_ORANGE);
+        entries.add(AllBlocks.LINEN_BLOCK_YELLOW);
+        entries.add(AllBlocks.LINEN_BLOCK_LIME);
+        entries.add(AllBlocks.LINEN_BLOCK_GREEN);
+        entries.add(AllBlocks.LINEN_BLOCK_CYAN);
+        entries.add(AllBlocks.LINEN_BLOCK_LIGHT_BLUE);
+        entries.add(AllBlocks.LINEN_BLOCK_BLUE);
+        entries.add(AllBlocks.LINEN_BLOCK_PURPLE);
+        entries.add(AllBlocks.LINEN_BLOCK_MAGENTA);
+        entries.add(AllBlocks.LINEN_BLOCK_PINK);
 
         //Storage Blocks
 
