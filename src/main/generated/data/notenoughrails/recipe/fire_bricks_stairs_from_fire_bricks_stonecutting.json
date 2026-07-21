@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "notenoughrails:fire_bricks",
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:fire_bricks_stairs"
+  }
+}

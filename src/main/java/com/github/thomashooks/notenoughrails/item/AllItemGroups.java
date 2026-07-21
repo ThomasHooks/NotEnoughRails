@@ -53,6 +53,10 @@ public class AllItemGroups {
         entries.add(AllBlocks.FLUXSTONE_SMOOTH);
         entries.add(AllBlocks.FLUXSTONE_SMOOTH_STAIRS);
         entries.add(AllBlocks.FLUXSTONE_SMOOTH_SLAB);
+        entries.add(AllBlocks.FIRE_BRICKS);
+        entries.add(AllBlocks.FIRE_BRICKS_STAIRS);
+        entries.add(AllBlocks.FIRE_BRICKS_SLAB);
+        entries.add(AllBlocks.FIRE_BRICKS_WALL);
 
         //Fuel Blocks
         entries.add(AllBlocks.COKE_BLOCK);

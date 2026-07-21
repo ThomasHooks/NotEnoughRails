@@ -103,6 +103,10 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(AllBlocks.COPPER_RAIL_WEATHERED_WAXED);
         addDrop(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED);
         addDrop(AllBlocks.CROSSOVER_RAIL);
+        addDrop(AllBlocks.FIRE_BRICKS);
+        addDrop(AllBlocks.FIRE_BRICKS_SLAB, slabDrops(AllBlocks.FIRE_BRICKS_SLAB));
+        addDrop(AllBlocks.FIRE_BRICKS_STAIRS);
+        addDrop(AllBlocks.FIRE_BRICKS_WALL);
         BlockStatePropertyLootCondition.Builder flaxCropBuilder = BlockStatePropertyLootCondition.builder(AllBlocks.FLAX_CROP)
                 .properties(StatePredicate.Builder.create().exactMatch(FlaxCropBlock.AGE, FlaxCropBlock.MAX_AGE));
         this.addDrop(AllBlocks.FLAX_CROP, this.cropDrops(AllBlocks.FLAX_CROP, AllItems.FLAX, AllItems.FLAXSEEDS, flaxCropBuilder));

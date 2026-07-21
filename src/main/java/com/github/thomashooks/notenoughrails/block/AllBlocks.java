@@ -41,6 +41,26 @@ public class AllBlocks {
                     .mapColor(MapColor.GRAY)
                     .requiresTool()
             ));
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    //region Fire Bricks Blocks
+    public static final Block FIRE_BRICKS = registerBlock("fire_bricks",
+            settings -> new Block(getDefaultFireBricksSettings(settings)
+            ));
+    public static final Block FIRE_BRICKS_SLAB = registerBlock("fire_bricks_slab",
+            settings -> new SlabBlock(getDefaultFireBricksSettings(settings)
+            ));
+    public static final Block FIRE_BRICKS_STAIRS = registerBlock("fire_bricks_stairs",
+            settings -> new StairsBlock(AllBlocks.FIRE_BRICKS.getDefaultState(), getDefaultFireBricksSettings(settings)
+            ));
+    public static final Block FIRE_BRICKS_WALL = registerBlock("fire_bricks_wall",
+            settings -> new WallBlock(getDefaultFireBricksSettings(settings)
+            ));
+    //endregion
+
+    //------------------------------------------------------------------------------------------------------------------
+
     public static final Block FLAX_CROP = registerBlockWithoutItem("flax_crop",
             settings -> new FlaxCropBlock(settings
                     .mapColor(state -> state.get(FlaxCropBlock.AGE) >= 6 ? MapColor.CYAN : MapColor.DARK_GREEN)
@@ -50,46 +70,29 @@ public class AllBlocks {
                     .sounds(BlockSoundGroup.CROP)
                     .pistonBehavior(PistonBehavior.DESTROY)
             ));
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    //region Fluxstone Blocks
     public static final Block FLUXSTONE = registerBlock("fluxstone",
-            settings -> new PillarBlock(settings
-                    .strength(1.5F, 5.0F)
-                    .sounds(BlockSoundGroup.DEEPSLATE)
-                    .instrument(NoteBlockInstrument.BASEDRUM)
-                    .mapColor(MapColor.TERRACOTTA_LIGHT_BLUE)
-                    .requiresTool()
+            settings -> new PillarBlock(getDefaultFluxstoneSettings(settings)
             ));
     public static final Block FLUXSTONE_POLISHED = registerBlock("fluxstone_polished",
-            settings -> new PillarBlock(settings
-                    .strength(1.5F, 5.0F)
-                    .sounds(BlockSoundGroup.DEEPSLATE)
-                    .instrument(NoteBlockInstrument.BASEDRUM)
-                    .mapColor(MapColor.TERRACOTTA_LIGHT_BLUE)
-                    .requiresTool()
+            settings -> new PillarBlock(getDefaultFluxstoneSettings(settings)
             ));
     public static final Block FLUXSTONE_SMOOTH = registerBlock("fluxstone_smooth",
-            settings -> new Block(settings
-                    .strength(1.5F, 5.0F)
-                    .sounds(BlockSoundGroup.DEEPSLATE)
-                    .instrument(NoteBlockInstrument.BASEDRUM)
-                    .mapColor(MapColor.TERRACOTTA_LIGHT_BLUE)
-                    .requiresTool()
+            settings -> new Block(getDefaultFluxstoneSettings(settings)
             ));
     public static final Block FLUXSTONE_SMOOTH_SLAB = registerBlock("fluxstone_smooth_slab",
-            settings -> new SlabBlock(settings
-                    .strength(1.5F, 5.0F)
-                    .sounds(BlockSoundGroup.DEEPSLATE)
-                    .instrument(NoteBlockInstrument.BASEDRUM)
-                    .mapColor(MapColor.TERRACOTTA_LIGHT_BLUE)
-                    .requiresTool()
+            settings -> new SlabBlock(getDefaultFluxstoneSettings(settings)
             ));
     public static final Block FLUXSTONE_SMOOTH_STAIRS = registerBlock("fluxstone_smooth_stairs",
-            settings -> new StairsBlock(AllBlocks.FLUXSTONE_SMOOTH.getDefaultState(), settings
-                    .strength(1.5F, 5.0F)
-                    .sounds(BlockSoundGroup.DEEPSLATE)
-                    .instrument(NoteBlockInstrument.BASEDRUM)
-                    .mapColor(MapColor.TERRACOTTA_LIGHT_BLUE)
-                    .requiresTool()
+            settings -> new StairsBlock(AllBlocks.FLUXSTONE_SMOOTH.getDefaultState(), getDefaultFluxstoneSettings(settings)
             ));
+    //endregion
+
+    //------------------------------------------------------------------------------------------------------------------
+
     public static final Block IRON_PLATE_BLOCK = registerBlock("iron_plate_block",
             settings -> new PillarBlock(settings
                     .strength(5.0F, 6.0F)
@@ -626,7 +629,7 @@ public class AllBlocks {
 
     //region Steel Rails
     public static final Block STEEL_ACTIVATOR_RAIL = registerBlock("steel_activator_rail",
-            settings -> new AdjustableActivatorRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.CORITE_MAX_SPEED, settings
+            settings -> new AdjustableActivatorRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.STEEL_MAX_SPEED, settings
                     .strength(1.05F)
                     .sounds(BlockSoundGroup.NETHERITE)
                     .noCollision()
@@ -639,25 +642,25 @@ public class AllBlocks {
                     .solidBlock(Blocks::always)
             ));
     public static final Block STEEL_CROSSOVER_RAIL = registerBlock("steel_crossover_rail",
-            settings -> new CrossoverRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.CORITE_MAX_SPEED, settings
+            settings -> new CrossoverRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.STEEL_MAX_SPEED, settings
                     .strength(1.05F)
                     .sounds(BlockSoundGroup.NETHERITE)
                     .noCollision()
             ));
     public static final Block STEEL_DETECTOR_RAIL = registerBlock("steel_detector_rail",
-            settings -> new AdjustableDetectorRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.CORITE_MAX_SPEED, settings
+            settings -> new AdjustableDetectorRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.STEEL_MAX_SPEED, settings
                     .strength(1.05F)
                     .sounds(BlockSoundGroup.NETHERITE)
                     .noCollision()
             ));
     public static final Block STEEL_POWERED_RAIL = registerBlock("steel_powered_rail",
-            settings -> new AdjustablePoweredRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.CORITE_MAX_SPEED, settings
+            settings -> new AdjustablePoweredRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.STEEL_MAX_SPEED, settings
                     .strength(1.05F)
                     .sounds(BlockSoundGroup.NETHERITE)
                     .noCollision()
             ));
     public static final Block STEEL_RAIL = registerBlock("steel_rail",
-            settings -> new AdjustableRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.CORITE_MAX_SPEED, settings
+            settings -> new AdjustableRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.STEEL_MAX_SPEED, settings
                     .strength(1.05F)
                     .sounds(BlockSoundGroup.NETHERITE)
                     .noCollision()
@@ -681,6 +684,10 @@ public class AllBlocks {
             entries.add(AllBlocks.FLUXSTONE_SMOOTH);
             entries.add(AllBlocks.FLUXSTONE_SMOOTH_STAIRS);
             entries.add(AllBlocks.FLUXSTONE_SMOOTH_SLAB);
+            entries.add(AllBlocks.FIRE_BRICKS);
+            entries.add(AllBlocks.FIRE_BRICKS_STAIRS);
+            entries.add(AllBlocks.FIRE_BRICKS_SLAB);
+            entries.add(AllBlocks.FIRE_BRICKS_WALL);
 
             //Fuel Blocks
             entries.add(AllBlocks.COKE_BLOCK);
@@ -865,10 +872,30 @@ public class AllBlocks {
     }
     //endregion
 
+    //region Default Block Settings Methods
+    private static AbstractBlock.Settings getDefaultFireBricksSettings(AbstractBlock.Settings settings) {
+        return settings
+                .strength(2.0F, 6.0F)
+                .instrument(NoteBlockInstrument.BASEDRUM)
+                .mapColor(MapColor.TERRACOTTA_BROWN)
+                .requiresTool();
+    }
+
+    private static AbstractBlock.Settings getDefaultFluxstoneSettings(AbstractBlock.Settings settings) {
+        return settings
+                .strength(1.5F, 5.0F)
+                .sounds(BlockSoundGroup.DEEPSLATE)
+                .instrument(NoteBlockInstrument.BASEDRUM)
+                .mapColor(MapColor.TERRACOTTA_LIGHT_BLUE)
+                .requiresTool();
+    }
+
     private static AbstractBlock.Settings getDefaultLinenBlockSettings(AbstractBlock.Settings settings) {
-        return settings.strength(0.8F, 2.0F)
+        return settings
+                .strength(0.8F, 2.0F)
                 .sounds(BlockSoundGroup.WOOL)
                 .instrument(NoteBlockInstrument.FLUTE)
                 .burnable();
     }
+    //endregion
 }

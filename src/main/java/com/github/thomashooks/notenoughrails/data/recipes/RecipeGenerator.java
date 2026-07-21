@@ -18,7 +18,6 @@ package com.github.thomashooks.notenoughrails.data.recipes;
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
 import com.github.thomashooks.notenoughrails.item.AllItems;
-import com.github.thomashooks.notenoughrails.util.AllBlockTags;
 import com.github.thomashooks.notenoughrails.util.AllItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -181,7 +180,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 createShapeless(RecipeCategory.MISC, AllItems.KAOLIN, 1)
                         .input(Items.CLAY_BALL, 1)
                         .input(AllItems.FLUX, 1)
-                        .input(Blocks.NETHERRACK, 1)
+                        .input(Blocks.SOUL_SAND, 1)
                         .group(NotEnoughRails.MOD_ID + ":kaolin")
                         .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
                         .offerTo(exporter);
@@ -896,6 +895,42 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .group(NotEnoughRails.MOD_ID + ":detector_rail")
                         .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                         .offerTo(exporter);
+
+                //Fire Bricks
+                createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.FIRE_BRICKS, 1)
+                        .input('b', AllItems.FIRE_BRICK)
+                        .pattern("bb")
+                        .pattern("bb")
+                        .group(NotEnoughRails.MOD_ID + ":fire_bricks")
+                        .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
+                        .offerTo(exporter);
+                //Fire Bricks Slab
+                createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.FIRE_BRICKS_SLAB, 6)
+                        .input('b', AllBlocks.FIRE_BRICKS)
+                        .pattern("bbb")
+                        .group(NotEnoughRails.MOD_ID + ":fire_bricks_slab")
+                        .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
+                        .offerTo(exporter);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.FIRE_BRICKS_SLAB, AllBlocks.FIRE_BRICKS, 2);
+                //Fire Bricks Stairs
+                createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.FIRE_BRICKS_STAIRS, 4)
+                        .input('b', AllBlocks.FIRE_BRICKS)
+                        .pattern("b  ")
+                        .pattern("bb ")
+                        .pattern("bbb")
+                        .group(NotEnoughRails.MOD_ID + ":fire_bricks_stairs")
+                        .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
+                        .offerTo(exporter);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.FIRE_BRICKS_STAIRS, AllBlocks.FIRE_BRICKS, 1);
+                //Fire Bricks Wall
+                createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.FIRE_BRICKS_WALL, 6)
+                        .input('b', AllBlocks.FIRE_BRICKS)
+                        .pattern("bbb")
+                        .pattern("bbb")
+                        .group(NotEnoughRails.MOD_ID + ":fire_bricks_wall")
+                        .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
+                        .offerTo(exporter);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.FIRE_BRICKS_WALL, AllBlocks.FIRE_BRICKS, 1);
 
                 //Polished Fluxstone
                 createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.FLUXSTONE_POLISHED, 4)

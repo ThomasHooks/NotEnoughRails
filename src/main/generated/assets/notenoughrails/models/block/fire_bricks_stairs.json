@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "notenoughrails:block/fire_bricks",
+    "side": "notenoughrails:block/fire_bricks",
+    "top": "notenoughrails:block/fire_bricks"
+  }
+}

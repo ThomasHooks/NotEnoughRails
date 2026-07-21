@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "notenoughrails:fire_bricks",
+  "key": {
+    "b": "notenoughrails:fire_brick"
+  },
+  "pattern": [
+    "bb",
+    "bb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:fire_bricks"
+  }
+}

@@ -87,6 +87,10 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.COPPER_RAIL_WEATHERED_WAXED)
                 .add(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED)
                 .add(AllBlocks.CROSSOVER_RAIL)
+                .add(AllBlocks.FIRE_BRICKS)
+                .add(AllBlocks.FIRE_BRICKS_SLAB)
+                .add(AllBlocks.FIRE_BRICKS_STAIRS)
+                .add(AllBlocks.FIRE_BRICKS_WALL)
                 .add(AllBlocks.FLUXSTONE)
                 .add(AllBlocks.FLUXSTONE_POLISHED)
                 .add(AllBlocks.FLUXSTONE_SMOOTH)
@@ -111,7 +115,6 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.STEEL_TRAPDOOR)
                 .add(AllBlocks.VERMILION_BLOCK)
         ;
-
         valueLookupBuilder(BlockTags.NEEDS_STONE_TOOL)
                 .add(AllBlocks.COKE_BLOCK)
                 .add(AllBlocks.FLUXSTONE)
@@ -120,6 +123,11 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.FLUXSTONE_SMOOTH_SLAB)
                 .add(AllBlocks.FLUXSTONE_SMOOTH_STAIRS)
                 .add(AllBlocks.IRON_PLATE_BLOCK)
+        ;
+        valueLookupBuilder(BlockTags.NEEDS_IRON_TOOL)
+                .add(AllBlocks.VERMILION_BLOCK)
+        ;
+        valueLookupBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(AllBlocks.STEEL_BLOCK)
                 .add(AllBlocks.STEEL_CHISELED_BLOCK)
                 .add(AllBlocks.STEEL_CUT_BLOCK)
@@ -131,8 +139,8 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.STEEL_TRAPDOOR)
         ;
 
-        valueLookupBuilder(BlockTags.NEEDS_IRON_TOOL)
-                .add(AllBlocks.VERMILION_BLOCK)
+        valueLookupBuilder(BlockTags.WALLS)
+                .add(AllBlocks.FIRE_BRICKS_WALL)
         ;
 
         valueLookupBuilder(BlockTags.RAILS)

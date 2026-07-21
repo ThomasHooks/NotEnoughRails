@@ -99,6 +99,10 @@ public class ModelGenerator extends FabricModelProvider {
         modelGenerator.registerTurnableRail(AllBlocks.COPPER_RAIL_WEATHERED_WAXED);
         modelGenerator.registerTurnableRail(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED);
         registerPassiveFlatRail(AllBlocks.CROSSOVER_RAIL, modelGenerator);
+        BlockStateModelGenerator.BlockTexturePool fireBricksPool = modelGenerator.registerCubeAllModelTexturePool(AllBlocks.FIRE_BRICKS);
+        fireBricksPool.slab(AllBlocks.FIRE_BRICKS_SLAB);
+        fireBricksPool.stairs(AllBlocks.FIRE_BRICKS_STAIRS);
+        fireBricksPool.wall(AllBlocks.FIRE_BRICKS_WALL);
         modelGenerator.registerCrop(AllBlocks.FLAX_CROP, FlaxCropBlock.AGE, 0, 1, 2, 3, 4, 5, 6, 7);
         modelGenerator.registerAxisRotated(AllBlocks.FLUXSTONE, TexturedModel.CUBE_COLUMN);
         modelGenerator.registerAxisRotated(AllBlocks.FLUXSTONE_POLISHED, TexturedModel.CUBE_COLUMN);

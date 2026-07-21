@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "notenoughrails:block/fire_bricks_slab"
+    },
+    "type=double": {
+      "model": "notenoughrails:block/fire_bricks"
+    },
+    "type=top": {
+      "model": "notenoughrails:block/fire_bricks_slab_top"
+    }
+  }
+}
