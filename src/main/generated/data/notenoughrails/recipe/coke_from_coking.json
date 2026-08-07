@@ -1,0 +1,8 @@
+{
+  "type": "notenoughrails:coking",
+  "cooking_time": 2400,
+  "ingredient": "minecraft:coal",
+  "result": {
+    "id": "notenoughrails:coke"
+  }
+}

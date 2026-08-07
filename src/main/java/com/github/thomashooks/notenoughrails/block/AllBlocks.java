@@ -29,7 +29,6 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.Identifier;
 
 import java.util.function.Function;
 
@@ -40,6 +39,14 @@ public class AllBlocks {
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .mapColor(MapColor.GRAY)
                     .requiresTool()
+            ));
+    public static final Block COKE_OVEN = registerBlock("coke_oven",
+            settings -> new CokeOvenBlock(settings
+                    .strength(3.5F, 3.5F)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .mapColor(MapColor.GRAY)
+                    .requiresTool()
+                    .luminance(Blocks.createLightLevelFromLitBlockState(13))
             ));
 
     //------------------------------------------------------------------------------------------------------------------
@@ -673,6 +680,7 @@ public class AllBlocks {
     public static void registerAll() {
         NotEnoughRails.LOGGER.info("Registering all Blocks");
 
+        //Building Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
             //Wood Blocks
             //Order: full block -> stairs -> slab -> wall -> fence -> fence gate -> door -> trapdoor -> pressure plate -> button
@@ -706,6 +714,7 @@ public class AllBlocks {
             entries.add(AllBlocks.STEEL_TRAPDOOR);
             entries.add(AllBlocks.VERMILION_BLOCK);
         });
+        //Colored Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register(entries -> {
             //Cloth Blocks
             entries.add(AllBlocks.LINEN_BLOCK);
@@ -726,6 +735,16 @@ public class AllBlocks {
             entries.add(AllBlocks.LINEN_BLOCK_MAGENTA);
             entries.add(AllBlocks.LINEN_BLOCK_PINK);
         });
+        //Functional Blocks
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
+            entries.addAfter(Blocks.BLAST_FURNACE, AllBlocks.COKE_OVEN);
+        });
+        //Natural Blocks
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
+            //Natural Stone Blocks
+            entries.add(AllBlocks.FLUXSTONE);
+        });
+        //Redstone Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
             //Order: standard -> crossover -> buffer stop -> powered -> braking -> check -> detector -> chime -> activator -> locking
             //region Iron Rails
@@ -755,6 +774,7 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.STEEL_DETECTOR_RAIL, AllBlocks.STEEL_ACTIVATOR_RAIL);
             //endregion
         });
+        //Tool Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
             //Order: standard -> crossover -> buffer stop -> powered -> braking -> check -> detector -> chime -> activator -> locking
             //region Iron Rails
@@ -783,10 +803,6 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.STEEL_POWERED_RAIL, AllBlocks.STEEL_DETECTOR_RAIL);
             entries.addAfter(AllBlocks.STEEL_DETECTOR_RAIL, AllBlocks.STEEL_ACTIVATOR_RAIL);
             //endregion
-        });
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
-            //Natural Stone Blocks
-            entries.add(AllBlocks.FLUXSTONE);
         });
     }
 
@@ -855,20 +871,20 @@ public class AllBlocks {
     }
 
     private static Block registerBlockWithoutItem(String name, Function<AbstractBlock.Settings, Block> function) {
-        return Registry.register(Registries.BLOCK, Identifier.of(NotEnoughRails.MOD_ID, name),
-                function.apply(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(NotEnoughRails.MOD_ID, name)))));
+        return Registry.register(Registries.BLOCK, NotEnoughRails.identifier(name),
+                function.apply(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, NotEnoughRails.identifier(name)))));
     }
 
     private static Block registerBlock(String name, Function<AbstractBlock.Settings, Block> function) {
-        Block block = Registry.register(Registries.BLOCK, Identifier.of(NotEnoughRails.MOD_ID, name),
-                function.apply(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(NotEnoughRails.MOD_ID, name)))));
+        Block block = Registry.register(Registries.BLOCK, NotEnoughRails.identifier(name),
+                function.apply(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, NotEnoughRails.identifier(name)))));
         registerBlockItem(name, block);
         return block;
     }
 
     private static void registerBlockItem(String name, Block block) {
-        Registry.register(Registries.ITEM, Identifier.of(NotEnoughRails.MOD_ID, name),
-                new BlockItem(block, new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(NotEnoughRails.MOD_ID, name)))));
+        Registry.register(Registries.ITEM, NotEnoughRails.identifier(name),
+                new BlockItem(block, new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, NotEnoughRails.identifier(name)))));
     }
     //endregion
 

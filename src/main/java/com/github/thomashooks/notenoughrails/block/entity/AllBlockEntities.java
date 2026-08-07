@@ -18,17 +18,28 @@ package com.github.thomashooks.notenoughrails.block.entity;
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemStorage;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
 
 public class AllBlockEntities {
-    public static final BlockEntityType<LockingRailBlockEntity> LOCKING_RAIL = Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(NotEnoughRails.MOD_ID, "locking_rail"),
+    public static final BlockEntityType<CokeOvenBlockEntity> COKE_OVEN = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("coke_oven"),
+            FabricBlockEntityTypeBuilder.create(CokeOvenBlockEntity::new, AllBlocks.COKE_OVEN).build());
+    public static final BlockEntityType<LockingRailBlockEntity> LOCKING_RAIL = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("locking_rail"),
             FabricBlockEntityTypeBuilder.create(LockingRailBlockEntity::new, AllBlocks.LOCKING_RAIL).build());
 
     public static void registerAll() {
         // We have to do this otherwise the block entities won't get created
         NotEnoughRails.LOGGER.info("Registering all Block Entities");
+    }
+
+    public static void registerAllStorageBlockEntities() {
+        NotEnoughRails.LOGGER.info("Registering storage block entities");
+        ItemStorage.SIDED.registerForBlockEntity(
+                (blockEntity, direction) -> InventoryStorage.of(blockEntity.getInventory(), direction),
+                AllBlockEntities.COKE_OVEN
+        );
     }
 }

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:coke_oven",
+  "key": {
+    "#": "notenoughrails:fire_bricks",
+    "f": "minecraft:furnace"
+  },
+  "pattern": [
+    "###",
+    "#f#",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:coke_oven"
+  }
+}

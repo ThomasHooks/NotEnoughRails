@@ -16,12 +16,15 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails;
 
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
+import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.CokeOvenScreen;
+import com.github.thomashooks.notenoughrails.screen.AllScreenHandlers;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.block.RedstoneWireBlock;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.BlockRenderLayer;
 
 @Environment(EnvType.CLIENT)
@@ -30,6 +33,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
     public void onInitializeClient() {
         registerBlockRenderLayer();
         registerColorProviderBlock();
+        registerScreens();
     }
 
     private void registerBlockRenderLayer() {
@@ -109,5 +113,11 @@ public class NotEnoughRailsClient implements ClientModInitializer {
                 (state, view, pos, tintIndex) -> RedstoneWireBlock.getWireColor(state.get(RedstoneWireBlock.POWER)),
                 AllBlocks.BRAKING_RAIL
         );
+    }
+
+    private void registerScreens() {
+        NotEnoughRails.LOGGER.info("Binding all screens");
+
+        HandledScreens.register(AllScreenHandlers.COKE_OVEN, CokeOvenScreen::new);
     }
 }

@@ -15,6 +15,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.block;
 
+import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
 import com.github.thomashooks.notenoughrails.block.entity.LockingRailBlockEntity;
 import com.github.thomashooks.notenoughrails.block.property.AllProperties;
 import com.mojang.serialization.MapCodec;
@@ -84,7 +85,7 @@ public class LockingRailBlock extends AbstractRailBlock implements BlockEntityPr
 
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new LockingRailBlockEntity(pos, state);
+        return AllBlockEntities.LOCKING_RAIL.instantiate(pos, state);
     }
 
     @Override

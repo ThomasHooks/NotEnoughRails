@@ -39,6 +39,7 @@ public class ModelGenerator extends FabricModelProvider {
         registerDirectionalRail(AllBlocks.CHECK_RAIL, modelGenerator);
         modelGenerator.registerStraightRail(AllBlocks.CHIME_RAIL);
         modelGenerator.registerSimpleCubeAll(AllBlocks.COKE_BLOCK);
+        modelGenerator.registerCooker(AllBlocks.COKE_OVEN, TexturedModel.ORIENTABLE);
         modelGenerator.registerStraightRail(AllBlocks.STEEL_ACTIVATOR_RAIL);
         modelGenerator.registerSimpleCubeAll(AllBlocks.STEEL_BLOCK);
         modelGenerator.registerSimpleCubeAll(AllBlocks.STEEL_CHISELED_BLOCK);

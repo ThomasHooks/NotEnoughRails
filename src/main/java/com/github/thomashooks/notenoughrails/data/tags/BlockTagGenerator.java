@@ -38,6 +38,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.CHECK_RAIL)
                 .add(AllBlocks.CHIME_RAIL)
                 .add(AllBlocks.COKE_BLOCK)
+                .add(AllBlocks.COKE_OVEN)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED)
@@ -117,6 +118,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         ;
         valueLookupBuilder(BlockTags.NEEDS_STONE_TOOL)
                 .add(AllBlocks.COKE_BLOCK)
+                .add(AllBlocks.COKE_OVEN)
                 .add(AllBlocks.FLUXSTONE)
                 .add(AllBlocks.FLUXSTONE_POLISHED)
                 .add(AllBlocks.FLUXSTONE_SMOOTH)

@@ -24,11 +24,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 
 public class AllItemGroups {
     public static final ItemGroup MAIN_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
-            Identifier.of(NotEnoughRails.MOD_ID, "main_item_group"), FabricItemGroup.builder()
+            NotEnoughRails.identifier("main_item_group"), FabricItemGroup.builder()
                     .icon(()-> new ItemStack(AllBlocks.BUFFER_STOP_RAIL))
                     .displayName(Text.translatable("itemgroup." + NotEnoughRails.MOD_ID + ".main_item_group"))
                     .entries(AllItemGroups::displayItems)
@@ -105,6 +104,7 @@ public class AllItemGroups {
         //Machine Blocks - Mills/Processors
 
         //Furnaces
+        entries.add(AllBlocks.COKE_OVEN);
 
         //Ladders/Scaffolding
 

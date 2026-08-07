@@ -32,18 +32,22 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class LockingRailBlockEntity extends BlockEntity {
+    //Minecart Locking
     private AbstractMinecartEntity  minecart;
     private UUID minecartId;
     private double minecartDeltaX = 0.0D;
     private double minecartDeltaZ = 0.0D;
-    private final String MINECART_ID_TAG = NotEnoughRails.MOD_ID + "_minecart_id";
-    private final String MINECART_DELTA_X_TAG = NotEnoughRails.MOD_ID + "_minecart_delta_x";
-    private final String MINECART_DELTA_Z_TAG = NotEnoughRails.MOD_ID + "_minecart_delta_z";
+
+    //Serialize and Deserialize Tags
+    private final String MINECART_ID_TAG = NotEnoughRails.MOD_ID + ":minecart_id";
+    private final String MINECART_DELTA_X_TAG = NotEnoughRails.MOD_ID + ":minecart_delta_x";
+    private final String MINECART_DELTA_Z_TAG = NotEnoughRails.MOD_ID + ":minecart_delta_z";
 
     public LockingRailBlockEntity(BlockPos pos, BlockState state) {
         super(AllBlockEntities.LOCKING_RAIL, pos, state);
     }
 
+    //region Minecart Locking Methods
     /**
      * Locks the given minecart to this rail
      * @param minecart The minecart to be locked onto this rail
@@ -87,24 +91,27 @@ public class LockingRailBlockEntity extends BlockEntity {
      * @return Returns true if a minecart is currently locked on this rail
      */
     public boolean isMinecartLocked() { return this.minecartId != null; }
+    //endregion
 
+    //region Serialize and Deserialize Methods
     @Override
     protected void readData(ReadView view) {
+        super.readData(view);
         if (view.contains(MINECART_ID_TAG)) {
             this.minecartId = view.read(MINECART_ID_TAG, Uuids.INT_STREAM_CODEC).orElse(null);
             this.minecartDeltaX = view.getDouble(MINECART_DELTA_X_TAG, 0.0);
             this.minecartDeltaZ = view.getDouble(MINECART_DELTA_Z_TAG, 0.0);
         }
-        super.readData(view);
     }
 
     @Override
     protected void writeData(WriteView view) {
+        super.writeData(view);
         if (this.minecartId != null) {
             view.putNullable(MINECART_ID_TAG, Uuids.INT_STREAM_CODEC, this.minecartId);
             view.putDouble(MINECART_DELTA_X_TAG, this.minecartDeltaX);
             view.putDouble(MINECART_DELTA_Z_TAG, this.minecartDeltaZ);
         }
-        super.writeData(view);
     }
+    //endregion
 }

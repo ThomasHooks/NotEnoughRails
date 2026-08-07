@@ -20,10 +20,13 @@ import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
 import com.github.thomashooks.notenoughrails.data.loot.modifier.FlaxseedsLootTables;
 import com.github.thomashooks.notenoughrails.item.AllItemGroups;
 import com.github.thomashooks.notenoughrails.item.AllItems;
+import com.github.thomashooks.notenoughrails.recipe.AllRecipes;
+import com.github.thomashooks.notenoughrails.screen.AllScreenHandlers;
 import com.github.thomashooks.notenoughrails.world.gen.OverworldBiomeGenerator;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,6 +49,9 @@ public class NotEnoughRails implements ModInitializer {
 		AllItems.registerAll();
 		AllBlocks.registerAll();
 		AllBlockEntities.registerAll();
+		AllBlockEntities.registerAllStorageBlockEntities();
+		AllScreenHandlers.registerAll();
+		AllRecipes.registerAll();
 
 		OverworldBiomeGenerator.addBasicFeatures();
 
@@ -63,4 +69,6 @@ public class NotEnoughRails implements ModInitializer {
 
 		AllBlocks.registerAllOxidizableBlocks();
 	}
+
+	public static Identifier identifier(String path) { return Identifier.of(MOD_ID, path); }
 }

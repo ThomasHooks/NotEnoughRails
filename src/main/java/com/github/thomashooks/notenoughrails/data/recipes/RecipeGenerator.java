@@ -36,6 +36,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+import static net.minecraft.registry.tag.ItemTags.LOGS_THAT_BURN;
+
 public class RecipeGenerator extends FabricRecipeProvider {
     public RecipeGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
@@ -82,6 +84,13 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Coke & Coke Block
                 offerReversibleCompactingRecipes(RecipeCategory.MISC, AllItems.COKE,RecipeCategory.MISC, AllBlocks.COKE_BLOCK);
+                List<ItemConvertible> COKE_COKEABLES = List.of(Items.COAL);
+                offerCoking(exporter, COKE_COKEABLES, AllItems.COKE, 2400);
+                List<ItemConvertible> COKE_BLOCK_COKEABLES = List.of(Blocks.COAL_BLOCK);
+                offerCoking(exporter, COKE_BLOCK_COKEABLES, AllBlocks.COKE_BLOCK, 14400);
+
+                //Charcoal
+                offerCoking(exporter, ingredientFromTag(LOGS_THAT_BURN), Items.CHARCOAL, 600);
 
                 //Copper Ingot
                 List<ItemConvertible> COPPER_INGOT_SMELTABLES = List.of(AllItems.CRUSHED_COPPER_ORE);
@@ -288,6 +297,17 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .group(NotEnoughRails.MOD_ID + ":chime_rail")
                         .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                         .offerTo(exporter, ":chime_rail_from_detector_rails");
+
+                //Coke Oven
+                createShaped(RecipeCategory.MISC, AllBlocks.COKE_OVEN, 1)
+                        .input('#', AllBlocks.FIRE_BRICKS)
+                        .input('f', Blocks.FURNACE)
+                        .pattern("###")
+                        .pattern("#f#")
+                        .pattern("###")
+                        .group(NotEnoughRails.MOD_ID + ":coke_oven")
+                        .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
+                        .offerTo(exporter);
 
                 //Crossover Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CROSSOVER_RAIL, 8)
@@ -1010,7 +1030,17 @@ public class RecipeGenerator extends FabricRecipeProvider {
     }
 
     @Override
-    public String getName() {
-        return NotEnoughRails.MOD_ID + ".recipes";
+    public String getName() { return NotEnoughRails.MOD_ID + ".recipes"; }
+
+    private void offerCoking(RecipeExporter exporter, List<ItemConvertible> inputs, ItemConvertible result, int cookingTime) {
+        for (ItemConvertible itemConvertible : inputs) {
+            CokingRecipeBuilder.create(Ingredient.ofItem(itemConvertible), result.asItem().getDefaultStack(), cookingTime)
+                    .offerTo(exporter, AllItems.getItemPath(result) + "_from_coking");
+        }
+    }
+
+    private void offerCoking(RecipeExporter exporter, Ingredient inputs, ItemConvertible result, int cookingTime) {
+        CokingRecipeBuilder.create(inputs, result.asItem().getDefaultStack(), cookingTime)
+                .offerTo(exporter, AllItems.getItemPath(result) + "_from_coking");
     }
 }

@@ -6,7 +6,8 @@
   "item.notenoughrails.chime_rail": "Chime Rail",
   "item.notenoughrails.booster_rod_copper": "Copper Booster Rod",
   "item.notenoughrails.coke": "Coal Coke",
-  "item.notenoughrails.coke_block": "Coal Coke Block",
+  "item.notenoughrails.coke_block": "Block of Coal Coke",
+  "item.notenoughrails.coke_oven": "Coke Oven",
   "item.notenoughrails.copper_plate": "Copper Plate",
   "item.notenoughrails.copper_rod": "Copper Rod",
   "item.notenoughrails.crossover_rail": "Crossover Rail",
@@ -129,5 +130,6 @@
   "item.notenoughrails.waxed_copper_rail_oxidized": "Waxed Oxidized Copper Rail",
   "block.notenoughrails.flax_crop": "Flax Plant",
   "tag.item.notenoughrails.linen_blocks": "Linen Blocks",
-  "itemgroup.notenoughrails.main_item_group": "Not Enough Rails"
+  "itemgroup.notenoughrails.main_item_group": "Not Enough Rails",
+  "container.notenoughrails.coke_oven": "Coke Oven"
 }

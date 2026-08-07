@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "notenoughrails:block/coke_oven_front",
+    "side": "notenoughrails:block/coke_oven_side",
+    "top": "notenoughrails:block/coke_oven_top"
+  }
+}

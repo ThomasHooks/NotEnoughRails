@@ -19,15 +19,11 @@ import com.github.thomashooks.notenoughrails.NotEnoughRails;
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
@@ -136,16 +132,18 @@ public class AllItems {
     }
 
     private static Item registerItem(@NotNull String name, Function<Item.Settings, Item> function) {
-        return Registry.register(Registries.ITEM, Identifier.of(NotEnoughRails.MOD_ID, name),
-                function.apply(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(NotEnoughRails.MOD_ID, name)))));
+        return Registry.register(Registries.ITEM, NotEnoughRails.identifier(name),
+                function.apply(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, NotEnoughRails.identifier(name)))));
     }
 
     private static Item registerBlockItem(String name, Block block) {
-        return Registry.register(Registries.ITEM, Identifier.of(NotEnoughRails.MOD_ID, name),
-                new BlockItem(block, new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(NotEnoughRails.MOD_ID, name)))));
+        return Registry.register(Registries.ITEM, NotEnoughRails.identifier(name),
+                new BlockItem(block, new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, NotEnoughRails.identifier(name)))));
     }
 
     private static Function<Item.Settings, Item> createBlockItemWithUniqueName(Block block) {
         return settings -> new BlockItem(block, settings.useItemPrefixedTranslationKey());
     }
+
+    public static String getItemPath(ItemConvertible item) { return Registries.ITEM.getId(item.asItem()).getPath(); }
 }
