@@ -29,11 +29,11 @@ public interface ExtendedRailBehavior {
     float WATERLOGGED_MAX_SPEED_RATIO = 0.5F;
     //In blocks/second
     float DEFAULT_MAX_SPEED = 8.0F;
-    float STEEL_MAX_SPEED = ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.5F;
-    float UNAFFECTED_COPPER_MAX_SPEED = ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F;
-    float EXPOSED_COPPER_MAX_SPEED = ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F;
-    float WEATHERED_COPPER_MAX_SPEED = ExtendedRailBehavior.DEFAULT_MAX_SPEED;
-    float OXIDIZED_COPPER_MAX_SPEED = ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F;
+    float STEEL_MAX_SPEED = 20.0F;
+    float UNAFFECTED_COPPER_MAX_SPEED = 16.0F;
+    float EXPOSED_COPPER_MAX_SPEED = 12.0F;
+    float WEATHERED_COPPER_MAX_SPEED = 8.0F;
+    float OXIDIZED_COPPER_MAX_SPEED = 4.0F;
 
     /**
      * @param state    - The Rail's current block state

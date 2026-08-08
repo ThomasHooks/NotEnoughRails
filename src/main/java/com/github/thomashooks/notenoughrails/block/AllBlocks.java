@@ -485,98 +485,98 @@ public class AllBlocks {
             ));
 
     public static final Block COPPER_DETECTOR_RAIL = registerBlock("copper_detector_rail",
-            settings -> new OxidizableDetectorRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
+            settings -> new OxidizableDetectorRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.UNAFFECTED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.COPPER)
                     .noCollision()
             ));
     public static final Block COPPER_DETECTOR_RAIL_EXPOSED = registerBlock("copper_detector_rail_exposed",
-            settings -> new OxidizableDetectorRailBlock(Oxidizable.OxidationLevel.EXPOSED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F, settings
+            settings -> new OxidizableDetectorRailBlock(Oxidizable.OxidationLevel.EXPOSED, ExtendedRailBehavior.EXPOSED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.COPPER)
                     .noCollision()
             ));
     public static final Block COPPER_DETECTOR_RAIL_WEATHERED = registerBlock("copper_detector_rail_weathered",
-            settings -> new OxidizableDetectorRailBlock(Oxidizable.OxidationLevel.WEATHERED, ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
+            settings -> new OxidizableDetectorRailBlock(Oxidizable.OxidationLevel.WEATHERED, ExtendedRailBehavior.WEATHERED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.COPPER)
                     .noCollision()
             ));
     public static final Block COPPER_DETECTOR_RAIL_OXIDIZED = registerBlock("copper_detector_rail_oxidized",
-            settings -> new OxidizableDetectorRailBlock(Oxidizable.OxidationLevel.OXIDIZED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F, settings
+            settings -> new OxidizableDetectorRailBlock(Oxidizable.OxidationLevel.OXIDIZED, ExtendedRailBehavior.OXIDIZED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.COPPER)
                     .noCollision()
             ));
     public static final Block COPPER_DETECTOR_RAIL_WAXED = registerBlock("waxed_copper_detector_rail",
-            settings -> new AdjustableDetectorRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
+            settings -> new AdjustableDetectorRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.UNAFFECTED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.COPPER)
                     .noCollision()
             ));
     public static final Block COPPER_DETECTOR_RAIL_EXPOSED_WAXED = registerBlock("waxed_copper_detector_rail_exposed",
-            settings -> new AdjustableDetectorRailBlock(Oxidizable.OxidationLevel.EXPOSED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F, settings
+            settings -> new AdjustableDetectorRailBlock(Oxidizable.OxidationLevel.EXPOSED, ExtendedRailBehavior.EXPOSED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.COPPER)
                     .noCollision()
             ));
     public static final Block COPPER_DETECTOR_RAIL_WEATHERED_WAXED = registerBlock("waxed_copper_detector_rail_weathered",
-            settings -> new AdjustableDetectorRailBlock(Oxidizable.OxidationLevel.WEATHERED, ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
+            settings -> new AdjustableDetectorRailBlock(Oxidizable.OxidationLevel.WEATHERED, ExtendedRailBehavior.WEATHERED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.COPPER)
                     .noCollision()
             ));
     public static final Block COPPER_DETECTOR_RAIL_OXIDIZED_WAXED = registerBlock("waxed_copper_detector_rail_oxidized",
-            settings -> new AdjustableDetectorRailBlock(Oxidizable.OxidationLevel.OXIDIZED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F, settings
+            settings -> new AdjustableDetectorRailBlock(Oxidizable.OxidationLevel.OXIDIZED, ExtendedRailBehavior.OXIDIZED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.COPPER)
                     .noCollision()
             ));
 
     public static final Block COPPER_POWERED_RAIL = registerBlock("copper_powered_rail",
-            settings -> new OxidizablePoweredRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
+            settings -> new OxidizablePoweredRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.UNAFFECTED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.COPPER)
                     .noCollision()
             ));
     public static final Block COPPER_POWERED_RAIL_EXPOSED = registerBlock("copper_powered_rail_exposed",
-            settings -> new OxidizablePoweredRailBlock(Oxidizable.OxidationLevel.EXPOSED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F, settings
+            settings -> new OxidizablePoweredRailBlock(Oxidizable.OxidationLevel.EXPOSED, ExtendedRailBehavior.EXPOSED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.COPPER)
                     .noCollision()
             ));
     public static final Block COPPER_POWERED_RAIL_WEATHERED = registerBlock("copper_powered_rail_weathered",
-            settings -> new OxidizablePoweredRailBlock(Oxidizable.OxidationLevel.WEATHERED, ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
+            settings -> new OxidizablePoweredRailBlock(Oxidizable.OxidationLevel.WEATHERED, ExtendedRailBehavior.WEATHERED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.COPPER)
                     .noCollision()
             ));
     public static final Block COPPER_POWERED_RAIL_OXIDIZED = registerBlock("copper_powered_rail_oxidized",
-            settings -> new OxidizablePoweredRailBlock(Oxidizable.OxidationLevel.OXIDIZED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F, settings
+            settings -> new OxidizablePoweredRailBlock(Oxidizable.OxidationLevel.OXIDIZED, ExtendedRailBehavior.OXIDIZED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.COPPER)
                     .noCollision()
             ));
     public static final Block COPPER_POWERED_RAIL_WAXED = registerBlock("waxed_copper_powered_rail",
-            settings -> new AdjustablePoweredRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 4.0F, settings
+            settings -> new AdjustablePoweredRailBlock(Oxidizable.OxidationLevel.UNAFFECTED, ExtendedRailBehavior.UNAFFECTED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.COPPER)
                     .noCollision()
             ));
     public static final Block COPPER_POWERED_RAIL_EXPOSED_WAXED = registerBlock("waxed_copper_powered_rail_exposed",
-            settings -> new AdjustablePoweredRailBlock(Oxidizable.OxidationLevel.EXPOSED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 2.0F, settings
+            settings -> new AdjustablePoweredRailBlock(Oxidizable.OxidationLevel.EXPOSED, ExtendedRailBehavior.EXPOSED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.COPPER)
                     .noCollision()
             ));
     public static final Block COPPER_POWERED_RAIL_WEATHERED_WAXED = registerBlock("waxed_copper_powered_rail_weathered",
-            settings -> new AdjustablePoweredRailBlock(Oxidizable.OxidationLevel.WEATHERED, ExtendedRailBehavior.DEFAULT_MAX_SPEED, settings
+            settings -> new AdjustablePoweredRailBlock(Oxidizable.OxidationLevel.WEATHERED, ExtendedRailBehavior.WEATHERED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.COPPER)
                     .noCollision()
             ));
     public static final Block COPPER_POWERED_RAIL_OXIDIZED_WAXED = registerBlock("waxed_copper_powered_rail_oxidized",
-            settings -> new AdjustablePoweredRailBlock(Oxidizable.OxidationLevel.OXIDIZED, ExtendedRailBehavior.DEFAULT_MAX_SPEED * 0.5F, settings
+            settings -> new AdjustablePoweredRailBlock(Oxidizable.OxidationLevel.OXIDIZED, ExtendedRailBehavior.OXIDIZED_COPPER_MAX_SPEED, settings
                     .strength(0.7F)
                     .sounds(BlockSoundGroup.COPPER)
                     .noCollision()
