@@ -20,8 +20,13 @@ import com.github.thomashooks.notenoughrails.block.FlaxCropBlock;
 import com.github.thomashooks.notenoughrails.item.AllItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
+import net.minecraft.loot.condition.TableBonusLootCondition;
+import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.predicate.StatePredicate;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
@@ -33,6 +38,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
+        RegistryWrapper.Impl<Enchantment> impl = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
         addDrop(AllBlocks.BRAKING_RAIL);
         addDrop(AllBlocks.BUFFER_STOP_RAIL);
         addDrop(AllBlocks.CHECK_RAIL);
@@ -111,8 +117,18 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(AllBlocks.FIRE_BRICKS_WALL);
         BlockStatePropertyLootCondition.Builder flaxCropBuilder = BlockStatePropertyLootCondition.builder(AllBlocks.FLAX_CROP)
                 .properties(StatePredicate.Builder.create().exactMatch(FlaxCropBlock.AGE, FlaxCropBlock.MAX_AGE));
-        this.addDrop(AllBlocks.FLAX_CROP, this.cropDrops(AllBlocks.FLAX_CROP, AllItems.FLAX, AllItems.FLAXSEEDS, flaxCropBuilder));
-        addDrop(AllBlocks.FLUXSTONE);
+        addDrop(AllBlocks.FLAX_CROP, cropDrops(AllBlocks.FLAX_CROP, AllItems.FLAX, AllItems.FLAXSEEDS, flaxCropBuilder));
+        addDrop(AllBlocks.FLUXSTONE,
+                block -> dropsWithSilkTouch(
+                        block,
+                        addSurvivesExplosionCondition(
+                                block,
+                                ItemEntry.builder(AllItems.FLUX)
+                                        .conditionally(TableBonusLootCondition.builder(impl.getOrThrow(Enchantments.FORTUNE), 0.1F, 0.14285715F, 0.25F, 1.0F))
+                                        .alternatively(ItemEntry.builder(block))
+                        )
+                )
+        );
         addDrop(AllBlocks.FLUXSTONE_POLISHED);
         addDrop(AllBlocks.FLUXSTONE_SMOOTH);
         addDrop(AllBlocks.FLUXSTONE_SMOOTH_SLAB, slabDrops(AllBlocks.FLUXSTONE_SMOOTH_SLAB));
