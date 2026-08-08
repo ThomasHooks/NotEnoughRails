@@ -49,6 +49,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(AllBlocks.STEEL_GRATE, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.STEEL_CROSSOVER_RAIL, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.STEEL_DETECTOR_RAIL, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.STEEL_BARS, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.STEEL_DOOR, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.STEEL_POWERED_RAIL, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.STEEL_RAIL, BlockRenderLayer.CUTOUT);

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "notenoughrails:steel_bars",
+  "key": {
+    "i": "notenoughrails:steel_ingot"
+  },
+  "pattern": [
+    "iii",
+    "iii"
+  ],
+  "result": {
+    "count": 16,
+    "id": "notenoughrails:steel_bars"
+  }
+}

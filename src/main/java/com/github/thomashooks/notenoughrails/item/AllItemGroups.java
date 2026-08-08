@@ -70,6 +70,7 @@ public class AllItemGroups {
         entries.add(AllBlocks.STEEL_CUT_BLOCK);
         entries.add(AllBlocks.STEEL_CUT_STAIRS);
         entries.add(AllBlocks.STEEL_CUT_SLAB);
+        entries.add(AllBlocks.STEEL_BARS);
         entries.add(AllBlocks.STEEL_DOOR);
         entries.add(AllBlocks.STEEL_TRAPDOOR);
         entries.add(AllBlocks.VERMILION_BLOCK);

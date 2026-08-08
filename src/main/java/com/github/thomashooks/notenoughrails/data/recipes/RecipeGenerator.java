@@ -320,6 +320,15 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                         .offerTo(exporter);
 
+                //Steel Bars
+                createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.STEEL_BARS, 16)
+                        .input('i', AllItems.STEEL_INGOT)
+                        .pattern("iii")
+                        .pattern("iii")
+                        .group(NotEnoughRails.MOD_ID + ":steel_bars")
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .offerTo(exporter);
+
                 //Steel Block
                 createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.STEEL_BLOCK, 1)
                         .input('i', AllItems.STEEL_INGOT)

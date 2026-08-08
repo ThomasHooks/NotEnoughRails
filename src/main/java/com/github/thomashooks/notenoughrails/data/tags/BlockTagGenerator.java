@@ -101,6 +101,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.LOCKING_RAIL)
                 .add(AllBlocks.STEEL_ACTIVATOR_RAIL)
                 .add(AllBlocks.STEEL_BUFFER_STOP_RAIL)
+                .add(AllBlocks.STEEL_BARS)
                 .add(AllBlocks.STEEL_BLOCK)
                 .add(AllBlocks.STEEL_CHISELED_BLOCK)
                 .add(AllBlocks.STEEL_CUT_BLOCK)
@@ -130,6 +131,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.VERMILION_BLOCK)
         ;
         valueLookupBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(AllBlocks.STEEL_BARS)
                 .add(AllBlocks.STEEL_BLOCK)
                 .add(AllBlocks.STEEL_CHISELED_BLOCK)
                 .add(AllBlocks.STEEL_CUT_BLOCK)
@@ -143,6 +145,10 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
 
         valueLookupBuilder(BlockTags.WALLS)
                 .add(AllBlocks.FIRE_BRICKS_WALL)
+        ;
+
+        valueLookupBuilder(BlockTags.BARS)
+                .add(AllBlocks.STEEL_BARS)
         ;
 
         valueLookupBuilder(BlockTags.RAILS)

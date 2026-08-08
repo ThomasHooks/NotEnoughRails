@@ -43,9 +43,10 @@ public class ModelGenerator extends FabricModelProvider {
         modelGenerator.registerStraightRail(AllBlocks.STEEL_ACTIVATOR_RAIL);
         modelGenerator.registerSimpleCubeAll(AllBlocks.STEEL_BLOCK);
         modelGenerator.registerSimpleCubeAll(AllBlocks.STEEL_CHISELED_BLOCK);
-        BlockStateModelGenerator.BlockTexturePool coriteCutPool = modelGenerator.registerCubeAllModelTexturePool(AllBlocks.STEEL_CUT_BLOCK);
-        coriteCutPool.slab(AllBlocks.STEEL_CUT_SLAB);
-        coriteCutPool.stairs(AllBlocks.STEEL_CUT_STAIRS);
+        BlockStateModelGenerator.BlockTexturePool steelCutPool = modelGenerator.registerCubeAllModelTexturePool(AllBlocks.STEEL_CUT_BLOCK);
+        steelCutPool.slab(AllBlocks.STEEL_CUT_SLAB);
+        steelCutPool.stairs(AllBlocks.STEEL_CUT_STAIRS);
+        modelGenerator.registerBars(AllBlocks.STEEL_BARS);
         registerPassiveFlatRail(AllBlocks.STEEL_CROSSOVER_RAIL, modelGenerator);
         modelGenerator.registerStraightRail(AllBlocks.STEEL_DETECTOR_RAIL);
         modelGenerator.registerDoor(AllBlocks.STEEL_DOOR);

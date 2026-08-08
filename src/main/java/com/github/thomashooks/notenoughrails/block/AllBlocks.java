@@ -185,6 +185,15 @@ public class AllBlocks {
     //------------------------------------------------------------------------------------------------------------------
 
     //region Steel Blocks
+    public static final Block STEEL_BARS = registerBlock("steel_bars",
+            settings -> new PaneBlock(settings
+                    .strength(10.0F, 12.0F)
+                    .sounds(BlockSoundGroup.NETHERITE)
+                    .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+                    .mapColor(MapColor.BLACK)
+                    .nonOpaque()
+                    .requiresTool()
+            ));
     public static final Block STEEL_BLOCK = registerBlock("steel_block",
             settings -> new Block(settings
                     .strength(10.0F, 12.0F)
@@ -270,6 +279,7 @@ public class AllBlocks {
             settings -> new RedstoneBlock(settings
                     .strength(5.0F, 6.0F)
                     .sounds(BlockSoundGroup.METAL)
+                    .instrument(NoteBlockInstrument.BIT)
                     .mapColor(MapColor.BRIGHT_RED)
                     .requiresTool()
                     .luminance(state -> 7)
@@ -710,6 +720,7 @@ public class AllBlocks {
             entries.add(AllBlocks.STEEL_CUT_BLOCK);
             entries.add(AllBlocks.STEEL_CUT_STAIRS);
             entries.add(AllBlocks.STEEL_CUT_SLAB);
+            entries.add(AllBlocks.STEEL_BARS);
             entries.add(AllBlocks.STEEL_DOOR);
             entries.add(AllBlocks.STEEL_TRAPDOOR);
             entries.add(AllBlocks.VERMILION_BLOCK);

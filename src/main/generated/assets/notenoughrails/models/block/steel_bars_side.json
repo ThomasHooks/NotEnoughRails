@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_bars_side",
+  "textures": {
+    "bars": "notenoughrails:block/steel_bars",
+    "edge": "notenoughrails:block/steel_bars"
+  }
+}
