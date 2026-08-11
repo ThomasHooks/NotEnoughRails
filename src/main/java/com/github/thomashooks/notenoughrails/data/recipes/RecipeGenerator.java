@@ -54,8 +54,8 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Booster Rod
                 createShaped(RecipeCategory.TRANSPORTATION, AllItems.BOOSTER_ROD, 3)
-                        .input('i', AllItems.IRON_ROD)
-                        .input('g', AllItems.GOLD_ROD)
+                        .input('i', AllItemTags.IRON_RODS)
+                        .input('g', AllItemTags.GOLD_RODS)
                         .input('v', AllItems.VERMILION_ROD)
                         .pattern("igv")
                         .group(NotEnoughRails.MOD_ID + ":booster_rod")
@@ -64,8 +64,8 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Booster Rod Copper
                 createShaped(RecipeCategory.TRANSPORTATION, AllItems.BOOSTER_ROD_COPPER, 3)
-                        .input('i', AllItems.COPPER_ROD)
-                        .input('g', AllItems.GOLD_ROD)
+                        .input('i', AllItemTags.COPPER_RODS)
+                        .input('g', AllItemTags.GOLD_RODS)
                         .input('v', AllItems.VERMILION_ROD)
                         .pattern("igv")
                         .group(NotEnoughRails.MOD_ID + ":booster_rod_copper")
@@ -74,8 +74,8 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Booster Rod Steel
                 createShaped(RecipeCategory.TRANSPORTATION, AllItems.BOOSTER_ROD_STEEL, 3)
-                        .input('c', AllItems.STEEL_ROD)
-                        .input('g', AllItems.GOLD_ROD)
+                        .input('c', AllItemTags.STEEL_RODS)
+                        .input('g', AllItemTags.GOLD_RODS)
                         .input('v', AllItems.VERMILION_ROD)
                         .pattern("cgv")
                         .group(NotEnoughRails.MOD_ID + ":booster_rod_steel")
@@ -99,7 +99,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Raw Steel
                 createShapeless(RecipeCategory.MISC, AllItems.RAW_STEEL, 1)
-                        .input(Items.IRON_NUGGET, 3)
+                        .input(AllItemTags.IRON_DUSTS)
                         .input(AllItems.COKE, 1)
                         .input(AllItems.FLUX, 1)
                         .group(NotEnoughRails.MOD_ID + ":raw_steel")
@@ -108,21 +108,21 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Steel Nugget
                 createShapeless(RecipeCategory.MISC, AllItems.STEEL_NUGGET, 9)
-                        .input(AllItems.STEEL_INGOT, 1)
+                        .input(AllItemTags.STEEL_INGOTS)
                         .group(NotEnoughRails.MOD_ID + ":steel_nugget")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter, ":steel_nugget_from_steel_ingot");
 
                 //Steel Ingot
                 createShapeless(RecipeCategory.MISC, AllItems.STEEL_INGOT, 1)
                         .input(AllItems.STEEL_NUGGET, 9)
                         .group(NotEnoughRails.MOD_ID + ":steel_ingot")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter);
                 createShapeless(RecipeCategory.MISC, AllItems.STEEL_INGOT, 9)
                         .input(AllBlocks.STEEL_BLOCK, 1)
                         .group(NotEnoughRails.MOD_ID + ":steel_ingot")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter, ":steel_ingot_from_steel_block");
 
                 //Steel Plate
@@ -131,12 +131,12 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern("pp")
                         .pattern("pp")
                         .group(NotEnoughRails.MOD_ID + ":steel_plate_block")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter);
                 createShapeless(RecipeCategory.MISC, AllItems.STEEL_PLATE, 4)
                         .input(AllBlocks.STEEL_PLATE_BLOCK, 1)
                         .group(NotEnoughRails.MOD_ID + ":steel_plate")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter, ":steel_plate_from_steel_plate_block");
 
                 //Flax String
@@ -163,21 +163,12 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Crushed Vermilion
                 createShapeless(RecipeCategory.MISC, AllItems.CRUSHED_VERMILION, 1)
-                        .input(AllItems.CRUSHED_COPPER_ORE, 1)
+                        .input(AllItemTags.COPPER_DUSTS)
                         .input(Items.REDSTONE, 3)
                         .input(AllItems.FLUX, 1)
                         .group(NotEnoughRails.MOD_ID + ":crushed_vermilion")
                         .criterion(hasItem(Items.RAW_COPPER), conditionsFromItem(Items.RAW_COPPER))
                         .offerTo(exporter);
-
-                //Crushed Vermilion
-                createShapeless(RecipeCategory.MISC, AllItems.CRUSHED_VERMILION, 1)
-                        .input(Items.RAW_COPPER, 1)
-                        .input(Items.REDSTONE, 3)
-                        .input(AllItems.FLUX, 1)
-                        .group(NotEnoughRails.MOD_ID + ":crushed_vermilion")
-                        .criterion(hasItem(Items.RAW_COPPER), conditionsFromItem(Items.RAW_COPPER))
-                        .offerTo(exporter, ":crushed_vermilion_from_raw_ore");
 
                 //Vermilion Ingot
                 List<ItemConvertible> VERMILION_INGOT_SMELTABLES = List.of(AllItems.CRUSHED_VERMILION);
@@ -231,7 +222,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Activator Rail
                 createShaped(RecipeCategory.TRANSPORTATION, Blocks.ACTIVATOR_RAIL, 8)
-                        .input('i', AllItems.IRON_ROD)
+                        .input('i', AllItemTags.IRON_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('r', Items.REDSTONE_TORCH)
                         .pattern("i i")
@@ -243,7 +234,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Braking Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.BRAKING_RAIL, 16)
-                        .input('i', AllItems.IRON_ROD)
+                        .input('i', AllItemTags.IRON_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('b', AllItems.FIRE_BRICK)
                         .input('r', Items.REDSTONE_TORCH)
@@ -256,7 +247,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Buffer Stop Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.BUFFER_STOP_RAIL, 8)
-                        .input('i', AllItems.IRON_ROD)
+                        .input('i', AllItemTags.IRON_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('x', Blocks.IRON_BLOCK)
                         .pattern("iti")
@@ -268,7 +259,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Check Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CHECK_RAIL, 16)
-                        .input('i', AllItems.IRON_ROD)
+                        .input('i', AllItemTags.IRON_RODS)
                         .input('l', AllItems.BOOSTER_ROD)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('r', Items.REPEATER)
@@ -281,7 +272,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Chime Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CHIME_RAIL, 8)
-                        .input('i', AllItems.IRON_ROD)
+                        .input('i', AllItemTags.IRON_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('p', Items.STONE_PRESSURE_PLATE)
                         .input('n', Items.NOTE_BLOCK)
@@ -311,7 +302,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Crossover Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.CROSSOVER_RAIL, 8)
-                        .input('i', AllItems.IRON_ROD)
+                        .input('i', AllItemTags.IRON_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .pattern("iii")
                         .pattern("iti")
@@ -322,21 +313,21 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Steel Bars
                 createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.STEEL_BARS, 16)
-                        .input('i', AllItems.STEEL_INGOT)
+                        .input('i', AllItemTags.STEEL_INGOTS)
                         .pattern("iii")
                         .pattern("iii")
                         .group(NotEnoughRails.MOD_ID + ":steel_bars")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter);
 
                 //Steel Block
                 createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.STEEL_BLOCK, 1)
-                        .input('i', AllItems.STEEL_INGOT)
+                        .input('i', AllItemTags.STEEL_INGOTS)
                         .pattern("iii")
                         .pattern("iii")
                         .pattern("iii")
                         .group(NotEnoughRails.MOD_ID + ":steel_block")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter);
 
                 //Cut Steel
@@ -345,7 +336,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern("cc")
                         .pattern("cc")
                         .group(NotEnoughRails.MOD_ID + ":steel_cut_block")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.STEEL_CUT_BLOCK, AllBlocks.STEEL_BLOCK, 4);
 
@@ -354,7 +345,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .input('c', AllBlocks.STEEL_CUT_BLOCK)
                         .pattern("ccc")
                         .group(NotEnoughRails.MOD_ID + ":steel_cut_slab")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.STEEL_CUT_SLAB, AllBlocks.STEEL_CUT_BLOCK, 2);
 
@@ -365,7 +356,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern("cc ")
                         .pattern("ccc")
                         .group(NotEnoughRails.MOD_ID + ":steel_cut_stairs")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.STEEL_CUT_STAIRS, AllBlocks.STEEL_CUT_BLOCK, 1);
 
@@ -375,14 +366,14 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern("c")
                         .pattern("c")
                         .group(NotEnoughRails.MOD_ID + ":steel_chiseled_block")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.STEEL_CHISELED_BLOCK, AllBlocks.STEEL_BLOCK, 4);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.STEEL_CHISELED_BLOCK, AllBlocks.STEEL_CUT_BLOCK, 1);
 
                 //Copper Activator Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_ACTIVATOR_RAIL, 8)
-                        .input('i', AllItems.COPPER_ROD)
+                        .input('i', AllItemTags.COPPER_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('r', Items.REDSTONE_TORCH)
                         .pattern("i i")
@@ -438,7 +429,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Copper Buffer Stop Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_BUFFER_STOP_RAIL, 8)
-                        .input('i', AllItems.COPPER_ROD)
+                        .input('i', AllItemTags.COPPER_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('x', Blocks.IRON_BLOCK)
                         .pattern("iti")
@@ -494,7 +485,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Copper Crossover Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_CROSSOVER_RAIL, 8)
-                        .input('c', AllItems.COPPER_ROD)
+                        .input('c', AllItemTags.COPPER_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .pattern("ccc")
                         .pattern("ctc")
@@ -549,7 +540,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Copper Detector Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_DETECTOR_RAIL, 8)
-                        .input('i', AllItems.COPPER_ROD)
+                        .input('i', AllItemTags.COPPER_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('r', Items.REDSTONE)
                         .input('p', Items.STONE_PRESSURE_PLATE)
@@ -661,7 +652,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Copper Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_RAIL, 24)
-                        .input('i', AllItems.COPPER_ROD)
+                        .input('i', AllItemTags.COPPER_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .pattern("i i")
                         .pattern("iti")
@@ -821,42 +812,42 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Steel Crossover Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.STEEL_CROSSOVER_RAIL, 8)
-                        .input('i', AllItems.STEEL_ROD)
+                        .input('i', AllItemTags.STEEL_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .pattern("iii")
                         .pattern("iti")
                         .pattern("iii")
                         .group(NotEnoughRails.MOD_ID + ":steel_crossover_rail")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter);
 
                 //Steel Activator Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.STEEL_ACTIVATOR_RAIL, 8)
-                        .input('i', AllItems.STEEL_ROD)
+                        .input('i', AllItemTags.STEEL_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('r', Items.REDSTONE_TORCH)
                         .pattern("i i")
                         .pattern("iti")
                         .pattern("iri")
                         .group(NotEnoughRails.MOD_ID + ":steel_activator_rail")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter);
 
                 //Steel Buffer Stop Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.STEEL_BUFFER_STOP_RAIL, 8)
-                        .input('i', AllItems.STEEL_ROD)
+                        .input('i', AllItemTags.STEEL_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('x', Blocks.IRON_BLOCK)
                         .pattern("iti")
                         .pattern("ixi")
                         .pattern("iti")
                         .group(NotEnoughRails.MOD_ID + ":steel_buffer_stop_rail")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter);
 
                 //Steel Detector Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.STEEL_DETECTOR_RAIL, 8)
-                        .input('i', AllItems.STEEL_ROD)
+                        .input('i', AllItemTags.STEEL_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('r', Items.REDSTONE)
                         .input('p', Items.STONE_PRESSURE_PLATE)
@@ -864,13 +855,13 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern("iti")
                         .pattern("iri")
                         .group(NotEnoughRails.MOD_ID + ":steel_detector_rail")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter);
 
                 //Steel Door
                 createDoorRecipe(AllBlocks.STEEL_DOOR, Ingredient.ofItem(AllItems.STEEL_INGOT))
                         .group(NotEnoughRails.MOD_ID + ":steel_door")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter);
 
                 //Steel Grate
@@ -880,7 +871,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern("c c")
                         .pattern(" c ")
                         .group(NotEnoughRails.MOD_ID + ":steel_grate")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.STEEL_GRATE, AllBlocks.STEEL_BLOCK, 4);
 
@@ -897,24 +888,24 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Steel Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.STEEL_RAIL, 24)
-                        .input('i', AllItems.STEEL_ROD)
+                        .input('i', AllItemTags.STEEL_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .pattern("i i")
                         .pattern("iti")
                         .pattern("i i")
                         .group(NotEnoughRails.MOD_ID + ":steel_rail")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter);
 
                 //Steel Trapdoor
                 createTrapdoorRecipe(AllBlocks.STEEL_TRAPDOOR, Ingredient.ofItem(AllItems.STEEL_INGOT))
                         .group(NotEnoughRails.MOD_ID + ":steel_trapdoor")
-                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromItem(AllItems.STEEL_INGOT))
+                        .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter);
 
                 //Detector Rail
                 createShaped(RecipeCategory.TRANSPORTATION, Blocks.DETECTOR_RAIL, 8)
-                        .input('i', AllItems.IRON_ROD)
+                        .input('i', AllItemTags.IRON_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('r', Items.REDSTONE)
                         .input('p', Items.STONE_PRESSURE_PLATE)
@@ -1008,7 +999,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Locking Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.LOCKING_RAIL, 8)
-                        .input('i', AllItems.IRON_ROD)
+                        .input('i', AllItemTags.IRON_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .input('b', AllItems.BOOSTER_ROD)
                         .input('p', Blocks.PISTON)
@@ -1021,7 +1012,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Rail
                 createShaped(RecipeCategory.TRANSPORTATION, Blocks.RAIL, 24)
-                        .input('i', AllItems.IRON_ROD)
+                        .input('i', AllItemTags.IRON_RODS)
                         .input('t', AllItems.RAILROAD_TIE)
                         .pattern("i i")
                         .pattern("iti")

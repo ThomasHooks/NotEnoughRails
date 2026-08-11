@@ -3,7 +3,7 @@
   "category": "misc",
   "group": "notenoughrails:chime_rail",
   "key": {
-    "i": "notenoughrails:iron_rod",
+    "i": "#c:rods/iron",
     "n": "minecraft:note_block",
     "p": "minecraft:stone_pressure_plate",
     "t": "notenoughrails:railroad_tie"

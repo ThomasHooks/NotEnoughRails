@@ -3,7 +3,7 @@
   "category": "misc",
   "group": "notenoughrails:check_rail",
   "key": {
-    "i": "notenoughrails:iron_rod",
+    "i": "#c:rods/iron",
     "l": "notenoughrails:booster_rod",
     "r": "minecraft:repeater",
     "t": "notenoughrails:railroad_tie"

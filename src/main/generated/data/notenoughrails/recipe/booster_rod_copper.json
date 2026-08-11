@@ -3,8 +3,8 @@
   "category": "misc",
   "group": "notenoughrails:booster_rod_copper",
   "key": {
-    "g": "notenoughrails:gold_rod",
-    "i": "notenoughrails:copper_rod",
+    "g": "#c:rods/gold",
+    "i": "#c:rods/copper",
     "v": "notenoughrails:vermilion_rod"
   },
   "pattern": [

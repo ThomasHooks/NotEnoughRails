@@ -4,7 +4,7 @@
   "group": "notenoughrails:locking_rail",
   "key": {
     "b": "notenoughrails:booster_rod",
-    "i": "notenoughrails:iron_rod",
+    "i": "#c:rods/iron",
     "p": "minecraft:piston",
     "t": "notenoughrails:railroad_tie"
   },

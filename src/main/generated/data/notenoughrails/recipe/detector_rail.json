@@ -3,7 +3,7 @@
   "category": "misc",
   "group": "notenoughrails:detector_rail",
   "key": {
-    "i": "notenoughrails:iron_rod",
+    "i": "#c:rods/iron",
     "p": "minecraft:stone_pressure_plate",
     "r": "minecraft:redstone",
     "t": "notenoughrails:railroad_tie"

@@ -3,7 +3,7 @@
   "category": "misc",
   "group": "notenoughrails:copper_crossover_rail",
   "key": {
-    "c": "notenoughrails:copper_rod",
+    "c": "#c:rods/copper",
     "t": "notenoughrails:railroad_tie"
   },
   "pattern": [

@@ -4,7 +4,7 @@
   "group": "notenoughrails:braking_rail",
   "key": {
     "b": "notenoughrails:fire_brick",
-    "i": "notenoughrails:iron_rod",
+    "i": "#c:rods/iron",
     "r": "minecraft:redstone_torch",
     "t": "notenoughrails:railroad_tie"
   },

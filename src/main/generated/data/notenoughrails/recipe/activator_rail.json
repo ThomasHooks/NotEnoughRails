@@ -3,7 +3,7 @@
   "category": "misc",
   "group": "notenoughrails:activator_rail",
   "key": {
-    "i": "notenoughrails:iron_rod",
+    "i": "#c:rods/iron",
     "r": "minecraft:redstone_torch",
     "t": "notenoughrails:railroad_tie"
   },

@@ -1,2 +1,14 @@
 // 1.21.11	-999999999-01-01T00:00:00	Not Enough Rails/Tags for minecraft:item
+84013e09f975540d94b4fb39df02604dab64ba2d data/c/tags/item/dusts/copper.json
+c5a65d0c9c93987159af3192dcec248984b5953f data/c/tags/item/dusts/gold.json
+26eb60a68a15d9165c396630fae976bcd91ddc4e data/c/tags/item/dusts/iron.json
+f69ff639508549ef8333ebd3f5c6435b8de96ca0 data/c/tags/item/ingots/steel.json
+4f0d62b486500e740b07aa416c0b10b58211ff9d data/c/tags/item/nuggets/steel.json
+44898c2a1dc9c34c676085165e95efedd2e62f29 data/c/tags/item/plates/copper.json
+fb9addfc554e0d3e1453deff7c1e4a05c3297fc7 data/c/tags/item/plates/iron.json
+f24f8a43bb91a9ecf237f092b51be17ffe5affdb data/c/tags/item/plates/steel.json
+e5f7d0b87ed04a0fbc6466fe594642ade0569ce4 data/c/tags/item/rods/copper.json
+ab5fe2f29a0de9632daa3749266fa942d05c3a2b data/c/tags/item/rods/gold.json
+39fadf5b58b51233b1923c0dde63b9aed17eb9d9 data/c/tags/item/rods/iron.json
+d158c53531d8c4245718ac4bb442086d2e944325 data/c/tags/item/rods/steel.json
 2b32b8fe5cca8250afa32b24cf812c98f4e2a65f data/notenoughrails/tags/item/linen_blocks.json

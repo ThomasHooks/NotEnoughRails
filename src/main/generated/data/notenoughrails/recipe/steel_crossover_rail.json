@@ -3,7 +3,7 @@
   "category": "misc",
   "group": "notenoughrails:steel_crossover_rail",
   "key": {
-    "i": "notenoughrails:steel_rod",
+    "i": "#c:rods/steel",
     "t": "notenoughrails:railroad_tie"
   },
   "pattern": [

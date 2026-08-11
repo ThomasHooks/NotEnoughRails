@@ -3,7 +3,7 @@
   "category": "building",
   "group": "notenoughrails:steel_bars",
   "key": {
-    "i": "notenoughrails:steel_ingot"
+    "i": "#c:ingots/steel"
   },
   "pattern": [
     "iii",

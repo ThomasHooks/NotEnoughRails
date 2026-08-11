@@ -3,7 +3,7 @@
   "category": "misc",
   "group": "notenoughrails:crushed_vermilion",
   "ingredients": [
-    "notenoughrails:crushed_copper_ore",
+    "#c:dusts/copper",
     "minecraft:redstone",
     "minecraft:redstone",
     "minecraft:redstone",

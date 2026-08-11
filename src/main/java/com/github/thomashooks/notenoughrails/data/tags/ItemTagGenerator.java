@@ -16,6 +16,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.data.tags;
 
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
+import com.github.thomashooks.notenoughrails.item.AllItems;
 import com.github.thomashooks.notenoughrails.util.AllItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -48,7 +49,44 @@ public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(AllBlocks.LINEN_BLOCK_BLUE.asItem())
                 .add(AllBlocks.LINEN_BLOCK_PURPLE.asItem())
                 .add(AllBlocks.LINEN_BLOCK_MAGENTA.asItem())
-                .add(AllBlocks.LINEN_BLOCK_PINK.asItem())
-        ;
+                .add(AllBlocks.LINEN_BLOCK_PINK.asItem());
+
+        //region Common Items
+        valueLookupBuilder(AllItemTags.COPPER_DUSTS)
+                .add(AllItems.CRUSHED_COPPER_ORE);
+
+        valueLookupBuilder(AllItemTags.COPPER_PLATES)
+                .add(AllItems.COPPER_PLATE);
+
+        valueLookupBuilder(AllItemTags.COPPER_RODS)
+                .add(AllItems.COPPER_ROD);
+
+        valueLookupBuilder(AllItemTags.GOLD_DUSTS)
+                .add(AllItems.CRUSHED_GOLD_ORE);
+
+        valueLookupBuilder(AllItemTags.GOLD_RODS)
+                .add(AllItems.GOLD_ROD);
+
+        valueLookupBuilder(AllItemTags.IRON_DUSTS)
+                .add(AllItems.CRUSHED_IRON_ORE);
+
+        valueLookupBuilder(AllItemTags.IRON_PLATES)
+                .add(AllItems.IRON_PLATE);
+
+        valueLookupBuilder(AllItemTags.IRON_RODS)
+                .add(AllItems.IRON_ROD);
+
+        valueLookupBuilder(AllItemTags.STEEL_INGOTS)
+                .add(AllItems.STEEL_INGOT);
+
+        valueLookupBuilder(AllItemTags.STEEL_NUGGETS)
+                .add(AllItems.STEEL_NUGGET);
+
+        valueLookupBuilder(AllItemTags.STEEL_PLATES)
+                .add(AllItems.STEEL_PLATE);
+
+        valueLookupBuilder(AllItemTags.STEEL_RODS)
+                .add(AllItems.STEEL_ROD);
+        //endregion
     }
 }
