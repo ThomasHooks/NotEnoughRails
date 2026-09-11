@@ -68,14 +68,10 @@ public class CokeOvenBlockEntity extends LazyTickingBlockEntity implements Exten
         }
 
         @Override
-        public boolean canPlayerUse(PlayerEntity player) {
-            return super.canPlayerUse(player);
-        }
+        public boolean canPlayerUse(PlayerEntity player) { return super.canPlayerUse(player); }
 
         @Override
-        public boolean isValid(int slot, ItemStack stack) {
-            return slot != OUTPUT_SLOT_INDEX;
-        }
+        public boolean isValid(int slot, ItemStack stack) { return slot != OUTPUT_SLOT_INDEX; }
 
         @Override
         public int[] getAvailableSlots(Direction side) {
@@ -87,9 +83,7 @@ public class CokeOvenBlockEntity extends LazyTickingBlockEntity implements Exten
         }
 
         @Override
-        public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
-            return isValid(slot, stack);
-        }
+        public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) { return isValid(slot, stack); }
 
         @Override
         public boolean canExtract(int slot, ItemStack stack, Direction dir) {
@@ -97,6 +91,7 @@ public class CokeOvenBlockEntity extends LazyTickingBlockEntity implements Exten
         }
     };
     //endregion
+
     //region Property Delegate Anonymous Class
     public static final int PROPERTY_DELEGATE_SIZE = 2;
     public static final int PROPERTY_DELEGATE_PROGRESS_INDEX = 0;
@@ -121,7 +116,7 @@ public class CokeOvenBlockEntity extends LazyTickingBlockEntity implements Exten
         }
 
         @Override
-        public int size() { return 2; }
+        public int size() { return PROPERTY_DELEGATE_SIZE; }
     };
     //endregion
 
@@ -259,9 +254,7 @@ public class CokeOvenBlockEntity extends LazyTickingBlockEntity implements Exten
     }
 
     @Override
-    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registries) {
-        return createNbt(registries);
-    }
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registries) { return createNbt(registries); }
 
     @Override
     protected void readData(ReadView view) {
