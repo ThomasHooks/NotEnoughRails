@@ -29,16 +29,20 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.MathHelper;
+import org.jspecify.annotations.Nullable;
 
 public class CokeOvenScreenHandler extends ScreenHandler {
     private static final int NUMBER_OF_PLAYERS_INVENTORY_SLOTS = 36;
-    private static final int PLAYER_INVENTORY_START_INDEX = CokeOvenBlockEntity.NUMBER_OF_SLOTS;
+    private static final int INPUT_SLOT_INDEX = CokeOvenBlockEntity.INPUT_SLOT_INDEX;
+    private static final int OUTPUT_SLOT_INDEX = CokeOvenBlockEntity.OUTPUT_SLOT_INDEX;
+    private static final int NUMBER_OF_SLOTS = CokeOvenBlockEntity.NUMBER_OF_SLOTS;
+    private static final int PLAYER_INVENTORY_START_INDEX = NUMBER_OF_SLOTS;
     private static final int PLAYER_INVENTORY_END_INDEX = PLAYER_INVENTORY_START_INDEX + NUMBER_OF_PLAYERS_INVENTORY_SLOTS;
     private static final int PLAYER_HOTBAR_START_INDEX = PLAYER_INVENTORY_END_INDEX - 9;
-
     private final CokeOvenBlockEntity blockEntity;
     private final ScreenHandlerContext context;
     private final PropertyDelegate delegate;
+    private static final int PROPERTY_DELEGATE_SIZE = CokeOvenBlockEntity.PROPERTY_DELEGATE_SIZE;
 
     //Server Side
     public CokeOvenScreenHandler(int syncId, PlayerInventory playerInventory, CokeOvenBlockEntity blockEntity, PropertyDelegate delegate) {
@@ -47,20 +51,25 @@ public class CokeOvenScreenHandler extends ScreenHandler {
         this.context = ScreenHandlerContext.create(this.blockEntity.getWorld(), this.blockEntity.getPos());
 
         SimpleInventory inventory = blockEntity.getInventory();
-        checkSize(inventory, CokeOvenBlockEntity.NUMBER_OF_SLOTS);
+        checkSize(inventory, NUMBER_OF_SLOTS);
         inventory.onOpen(playerInventory.player);
-        checkDataCount(delegate, CokeOvenBlockEntity.PROPERTY_DELEGATE_SIZE);
+        checkDataCount(delegate, PROPERTY_DELEGATE_SIZE);
         this.delegate = delegate;
 
-        addSlot(new Slot(inventory, CokeOvenBlockEntity.INPUT_SLOT_INDEX, 55, 21));
-        addSlot(new CraftingOutputSlot(inventory, CokeOvenBlockEntity.OUTPUT_SLOT_INDEX, 114, 21));
-        addPlayerInventorySlots(playerInventory, 8, 52);
+        addSlot(new Slot(inventory, INPUT_SLOT_INDEX, 55, 21));
+        addSlot(new CraftingOutputSlot(inventory, OUTPUT_SLOT_INDEX, 114, 21));
+        addPlayerSlots(playerInventory, 8, 52);
         addProperties(delegate);
     }
 
     //Client Side
     public CokeOvenScreenHandler(int syncId, PlayerInventory playerInventory, BlockPosPayload payload) {
-        this(syncId, playerInventory, (CokeOvenBlockEntity) playerInventory.player.getEntityWorld().getBlockEntity(payload.pos()), new ArrayPropertyDelegate(2));
+        this(
+                syncId,
+                playerInventory,
+                (CokeOvenBlockEntity) playerInventory.player.getEntityWorld().getBlockEntity(payload.pos()),
+                new ArrayPropertyDelegate(PROPERTY_DELEGATE_SIZE)
+        );
     }
 
     @Override
@@ -72,21 +81,22 @@ public class CokeOvenScreenHandler extends ScreenHandler {
 
         ItemStack stackInSlot = slot.getStack();
         ItemStack stackCopy = stackInSlot.copy();
-        if (slotIndex == CokeOvenBlockEntity.OUTPUT_SLOT_INDEX) {
+        if (slotIndex == OUTPUT_SLOT_INDEX) {
             if (!this.insertItem(stackInSlot, PLAYER_INVENTORY_START_INDEX, PLAYER_INVENTORY_END_INDEX, true)) {
                 return ItemStack.EMPTY;
             }
             slot.onQuickTransfer(stackInSlot, stackCopy);
-        } else if (slotIndex != CokeOvenBlockEntity.INPUT_SLOT_INDEX) {
-            //TODO: add recipe check, if it's not a valid recipe cycle in player inventory
-            if (!this.insertItem(stackInSlot, CokeOvenBlockEntity.INPUT_SLOT_INDEX, CokeOvenBlockEntity.OUTPUT_SLOT_INDEX, false)) {
-                return ItemStack.EMPTY;
-            } else if (slotIndex >= CokeOvenBlockEntity.NUMBER_OF_SLOTS && slotIndex < PLAYER_HOTBAR_START_INDEX) {
+        } else if (slotIndex != INPUT_SLOT_INDEX) {
+            if (isSmeltable(this.getSlot(INPUT_SLOT_INDEX), stackInSlot)) {
+                if (!this.insertItem(stackInSlot, INPUT_SLOT_INDEX, OUTPUT_SLOT_INDEX, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (slotIndex >= NUMBER_OF_SLOTS && slotIndex < PLAYER_HOTBAR_START_INDEX) {
                 if (!this.insertItem(stackInSlot, PLAYER_HOTBAR_START_INDEX, PLAYER_INVENTORY_END_INDEX, false)) {
                     return ItemStack.EMPTY;
                 }
             } else if (slotIndex >= PLAYER_HOTBAR_START_INDEX && slotIndex < PLAYER_INVENTORY_END_INDEX) {
-                if (!this.insertItem(stackInSlot, CokeOvenBlockEntity.NUMBER_OF_SLOTS, PLAYER_HOTBAR_START_INDEX, false)) {
+                if (!this.insertItem(stackInSlot, NUMBER_OF_SLOTS, PLAYER_HOTBAR_START_INDEX, false)) {
                     return ItemStack.EMPTY;
                 }
             }
@@ -127,28 +137,8 @@ public class CokeOvenScreenHandler extends ScreenHandler {
         return MathHelper.clamp((float) progress / (float) maxProgress, 0.0F, 1.0F);
     }
 
-    /**
-     * Adds the player's inventory and quick bar slots to this container
-     * @param slotX The X coordinate of the top-left inventory slot inside corner in the player's inventory
-     * @param slotY The Y coordinate of the top-left inventory slot inside corner in the player's inventory
-     */
-    protected void addPlayerInventorySlots(PlayerInventory playerInv, int slotX, int slotY) {
-        final int SLOT_WIDTH = 18;
-        final int SLOT_HEIGHT = 18;
-        final int HOTBAR_HEIGHT_OFFSET = 58;
-        //Player's hotbar
-        int index = 0;
-        for (int colum = 0; colum < 9; colum++) {
-            addSlot(new Slot(playerInv, index, slotX + (colum * SLOT_WIDTH), slotY + HOTBAR_HEIGHT_OFFSET));
-            index++;
-        }
-
-        //Player's inventory
-        for (int row = 0; row < 3; row++) {
-            for (int colum = 0; colum < 9; colum++) {
-                addSlot(new Slot(playerInv, index, slotX + (colum * SLOT_WIDTH), slotY + (row * SLOT_HEIGHT)));
-                index++;
-            }
-        }
+    protected boolean isSmeltable(@Nullable Slot slot, ItemStack stack) {
+        //TODO: add recipe check, if it's not a valid recipe cycle in player inventory
+        return canInsertItemIntoSlot(slot, stack, false);
     }
 }
