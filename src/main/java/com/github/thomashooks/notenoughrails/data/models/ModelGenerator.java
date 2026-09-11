@@ -130,6 +130,7 @@ public class ModelGenerator extends FabricModelProvider {
         modelGenerator.registerSimpleCubeAll(AllBlocks.LINEN_BLOCK_MAGENTA);
         modelGenerator.registerSimpleCubeAll(AllBlocks.LINEN_BLOCK_PINK);
         registerActiveFlatRail(AllBlocks.LOCKING_RAIL, modelGenerator);
+        modelGenerator.registerCooker(AllBlocks.REFRACTORY_FURNACE, TexturedModel.ORIENTABLE);
         modelGenerator.registerSimpleCubeAll(AllBlocks.VERMILION_BLOCK);
         modelGenerator.registerSimpleCubeAll(AllBlocks.WOODEN_FRAME);
     }

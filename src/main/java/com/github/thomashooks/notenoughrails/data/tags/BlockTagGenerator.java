@@ -115,6 +115,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.STEEL_POWERED_RAIL)
                 .add(AllBlocks.STEEL_RAIL)
                 .add(AllBlocks.STEEL_TRAPDOOR)
+                .add(AllBlocks.REFRACTORY_FURNACE)
                 .add(AllBlocks.VERMILION_BLOCK)
         ;
         valueLookupBuilder(BlockTags.NEEDS_STONE_TOOL)
@@ -126,6 +127,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.FLUXSTONE_SMOOTH_SLAB)
                 .add(AllBlocks.FLUXSTONE_SMOOTH_STAIRS)
                 .add(AllBlocks.IRON_PLATE_BLOCK)
+                .add(AllBlocks.REFRACTORY_FURNACE)
         ;
         valueLookupBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(AllBlocks.VERMILION_BLOCK)

@@ -24,6 +24,7 @@ import net.minecraft.registry.Registry;
 
 public class AllRecipes {
     public static class Types {
+        public static final RecipeType<BlastingRecipe> BLASTING = register("blasting", BlastingRecipe.Type.INSTANCE);
         public static final RecipeType<CokingRecipe> COKING = register("coking", CokingRecipe.Type.INSTANCE);
 
         public static <T extends Recipe<?>> RecipeType<T> register(String id, RecipeType<T> type) {
@@ -34,6 +35,7 @@ public class AllRecipes {
     }
 
     public static class Serializers {
+        public static final RecipeSerializer<BlastingRecipe>  BLASTING = register("blasting", BlastingRecipe.Serializer.INSTANCE);
         public static final RecipeSerializer<CokingRecipe>  COKING = register("coking", CokingRecipe.Serializer.INSTANCE);
 
         public static <T extends Recipe<?>> RecipeSerializer<T> register(String id, RecipeSerializer<T> type) {

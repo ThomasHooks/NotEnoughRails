@@ -26,8 +26,6 @@ import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.SmokingRecipe;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
@@ -96,6 +94,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 List<ItemConvertible> COPPER_INGOT_SMELTABLES = List.of(AllItems.CRUSHED_COPPER_ORE);
                 offerSmelting(COPPER_INGOT_SMELTABLES, RecipeCategory.MISC, Items.COPPER_INGOT, 0.7F, 200, NotEnoughRails.MOD_ID + ":copper_ingot");
                 offerBlasting(COPPER_INGOT_SMELTABLES, RecipeCategory.MISC, Items.COPPER_INGOT, 0.7F, 100, NotEnoughRails.MOD_ID + ":copper_ingot");
+                offerSuperBlasting(exporter, COPPER_INGOT_SMELTABLES, Items.COPPER_INGOT, 2, 200);
 
                 //Raw Steel
                 createShapeless(RecipeCategory.MISC, AllItems.RAW_STEEL, 1)
@@ -124,6 +123,8 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .group(NotEnoughRails.MOD_ID + ":steel_ingot")
                         .criterion(hasItem(AllItems.STEEL_INGOT), conditionsFromTag(AllItemTags.STEEL_INGOTS))
                         .offerTo(exporter, ":steel_ingot_from_steel_block");
+                List<ItemConvertible> STEEL_INGOT_SMELTABLES = List.of(AllItems.RAW_STEEL);
+                offerSuperBlasting(exporter, STEEL_INGOT_SMELTABLES, AllItems.STEEL_INGOT, 800);
 
                 //Steel Plate
                 createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.STEEL_PLATE_BLOCK, 1)
@@ -152,11 +153,13 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 List<ItemConvertible> GOLD_INGOT_SMELTABLES = List.of(AllItems.CRUSHED_GOLD_ORE);
                 offerSmelting(GOLD_INGOT_SMELTABLES, RecipeCategory.MISC, Items.GOLD_INGOT, 1.0F, 200, NotEnoughRails.MOD_ID + ":gold_ingot");
                 offerBlasting(GOLD_INGOT_SMELTABLES, RecipeCategory.MISC, Items.GOLD_INGOT, 1.0F, 100, NotEnoughRails.MOD_ID + ":gold_ingot");
+                offerSuperBlasting(exporter, GOLD_INGOT_SMELTABLES, Items.GOLD_INGOT, 2, 400);
 
                 //Iron Ingot
                 List<ItemConvertible> IRON_INGOT_SMELTABLES = List.of(AllItems.CRUSHED_IRON_ORE);
                 offerSmelting(IRON_INGOT_SMELTABLES, RecipeCategory.MISC, Items.IRON_INGOT, 0.7F, 200, NotEnoughRails.MOD_ID + ":iron_ingot");
                 offerBlasting(IRON_INGOT_SMELTABLES, RecipeCategory.MISC, Items.IRON_INGOT, 0.7F, 100, NotEnoughRails.MOD_ID + ":iron_ingot");
+                offerSuperBlasting(exporter, IRON_INGOT_SMELTABLES, Items.IRON_INGOT, 2, 400);
 
                 //Iron Plate
                 offerReversibleCompactingRecipes(RecipeCategory.MISC, AllItems.IRON_PLATE,RecipeCategory.BUILDING_BLOCKS, AllBlocks.IRON_PLATE_BLOCK);
@@ -174,6 +177,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 List<ItemConvertible> VERMILION_INGOT_SMELTABLES = List.of(AllItems.CRUSHED_VERMILION);
                 offerSmelting(VERMILION_INGOT_SMELTABLES, RecipeCategory.MISC, AllItems.VERMILION_INGOT, 1.0F, 200, NotEnoughRails.MOD_ID + ":vermilion_ingot");
                 offerBlasting(VERMILION_INGOT_SMELTABLES, RecipeCategory.MISC, AllItems.VERMILION_INGOT, 1.0F, 100, NotEnoughRails.MOD_ID + ":vermilion_ingot");
+                offerSuperBlasting(exporter, VERMILION_INGOT_SMELTABLES, AllItems.VERMILION_INGOT, 2, 400);
                 offerReversibleCompactingRecipes(RecipeCategory.MISC, AllItems.VERMILION_INGOT,RecipeCategory.BUILDING_BLOCKS, AllBlocks.VERMILION_BLOCK);
 
                 //Kaolin
@@ -297,6 +301,18 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern("#f#")
                         .pattern("###")
                         .group(NotEnoughRails.MOD_ID + ":coke_oven")
+                        .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
+                        .offerTo(exporter);
+
+                //Refractory Furnace
+                createShaped(RecipeCategory.MISC, AllBlocks.REFRACTORY_FURNACE, 1)
+                        .input('#', AllBlocks.FIRE_BRICKS)
+                        .input('f', Blocks.BLAST_FURNACE)
+                        .input('i', Items.IRON_INGOT)
+                        .pattern("iii")
+                        .pattern("ifi")
+                        .pattern("###")
+                        .group(NotEnoughRails.MOD_ID + ":refractory_furnace")
                         .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
                         .offerTo(exporter);
 
@@ -1022,15 +1038,25 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .offerTo(exporter);
                 // endregion
             }
-
-            public void offerSmoking(List<ItemConvertible> inputs, RecipeCategory category, ItemConvertible output, float experience, int cookingTime, String group) {
-                this.offerMultipleOptions(RecipeSerializer.SMOKING, SmokingRecipe::new, inputs, category, output, experience, cookingTime, group, "_from_smoking");
-            }
         };
     }
 
     @Override
     public String getName() { return NotEnoughRails.MOD_ID + ".recipes"; }
+
+    private void offerSuperBlasting(RecipeExporter exporter, List<ItemConvertible> inputs, ItemConvertible result, int count, int cookingTime) {
+        for (ItemConvertible itemConvertible : inputs) {
+            BlastingRecipeBuilder.create(Ingredient.ofItem(itemConvertible), result.asItem(), count, cookingTime)
+                    .offerTo(exporter, AllItems.getItemPath(result) + "_from_super_blasting");
+        }
+    }
+
+    private void offerSuperBlasting(RecipeExporter exporter, List<ItemConvertible> inputs, ItemConvertible result, int cookingTime) {
+        for (ItemConvertible itemConvertible : inputs) {
+            BlastingRecipeBuilder.create(Ingredient.ofItem(itemConvertible), result.asItem(), cookingTime)
+                    .offerTo(exporter, AllItems.getItemPath(result) + "_from_super_blasting");
+        }
+    }
 
     private void offerCoking(RecipeExporter exporter, List<ItemConvertible> inputs, ItemConvertible result, int cookingTime) {
         for (ItemConvertible itemConvertible : inputs) {

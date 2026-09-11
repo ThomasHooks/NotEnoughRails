@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:refractory_furnace",
+  "key": {
+    "#": "notenoughrails:fire_bricks",
+    "f": "minecraft:blast_furnace",
+    "i": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "iii",
+    "ifi",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:refractory_furnace"
+  }
+}

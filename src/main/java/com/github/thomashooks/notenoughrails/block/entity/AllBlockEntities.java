@@ -29,6 +29,8 @@ public class AllBlockEntities {
             FabricBlockEntityTypeBuilder.create(CokeOvenBlockEntity::new, AllBlocks.COKE_OVEN).build());
     public static final BlockEntityType<LockingRailBlockEntity> LOCKING_RAIL = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("locking_rail"),
             FabricBlockEntityTypeBuilder.create(LockingRailBlockEntity::new, AllBlocks.LOCKING_RAIL).build());
+    public static final BlockEntityType<RefractoryFurnaceBlockEntity> REFRACTORY_FURNACE = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("refractory_furnace"),
+            FabricBlockEntityTypeBuilder.create(RefractoryFurnaceBlockEntity::new, AllBlocks.REFRACTORY_FURNACE).build());
 
     public static void registerAll() {
         // We have to do this otherwise the block entities won't get created
@@ -40,6 +42,10 @@ public class AllBlockEntities {
         ItemStorage.SIDED.registerForBlockEntity(
                 (blockEntity, direction) -> InventoryStorage.of(blockEntity.getInventory(), direction),
                 AllBlockEntities.COKE_OVEN
+        );
+        ItemStorage.SIDED.registerForBlockEntity(
+                (blockEntity, direction) -> InventoryStorage.of(blockEntity.getInventory(), direction),
+                AllBlockEntities.REFRACTORY_FURNACE
         );
     }
 }

@@ -1,0 +1,9 @@
+{
+  "type": "notenoughrails:blasting",
+  "cooking_time": 800,
+  "ingredient": "notenoughrails:raw_steel",
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:steel_ingot"
+  }
+}

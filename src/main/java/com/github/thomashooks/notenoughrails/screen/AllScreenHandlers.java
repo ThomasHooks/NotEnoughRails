@@ -28,6 +28,7 @@ import net.minecraft.screen.ScreenHandlerType;
 
 public class AllScreenHandlers {
     public static final ScreenHandlerType<CokeOvenScreenHandler> COKE_OVEN = register("coke_oven", CokeOvenScreenHandler::new, BlockPosPayload.CODEC);
+    public static final ScreenHandlerType<RefractoryFurnaceScreenHandler> REFRACTORY_FURNACE = register("refractory_furnace", RefractoryFurnaceScreenHandler::new, BlockPosPayload.CODEC);
 
     public static <T extends ScreenHandler, D extends CustomPayload>ExtendedScreenHandlerType<T, D> register(String name, ExtendedScreenHandlerType.ExtendedFactory<T, D> factory, PacketCodec<? super RegistryByteBuf, D> codec) {
         return Registry.register(Registries.SCREEN_HANDLER, NotEnoughRails.identifier(name), new ExtendedScreenHandlerType<>(factory, codec));

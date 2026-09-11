@@ -55,6 +55,7 @@
   "item.notenoughrails.linseed_oil": "Linseed Oil",
   "item.notenoughrails.locking_rail": "Locking Rail",
   "item.notenoughrails.railroad_tie": "Railroad Tie",
+  "item.notenoughrails.refractory_furnace": "Refractory Furnace",
   "item.notenoughrails.raw_steel": "Raw Steel",
   "item.notenoughrails.steel_activator_rail": "Steel Activator Rail",
   "item.notenoughrails.steel_bars": "Steel Bars",
@@ -132,5 +133,8 @@
   "block.notenoughrails.flax_crop": "Flax Plant",
   "tag.item.notenoughrails.linen_blocks": "Linen Blocks",
   "itemgroup.notenoughrails.main_item_group": "Not Enough Rails",
-  "container.notenoughrails.coke_oven": "Coke Oven"
+  "container.notenoughrails.coke_oven": "Coke Oven",
+  "container.notenoughrails.refractory_furnace": "Refractory Furnace",
+  "recipe.notenoughrails.blasting": "Blasting",
+  "recipe.notenoughrails.coking": "Coking"
 }

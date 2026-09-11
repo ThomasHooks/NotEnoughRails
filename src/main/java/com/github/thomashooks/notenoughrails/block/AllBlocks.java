@@ -184,6 +184,17 @@ public class AllBlocks {
 
     //------------------------------------------------------------------------------------------------------------------
 
+    public static final Block REFRACTORY_FURNACE = registerBlock("refractory_furnace",
+            settings -> new RefractoryFurnaceBlock(settings
+                    .strength(3.5F, 3.5F)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .mapColor(MapColor.GRAY)
+                    .requiresTool()
+                    .luminance(Blocks.createLightLevelFromLitBlockState(13))
+            ));
+
+    //------------------------------------------------------------------------------------------------------------------
+
     //region Steel Blocks
     public static final Block STEEL_BARS = registerBlock("steel_bars",
             settings -> new PaneBlock(settings
@@ -749,6 +760,7 @@ public class AllBlocks {
         //Functional Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
             entries.addAfter(Blocks.BLAST_FURNACE, AllBlocks.COKE_OVEN);
+            entries.addAfter(AllBlocks.COKE_OVEN, AllBlocks.REFRACTORY_FURNACE);
         });
         //Natural Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {

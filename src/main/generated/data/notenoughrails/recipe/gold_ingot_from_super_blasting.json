@@ -1,0 +1,9 @@
+{
+  "type": "notenoughrails:blasting",
+  "cooking_time": 400,
+  "ingredient": "notenoughrails:crushed_gold_ore",
+  "result": {
+    "count": 2,
+    "id": "minecraft:gold_ingot"
+  }
+}

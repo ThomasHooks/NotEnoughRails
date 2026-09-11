@@ -17,6 +17,7 @@ package com.github.thomashooks.notenoughrails;
 
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
 import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.CokeOvenScreen;
+import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.RefractoryFurnaceScreen;
 import com.github.thomashooks.notenoughrails.screen.AllScreenHandlers;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -120,5 +121,6 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         NotEnoughRails.LOGGER.info("Binding all screens");
 
         HandledScreens.register(AllScreenHandlers.COKE_OVEN, CokeOvenScreen::new);
+        HandledScreens.register(AllScreenHandlers.REFRACTORY_FURNACE, RefractoryFurnaceScreen::new);
     }
 }
