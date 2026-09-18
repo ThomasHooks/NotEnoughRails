@@ -111,6 +111,7 @@ public class AllItemGroups {
         //Ladders/Scaffolding
 
         //Redstone Blocks
+        entries.add(AllBlocks.VERMILION_CONDUIT);
 
         //Item Transfer Blocks
 

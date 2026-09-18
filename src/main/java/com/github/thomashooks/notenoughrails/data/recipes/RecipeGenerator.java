@@ -170,7 +170,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .input(Items.REDSTONE, 3)
                         .input(AllItems.FLUX, 1)
                         .group(NotEnoughRails.MOD_ID + ":crushed_vermilion")
-                        .criterion(hasItem(Items.RAW_COPPER), conditionsFromItem(Items.RAW_COPPER))
+                        .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
                         .offerTo(exporter);
 
                 //Vermilion Ingot
@@ -386,6 +386,17 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .offerTo(exporter);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.STEEL_CHISELED_BLOCK, AllBlocks.STEEL_BLOCK, 4);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, AllBlocks.STEEL_CHISELED_BLOCK, AllBlocks.STEEL_CUT_BLOCK, 1);
+
+                //Vermilion Conduit
+                createShaped(RecipeCategory.REDSTONE, AllBlocks.VERMILION_CONDUIT, 3)
+                        .input('x', AllBlocks.FLUXSTONE_SMOOTH)
+                        .input('v', AllItems.VERMILION_INGOT)
+                        .pattern("xvx")
+                        .pattern("xvx")
+                        .pattern("xvx")
+                        .group(NotEnoughRails.MOD_ID + ":vermilion_conduit")
+                        .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
+                        .offerTo(exporter);
 
                 //Copper Activator Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.COPPER_ACTIVATOR_RAIL, 8)

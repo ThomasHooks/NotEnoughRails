@@ -117,6 +117,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.STEEL_TRAPDOOR)
                 .add(AllBlocks.REFRACTORY_FURNACE)
                 .add(AllBlocks.VERMILION_BLOCK)
+                .add(AllBlocks.VERMILION_CONDUIT)
         ;
         valueLookupBuilder(BlockTags.NEEDS_STONE_TOOL)
                 .add(AllBlocks.COKE_BLOCK)
@@ -131,6 +132,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         ;
         valueLookupBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(AllBlocks.VERMILION_BLOCK)
+                .add(AllBlocks.VERMILION_CONDUIT)
         ;
         valueLookupBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(AllBlocks.STEEL_BARS)

@@ -16,6 +16,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails;
 
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
+import com.github.thomashooks.notenoughrails.block.VermilionConduitBlock;
 import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.CokeOvenScreen;
 import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.RefractoryFurnaceScreen;
 import com.github.thomashooks.notenoughrails.screen.AllScreenHandlers;
@@ -106,6 +107,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(AllBlocks.CROSSOVER_RAIL, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.FLAX_CROP, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.LOCKING_RAIL, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(AllBlocks.VERMILION_CONDUIT, BlockRenderLayer.CUTOUT);
     }
 
     private void registerColorProviderBlock() {
@@ -114,6 +116,10 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         ColorProviderRegistry.BLOCK.register(
                 (state, view, pos, tintIndex) -> RedstoneWireBlock.getWireColor(state.get(RedstoneWireBlock.POWER)),
                 AllBlocks.BRAKING_RAIL
+        );
+        ColorProviderRegistry.BLOCK.register(
+                (state, view, pos, tintIndex) -> VermilionConduitBlock.getConduitColor(state.get(VermilionConduitBlock.POWER)),
+                AllBlocks.VERMILION_CONDUIT
         );
     }
 

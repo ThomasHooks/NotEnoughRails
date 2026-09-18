@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "notenoughrails:block/vermilion_conduit_top_off",
+    "side": "notenoughrails:block/vermilion_conduit_off"
+  }
+}

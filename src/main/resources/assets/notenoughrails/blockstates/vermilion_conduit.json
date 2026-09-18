@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "notenoughrails:block/vermilion_conduit",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "notenoughrails:block/vermilion_conduit"
+    },
+    "axis=z": {
+      "model": "notenoughrails:block/vermilion_conduit",
+      "x": 90
+    }
+  }
+}

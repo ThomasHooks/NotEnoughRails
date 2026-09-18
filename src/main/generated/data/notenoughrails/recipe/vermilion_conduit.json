@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "notenoughrails:vermilion_conduit",
+  "key": {
+    "v": "notenoughrails:vermilion_ingot",
+    "x": "notenoughrails:fluxstone_smooth"
+  },
+  "pattern": [
+    "xvx",
+    "xvx",
+    "xvx"
+  ],
+  "result": {
+    "count": 3,
+    "id": "notenoughrails:vermilion_conduit"
+  }
+}

@@ -18,9 +18,8 @@ package com.github.thomashooks.notenoughrails.block.property;
 import net.minecraft.block.enums.RailShape;
 import net.minecraft.state.property.EnumProperty;
 
-import java.util.function.Predicate;
-
 public class AllProperties {
+    public static final EnumProperty<PowerDirection> POWER_DIRECTION =  EnumProperty.of("power_direction", PowerDirection.class);
     /**
      * A property that specifies the two directions a rail connects to.
      * This property does not allow for a rail to turn or to make slopes.
@@ -28,7 +27,7 @@ public class AllProperties {
     public static final EnumProperty<RailShape> FLAT_RAIL_SHAPE = EnumProperty.of(
             "shape",
             RailShape.class,
-            (Predicate) (shape -> shape != RailShape.NORTH_EAST && shape != RailShape.NORTH_WEST && shape != RailShape.SOUTH_EAST && shape != RailShape.SOUTH_WEST
-                    && shape != RailShape.ASCENDING_NORTH && shape != RailShape.ASCENDING_EAST && shape != RailShape.ASCENDING_SOUTH && shape != RailShape.ASCENDING_WEST)
+            shape -> shape != RailShape.NORTH_EAST && shape != RailShape.NORTH_WEST && shape != RailShape.SOUTH_EAST && shape != RailShape.SOUTH_WEST
+                    && shape != RailShape.ASCENDING_NORTH && shape != RailShape.ASCENDING_EAST && shape != RailShape.ASCENDING_SOUTH && shape != RailShape.ASCENDING_WEST
     );
 }

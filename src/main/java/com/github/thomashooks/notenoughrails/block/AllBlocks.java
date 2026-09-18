@@ -296,6 +296,15 @@ public class AllBlocks {
                     .luminance(state -> 7)
                     .solidBlock(Blocks::never)
             ));
+    public static final Block VERMILION_CONDUIT = registerBlock("vermilion_conduit",
+            settings -> new VermilionConduitBlock(settings
+                    .strength(1.5F, 6.0F)
+                    .sounds(BlockSoundGroup.DEEPSLATE)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .mapColor(MapColor.TERRACOTTA_LIGHT_BLUE)
+                    .requiresTool()
+                    .solidBlock(Blocks::never)
+            ));
     public static final Block WOODEN_FRAME = registerBlock("wooden_frame",
             settings -> new Block(settings
                     .strength(2.0F, 3.0F)
@@ -701,7 +710,7 @@ public class AllBlocks {
     public static void registerAll() {
         NotEnoughRails.LOGGER.info("Registering all Blocks");
 
-        //Building Blocks
+        //region Building Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
             //Wood Blocks
             //Order: full block -> stairs -> slab -> wall -> fence -> fence gate -> door -> trapdoor -> pressure plate -> button
@@ -736,7 +745,9 @@ public class AllBlocks {
             entries.add(AllBlocks.STEEL_TRAPDOOR);
             entries.add(AllBlocks.VERMILION_BLOCK);
         });
-        //Colored Blocks
+        //endregion
+
+        //region Colored Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register(entries -> {
             //Cloth Blocks
             entries.add(AllBlocks.LINEN_BLOCK);
@@ -757,17 +768,23 @@ public class AllBlocks {
             entries.add(AllBlocks.LINEN_BLOCK_MAGENTA);
             entries.add(AllBlocks.LINEN_BLOCK_PINK);
         });
-        //Functional Blocks
+        //endregion
+
+        //region Functional Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
             entries.addAfter(Blocks.BLAST_FURNACE, AllBlocks.COKE_OVEN);
             entries.addAfter(AllBlocks.COKE_OVEN, AllBlocks.REFRACTORY_FURNACE);
         });
-        //Natural Blocks
+        //endregion
+
+        //region Natural Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             //Natural Stone Blocks
             entries.add(AllBlocks.FLUXSTONE);
         });
-        //Redstone Blocks
+        //endregion
+
+        //region Redstone Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
             //Order: standard -> crossover -> buffer stop -> powered -> braking -> check -> detector -> chime -> activator -> locking
             //region Iron Rails
@@ -796,8 +813,12 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.STEEL_POWERED_RAIL, AllBlocks.STEEL_DETECTOR_RAIL);
             entries.addAfter(AllBlocks.STEEL_DETECTOR_RAIL, AllBlocks.STEEL_ACTIVATOR_RAIL);
             //endregion
+
+            entries.add(AllBlocks.VERMILION_CONDUIT);
         });
-        //Tool Blocks
+        //endregion
+
+        //region Tool Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
             //Order: standard -> crossover -> buffer stop -> powered -> braking -> check -> detector -> chime -> activator -> locking
             //region Iron Rails
@@ -827,6 +848,7 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.STEEL_DETECTOR_RAIL, AllBlocks.STEEL_ACTIVATOR_RAIL);
             //endregion
         });
+        //endregion
     }
 
     public static void registerAllOxidizableBlocks() {

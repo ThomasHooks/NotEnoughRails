@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "notenoughrails:block/vermilion_conduit_off",
+    "end": "notenoughrails:block/vermilion_conduit_top",
+    "end_overlay": "notenoughrails:block/vermilion_conduit_top_overlay",
+    "side": "notenoughrails:block/vermilion_conduit_side",
+    "side_overlay": "notenoughrails:block/vermilion_conduit_side_overlay"
+  },
+    "elements": [
+        {   "from": [ 0, 0, 0 ],
+            "to": [ 16, 16, 16 ],
+            "shade": false,
+            "faces": {
+                "down": { "uv": [ 0, 0, 16, 16 ], "texture": "#end", "tintindex": 0, "cullface": "down" },
+                "up":   { "uv": [ 0, 0, 16, 16 ], "texture": "#end", "tintindex": 0, "cullface": "up" },
+                "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#side", "tintindex": 0, "cullface": "north" },
+                "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#side", "tintindex": 0, "cullface": "south" },
+                "west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#side", "tintindex": 0, "cullface": "west" },
+                "east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#side", "tintindex": 0, "cullface": "east" }
+            }
+        },
+        {   "from": [ 0, 0, 0 ],
+            "to": [ 16, 16, 16 ],
+            "shade": false,
+            "faces": {
+                "down": { "uv": [ 0, 0, 16, 16 ], "texture": "#end_overlay", "cullface": "down" },
+                "up":   { "uv": [ 0, 0, 16, 16 ], "texture": "#end_overlay", "cullface": "up" },
+                "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#side_overlay", "cullface": "north" },
+                "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#side_overlay", "cullface": "south" },
+                "west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#side_overlay", "cullface": "west" },
+                "east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#side_overlay", "cullface": "east" }
+            }
+        }
+    ]
+}
