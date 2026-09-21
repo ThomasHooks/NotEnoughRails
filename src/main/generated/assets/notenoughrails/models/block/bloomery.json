@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "notenoughrails:block/bloomery_front",
+    "side": "notenoughrails:block/bloomery_side",
+    "top": "notenoughrails:block/bloomery_top"
+  }
+}

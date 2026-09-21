@@ -33,6 +33,14 @@ import net.minecraft.sound.BlockSoundGroup;
 import java.util.function.Function;
 
 public class AllBlocks {
+    public static final Block BLOOMERY = registerBlock("bloomery",
+            settings -> new BloomeryBlock(settings
+                    .strength(3.5F, 3.5F)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .mapColor(MapColor.GRAY)
+                    .requiresTool()
+                    .luminance(Blocks.createLightLevelFromLitBlockState(13))
+            ));
     public static final Block COKE_BLOCK = registerBlock("coke_block",
             settings -> new Block(settings
                     .strength(5.0F, 6.0F)
@@ -181,17 +189,6 @@ public class AllBlocks {
                     .mapColor(MapColor.YELLOW)
             ));
     //endregion
-
-    //------------------------------------------------------------------------------------------------------------------
-
-    public static final Block REFRACTORY_FURNACE = registerBlock("refractory_furnace",
-            settings -> new RefractoryFurnaceBlock(settings
-                    .strength(3.5F, 3.5F)
-                    .instrument(NoteBlockInstrument.BASEDRUM)
-                    .mapColor(MapColor.GRAY)
-                    .requiresTool()
-                    .luminance(Blocks.createLightLevelFromLitBlockState(13))
-            ));
 
     //------------------------------------------------------------------------------------------------------------------
 
@@ -773,7 +770,7 @@ public class AllBlocks {
         //region Functional Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
             entries.addAfter(Blocks.BLAST_FURNACE, AllBlocks.COKE_OVEN);
-            entries.addAfter(AllBlocks.COKE_OVEN, AllBlocks.REFRACTORY_FURNACE);
+            entries.addAfter(AllBlocks.COKE_OVEN, AllBlocks.BLOOMERY);
         });
         //endregion
 

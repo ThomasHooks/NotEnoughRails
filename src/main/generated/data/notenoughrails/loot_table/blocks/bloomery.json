@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "notenoughrails:refractory_furnace"
+          "name": "notenoughrails:bloomery"
         }
       ],
       "rolls": 1.0

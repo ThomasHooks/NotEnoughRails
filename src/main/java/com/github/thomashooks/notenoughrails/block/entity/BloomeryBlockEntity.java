@@ -16,14 +16,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.block.entity;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
-import com.github.thomashooks.notenoughrails.block.RefractoryFurnaceBlock;
+import com.github.thomashooks.notenoughrails.block.BloomeryBlock;
 import com.github.thomashooks.notenoughrails.inventory.SidedSimpleInventory;
 import com.github.thomashooks.notenoughrails.item.AllItems;
 import com.github.thomashooks.notenoughrails.network.BlockPosPayload;
 import com.github.thomashooks.notenoughrails.recipe.AllRecipes;
 import com.github.thomashooks.notenoughrails.recipe.BlastingRecipe;
 import com.github.thomashooks.notenoughrails.recipe.input.SimpleRecipeInput;
-import com.github.thomashooks.notenoughrails.screen.RefractoryFurnaceScreenHandler;
+import com.github.thomashooks.notenoughrails.screen.BloomeryScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -57,7 +57,7 @@ import org.jspecify.annotations.Nullable;
 import java.util.Objects;
 import java.util.Optional;
 
-public class RefractoryFurnaceBlockEntity extends LazyTickingBlockEntity implements ExtendedScreenHandlerFactory<BlockPosPayload> {
+public class BloomeryBlockEntity extends LazyTickingBlockEntity implements ExtendedScreenHandlerFactory<BlockPosPayload> {
     //region Sided Inventory Anonymous Class
     public static final int INPUT_SLOTS = 3;
     public static final int OUTPUT_SLOTS = 1;
@@ -123,10 +123,10 @@ public class RefractoryFurnaceBlockEntity extends LazyTickingBlockEntity impleme
         @Override
         public int get(int index) {
             return switch (index) {
-                case PROPERTY_DELEGATE_LIT_TIME_INDEX -> RefractoryFurnaceBlockEntity.this.litTime;
-                case PROPERTY_DELEGATE_MAX_LIT_TIME_INDEX -> RefractoryFurnaceBlockEntity.this.maxLitTime;
-                case PROPERTY_DELEGATE_PROGRESS_INDEX -> RefractoryFurnaceBlockEntity.this.progress;
-                case PROPERTY_DELEGATE_MAX_PROGRESS_INDEX -> RefractoryFurnaceBlockEntity.this.maxProgress;
+                case PROPERTY_DELEGATE_LIT_TIME_INDEX -> BloomeryBlockEntity.this.litTime;
+                case PROPERTY_DELEGATE_MAX_LIT_TIME_INDEX -> BloomeryBlockEntity.this.maxLitTime;
+                case PROPERTY_DELEGATE_PROGRESS_INDEX -> BloomeryBlockEntity.this.progress;
+                case PROPERTY_DELEGATE_MAX_PROGRESS_INDEX -> BloomeryBlockEntity.this.maxProgress;
                 default -> 0;
             };
         }
@@ -134,10 +134,10 @@ public class RefractoryFurnaceBlockEntity extends LazyTickingBlockEntity impleme
         @Override
         public void set(int index, int value) {
             switch (index) {
-                case PROPERTY_DELEGATE_LIT_TIME_INDEX -> RefractoryFurnaceBlockEntity.this.litTime = value;
-                case PROPERTY_DELEGATE_MAX_LIT_TIME_INDEX -> RefractoryFurnaceBlockEntity.this.maxLitTime = value;
-                case PROPERTY_DELEGATE_PROGRESS_INDEX -> RefractoryFurnaceBlockEntity.this.progress = value;
-                case PROPERTY_DELEGATE_MAX_PROGRESS_INDEX -> RefractoryFurnaceBlockEntity.this.maxProgress = value;
+                case PROPERTY_DELEGATE_LIT_TIME_INDEX -> BloomeryBlockEntity.this.litTime = value;
+                case PROPERTY_DELEGATE_MAX_LIT_TIME_INDEX -> BloomeryBlockEntity.this.maxLitTime = value;
+                case PROPERTY_DELEGATE_PROGRESS_INDEX -> BloomeryBlockEntity.this.progress = value;
+                case PROPERTY_DELEGATE_MAX_PROGRESS_INDEX -> BloomeryBlockEntity.this.maxProgress = value;
                 default -> {}
             }
         }
@@ -157,10 +157,10 @@ public class RefractoryFurnaceBlockEntity extends LazyTickingBlockEntity impleme
     private static final String MAX_PROGRESS_TAG = NotEnoughRails.MOD_ID + ":max_progress";
     private static final String LIT_TIME_TAG = NotEnoughRails.MOD_ID + ":lit_time";
     private static final String MAX_LIT_TIME_TAG = NotEnoughRails.MOD_ID + ":max_lit_time";
-    public static final Text SCREEN_TITLE = Text.translatable("container." + NotEnoughRails.MOD_ID + ".refractory_furnace");
+    public static final Text SCREEN_TITLE = Text.translatable("container." + NotEnoughRails.MOD_ID + ".bloomery");
 
-    protected RefractoryFurnaceBlockEntity(BlockPos pos, BlockState state) {
-        super(AllBlockEntities.REFRACTORY_FURNACE, pos, state);
+    protected BloomeryBlockEntity(BlockPos pos, BlockState state) {
+        super(AllBlockEntities.BLOOMERY, pos, state);
         this.matchGetter = ServerRecipeManager.createCachedMatchGetter(AllRecipes.Types.BLASTING);
         this.progress = 0;
         this.maxProgress = DEFAULT_COOK_TIME;
@@ -226,7 +226,7 @@ public class RefractoryFurnaceBlockEntity extends LazyTickingBlockEntity impleme
 
         if (wasBurning != isBurning()) {
             if (getWorld() != null) {
-                getWorld().setBlockState(getPos(), getCachedState().with(RefractoryFurnaceBlock.LIT, isBurning()), Block.NOTIFY_ALL);
+                getWorld().setBlockState(getPos(), getCachedState().with(BloomeryBlock.LIT, isBurning()), Block.NOTIFY_ALL);
                 hasChanged = true;
             }
         }
@@ -272,7 +272,7 @@ public class RefractoryFurnaceBlockEntity extends LazyTickingBlockEntity impleme
             } else if (ItemStack.areItemsEqual(output, result)) {
                 output.increment(result.getCount());
             } else {
-                throw new IllegalStateException("Fix the Refractory Furnace crafting!");
+                throw new IllegalStateException("Fix the Bloomery crafting!");
             }
             input.decrement(1); // All recipes only use one input
             this.inventory.getStack(FLUX_SLOT_INDEX).decrement(1);
@@ -308,7 +308,7 @@ public class RefractoryFurnaceBlockEntity extends LazyTickingBlockEntity impleme
 
     @Override
     public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        return new RefractoryFurnaceScreenHandler(syncId, playerInventory, this, this.delegate);
+        return new BloomeryScreenHandler(syncId, playerInventory, this, this.delegate);
     }
     //endregion
 

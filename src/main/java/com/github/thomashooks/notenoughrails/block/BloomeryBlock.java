@@ -16,8 +16,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.block;
 
 import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
+import com.github.thomashooks.notenoughrails.block.entity.BloomeryBlockEntity;
 import com.github.thomashooks.notenoughrails.block.entity.LazyTickingBlockEntity;
-import com.github.thomashooks.notenoughrails.block.entity.RefractoryFurnaceBlockEntity;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -45,12 +45,12 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jspecify.annotations.Nullable;
 
-public class RefractoryFurnaceBlock extends Block implements BlockEntityProvider {
-    public static final MapCodec<RefractoryFurnaceBlock> CODEC = createCodec(RefractoryFurnaceBlock::new);
+public class BloomeryBlock extends Block implements BlockEntityProvider {
+    public static final MapCodec<BloomeryBlock> CODEC = createCodec(BloomeryBlock::new);
     public static final EnumProperty<Direction> FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty LIT = Properties.LIT;
 
-    public RefractoryFurnaceBlock(Settings settings) {
+    public BloomeryBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState()
                 .with(FACING, Direction.NORTH)
@@ -89,7 +89,7 @@ public class RefractoryFurnaceBlock extends Block implements BlockEntityProvider
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient()) {
-            if (world.getBlockEntity(pos) instanceof RefractoryFurnaceBlockEntity furnaceBlockEntity) {
+            if (world.getBlockEntity(pos) instanceof BloomeryBlockEntity furnaceBlockEntity) {
                 player.openHandledScreen(furnaceBlockEntity);
             }
         }
@@ -98,7 +98,7 @@ public class RefractoryFurnaceBlock extends Block implements BlockEntityProvider
 
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return AllBlockEntities.REFRACTORY_FURNACE.instantiate(pos, state);
+        return AllBlockEntities.BLOOMERY.instantiate(pos, state);
     }
 
     @Override

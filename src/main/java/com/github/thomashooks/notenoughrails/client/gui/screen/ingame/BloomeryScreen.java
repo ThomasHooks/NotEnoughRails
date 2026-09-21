@@ -16,7 +16,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.client.gui.screen.ingame;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
-import com.github.thomashooks.notenoughrails.screen.RefractoryFurnaceScreenHandler;
+import com.github.thomashooks.notenoughrails.screen.BloomeryScreenHandler;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -25,12 +25,12 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
-public class RefractoryFurnaceScreen extends HandledScreen<RefractoryFurnaceScreenHandler> {
-    public static final Identifier TEXTURE = NotEnoughRails.identifier("textures/gui/container/refractory_furnace_gui.png");
+public class BloomeryScreen extends HandledScreen<BloomeryScreenHandler> {
+    public static final Identifier TEXTURE = NotEnoughRails.identifier("textures/gui/container/bloomery_gui.png");
     public static final Identifier LIT_PROGRESS_TEXTURE =Identifier.ofVanilla("container/furnace/lit_progress");
     private static final Identifier COOKING_PROGRESS_TEXTURE = Identifier.ofVanilla("container/furnace/burn_progress");
 
-    public RefractoryFurnaceScreen(RefractoryFurnaceScreenHandler handler, PlayerInventory inventory, Text title) {
+    public BloomeryScreen(BloomeryScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
         this.backgroundWidth = 176;
         this.backgroundHeight = 166;

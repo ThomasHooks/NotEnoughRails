@@ -305,13 +305,13 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .offerTo(exporter);
 
                 //Refractory Furnace
-                createShaped(RecipeCategory.MISC, AllBlocks.REFRACTORY_FURNACE, 1)
+                createShaped(RecipeCategory.MISC, AllBlocks.BLOOMERY, 1)
                         .input('#', AllBlocks.FIRE_BRICKS)
                         .input('f', Blocks.BLAST_FURNACE)
                         .input('i', Items.IRON_INGOT)
-                        .pattern("iii")
-                        .pattern("ifi")
                         .pattern("###")
+                        .pattern("#f#")
+                        .pattern("iii")
                         .group(NotEnoughRails.MOD_ID + ":refractory_furnace")
                         .criterion(hasItem(AllBlocks.FLUXSTONE), conditionsFromItem(AllBlocks.FLUXSTONE))
                         .offerTo(exporter);

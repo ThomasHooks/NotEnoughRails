@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "notenoughrails:block/refractory_furnace_front_on",
-    "side": "notenoughrails:block/refractory_furnace_side",
-    "top": "notenoughrails:block/refractory_furnace_top"
-  }
-}

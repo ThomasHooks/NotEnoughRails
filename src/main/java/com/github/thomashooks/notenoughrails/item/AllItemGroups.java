@@ -106,7 +106,7 @@ public class AllItemGroups {
 
         //Furnaces
         entries.add(AllBlocks.COKE_OVEN);
-        entries.add(AllBlocks.REFRACTORY_FURNACE);
+        entries.add(AllBlocks.BLOOMERY);
 
         //Ladders/Scaffolding
 

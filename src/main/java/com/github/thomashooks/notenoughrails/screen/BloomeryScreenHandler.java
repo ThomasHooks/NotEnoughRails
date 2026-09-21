@@ -16,7 +16,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.screen;
 
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
-import com.github.thomashooks.notenoughrails.block.entity.RefractoryFurnaceBlockEntity;
+import com.github.thomashooks.notenoughrails.block.entity.BloomeryBlockEntity;
 import com.github.thomashooks.notenoughrails.item.AllItems;
 import com.github.thomashooks.notenoughrails.network.BlockPosPayload;
 import com.github.thomashooks.notenoughrails.screen.slot.CraftingOutputSlot;
@@ -37,30 +37,30 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.Objects;
 
-public class RefractoryFurnaceScreenHandler extends ScreenHandler {
+public class BloomeryScreenHandler extends ScreenHandler {
     private static final int NUMBER_OF_PLAYERS_INVENTORY_SLOTS = 36;
-    private static final int INPUT_SLOT_INDEX = RefractoryFurnaceBlockEntity.INPUT_SLOT_INDEX;
-    private static final int FLUX_SLOT_INDEX = RefractoryFurnaceBlockEntity.FLUX_SLOT_INDEX;
-    private static final int FUEL_SLOT_INDEX = RefractoryFurnaceBlockEntity.FUEL_SLOT_INDEX;
-    private static final int OUTPUT_SLOT_INDEX = RefractoryFurnaceBlockEntity.OUTPUT_SLOT_INDEX;
-    private static final int NUMBER_OF_SLOTS = RefractoryFurnaceBlockEntity.NUMBER_OF_SLOTS;
+    private static final int INPUT_SLOT_INDEX = BloomeryBlockEntity.INPUT_SLOT_INDEX;
+    private static final int FLUX_SLOT_INDEX = BloomeryBlockEntity.FLUX_SLOT_INDEX;
+    private static final int FUEL_SLOT_INDEX = BloomeryBlockEntity.FUEL_SLOT_INDEX;
+    private static final int OUTPUT_SLOT_INDEX = BloomeryBlockEntity.OUTPUT_SLOT_INDEX;
+    private static final int NUMBER_OF_SLOTS = BloomeryBlockEntity.NUMBER_OF_SLOTS;
     private static final int PLAYER_INVENTORY_START_INDEX = NUMBER_OF_SLOTS;
     private static final int PLAYER_INVENTORY_END_INDEX = PLAYER_INVENTORY_START_INDEX + NUMBER_OF_PLAYERS_INVENTORY_SLOTS;
     private static final int PLAYER_HOTBAR_START_INDEX = PLAYER_INVENTORY_END_INDEX - 9;
-    private final RefractoryFurnaceBlockEntity blockEntity;
+    private final BloomeryBlockEntity blockEntity;
     private final World world;
     private final ScreenHandlerContext context;
     private final PropertyDelegate delegate;
-    private static final int PROPERTY_DELEGATE_SIZE = RefractoryFurnaceBlockEntity.PROPERTY_DELEGATE_SIZE;
+    private static final int PROPERTY_DELEGATE_SIZE = BloomeryBlockEntity.PROPERTY_DELEGATE_SIZE;
 
     //Server Side
-    public RefractoryFurnaceScreenHandler(
+    public BloomeryScreenHandler(
             int syncId,
             PlayerInventory playerInventory,
-            RefractoryFurnaceBlockEntity blockEntity,
+            BloomeryBlockEntity blockEntity,
             PropertyDelegate delegate
     ) {
-        super(AllScreenHandlers.REFRACTORY_FURNACE, syncId);
+        super(AllScreenHandlers.BLOOMERY, syncId);
         this.blockEntity = blockEntity;
         this.world = blockEntity.getWorld();
         this.context = ScreenHandlerContext.create(this.blockEntity.getWorld(), this.blockEntity.getPos());
@@ -80,11 +80,11 @@ public class RefractoryFurnaceScreenHandler extends ScreenHandler {
     }
 
     //Client Side
-    public RefractoryFurnaceScreenHandler(int syncId, PlayerInventory playerInventory, BlockPosPayload payload) {
+    public BloomeryScreenHandler(int syncId, PlayerInventory playerInventory, BlockPosPayload payload) {
         this(
                 syncId,
                 playerInventory,
-                (RefractoryFurnaceBlockEntity) playerInventory.player.getEntityWorld().getBlockEntity(payload.pos()),
+                (BloomeryBlockEntity) playerInventory.player.getEntityWorld().getBlockEntity(payload.pos()),
                 new ArrayPropertyDelegate(PROPERTY_DELEGATE_SIZE)
         );
     }
@@ -144,7 +144,7 @@ public class RefractoryFurnaceScreenHandler extends ScreenHandler {
     }
 
     @Override
-    public boolean canUse(PlayerEntity player) { return canUse(this.context, player, AllBlocks.REFRACTORY_FURNACE); }
+    public boolean canUse(PlayerEntity player) { return canUse(this.context, player, AllBlocks.BLOOMERY); }
 
     @Override
     public void onClosed(PlayerEntity player) {
@@ -154,12 +154,12 @@ public class RefractoryFurnaceScreenHandler extends ScreenHandler {
 
     //region Screen Progress Bars
     public boolean isBurning() {
-        return this.delegate.get(RefractoryFurnaceBlockEntity.PROPERTY_DELEGATE_LIT_TIME_INDEX) > 0;
+        return this.delegate.get(BloomeryBlockEntity.PROPERTY_DELEGATE_LIT_TIME_INDEX) > 0;
     }
 
     public float getCookProgress() {
-        int progress = this.delegate.get(RefractoryFurnaceBlockEntity.PROPERTY_DELEGATE_PROGRESS_INDEX);
-        int maxProgress = this.delegate.get(RefractoryFurnaceBlockEntity.PROPERTY_DELEGATE_MAX_PROGRESS_INDEX);
+        int progress = this.delegate.get(BloomeryBlockEntity.PROPERTY_DELEGATE_PROGRESS_INDEX);
+        int maxProgress = this.delegate.get(BloomeryBlockEntity.PROPERTY_DELEGATE_MAX_PROGRESS_INDEX);
         if (progress == 0 || maxProgress == 0) {
             return 0.0F;
         }
@@ -167,8 +167,8 @@ public class RefractoryFurnaceScreenHandler extends ScreenHandler {
     }
 
     public float getFuelProgress() {
-        int litTime = this.delegate.get(RefractoryFurnaceBlockEntity.PROPERTY_DELEGATE_LIT_TIME_INDEX);
-        int maxLitTime = this.delegate.get(RefractoryFurnaceBlockEntity.PROPERTY_DELEGATE_MAX_LIT_TIME_INDEX);
+        int litTime = this.delegate.get(BloomeryBlockEntity.PROPERTY_DELEGATE_LIT_TIME_INDEX);
+        int maxLitTime = this.delegate.get(BloomeryBlockEntity.PROPERTY_DELEGATE_MAX_LIT_TIME_INDEX);
         if (maxLitTime == 0) {
             maxLitTime = 200;
         }

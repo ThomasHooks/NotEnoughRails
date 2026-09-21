@@ -8,12 +8,12 @@
     "i": "minecraft:iron_ingot"
   },
   "pattern": [
-    "iii",
-    "ifi",
-    "###"
+    "###",
+    "#f#",
+    "iii"
   ],
   "result": {
     "count": 1,
-    "id": "notenoughrails:refractory_furnace"
+    "id": "notenoughrails:bloomery"
   }
 }
