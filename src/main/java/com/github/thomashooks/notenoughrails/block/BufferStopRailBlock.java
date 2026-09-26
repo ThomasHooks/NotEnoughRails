@@ -35,7 +35,7 @@ public class BufferStopRailBlock extends AbstractRailBlock {
     public static final MapCodec<BufferStopRailBlock> CODEC = createCodec(BufferStopRailBlock::new);
     public static final EnumProperty<RailShape> SHAPE = AllProperties.FLAT_RAIL_SHAPE;
     private static final VoxelShape STRAIGHT_VOXEL_SHAPE = Block.createColumnShape(16.0, 0.0, 2.0);
-    private static final VoxelShape BUFFER_VOXEL_SHAPE = Block.createCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 12.0D, 11.0D);
+    private static final VoxelShape BUFFER_VOXEL_SHAPE = Block.createCuboidShape(5.0, 0.0, 5.0, 11.0, 12.0, 11.0);
 
     public BufferStopRailBlock(Settings settings) {
         super(true, settings);
