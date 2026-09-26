@@ -25,12 +25,14 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
 public class AllBlockEntities {
+    public static final BlockEntityType<BloomeryBlockEntity> BLOOMERY = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("bloomery"),
+            FabricBlockEntityTypeBuilder.create(BloomeryBlockEntity::new, AllBlocks.BLOOMERY).build());
     public static final BlockEntityType<CokeOvenBlockEntity> COKE_OVEN = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("coke_oven"),
             FabricBlockEntityTypeBuilder.create(CokeOvenBlockEntity::new, AllBlocks.COKE_OVEN).build());
     public static final BlockEntityType<LockingRailBlockEntity> LOCKING_RAIL = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("locking_rail"),
             FabricBlockEntityTypeBuilder.create(LockingRailBlockEntity::new, AllBlocks.LOCKING_RAIL).build());
-    public static final BlockEntityType<BloomeryBlockEntity> BLOOMERY = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("bloomery"),
-            FabricBlockEntityTypeBuilder.create(BloomeryBlockEntity::new, AllBlocks.BLOOMERY).build());
+    public static final BlockEntityType<MillstoneBlockEntity> MILLSTONE = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("millstone"),
+            FabricBlockEntityTypeBuilder.create(MillstoneBlockEntity::new, AllBlocks.MILLSTONE).build());
 
     public static void registerAll() {
         // We have to do this otherwise the block entities won't get created
@@ -41,11 +43,15 @@ public class AllBlockEntities {
         NotEnoughRails.LOGGER.info("Registering storage block entities");
         ItemStorage.SIDED.registerForBlockEntity(
                 (blockEntity, direction) -> InventoryStorage.of(blockEntity.getInventory(), direction),
+                AllBlockEntities.BLOOMERY
+        );
+        ItemStorage.SIDED.registerForBlockEntity(
+                (blockEntity, direction) -> InventoryStorage.of(blockEntity.getInventory(), direction),
                 AllBlockEntities.COKE_OVEN
         );
         ItemStorage.SIDED.registerForBlockEntity(
                 (blockEntity, direction) -> InventoryStorage.of(blockEntity.getInventory(), direction),
-                AllBlockEntities.BLOOMERY
+                AllBlockEntities.MILLSTONE
         );
     }
 }

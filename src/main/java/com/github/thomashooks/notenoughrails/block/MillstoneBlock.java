@@ -15,11 +15,17 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.block;
 
+import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
+import com.github.thomashooks.notenoughrails.block.entity.LazyTickingBlockEntity;
 import com.github.thomashooks.notenoughrails.util.VoxelShapeHelper;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -27,8 +33,9 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jspecify.annotations.Nullable;
 
-public class MillstoneBlock extends Block {
+public class MillstoneBlock extends Block implements BlockEntityProvider {
     public static final MapCodec<MillstoneBlock> CODEC = createCodec(MillstoneBlock::new);
     private static final VoxelShape RUNNER_STONE_VOXEL_SHAPE = Block.createCuboidShape(1.0, 8.0, 1.0, 15.0, 12.0, 15.0);
 
@@ -51,5 +58,15 @@ public class MillstoneBlock extends Block {
                 RUNNER_STONE_VOXEL_SHAPE,
                 VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.Y)]
         );
+    }
+
+    @Override
+    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return AllBlockEntities.MILLSTONE.instantiate(pos, state);
+    }
+
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return LazyTickingBlockEntity.getTicker(world);
     }
 }
