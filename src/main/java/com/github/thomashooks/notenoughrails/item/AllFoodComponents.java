@@ -19,4 +19,5 @@ import net.minecraft.component.type.FoodComponent;
 
 public class AllFoodComponents {
     public static final FoodComponent LINSEED_OIL = new FoodComponent.Builder().nutrition(2).saturationModifier(0.3F).alwaysEdible().build();
+    public static final FoodComponent FLAXSEED_BREAD = new FoodComponent.Builder().nutrition(5).saturationModifier(0.6F).build();
 }

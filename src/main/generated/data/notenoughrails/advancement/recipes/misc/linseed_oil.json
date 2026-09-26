@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_flax": {
+    "has_flaxseed": {
       "conditions": {
         "items": [
           {
-            "items": "notenoughrails:flax"
+            "items": "notenoughrails:flaxseed"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_flax"
+      "has_flaxseed"
     ]
   ],
   "rewards": {

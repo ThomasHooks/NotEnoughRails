@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "notenoughrails:railroad_tie"
+        "recipe": "notenoughrails:wooden_frame"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "notenoughrails:railroad_tie"
+      "notenoughrails:wooden_frame"
     ]
   }
 }

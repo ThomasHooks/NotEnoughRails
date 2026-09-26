@@ -43,7 +43,9 @@ public class AllItems {
     public static final Item FLAX = registerItem("flax", Item::new);
     public static final Item FLAX_STRING = registerItem("flax_string", Item::new);
     public static final Item FLAXSEEDS = registerItem("flaxseed", createBlockItemWithUniqueName(AllBlocks.FLAX_CROP));
+    public static final Item FLAXSEED_BREAD = registerItem("flaxseed_bread", settings -> new Item(settings.food(AllFoodComponents.FLAXSEED_BREAD)));
     public static final Item FLUX = registerItem("flux", Item::new);
+    public static final Item GEAR = registerItem("gear", Item::new);
     public static final Item GOLD_ROD = registerItem("gold_rod", Item::new);
     public static final Item IRON_PLATE = registerItem("iron_plate", Item::new);
     public static final Item IRON_ROD = registerItem("iron_rod", Item::new);
@@ -120,10 +122,12 @@ public class AllItems {
             entries.addAfter(AllItems.LINEN, AllItems.LINSEED_OIL);
 
             //Misc Crafting Items
+            entries.addAfter(AllItems.LINSEED_OIL, AllItems.GEAR);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
             //Food Items
             entries.addAfter(Items.HONEY_BOTTLE, AllItems.LINSEED_OIL);
+            entries.addAfter(Items.BREAD, AllItems.FLAXSEED_BREAD);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
             //Crop Items

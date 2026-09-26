@@ -16,6 +16,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.util;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
@@ -37,6 +38,7 @@ public class AllItemTags {
     public static final TagKey<Item> STEEL_NUGGETS = createCommon("nuggets/steel");
     public static final TagKey<Item> STEEL_PLATES = createCommon("plates/steel");
     public static final TagKey<Item> STEEL_RODS = createCommon("rods/steel");
+    public static final TagKey<Item> STRIPPED_LOGS = create("stripped_logs");
     //endregion
 
     public static TagKey<Item> create(String name) {

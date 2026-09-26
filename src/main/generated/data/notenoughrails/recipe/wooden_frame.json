@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "notenoughrails:wooden_frame",
+  "key": {
+    "#": "#notenoughrails:stripped_logs",
+    "o": "notenoughrails:linseed_oil",
+    "x": "#minecraft:planks"
+  },
+  "pattern": [
+    "#x#",
+    "xox",
+    "#x#"
+  ],
+  "result": {
+    "count": 8,
+    "id": "notenoughrails:wooden_frame"
+  }
+}

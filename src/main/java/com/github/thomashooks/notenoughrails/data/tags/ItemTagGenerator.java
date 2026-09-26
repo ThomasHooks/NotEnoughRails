@@ -20,6 +20,7 @@ import com.github.thomashooks.notenoughrails.item.AllItems;
 import com.github.thomashooks.notenoughrails.util.AllItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import org.jetbrains.annotations.NotNull;
 
@@ -50,6 +51,31 @@ public class ItemTagGenerator extends FabricTagProvider.ItemTagProvider {
                 .add(AllBlocks.LINEN_BLOCK_PURPLE.asItem())
                 .add(AllBlocks.LINEN_BLOCK_MAGENTA.asItem())
                 .add(AllBlocks.LINEN_BLOCK_PINK.asItem());
+
+        valueLookupBuilder(AllItemTags.STRIPPED_LOGS)
+                .add(Items.STRIPPED_OAK_LOG)
+                .add(Items.STRIPPED_OAK_WOOD)
+                .add(Items.STRIPPED_SPRUCE_LOG)
+                .add(Items.STRIPPED_SPRUCE_WOOD)
+                .add(Items.STRIPPED_BIRCH_LOG)
+                .add(Items.STRIPPED_BIRCH_WOOD)
+                .add(Items.STRIPPED_JUNGLE_LOG)
+                .add(Items.STRIPPED_JUNGLE_WOOD)
+                .add(Items.STRIPPED_ACACIA_LOG)
+                .add(Items.STRIPPED_ACACIA_WOOD)
+                .add(Items.STRIPPED_DARK_OAK_LOG)
+                .add(Items.STRIPPED_DARK_OAK_WOOD)
+                .add(Items.STRIPPED_MANGROVE_LOG)
+                .add(Items.STRIPPED_MANGROVE_WOOD)
+                .add(Items.STRIPPED_CHERRY_LOG)
+                .add(Items.STRIPPED_CHERRY_WOOD)
+                .add(Items.STRIPPED_PALE_OAK_LOG)
+                .add(Items.STRIPPED_PALE_OAK_WOOD)
+                .add(Items.STRIPPED_BAMBOO_BLOCK)
+                .add(Items.STRIPPED_CRIMSON_STEM)
+                .add(Items.STRIPPED_CRIMSON_HYPHAE)
+                .add(Items.STRIPPED_WARPED_STEM)
+                .add(Items.STRIPPED_WARPED_HYPHAE);
 
         //region Common Items
         valueLookupBuilder(AllItemTags.COPPER_DUSTS)

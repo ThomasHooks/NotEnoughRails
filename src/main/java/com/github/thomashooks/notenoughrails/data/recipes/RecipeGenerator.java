@@ -149,6 +149,25 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
                         .offerTo(exporter);
 
+                //Flaxseed Bread
+                createShaped(RecipeCategory.FOOD, AllItems.FLAXSEED_BREAD, 1)
+                        .input('f', AllItems.FLAXSEEDS)
+                        .pattern("fff")
+                        .group(NotEnoughRails.MOD_ID + ":flaxseed_bread")
+                        .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
+                        .offerTo(exporter);
+
+                //Gear
+                createShaped(RecipeCategory.MISC, AllItems.GEAR, 4)
+                        .input('s', Items.STICK)
+                        .input('b', AllItems.LINSEED_OIL)
+                        .pattern(" s ")
+                        .pattern("sbs")
+                        .pattern(" s ")
+                        .group(NotEnoughRails.MOD_ID + ":gear")
+                        .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
+                        .offerTo(exporter);
+
                 //Gold Ingot
                 List<ItemConvertible> GOLD_INGOT_SMELTABLES = List.of(AllItems.CRUSHED_GOLD_ORE);
                 offerSmelting(GOLD_INGOT_SMELTABLES, RecipeCategory.MISC, Items.GOLD_INGOT, 1.0F, 200, NotEnoughRails.MOD_ID + ":gold_ingot");
@@ -195,17 +214,17 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //Linen
                 createShapeless(RecipeCategory.MISC, AllItems.LINEN, 1)
-                        .input(AllItems.FLAX_STRING, 9)
+                        .input(AllItems.FLAX_STRING, 4)
                         .group(NotEnoughRails.MOD_ID + ":linen")
                         .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
                         .offerTo(exporter);
 
                 //Linseed Oil
                 createShapeless(RecipeCategory.MISC, AllItems.LINSEED_OIL, 1)
-                        .input(AllItems.FLAXSEEDS, 6)
+                        .input(AllItems.FLAXSEEDS, 3)
                         .input(Items.GLASS_BOTTLE, 1)
                         .group(NotEnoughRails.MOD_ID + ":linseed_oil")
-                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
                         .offerTo(exporter);
 
                 //Railroad Tie
@@ -215,7 +234,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern(" o ")
                         .pattern("sss")
                         .group(NotEnoughRails.MOD_ID + ":railroad_tie")
-                        .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
                         .offerTo(exporter);
 
                 // endregion
@@ -835,6 +854,18 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .input(AllItemTags.LINEN_BLOCKS)
                         .group(NotEnoughRails.MOD_ID + ":linen_block_dyed")
                         .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
+                        .offerTo(exporter);
+
+                //Wooden Frame
+                createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.WOODEN_FRAME, 8)
+                        .input('x', ItemTags.PLANKS)
+                        .input('#', AllItemTags.STRIPPED_LOGS)
+                        .input('o', AllItems.LINSEED_OIL)
+                        .pattern("#x#")
+                        .pattern("xox")
+                        .pattern("#x#")
+                        .group(NotEnoughRails.MOD_ID + ":wooden_frame")
+                        .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
                         .offerTo(exporter);
 
                 //Steel Crossover Rail

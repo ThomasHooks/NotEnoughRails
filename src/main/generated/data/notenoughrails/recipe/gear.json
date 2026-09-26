@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:gear",
+  "key": {
+    "b": "notenoughrails:linseed_oil",
+    "s": "minecraft:stick"
+  },
+  "pattern": [
+    " s ",
+    "sbs",
+    " s "
+  ],
+  "result": {
+    "count": 4,
+    "id": "notenoughrails:gear"
+  }
+}

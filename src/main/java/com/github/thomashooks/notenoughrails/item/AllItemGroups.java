@@ -272,7 +272,9 @@ public class AllItemGroups {
         entries.add(AllItems.LINSEED_OIL);
 
         //Food
+        entries.add(AllItems.FLAXSEED_BREAD);
 
         //Misc Crafting Items
+        entries.add(AllItems.GEAR);
     }
 }
