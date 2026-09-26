@@ -39,6 +39,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         RegistryWrapper.Impl<Enchantment> impl = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
+        addDrop(AllBlocks.BLOOMERY);
         addDrop(AllBlocks.BRAKING_RAIL);
         addDrop(AllBlocks.BUFFER_STOP_RAIL);
         addDrop(AllBlocks.CHECK_RAIL);
@@ -152,7 +153,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(AllBlocks.LINEN_BLOCK_MAGENTA);
         addDrop(AllBlocks.LINEN_BLOCK_PINK);
         addDrop(AllBlocks.LOCKING_RAIL);
-        addDrop(AllBlocks.BLOOMERY);
+        addDrop(AllBlocks.MILLSTONE);
         addDrop(AllBlocks.VERMILION_BLOCK);
         addDrop(AllBlocks.VERMILION_CONDUIT);
         addDrop(AllBlocks.WOODEN_FRAME);

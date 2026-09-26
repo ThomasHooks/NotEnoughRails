@@ -192,6 +192,17 @@ public class AllBlocks {
 
     //------------------------------------------------------------------------------------------------------------------
 
+    public static final Block MILLSTONE = registerBlock("millstone",
+            settings -> new MillstoneBlock(settings
+                    .strength(2.8F, 3.0F)
+                    .sounds(BlockSoundGroup.STONE)
+                    .mapColor(MapColor.STONE_GRAY)
+                    .requiresTool()
+                    .nonOpaque()
+            ));
+
+    //------------------------------------------------------------------------------------------------------------------
+
     //region Steel Blocks
     public static final Block STEEL_BARS = registerBlock("steel_bars",
             settings -> new PaneBlock(settings
@@ -703,7 +714,7 @@ public class AllBlocks {
 
     //------------------------------------------------------------------------------------------------------------------
 
-    //region Register Methods
+    //region ItemGroup Add Event
     public static void registerAll() {
         NotEnoughRails.LOGGER.info("Registering all Blocks");
 
@@ -771,6 +782,7 @@ public class AllBlocks {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
             entries.addAfter(Blocks.BLAST_FURNACE, AllBlocks.COKE_OVEN);
             entries.addAfter(AllBlocks.COKE_OVEN, AllBlocks.BLOOMERY);
+            entries.addAfter(AllBlocks.BLOOMERY, AllBlocks.MILLSTONE);
         });
         //endregion
 
@@ -847,7 +859,9 @@ public class AllBlocks {
         });
         //endregion
     }
+    //endregion
 
+    //region Register Oxidizable Blocks
     public static void registerAllOxidizableBlocks() {
         NotEnoughRails.LOGGER.info("Registering all oxidizable blocks");
         OxidizableBlocksRegistry.registerCopperBlockSet(new CopperBlockSet(
@@ -911,7 +925,9 @@ public class AllBlocks {
                 AllBlocks.COPPER_RAIL_OXIDIZED_WAXED
         ));
     }
+    //endregion
 
+    //region Block Register Methods
     private static Block registerBlockWithoutItem(String name, Function<AbstractBlock.Settings, Block> function) {
         return Registry.register(Registries.BLOCK, NotEnoughRails.identifier(name),
                 function.apply(AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, NotEnoughRails.identifier(name)))));

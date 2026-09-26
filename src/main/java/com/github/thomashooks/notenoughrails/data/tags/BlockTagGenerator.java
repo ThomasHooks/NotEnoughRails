@@ -33,6 +33,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
     @Override
     protected void configure(RegistryWrapper.@NotNull WrapperLookup wrapperLookup) {
         valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
+                .add(AllBlocks.BLOOMERY)
                 .add(AllBlocks.BRAKING_RAIL)
                 .add(AllBlocks.BUFFER_STOP_RAIL)
                 .add(AllBlocks.CHECK_RAIL)
@@ -99,6 +100,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.FLUXSTONE_SMOOTH_STAIRS)
                 .add(AllBlocks.IRON_PLATE_BLOCK)
                 .add(AllBlocks.LOCKING_RAIL)
+                .add(AllBlocks.MILLSTONE)
                 .add(AllBlocks.STEEL_ACTIVATOR_RAIL)
                 .add(AllBlocks.STEEL_BUFFER_STOP_RAIL)
                 .add(AllBlocks.STEEL_BARS)
@@ -115,11 +117,11 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.STEEL_POWERED_RAIL)
                 .add(AllBlocks.STEEL_RAIL)
                 .add(AllBlocks.STEEL_TRAPDOOR)
-                .add(AllBlocks.BLOOMERY)
                 .add(AllBlocks.VERMILION_BLOCK)
                 .add(AllBlocks.VERMILION_CONDUIT)
         ;
         valueLookupBuilder(BlockTags.NEEDS_STONE_TOOL)
+                .add(AllBlocks.BLOOMERY)
                 .add(AllBlocks.COKE_BLOCK)
                 .add(AllBlocks.COKE_OVEN)
                 .add(AllBlocks.FLUXSTONE)
@@ -128,7 +130,6 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.FLUXSTONE_SMOOTH_SLAB)
                 .add(AllBlocks.FLUXSTONE_SMOOTH_STAIRS)
                 .add(AllBlocks.IRON_PLATE_BLOCK)
-                .add(AllBlocks.BLOOMERY)
         ;
         valueLookupBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(AllBlocks.VERMILION_BLOCK)
@@ -273,6 +274,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED)
                 .add(AllBlocks.CROSSOVER_RAIL)
                 .add(AllBlocks.LOCKING_RAIL)
+                .add(AllBlocks.MILLSTONE)
                 .add(AllBlocks.STEEL_ACTIVATOR_RAIL)
                 .add(AllBlocks.STEEL_BUFFER_STOP_RAIL)
                 .add(AllBlocks.STEEL_DETECTOR_RAIL)
