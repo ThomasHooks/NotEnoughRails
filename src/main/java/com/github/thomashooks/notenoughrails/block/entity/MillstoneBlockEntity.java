@@ -17,8 +17,12 @@ package com.github.thomashooks.notenoughrails.block.entity;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
 import com.github.thomashooks.notenoughrails.inventory.SidedSimpleInventory;
+import com.github.thomashooks.notenoughrails.network.BlockPosPayload;
+import com.github.thomashooks.notenoughrails.screen.QuernScreenHandler;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
@@ -27,6 +31,9 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.screen.PropertyDelegate;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
@@ -34,9 +41,10 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
-public class MillstoneBlockEntity extends LazyTickingBlockEntity {
+public class MillstoneBlockEntity extends LazyTickingBlockEntity implements ExtendedScreenHandlerFactory<BlockPosPayload> {
     //region Sided Inventory Anonymous Class
     public static final int INPUT_SLOTS = 1;
     public static final int OUTPUT_SLOTS = 1;
@@ -76,7 +84,33 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity {
     //endregion
 
     //region Property Delegate Anonymous Class
-    // TODO: Add property delegate for screen
+    public static final int PROPERTY_DELEGATE_SIZE = 3;
+    public static final int PROPERTY_DELEGATE_PROGRESS_INDEX = 0;
+    public static final int PROPERTY_DELEGATE_MAX_PROGRESS_INDEX = 1;
+    public static final int PROPERTY_DELEGATE_SPEED_INDEX = 2;
+    protected final PropertyDelegate delegate = new PropertyDelegate() {
+        @Override
+        public int get(int index) {
+            return switch (index) {
+                case PROPERTY_DELEGATE_PROGRESS_INDEX -> MillstoneBlockEntity.this.progress;
+                case PROPERTY_DELEGATE_MAX_PROGRESS_INDEX -> MillstoneBlockEntity.this.maxProgress;
+                case PROPERTY_DELEGATE_SPEED_INDEX -> MillstoneBlockEntity.this.speed;
+                default -> 0;
+            };
+        }
+
+        @Override
+        public void set(int index, int value) {
+            switch (index) {
+                case PROPERTY_DELEGATE_PROGRESS_INDEX -> MillstoneBlockEntity.this.progress = value;
+                case PROPERTY_DELEGATE_MAX_PROGRESS_INDEX -> MillstoneBlockEntity.this.maxProgress = value;
+                default -> {}
+            }
+        }
+
+        @Override
+        public int size() { return PROPERTY_DELEGATE_SIZE; }
+    };
     //endregion
 
     private int progress;
@@ -84,7 +118,11 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity {
     private int maxProgress = MAX_PROGRESS_TIME;
     private static final String PROGRESS_TAG = NotEnoughRails.MOD_ID + ":progress";
     private static final String MAX_PROGRESS_TAG = NotEnoughRails.MOD_ID + ":max_progress";
-    public static final Text SCREEN_TITLE = Text.translatable("container." + NotEnoughRails.MOD_ID + ".millstone");
+    private int speed;
+    public static final int MIN_SPEED = 8;
+    public static final int MAX_SPEED = 16; // Max speed possible is 256
+    private static final String SPEED_TAG = NotEnoughRails.MOD_ID + ":speed";
+    public static final Text SCREEN_TITLE = Text.translatable("container." + NotEnoughRails.MOD_ID + ".quern");
 
     protected MillstoneBlockEntity(BlockPos pos, BlockState state) {
         super(AllBlockEntities.MILLSTONE, pos, state);
@@ -102,12 +140,32 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity {
         }
     }
 
+    @Override
+    protected void tick() {
+        super.tick();
+
+        // REMOVE - this is for testing only
+        this.speed = 8;
+        this.progress = 100;
+    }
+
     //region Crafting Methods
     // TODO: Add crafting and recipe
     //endregion
 
     //region Screen Methods
-    // TODO: Add screen
+    @Override
+    public @NonNull BlockPosPayload getScreenOpeningData(@NonNull ServerPlayerEntity player) {
+        return new BlockPosPayload(getPos());
+    }
+
+    @Override
+    public Text getDisplayName() { return SCREEN_TITLE; }
+
+    @Override
+    public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
+        return new QuernScreenHandler(syncId, playerInventory, this, this.delegate);
+    }
     //endregion
 
     //region Serialize and Deserialize Methods
@@ -128,6 +186,9 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity {
         if (view.contains(MAX_PROGRESS_TAG)) {
             this.maxProgress = view.getInt(MAX_PROGRESS_TAG, MAX_PROGRESS_TIME);
         }
+        if (view.contains(SPEED_TAG)) {
+            this.speed = view.getInt(SPEED_TAG, 0);
+        }
         Inventories.readData(view, this.inventory.getHeldStacks());
     }
 
@@ -136,6 +197,7 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity {
         super.writeData(view);
         view.putInt(PROGRESS_TAG, this.progress);
         view.putInt(MAX_PROGRESS_TAG, this.maxProgress);
+        view.putInt(SPEED_TAG, this.speed);
         Inventories.writeData(view, this.inventory.getHeldStacks());
     }
     //endregion

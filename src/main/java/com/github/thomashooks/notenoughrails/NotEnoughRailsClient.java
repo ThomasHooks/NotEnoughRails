@@ -19,6 +19,7 @@ import com.github.thomashooks.notenoughrails.block.AllBlocks;
 import com.github.thomashooks.notenoughrails.block.VermilionConduitBlock;
 import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.CokeOvenScreen;
 import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.BloomeryScreen;
+import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.QuernScreen;
 import com.github.thomashooks.notenoughrails.screen.AllScreenHandlers;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -126,7 +127,8 @@ public class NotEnoughRailsClient implements ClientModInitializer {
     private void registerScreens() {
         NotEnoughRails.LOGGER.info("Binding all screens");
 
-        HandledScreens.register(AllScreenHandlers.COKE_OVEN, CokeOvenScreen::new);
         HandledScreens.register(AllScreenHandlers.BLOOMERY, BloomeryScreen::new);
+        HandledScreens.register(AllScreenHandlers.COKE_OVEN, CokeOvenScreen::new);
+        HandledScreens.register(AllScreenHandlers.MILLSTONE, QuernScreen::new);
     }
 }
