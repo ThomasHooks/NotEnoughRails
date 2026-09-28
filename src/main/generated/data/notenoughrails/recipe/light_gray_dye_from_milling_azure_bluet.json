@@ -1,0 +1,10 @@
+{
+  "type": "notenoughrails:milling",
+  "bonus": 0.0,
+  "ingredient": "minecraft:azure_bluet",
+  "milling_time": 200,
+  "result": {
+    "count": 2,
+    "id": "minecraft:light_gray_dye"
+  }
+}

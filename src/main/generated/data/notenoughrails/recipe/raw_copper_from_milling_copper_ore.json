@@ -1,0 +1,10 @@
+{
+  "type": "notenoughrails:milling",
+  "bonus": 0.22,
+  "ingredient": "minecraft:copper_ore",
+  "milling_time": 800,
+  "result": {
+    "count": 5,
+    "id": "minecraft:raw_copper"
+  }
+}

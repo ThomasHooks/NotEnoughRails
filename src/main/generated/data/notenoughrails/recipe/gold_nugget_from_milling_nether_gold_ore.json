@@ -1,0 +1,10 @@
+{
+  "type": "notenoughrails:milling",
+  "bonus": 0.22,
+  "ingredient": "minecraft:nether_gold_ore",
+  "milling_time": 400,
+  "result": {
+    "count": 6,
+    "id": "minecraft:gold_nugget"
+  }
+}

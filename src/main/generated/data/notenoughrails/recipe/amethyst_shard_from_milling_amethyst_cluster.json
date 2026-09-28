@@ -1,0 +1,10 @@
+{
+  "type": "notenoughrails:milling",
+  "bonus": 0.12,
+  "ingredient": "minecraft:amethyst_cluster",
+  "milling_time": 400,
+  "result": {
+    "count": 5,
+    "id": "minecraft:amethyst_shard"
+  }
+}

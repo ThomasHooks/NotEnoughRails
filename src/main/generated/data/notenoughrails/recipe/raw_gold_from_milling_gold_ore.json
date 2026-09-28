@@ -1,0 +1,10 @@
+{
+  "type": "notenoughrails:milling",
+  "bonus": 0.12,
+  "ingredient": "minecraft:gold_ore",
+  "milling_time": 800,
+  "result": {
+    "count": 1,
+    "id": "minecraft:raw_gold"
+  }
+}

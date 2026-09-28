@@ -1,0 +1,10 @@
+{
+  "type": "notenoughrails:milling",
+  "bonus": 0.0,
+  "ingredient": "minecraft:stone_bricks",
+  "milling_time": 400,
+  "result": {
+    "count": 1,
+    "id": "minecraft:cracked_stone_bricks"
+  }
+}

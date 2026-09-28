@@ -1,0 +1,10 @@
+{
+  "type": "notenoughrails:milling",
+  "bonus": 0.33,
+  "ingredient": "minecraft:redstone_ore",
+  "milling_time": 400,
+  "result": {
+    "count": 6,
+    "id": "minecraft:redstone"
+  }
+}
