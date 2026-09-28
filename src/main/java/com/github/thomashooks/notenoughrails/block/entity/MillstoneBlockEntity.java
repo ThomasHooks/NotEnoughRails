@@ -18,6 +18,9 @@ package com.github.thomashooks.notenoughrails.block.entity;
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
 import com.github.thomashooks.notenoughrails.inventory.SidedSimpleInventory;
 import com.github.thomashooks.notenoughrails.network.BlockPosPayload;
+import com.github.thomashooks.notenoughrails.recipe.AllRecipes;
+import com.github.thomashooks.notenoughrails.recipe.MillingRecipe;
+import com.github.thomashooks.notenoughrails.recipe.input.SimpleRecipeInput;
 import com.github.thomashooks.notenoughrails.screen.QuernScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
@@ -30,6 +33,8 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.recipe.RecipeEntry;
+import net.minecraft.recipe.ServerRecipeManager;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -41,8 +46,12 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
+
+import java.util.Objects;
+import java.util.Optional;
 
 public class MillstoneBlockEntity extends LazyTickingBlockEntity implements ExtendedScreenHandlerFactory<BlockPosPayload> {
     //region Sided Inventory Anonymous Class
@@ -113,9 +122,10 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
     };
     //endregion
 
+    private final ServerRecipeManager.MatchGetter<SimpleRecipeInput, MillingRecipe>  matchGetter;
     private int progress;
-    public static final int MAX_PROGRESS_TIME = 200;
-    private int maxProgress = MAX_PROGRESS_TIME;
+    public static final int DEFAULT_MILLING_TIME = 200;
+    private int maxProgress;
     private static final String PROGRESS_TAG = NotEnoughRails.MOD_ID + ":progress";
     private static final String MAX_PROGRESS_TAG = NotEnoughRails.MOD_ID + ":max_progress";
     private int speed;
@@ -126,7 +136,9 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
 
     protected MillstoneBlockEntity(BlockPos pos, BlockState state) {
         super(AllBlockEntities.MILLSTONE, pos, state);
+        this.matchGetter = ServerRecipeManager.createCachedMatchGetter(AllRecipes.Types.MILLING);
         this.progress = 0;
+        this.maxProgress = DEFAULT_MILLING_TIME;
         setLazyTickRate(20);
     }
 
@@ -140,17 +152,109 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
         }
     }
 
+    //region Lazy Ticking Methods
     @Override
     protected void tick() {
         super.tick();
 
         // REMOVE - this is for testing only
         this.speed = 8;
-        this.progress = 100;
+
+        ItemStack inputItemStack = this.inventory.getStack(INPUT_SLOT_INDEX).copy();
+        MillingRecipe recipe = getRecipe(inputItemStack).map(RecipeEntry::value).orElse(null);
+        ItemStack outputItemStack = this.inventory.getStack(OUTPUT_SLOT_INDEX).copy();
+        boolean canCraft = canCraftRecipe(inputItemStack, outputItemStack, recipe);
+        // TODO: Add a requirement to be powered
+        if (canCraft) {
+            this.progress++;
+            this.maxProgress = recipe.millingTime();
+        } else if (isCrafting()) {
+            this.progress = 0;
+            this.maxProgress = DEFAULT_MILLING_TIME;
+        }
+
+        boolean hasChanged = false;
+        if (canCraft && this.progress >= this.maxProgress) {
+            if (craftRecipe(recipe)) {
+                this.progress = 0;
+                this.maxProgress = DEFAULT_MILLING_TIME;
+                hasChanged = true;
+            }
+        }
+
+        if (hasChanged) {
+            updateAndNotifyAll();
+        }
     }
+    //endregion
 
     //region Crafting Methods
-    // TODO: Add crafting and recipe
+    private boolean isCrafting() { return this.progress > 0; }
+
+    private Optional<RecipeEntry<MillingRecipe>> getRecipe(ItemStack input) {
+        if (input.isEmpty()) {
+            return Optional.empty();
+        }
+
+        SimpleRecipeInput recipeInput = new SimpleRecipeInput(input);
+        if (getWorld() instanceof ServerWorld serverWorld) {
+            return this.matchGetter.getFirstMatch(recipeInput, serverWorld);
+        }
+        return Optional.empty();
+    }
+
+    private boolean craftRecipe(MillingRecipe recipe) {
+        // Handle bonus items
+        ItemStack result = recipe.result().copy();
+        float bonusChance = recipe.bonus();
+        int bonusAmount = 0;
+        if  (bonusChance > 0.001F) {
+            float roll = MathHelper.nextBetween(Objects.requireNonNull(getWorld()).getRandom(), 0.001F, 1.0F);
+            if (roll < bonusChance) {
+                bonusAmount = MathHelper.ceil(result.getCount() / 2.0);
+            }
+        }
+
+        ItemStack input = this.inventory.getStack(INPUT_SLOT_INDEX);
+        ItemStack output = this.inventory.getStack(OUTPUT_SLOT_INDEX);
+        if (canCraftRecipe(input, output, recipe)) {
+            if (output.isEmpty()) {
+                if (bonusAmount > 0) {
+                    // Since the output slot is empty we can just add the bonus items
+                    result.increment(bonusAmount);
+                }
+                this.inventory.setStack(OUTPUT_SLOT_INDEX, result.copy());
+            } else if (ItemStack.areItemsEqual(output, result)) {
+                if (bonusAmount > 0) {
+                    // Ignore the bonus items if they do not fit
+                    if (output.getCount() + result.getCount() + bonusAmount <= output.getMaxCount()) {
+                        result.increment(bonusAmount);
+                    }
+                }
+                output.increment(result.getCount());
+            } else {
+                throw new IllegalStateException("Fix the Quern crafting!");
+            }
+            input.decrement(1); // All recipes only use one input
+            return true;
+        }
+        return false;
+    }
+
+    private boolean canCraftRecipe(ItemStack input, ItemStack output, MillingRecipe recipe) {
+        if (recipe == null || input.isEmpty()) {
+            return false;
+        }
+
+        ItemStack result = recipe.result().copy();
+        if (output.isEmpty()) {
+            return true;
+        } else if (!ItemStack.areItemsEqual(output, result)) {
+            return false;
+        } else {
+            return output.getCount() + result.getCount() <= output.getMaxCount();
+        }
+    }
     //endregion
 
     //region Screen Methods
@@ -184,7 +288,7 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
             this.progress = view.getInt(PROGRESS_TAG, 0);
         }
         if (view.contains(MAX_PROGRESS_TAG)) {
-            this.maxProgress = view.getInt(MAX_PROGRESS_TAG, MAX_PROGRESS_TIME);
+            this.maxProgress = view.getInt(MAX_PROGRESS_TAG, DEFAULT_MILLING_TIME);
         }
         if (view.contains(SPEED_TAG)) {
             this.speed = view.getInt(SPEED_TAG, 0);
