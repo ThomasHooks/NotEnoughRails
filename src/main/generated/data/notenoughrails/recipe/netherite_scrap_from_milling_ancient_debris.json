@@ -1,0 +1,10 @@
+{
+  "type": "notenoughrails:milling",
+  "bonus": 0.07,
+  "ingredient": "minecraft:ancient_debris",
+  "milling_time": 600,
+  "result": {
+    "count": 2,
+    "id": "minecraft:netherite_scrap"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "type": "notenoughrails:milling",
-  "bonus": 0.12,
+  "bonus": 0.22,
   "ingredient": "minecraft:deepslate_iron_ore",
   "milling_time": 800,
   "result": {

@@ -1,6 +1,6 @@
 {
   "type": "notenoughrails:milling",
-  "bonus": 0.12,
+  "bonus": 0.07,
   "ingredient": "minecraft:emerald_ore",
   "milling_time": 400,
   "result": {
