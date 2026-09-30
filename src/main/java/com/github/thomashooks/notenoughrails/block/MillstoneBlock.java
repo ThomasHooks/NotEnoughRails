@@ -48,7 +48,7 @@ import org.jspecify.annotations.Nullable;
 public class MillstoneBlock extends Block implements BlockEntityProvider {
     public static final MapCodec<MillstoneBlock> CODEC = createCodec(MillstoneBlock::new);
     public static final BooleanProperty IS_MILLING = AllProperties.IS_MILLING;
-    private static final VoxelShape RUNNER_STONE_VOXEL_SHAPE = Block.createCuboidShape(1.0, 8.0, 1.0, 15.0, 12.0, 15.0);
+    private static final VoxelShape RUNNER_STONE_VOXEL_SHAPE = Block.createCuboidShape(0.0, 8.0, 0.0, 16.0, 12.0, 16.0);
 
     public MillstoneBlock(Settings settings) {
         super(settings);
@@ -106,7 +106,7 @@ public class MillstoneBlock extends Block implements BlockEntityProvider {
                 VoxelShapeHelper.HALF_BLOCK,
                 RUNNER_STONE_VOXEL_SHAPE,
                 VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.Y)]
-        );
+        ).simplify();
     }
 
     @Override
