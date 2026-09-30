@@ -16,6 +16,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.block.entity;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
+import com.github.thomashooks.notenoughrails.block.MillstoneBlock;
 import com.github.thomashooks.notenoughrails.inventory.SidedSimpleInventory;
 import com.github.thomashooks.notenoughrails.network.BlockPosPayload;
 import com.github.thomashooks.notenoughrails.recipe.AllRecipes;
@@ -23,6 +24,7 @@ import com.github.thomashooks.notenoughrails.recipe.MillingRecipe;
 import com.github.thomashooks.notenoughrails.recipe.input.SimpleRecipeInput;
 import com.github.thomashooks.notenoughrails.screen.QuernScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -160,6 +162,8 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
         // REMOVE - this is for testing only
         this.speed = 8;
 
+        boolean wasMilling = isMilling();
+
         ItemStack inputItemStack = this.inventory.getStack(INPUT_SLOT_INDEX).copy();
         MillingRecipe recipe = getRecipe(inputItemStack).map(RecipeEntry::value).orElse(null);
         ItemStack outputItemStack = this.inventory.getStack(OUTPUT_SLOT_INDEX).copy();
@@ -168,7 +172,7 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
         if (canCraft) {
             this.progress++;
             this.maxProgress = recipe.millingTime();
-        } else if (isCrafting()) {
+        } else if (isMilling()) {
             this.progress = 0;
             this.maxProgress = DEFAULT_MILLING_TIME;
         }
@@ -182,6 +186,13 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
             }
         }
 
+        if (wasMilling != isMilling()) {
+            if (getWorld() != null) {
+                getWorld().setBlockState(getPos(), getCachedState().with(MillstoneBlock.IS_MILLING, isMilling()), Block.NOTIFY_ALL);
+                hasChanged = true;
+            }
+        }
+
         if (hasChanged) {
             updateAndNotifyAll();
         }
@@ -189,7 +200,9 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
     //endregion
 
     //region Crafting Methods
-    private boolean isCrafting() { return this.progress > 0; }
+    private boolean isMilling() { return this.progress > 0; }
+
+    public ItemStack getMillingItemStack() { return this.inventory.getStack(INPUT_SLOT_INDEX).copy(); }
 
     private Optional<RecipeEntry<MillingRecipe>> getRecipe(ItemStack input) {
         if (input.isEmpty()) {

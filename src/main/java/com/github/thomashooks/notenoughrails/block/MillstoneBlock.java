@@ -18,6 +18,7 @@ package com.github.thomashooks.notenoughrails.block;
 import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
 import com.github.thomashooks.notenoughrails.block.entity.LazyTickingBlockEntity;
 import com.github.thomashooks.notenoughrails.block.entity.MillstoneBlockEntity;
+import com.github.thomashooks.notenoughrails.block.property.AllProperties;
 import com.github.thomashooks.notenoughrails.util.VoxelShapeHelper;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
@@ -28,6 +29,11 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ItemStackParticleEffect;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -41,10 +47,14 @@ import org.jspecify.annotations.Nullable;
 
 public class MillstoneBlock extends Block implements BlockEntityProvider {
     public static final MapCodec<MillstoneBlock> CODEC = createCodec(MillstoneBlock::new);
+    public static final BooleanProperty IS_MILLING = AllProperties.IS_MILLING;
     private static final VoxelShape RUNNER_STONE_VOXEL_SHAPE = Block.createCuboidShape(1.0, 8.0, 1.0, 15.0, 12.0, 15.0);
 
     public MillstoneBlock(Settings settings) {
         super(settings);
+        this.setDefaultState(this.stateManager.getDefaultState()
+                .with(IS_MILLING, false)
+        );
     }
 
     @Override
@@ -52,7 +62,32 @@ public class MillstoneBlock extends Block implements BlockEntityProvider {
 
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        super.randomDisplayTick(state, world, pos, random);
+        if (!state.get(IS_MILLING)) {
+            return;
+        }
+
+        if (world.getBlockEntity(pos) instanceof MillstoneBlockEntity blockEntity) {
+            double xPos = pos.getX() + 0.5;
+            double yPos = pos.getY() + 0.5;
+            double zPos = pos.getZ() + 0.5;
+            ItemStack itemStack = blockEntity.getMillingItemStack();
+            for (Direction direction : Direction.Type.HORIZONTAL) {
+                Direction.Axis axis = direction.getAxis();
+                double randomShift = random.nextDouble() * 0.6 - 0.3;
+                double xAxisOffset = axis == Direction.Axis.X ? direction.getOffsetX() * 0.52 : randomShift;
+                double zAxisOffset = axis == Direction.Axis.Z ? direction.getOffsetZ() * 0.52 : randomShift;
+                double yAxisOffset = random.nextDouble() * 0.125;
+                double xVelocity = 0.0;
+                double zVelocity = 0.0;
+                switch (direction) {
+                    case EAST ->  xVelocity = Math.abs(randomShift * 0.52);
+                    case WEST -> xVelocity = -Math.abs(randomShift * 0.52);
+                    case NORTH ->  zVelocity = -Math.abs(randomShift * 0.52);
+                    case SOUTH ->  zVelocity = Math.abs(randomShift * 0.52);
+                }
+                world.addParticleClient(new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack), xPos + xAxisOffset, yPos + yAxisOffset, zPos + zAxisOffset, xVelocity, 0.0, zVelocity);
+            }
+        }
     }
 
     @Override
@@ -83,4 +118,7 @@ public class MillstoneBlock extends Block implements BlockEntityProvider {
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return LazyTickingBlockEntity.getTicker(world);
     }
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) { builder.add(IS_MILLING); }
 }
