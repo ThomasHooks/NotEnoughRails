@@ -105,7 +105,7 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
             return switch (index) {
                 case PROPERTY_DELEGATE_PROGRESS_INDEX -> MillstoneBlockEntity.this.progress;
                 case PROPERTY_DELEGATE_MAX_PROGRESS_INDEX -> MillstoneBlockEntity.this.maxProgress;
-                case PROPERTY_DELEGATE_SPEED_INDEX -> MillstoneBlockEntity.this.speed;
+                case PROPERTY_DELEGATE_SPEED_INDEX -> Math.round(MillstoneBlockEntity.this.speed); // TODO: change this to a % int ie. 0 to 100
                 default -> 0;
             };
         }
@@ -130,11 +130,15 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
     private int maxProgress;
     private static final String PROGRESS_TAG = NotEnoughRails.MOD_ID + ":progress";
     private static final String MAX_PROGRESS_TAG = NotEnoughRails.MOD_ID + ":max_progress";
-    private int speed;
-    public static final int MIN_SPEED = 8;
-    public static final int MAX_SPEED = 16; // Max speed possible is 256
-    private static final String SPEED_TAG = NotEnoughRails.MOD_ID + ":speed";
     public static final Text SCREEN_TITLE = Text.translatable("container." + NotEnoughRails.MOD_ID + ".quern");
+
+    private final RotatingShaftAnimator shaftAnimator = new RotatingShaftAnimator();
+
+    // These data fields are temporary
+    private float speed;
+    public static final int MIN_SPEED = 16;
+    public static final int MAX_SPEED = 32;
+    private static final String SPEED_TAG = NotEnoughRails.MOD_ID + ":speed";
 
     protected MillstoneBlockEntity(BlockPos pos, BlockState state) {
         super(AllBlockEntities.MILLSTONE, pos, state);
@@ -145,6 +149,15 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
     }
 
     public SimpleInventory getInventory() { return inventory; }
+
+    public float getSpeed() { return speed; }
+
+    protected void setSpeed(float speed) {
+        if (!MathHelper.approximatelyEquals(speed, this.speed)) {
+            this.speed = speed;
+            updateAndNotifyAll();
+        }
+    }
 
     @Override
     public void onBlockReplaced(BlockPos pos, BlockState oldState) {
@@ -159,9 +172,6 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
     protected void tick() {
         super.tick();
 
-        // REMOVE - this is for testing only
-        this.speed = 8;
-
         boolean wasMilling = isMilling();
 
         ItemStack inputItemStack = this.inventory.getStack(INPUT_SLOT_INDEX).copy();
@@ -172,9 +182,11 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
         if (canCraft) {
             this.progress++;
             this.maxProgress = recipe.millingTime();
+            setSpeed(32.0F); // REMOVE - this is for testing only
         } else if (isMilling()) {
             this.progress = 0;
             this.maxProgress = DEFAULT_MILLING_TIME;
+            setSpeed(0.0F); // REMOVE - this is for testing only
         }
 
         boolean hasChanged = false;
@@ -196,6 +208,13 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
         if (hasChanged) {
             updateAndNotifyAll();
         }
+    }
+
+    @Override
+    protected void clientTick() {
+        super.clientTick();
+
+        shaftAnimator.step(getSpeed());
     }
     //endregion
 
@@ -285,6 +304,10 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
     }
     //endregion
 
+    //region Block Entity Renderer Methods
+    public float getAnimationProgress(float tickProgress) { return shaftAnimator.getShaftAngle(tickProgress); }
+    //endregion
+
     //region Serialize and Deserialize Methods
     @Override
     public @Nullable Packet<ClientPlayPacketListener> toUpdatePacket() {
@@ -304,7 +327,7 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
             this.maxProgress = view.getInt(MAX_PROGRESS_TAG, DEFAULT_MILLING_TIME);
         }
         if (view.contains(SPEED_TAG)) {
-            this.speed = view.getInt(SPEED_TAG, 0);
+            this.speed = view.getFloat(SPEED_TAG, 0.0F);
         }
         Inventories.readData(view, this.inventory.getHeldStacks());
     }
@@ -314,7 +337,7 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
         super.writeData(view);
         view.putInt(PROGRESS_TAG, this.progress);
         view.putInt(MAX_PROGRESS_TAG, this.maxProgress);
-        view.putInt(SPEED_TAG, this.speed);
+        view.putFloat(SPEED_TAG, this.speed);
         Inventories.writeData(view, this.inventory.getHeldStacks());
     }
     //endregion

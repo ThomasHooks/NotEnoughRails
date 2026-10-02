@@ -1,5 +1,5 @@
 {
   "variants": {
-    "": { "model": "notenoughrails:block/millstone" }
+    "": { "model": "notenoughrails:block/millstone_base" }
   }
 }
