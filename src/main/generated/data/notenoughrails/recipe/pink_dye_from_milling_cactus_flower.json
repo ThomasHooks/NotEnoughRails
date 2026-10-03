@@ -1,10 +1,10 @@
 {
   "type": "notenoughrails:milling",
   "bonus": 0.0,
-  "ingredient": "minecraft:glowstone",
+  "ingredient": "minecraft:cactus_flower",
   "milling_time": 200,
   "result": {
-    "count": 4,
-    "id": "minecraft:glowstone_dust"
+    "count": 2,
+    "id": "minecraft:pink_dye"
   }
 }

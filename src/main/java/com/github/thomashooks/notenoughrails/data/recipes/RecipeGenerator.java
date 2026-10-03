@@ -1111,9 +1111,9 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
                 //region Dust
                 offerMilling(exporter, Items.RAW_COPPER, AllItems.CRUSHED_COPPER_ORE, 2, 400, 0.22F);
-                offerMilling(exporter, Items.RAW_GOLD, AllItems.CRUSHED_GOLD_ORE, 2, 400, 0.12F);
+                offerMilling(exporter, Items.RAW_GOLD, AllItems.CRUSHED_GOLD_ORE, 2, 400, 0.22F);
                 offerMilling(exporter, Items.RAW_IRON, AllItems.CRUSHED_IRON_ORE, 2, 400, 0.22F);
-                offerMilling(exporter, Items.GLOWSTONE, Items.GLOWSTONE_DUST, 2, 200, 0.22F);
+                offerMilling(exporter, Items.GLOWSTONE, Items.GLOWSTONE_DUST, 4, 200);
                 //endregion
 
                 //region Dye
@@ -1126,25 +1126,27 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 offerMilling(exporter, List.of(Items.AZURE_BLUET, Items.OXEYE_DAISY, Items.WHITE_TULIP), Items.LIGHT_GRAY_DYE, 2, 200);
                 offerMilling(exporter, List.of(Items.LILAC, Items.ALLIUM), Items.MAGENTA_DYE, 2, 200);
                 offerMilling(exporter, Items.ORANGE_TULIP, Items.ORANGE_DYE, 2, 200);
-                offerMilling(exporter, List.of(Items.PINK_TULIP, Items.PEONY), Items.PINK_DYE, 2, 200);
+                offerMilling(exporter, List.of(Items.PINK_TULIP, Items.PEONY, Items.CACTUS_FLOWER), Items.PINK_DYE, 2, 200);
                 offerMilling(exporter, List.of(Items.POPPY, Items.RED_TULIP, Items.BEETROOT, Items.ROSE_BUSH), Items.RED_DYE, 2, 200);
                 offerMilling(exporter, List.of(Items.BONE_MEAL, Items.LILY_OF_THE_VALLEY), Items.WHITE_DYE, 2, 200);
-                offerMilling(exporter, List.of(Items.DANDELION, Items.SUNFLOWER), Items.YELLOW_DYE, 2, 200);
+                offerMilling(exporter, List.of(Items.DANDELION, Items.SUNFLOWER, Items.WILDFLOWERS), Items.YELLOW_DYE, 2, 200);
                 //endregion
 
                 //region Other Minerals
-                offerMilling(exporter, Items.AMETHYST_CLUSTER, Items.AMETHYST_SHARD, 5, 400, 0.12F);
-                offerMilling(exporter, List.of(Items.SAND, Items.RED_SAND), Items.CLAY_BALL, 4, 200, 0.33F);
-                offerMilling(exporter, List.of(Items.COAL_ORE, Items.DEEPSLATE_COAL_ORE), Items.COAL, 2, 400, 0.33F);
-                offerMilling(exporter, List.of(Items.DIAMOND_ORE, Items.DEEPSLATE_DIAMOND_ORE), Items.DIAMOND, 2, 400, 0.07F);
-                offerMilling(exporter, List.of(Items.EMERALD_ORE, Items.DEEPSLATE_EMERALD_ORE), Items.EMERALD, 2, 400, 0.07F);
+                offerMilling(exporter, List.of(Items.MUD, Items.MUDDY_MANGROVE_ROOTS), Items.CLAY_BALL, 4, 200, 0.33F);
+                offerMilling(exporter, Items.DIRT, Items.CLAY_BALL, 2, 200, 0.33F);
                 offerMilling(exporter, AllItems.FLAX, AllItems.FLAX_STRING, 2, 200);
                 offerMilling(exporter, Items.GRAVEL, Items.FLINT, 400);
-                offerMilling(exporter, Items.NETHER_GOLD_ORE, Items.GOLD_NUGGET, 6, 400, 0.22F);
-                offerMilling(exporter, Items.ANCIENT_DEBRIS, Items.NETHERITE_SCRAP, 2, 600, 0.07F);
-                offerMilling(exporter, List.of(Items.LAPIS_ORE, Items.DEEPSLATE_LAPIS_ORE), Items.LAPIS_LAZULI, 9, 400, 0.33F);
+                offerMilling(exporter, Items.COARSE_DIRT, Items.FLINT, 200);
+                offerMilling(exporter, Items.ANCIENT_DEBRIS, Items.NETHERITE_SCRAP, 2, 800, 0.03F);
                 offerMilling(exporter, Items.NETHER_QUARTZ_ORE, Items.QUARTZ, 2, 400, 0.22F);
-                offerMilling(exporter, List.of(Items.REDSTONE_ORE, Items.DEEPSLATE_REDSTONE_ORE), Items.REDSTONE, 6, 400, 0.33F);
+                offerMilling(exporter, Items.COBWEB, Items.STRING, 200);
+                offerMilling(exporter,
+                        List.of(Items.WHITE_WOOL, Items.ORANGE_WOOL, Items.MAGENTA_WOOL, Items.LIGHT_BLUE_WOOL,
+                                Items.YELLOW_WOOL, Items.LIME_WOOL, Items.PINK_WOOL, Items.GRAY_WOOL,
+                                Items.LIGHT_GRAY_WOOL, Items.CYAN_WOOL, Items.PURPLE_WOOL, Items.BLUE_WOOL,
+                                Items.BROWN_WOOL, Items.GREEN_WOOL, Items.RED_WOOL, Items.BLACK_WOOL),
+                        Items.STRING, 4, 200);
                 //endregion
 
                 //region Powder
@@ -1155,9 +1157,16 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 //endregion
 
                 //region Raw Ore
+                offerMilling(exporter, Items.AMETHYST_CLUSTER, Items.AMETHYST_SHARD, 5, 400, 0.12F);
+                offerMilling(exporter, List.of(Items.COAL_ORE, Items.DEEPSLATE_COAL_ORE), Items.COAL, 2, 400, 0.33F);
+                offerMilling(exporter, List.of(Items.DIAMOND_ORE, Items.DEEPSLATE_DIAMOND_ORE), Items.DIAMOND, 2, 400, 0.07F);
+                offerMilling(exporter, List.of(Items.EMERALD_ORE, Items.DEEPSLATE_EMERALD_ORE), Items.EMERALD, 2, 400, 0.07F);
+                offerMilling(exporter, Items.NETHER_GOLD_ORE, Items.GOLD_NUGGET, 6, 400, 0.22F);
+                offerMilling(exporter, List.of(Items.LAPIS_ORE, Items.DEEPSLATE_LAPIS_ORE), Items.LAPIS_LAZULI, 9, 400, 0.33F);
                 offerMilling(exporter, List.of(Items.COPPER_ORE, Items.DEEPSLATE_COPPER_ORE), Items.RAW_COPPER, 5, 800, 0.22F);
-                offerMilling(exporter, List.of(Items.GOLD_ORE, Items.DEEPSLATE_GOLD_ORE), Items.RAW_GOLD, 1, 800, 0.12F);
+                offerMilling(exporter, List.of(Items.GOLD_ORE, Items.DEEPSLATE_GOLD_ORE), Items.RAW_GOLD, 1, 800, 0.22F);
                 offerMilling(exporter, List.of(Items.IRON_ORE, Items.DEEPSLATE_IRON_ORE), Items.RAW_IRON, 1, 800, 0.22F);
+                offerMilling(exporter, List.of(Items.REDSTONE_ORE, Items.DEEPSLATE_REDSTONE_ORE), Items.REDSTONE, 6, 400, 0.33F);
                 //endregion
             }
             //endregion

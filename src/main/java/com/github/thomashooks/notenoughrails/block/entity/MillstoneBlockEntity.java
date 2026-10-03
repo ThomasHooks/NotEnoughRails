@@ -195,6 +195,7 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
                 this.progress = 0;
                 this.maxProgress = DEFAULT_MILLING_TIME;
                 hasChanged = true;
+                setSpeed(0.0F); // REMOVE - this is for testing only
             }
         }
 

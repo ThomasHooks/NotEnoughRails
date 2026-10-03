@@ -1,10 +1,10 @@
 {
   "type": "notenoughrails:milling",
   "bonus": 0.0,
-  "ingredient": "minecraft:glowstone",
+  "ingredient": "minecraft:green_wool",
   "milling_time": 200,
   "result": {
     "count": 4,
-    "id": "minecraft:glowstone_dust"
+    "id": "minecraft:string"
   }
 }

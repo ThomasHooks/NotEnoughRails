@@ -1,6 +1,6 @@
 {
   "type": "notenoughrails:milling",
-  "bonus": 0.12,
+  "bonus": 0.22,
   "ingredient": "minecraft:raw_gold",
   "milling_time": 400,
   "result": {
