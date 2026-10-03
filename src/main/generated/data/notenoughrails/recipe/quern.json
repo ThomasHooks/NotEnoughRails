@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "group": "notenoughrails:millstone",
+  "group": "notenoughrails:quern",
   "key": {
     "#": "notenoughrails:wooden_frame",
     "=": "minecraft:obsidian",
@@ -15,6 +15,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "notenoughrails:millstone"
+    "id": "notenoughrails:quern"
   }
 }

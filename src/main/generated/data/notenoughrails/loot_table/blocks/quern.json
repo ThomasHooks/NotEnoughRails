@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "notenoughrails:millstone"
+          "name": "notenoughrails:quern"
         }
       ],
       "rolls": 1.0

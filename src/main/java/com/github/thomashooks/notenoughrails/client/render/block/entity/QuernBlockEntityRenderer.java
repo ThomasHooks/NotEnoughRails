@@ -15,7 +15,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.client.render.block.entity;
 
-import com.github.thomashooks.notenoughrails.block.entity.MillstoneBlockEntity;
+import com.github.thomashooks.notenoughrails.block.entity.QuernBlockEntity;
 import com.github.thomashooks.notenoughrails.client.render.block.entity.model.QuernBlockModel;
 import com.github.thomashooks.notenoughrails.client.render.block.entity.state.RotatingShaftRenderState;
 import net.fabricmc.api.EnvType;
@@ -31,7 +31,7 @@ import net.minecraft.util.math.Vec3d;
 import org.jspecify.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
-public class QuernBlockEntityRenderer implements BlockEntityRenderer<MillstoneBlockEntity, RotatingShaftRenderState> {
+public class QuernBlockEntityRenderer implements BlockEntityRenderer<QuernBlockEntity, RotatingShaftRenderState> {
     private final QuernBlockModel model;
 
     public QuernBlockEntityRenderer(BlockEntityRendererFactory.Context context) {
@@ -42,7 +42,7 @@ public class QuernBlockEntityRenderer implements BlockEntityRenderer<MillstoneBl
     public RotatingShaftRenderState createRenderState() { return new RotatingShaftRenderState(); }
 
     @Override
-    public void updateRenderState(MillstoneBlockEntity blockEntity, RotatingShaftRenderState state, float tickProgress, Vec3d cameraPos, ModelCommandRenderer.@Nullable CrumblingOverlayCommand crumblingOverlay) {
+    public void updateRenderState(QuernBlockEntity blockEntity, RotatingShaftRenderState state, float tickProgress, Vec3d cameraPos, ModelCommandRenderer.@Nullable CrumblingOverlayCommand crumblingOverlay) {
         BlockEntityRenderer.super.updateRenderState(blockEntity, state, tickProgress, cameraPos, crumblingOverlay);
         state.tickProgress = tickProgress;
         state.rotationAngle = blockEntity.getAnimationProgress(tickProgress);

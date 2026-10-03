@@ -16,7 +16,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.block.entity;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
-import com.github.thomashooks.notenoughrails.block.MillstoneBlock;
+import com.github.thomashooks.notenoughrails.block.QuernBlock;
 import com.github.thomashooks.notenoughrails.inventory.SidedSimpleInventory;
 import com.github.thomashooks.notenoughrails.network.BlockPosPayload;
 import com.github.thomashooks.notenoughrails.recipe.AllRecipes;
@@ -55,7 +55,7 @@ import org.jspecify.annotations.Nullable;
 import java.util.Objects;
 import java.util.Optional;
 
-public class MillstoneBlockEntity extends LazyTickingBlockEntity implements ExtendedScreenHandlerFactory<BlockPosPayload> {
+public class QuernBlockEntity extends LazyTickingBlockEntity implements ExtendedScreenHandlerFactory<BlockPosPayload> {
     //region Sided Inventory Anonymous Class
     public static final int INPUT_SLOTS = 1;
     public static final int OUTPUT_SLOTS = 1;
@@ -103,9 +103,9 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
         @Override
         public int get(int index) {
             return switch (index) {
-                case PROPERTY_DELEGATE_PROGRESS_INDEX -> MillstoneBlockEntity.this.progress;
-                case PROPERTY_DELEGATE_MAX_PROGRESS_INDEX -> MillstoneBlockEntity.this.maxProgress;
-                case PROPERTY_DELEGATE_SPEED_INDEX -> Math.round(MillstoneBlockEntity.this.speed); // TODO: change this to a % int ie. 0 to 100
+                case PROPERTY_DELEGATE_PROGRESS_INDEX -> QuernBlockEntity.this.progress;
+                case PROPERTY_DELEGATE_MAX_PROGRESS_INDEX -> QuernBlockEntity.this.maxProgress;
+                case PROPERTY_DELEGATE_SPEED_INDEX -> Math.round(QuernBlockEntity.this.speed); // TODO: change this to a % int ie. 0 to 100
                 default -> 0;
             };
         }
@@ -113,8 +113,8 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
         @Override
         public void set(int index, int value) {
             switch (index) {
-                case PROPERTY_DELEGATE_PROGRESS_INDEX -> MillstoneBlockEntity.this.progress = value;
-                case PROPERTY_DELEGATE_MAX_PROGRESS_INDEX -> MillstoneBlockEntity.this.maxProgress = value;
+                case PROPERTY_DELEGATE_PROGRESS_INDEX -> QuernBlockEntity.this.progress = value;
+                case PROPERTY_DELEGATE_MAX_PROGRESS_INDEX -> QuernBlockEntity.this.maxProgress = value;
                 default -> {}
             }
         }
@@ -140,8 +140,8 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
     public static final int MAX_SPEED = 32;
     private static final String SPEED_TAG = NotEnoughRails.MOD_ID + ":speed";
 
-    protected MillstoneBlockEntity(BlockPos pos, BlockState state) {
-        super(AllBlockEntities.MILLSTONE, pos, state);
+    protected QuernBlockEntity(BlockPos pos, BlockState state) {
+        super(AllBlockEntities.QUERN, pos, state);
         this.matchGetter = ServerRecipeManager.createCachedMatchGetter(AllRecipes.Types.MILLING);
         this.progress = 0;
         this.maxProgress = DEFAULT_MILLING_TIME;
@@ -201,7 +201,7 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
 
         if (wasMilling != isMilling()) {
             if (getWorld() != null) {
-                getWorld().setBlockState(getPos(), getCachedState().with(MillstoneBlock.IS_MILLING, isMilling()), Block.NOTIFY_ALL);
+                getWorld().setBlockState(getPos(), getCachedState().with(QuernBlock.IS_MILLING, isMilling()), Block.NOTIFY_ALL);
                 hasChanged = true;
             }
         }

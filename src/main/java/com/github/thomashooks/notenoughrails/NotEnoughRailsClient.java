@@ -140,7 +140,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
     private void registerBlockEntityRenderers() {
         NotEnoughRails.LOGGER.info("Registering All Block Entity Renderers");
 
-        BlockEntityRendererFactories.register(AllBlockEntities.MILLSTONE, QuernBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(AllBlockEntities.QUERN, QuernBlockEntityRenderer::new);
     }
 
     private void registerScreens() {
@@ -148,6 +148,6 @@ public class NotEnoughRailsClient implements ClientModInitializer {
 
         HandledScreens.register(AllScreenHandlers.BLOOMERY, BloomeryScreen::new);
         HandledScreens.register(AllScreenHandlers.COKE_OVEN, CokeOvenScreen::new);
-        HandledScreens.register(AllScreenHandlers.MILLSTONE, QuernScreen::new);
+        HandledScreens.register(AllScreenHandlers.QUERN, QuernScreen::new);
     }
 }

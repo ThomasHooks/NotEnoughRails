@@ -153,7 +153,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(AllBlocks.LINEN_BLOCK_MAGENTA);
         addDrop(AllBlocks.LINEN_BLOCK_PINK);
         addDrop(AllBlocks.LOCKING_RAIL);
-        addDrop(AllBlocks.MILLSTONE);
+        addDrop(AllBlocks.QUERN);
         addDrop(AllBlocks.VERMILION_BLOCK);
         addDrop(AllBlocks.VERMILION_CONDUIT);
         addDrop(AllBlocks.WOODEN_FRAME);

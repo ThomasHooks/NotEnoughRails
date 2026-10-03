@@ -858,8 +858,8 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
                         .offerTo(exporter);
 
-                //Millstone
-                createShaped(RecipeCategory.MISC, AllBlocks.MILLSTONE, 1)
+                //Quern
+                createShaped(RecipeCategory.MISC, AllBlocks.QUERN, 1)
                         .input('x', AllItems.GEAR)
                         .input('=', Items.OBSIDIAN)
                         .input('#', AllBlocks.WOODEN_FRAME)
@@ -867,7 +867,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .pattern("=x=")
                         .pattern("===")
                         .pattern("#v#")
-                        .group(NotEnoughRails.MOD_ID + ":millstone")
+                        .group(NotEnoughRails.MOD_ID + ":quern")
                         .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
                         .offerTo(exporter);
 

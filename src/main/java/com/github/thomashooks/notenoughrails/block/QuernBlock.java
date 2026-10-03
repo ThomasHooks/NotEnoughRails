@@ -17,7 +17,7 @@ package com.github.thomashooks.notenoughrails.block;
 
 import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
 import com.github.thomashooks.notenoughrails.block.entity.LazyTickingBlockEntity;
-import com.github.thomashooks.notenoughrails.block.entity.MillstoneBlockEntity;
+import com.github.thomashooks.notenoughrails.block.entity.QuernBlockEntity;
 import com.github.thomashooks.notenoughrails.block.property.AllProperties;
 import com.github.thomashooks.notenoughrails.util.VoxelShapeHelper;
 import com.mojang.serialization.MapCodec;
@@ -45,12 +45,12 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jspecify.annotations.Nullable;
 
-public class MillstoneBlock extends Block implements BlockEntityProvider {
-    public static final MapCodec<MillstoneBlock> CODEC = createCodec(MillstoneBlock::new);
+public class QuernBlock extends Block implements BlockEntityProvider {
+    public static final MapCodec<QuernBlock> CODEC = createCodec(QuernBlock::new);
     public static final BooleanProperty IS_MILLING = AllProperties.IS_MILLING;
     private static final VoxelShape RUNNER_STONE_VOXEL_SHAPE = Block.createCuboidShape(0.0, 8.0, 0.0, 16.0, 12.0, 16.0);
 
-    public MillstoneBlock(Settings settings) {
+    public QuernBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState()
                 .with(IS_MILLING, false)
@@ -66,7 +66,7 @@ public class MillstoneBlock extends Block implements BlockEntityProvider {
             return;
         }
 
-        if (world.getBlockEntity(pos) instanceof MillstoneBlockEntity blockEntity) {
+        if (world.getBlockEntity(pos) instanceof QuernBlockEntity blockEntity) {
             ItemStack itemStack = blockEntity.getMillingItemStack();
             if (itemStack.isEmpty()) {
                 return;
@@ -97,7 +97,7 @@ public class MillstoneBlock extends Block implements BlockEntityProvider {
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient()) {
-            if (world.getBlockEntity(pos) instanceof MillstoneBlockEntity blockEntity) {
+            if (world.getBlockEntity(pos) instanceof QuernBlockEntity blockEntity) {
                 player.openHandledScreen(blockEntity);
             }
         }
@@ -110,7 +110,7 @@ public class MillstoneBlock extends Block implements BlockEntityProvider {
     @Override
     protected int getComparatorOutput(BlockState state, World world, BlockPos pos, Direction direction) {
         int signalStrength = 0;
-        if (world.getBlockEntity(pos) instanceof MillstoneBlockEntity blockEntity) {
+        if (world.getBlockEntity(pos) instanceof QuernBlockEntity blockEntity) {
             signalStrength = blockEntity.calculateComparatorOutput();
         }
         return signalStrength;
@@ -127,7 +127,7 @@ public class MillstoneBlock extends Block implements BlockEntityProvider {
 
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return AllBlockEntities.MILLSTONE.instantiate(pos, state);
+        return AllBlockEntities.QUERN.instantiate(pos, state);
     }
 
     @Override

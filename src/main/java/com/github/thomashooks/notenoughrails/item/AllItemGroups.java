@@ -103,7 +103,7 @@ public class AllItemGroups {
         entries.add(AllBlocks.BLOOMERY);
 
         //Mills
-        entries.add(AllBlocks.MILLSTONE);
+        entries.add(AllBlocks.QUERN);
 
         //Machine Blocks - Power Generators
 

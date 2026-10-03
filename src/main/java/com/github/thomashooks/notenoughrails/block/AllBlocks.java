@@ -192,12 +192,13 @@ public class AllBlocks {
 
     //------------------------------------------------------------------------------------------------------------------
 
-    public static final Block MILLSTONE = registerBlock("millstone",
-            settings -> new MillstoneBlock(settings
+    public static final Block QUERN = registerBlock("quern",
+            settings -> new QuernBlock(settings
                     .strength(2.8F, 3.0F)
                     .sounds(BlockSoundGroup.STONE)
                     .mapColor(MapColor.STONE_GRAY)
                     .requiresTool()
+                    .pistonBehavior(PistonBehavior.BLOCK)
                     .nonOpaque()
             ));
 
@@ -782,7 +783,7 @@ public class AllBlocks {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
             entries.addAfter(Blocks.BLAST_FURNACE, AllBlocks.COKE_OVEN);
             entries.addAfter(AllBlocks.COKE_OVEN, AllBlocks.BLOOMERY);
-            entries.addAfter(AllBlocks.BLOOMERY, AllBlocks.MILLSTONE);
+            entries.addAfter(AllBlocks.BLOOMERY, AllBlocks.QUERN);
         });
         //endregion
 

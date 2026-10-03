@@ -2,13 +2,13 @@
 	"credit": "Made with Blockbench",
 	"render_type": "minecraft:cutout",
 	"textures": {
-		"1": "notenoughrails:block/millstone_bedstone_side",
-		"2": "notenoughrails:block/millstone_bedstone_top",
-		"3": "notenoughrails:block/millstone_runnerstone_side",
-		"4": "notenoughrails:block/millstone_bedstone_bottom",
-		"5": "notenoughrails:block/millstone_runnerstone_top",
+		"1": "notenoughrails:block/quern_bedstone_side",
+		"2": "notenoughrails:block/quern_bedstone_top",
+		"3": "notenoughrails:block/quern_runnerstone_side",
+		"4": "notenoughrails:block/quern_bedstone_bottom",
+		"5": "notenoughrails:block/quern_runnerstone_top",
 		"6": "notenoughrails:block/axle",
-		"particle": "notenoughrails:block/millstone_bedstone_side"
+		"particle": "notenoughrails:block/quern_bedstone_side"
 	},
 	"elements": [
 		{

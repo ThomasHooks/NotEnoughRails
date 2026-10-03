@@ -16,7 +16,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.screen;
 
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
-import com.github.thomashooks.notenoughrails.block.entity.MillstoneBlockEntity;
+import com.github.thomashooks.notenoughrails.block.entity.QuernBlockEntity;
 import com.github.thomashooks.notenoughrails.network.BlockPosPayload;
 import com.github.thomashooks.notenoughrails.screen.slot.CraftingOutputSlot;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,20 +30,20 @@ import org.jspecify.annotations.Nullable;
 
 public class QuernScreenHandler extends ScreenHandler {
     private static final int NUMBER_OF_PLAYERS_INVENTORY_SLOTS = 36;
-    private static final int INPUT_SLOT_INDEX = MillstoneBlockEntity.INPUT_SLOT_INDEX;
-    private static final int OUTPUT_SLOT_INDEX = MillstoneBlockEntity.OUTPUT_SLOT_INDEX;
-    private static final int NUMBER_OF_SLOTS = MillstoneBlockEntity.NUMBER_OF_SLOTS;
+    private static final int INPUT_SLOT_INDEX = QuernBlockEntity.INPUT_SLOT_INDEX;
+    private static final int OUTPUT_SLOT_INDEX = QuernBlockEntity.OUTPUT_SLOT_INDEX;
+    private static final int NUMBER_OF_SLOTS = QuernBlockEntity.NUMBER_OF_SLOTS;
     private static final int PLAYER_INVENTORY_START_INDEX = NUMBER_OF_SLOTS;
     private static final int PLAYER_INVENTORY_END_INDEX = PLAYER_INVENTORY_START_INDEX + NUMBER_OF_PLAYERS_INVENTORY_SLOTS;
     private static final int PLAYER_HOTBAR_START_INDEX = PLAYER_INVENTORY_END_INDEX - 9;
-    private final MillstoneBlockEntity blockEntity;
+    private final QuernBlockEntity blockEntity;
     private final ScreenHandlerContext context;
     private final PropertyDelegate delegate;
-    private static final int PROPERTY_DELEGATE_SIZE = MillstoneBlockEntity.PROPERTY_DELEGATE_SIZE;
+    private static final int PROPERTY_DELEGATE_SIZE = QuernBlockEntity.PROPERTY_DELEGATE_SIZE;
 
     //Server Side
-    public QuernScreenHandler(int syncId, PlayerInventory playerInventory, MillstoneBlockEntity blockEntity, PropertyDelegate delegate) {
-        super(AllScreenHandlers.MILLSTONE, syncId);
+    public QuernScreenHandler(int syncId, PlayerInventory playerInventory, QuernBlockEntity blockEntity, PropertyDelegate delegate) {
+        super(AllScreenHandlers.QUERN, syncId);
         this.blockEntity = blockEntity;
         this.context = ScreenHandlerContext.create(this.blockEntity.getWorld(), this.blockEntity.getPos());
 
@@ -64,7 +64,7 @@ public class QuernScreenHandler extends ScreenHandler {
         this(
                 syncId,
                 playerInventory,
-                (MillstoneBlockEntity) playerInventory.player.getEntityWorld().getBlockEntity(payload.pos()),
+                (QuernBlockEntity) playerInventory.player.getEntityWorld().getBlockEntity(payload.pos()),
                 new ArrayPropertyDelegate(PROPERTY_DELEGATE_SIZE)
         );
     }
@@ -116,7 +116,7 @@ public class QuernScreenHandler extends ScreenHandler {
     }
 
     @Override
-    public boolean canUse(PlayerEntity player) { return canUse(this.context, player, AllBlocks.MILLSTONE); }
+    public boolean canUse(PlayerEntity player) { return canUse(this.context, player, AllBlocks.QUERN); }
 
     @Override
     public void onClosed(PlayerEntity player) {
@@ -125,8 +125,8 @@ public class QuernScreenHandler extends ScreenHandler {
     }
 
     public float getProgressBar() {
-        int progress = this.delegate.get(MillstoneBlockEntity.PROPERTY_DELEGATE_PROGRESS_INDEX);
-        int maxProgress = this.delegate.get(MillstoneBlockEntity.PROPERTY_DELEGATE_MAX_PROGRESS_INDEX);
+        int progress = this.delegate.get(QuernBlockEntity.PROPERTY_DELEGATE_PROGRESS_INDEX);
+        int maxProgress = this.delegate.get(QuernBlockEntity.PROPERTY_DELEGATE_MAX_PROGRESS_INDEX);
         if (progress == 0 || maxProgress == 0) {
             return 0.0F;
         }
@@ -134,11 +134,11 @@ public class QuernScreenHandler extends ScreenHandler {
     }
 
     public float getPowerGauge() {
-        int speed = this.delegate.get(MillstoneBlockEntity.PROPERTY_DELEGATE_SPEED_INDEX);
+        int speed = this.delegate.get(QuernBlockEntity.PROPERTY_DELEGATE_SPEED_INDEX);
         if (speed == 0) {
             return 0.0F;
         }
-        return MathHelper.clamp((float) speed / (float) MillstoneBlockEntity.MAX_SPEED, 0.0F, 1.0F);
+        return MathHelper.clamp((float) speed / (float) QuernBlockEntity.MAX_SPEED, 0.0F, 1.0F);
     }
 
     protected boolean isMillable(@Nullable Slot slot, ItemStack stack) {

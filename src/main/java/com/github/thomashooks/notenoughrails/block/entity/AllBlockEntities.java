@@ -31,8 +31,8 @@ public class AllBlockEntities {
             FabricBlockEntityTypeBuilder.create(CokeOvenBlockEntity::new, AllBlocks.COKE_OVEN).build());
     public static final BlockEntityType<LockingRailBlockEntity> LOCKING_RAIL = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("locking_rail"),
             FabricBlockEntityTypeBuilder.create(LockingRailBlockEntity::new, AllBlocks.LOCKING_RAIL).build());
-    public static final BlockEntityType<MillstoneBlockEntity> MILLSTONE = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("millstone"),
-            FabricBlockEntityTypeBuilder.create(MillstoneBlockEntity::new, AllBlocks.MILLSTONE).build());
+    public static final BlockEntityType<QuernBlockEntity> QUERN = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("quern"),
+            FabricBlockEntityTypeBuilder.create(QuernBlockEntity::new, AllBlocks.QUERN).build());
 
     public static void registerAll() {
         // We have to do this otherwise the block entities won't get created
@@ -51,7 +51,7 @@ public class AllBlockEntities {
         );
         ItemStorage.SIDED.registerForBlockEntity(
                 (blockEntity, direction) -> InventoryStorage.of(blockEntity.getInventory(), direction),
-                AllBlockEntities.MILLSTONE
+                AllBlockEntities.QUERN
         );
     }
 }
