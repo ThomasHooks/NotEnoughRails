@@ -105,6 +105,18 @@ public class MillstoneBlock extends Block implements BlockEntityProvider {
     }
 
     @Override
+    protected boolean hasComparatorOutput(BlockState state) { return true; }
+
+    @Override
+    protected int getComparatorOutput(BlockState state, World world, BlockPos pos, Direction direction) {
+        int signalStrength = 0;
+        if (world.getBlockEntity(pos) instanceof MillstoneBlockEntity blockEntity) {
+            signalStrength = blockEntity.calculateComparatorOutput();
+        }
+        return signalStrength;
+    }
+
+    @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.union(
                 VoxelShapeHelper.HALF_BLOCK,

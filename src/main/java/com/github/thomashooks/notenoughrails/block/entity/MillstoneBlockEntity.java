@@ -303,6 +303,23 @@ public class MillstoneBlockEntity extends LazyTickingBlockEntity implements Exte
     public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
         return new QuernScreenHandler(syncId, playerInventory, this, this.delegate);
     }
+
+    public int calculateComparatorOutput() {
+        if (inventory == null) {
+            return 0;
+        }
+
+        float signalStrength = 0.0F;
+        for (int i = 0; i < inventory.size(); i++) {
+            ItemStack itemStack = inventory.getStack(i).copy();
+            if (!itemStack.isEmpty()) {
+                signalStrength += (float) itemStack.getCount() / (float) inventory.getMaxCount(itemStack);
+            }
+        }
+
+        signalStrength /= (float) inventory.size();
+        return MathHelper.lerpPositive(signalStrength, 0, 15);
+    }
     //endregion
 
     //region Block Entity Renderer Methods
