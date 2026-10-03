@@ -67,10 +67,14 @@ public class MillstoneBlock extends Block implements BlockEntityProvider {
         }
 
         if (world.getBlockEntity(pos) instanceof MillstoneBlockEntity blockEntity) {
+            ItemStack itemStack = blockEntity.getMillingItemStack();
+            if (itemStack.isEmpty()) {
+                return;
+            }
+
             double xPos = pos.getX() + 0.5;
             double yPos = pos.getY() + 0.5;
             double zPos = pos.getZ() + 0.5;
-            ItemStack itemStack = blockEntity.getMillingItemStack();
             for (Direction direction : Direction.Type.HORIZONTAL) {
                 Direction.Axis axis = direction.getAxis();
                 double randomShift = random.nextDouble() * 0.6 - 0.3;
