@@ -17,18 +17,65 @@ package com.github.thomashooks.notenoughrails.block.entity;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
 import net.minecraft.block.BlockState;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.util.math.BlockPos;
+import org.jspecify.annotations.Nullable;
 
 public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity {
+    private final RotatingShaftAnimator shaftAnimator = new RotatingShaftAnimator();
+
+    private float speed;
+    public static final int MAX_SPEED = 16;
+    private static final String SPEED_TAG = NotEnoughRails.MOD_ID + ":speed";
 
     public SteelWaterWheelBlockEntity(BlockPos pos, BlockState state) {
         super(AllBlockEntities.WATERWHEEL_STEEL, pos, state);
         setLazyTickRate(20);
     }
 
+    //region Lazy Ticking Methods
     @Override
-    protected void lazyTick() {
-        // REMOVE: this is only for testing
-        NotEnoughRails.LOGGER.info("SteelWaterWheelBlockEntity.lazyTick at {}", getLazyTickRate());
+    public void tick() {
+        super.tick();
     }
+
+    @Override
+    protected void clientTick() {
+        super.clientTick();
+    }
+    //endregion
+
+    //region Block Entity Renderer Methods
+    public float getAnimationProgress(float tickProgress) { return shaftAnimator.getShaftAngle(tickProgress); }
+    //endregion
+
+    //region Serialize and Deserialize Methods
+    @Override
+    public @Nullable Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this);
+    }
+
+    @Override
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registries) { return createNbt(registries); }
+
+    @Override
+    protected void readData(ReadView view) {
+        super.readData(view);
+        if (view.contains(SPEED_TAG)) {
+            this.speed = view.getFloat(SPEED_TAG, 0.0F);
+        }
+    }
+
+    @Override
+    protected void writeData(WriteView view) {
+        super.writeData(view);
+        view.putFloat(SPEED_TAG, this.speed);
+    }
+    //endregion
 }

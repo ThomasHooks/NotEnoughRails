@@ -19,10 +19,7 @@ import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
 import com.github.thomashooks.notenoughrails.block.entity.LazyTickingBlockEntity;
 import com.github.thomashooks.notenoughrails.util.VoxelShapeHelper;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -54,6 +51,9 @@ public class SteelWaterWheelBlock extends Block implements BlockEntityProvider {
                 VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.Y)]
         ).simplify();
     }
+
+    @Override
+    protected BlockRenderType getRenderType(BlockState state) { return BlockRenderType.INVISIBLE; }
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
