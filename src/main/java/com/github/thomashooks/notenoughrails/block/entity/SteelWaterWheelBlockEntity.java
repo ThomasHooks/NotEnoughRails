@@ -17,6 +17,7 @@ package com.github.thomashooks.notenoughrails.block.entity;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
 import net.minecraft.block.BlockState;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
@@ -25,31 +26,78 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import org.jspecify.annotations.Nullable;
 
+import java.util.Objects;
+
 public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity {
+    public static final float MAX_NUMBER_OF_SIDES_WITH_WATER = 3.0F;
     private final RotatingShaftAnimator shaftAnimator = new RotatingShaftAnimator();
 
     private float speed;
-    public static final int MAX_SPEED = 16;
+    public static final double MAX_SPEED = 12.0;
     private static final String SPEED_TAG = NotEnoughRails.MOD_ID + ":speed";
 
     public SteelWaterWheelBlockEntity(BlockPos pos, BlockState state) {
         super(AllBlockEntities.WATERWHEEL_STEEL, pos, state);
-        setLazyTickRate(20);
+        setLazyTickRate(30);
     }
 
     //region Lazy Ticking Methods
     @Override
-    public void tick() {
-        super.tick();
+    protected void lazyTick() {
+        updateFlows();
     }
 
     @Override
     protected void clientTick() {
         super.clientTick();
+
+        shaftAnimator.step(getSpeed());
     }
     //endregion
+
+    public float getSpeed() { return speed; }
+
+    private void setSpeed(float speedIn) {
+        if (!MathHelper.approximatelyEquals(speedIn, this.speed)) {
+            this.speed = speedIn;
+            updateAndNotifyAll();
+        }
+    }
+
+    private void updateFlows() {
+        // TODO: Add support for other axes
+        float flowSpeed = 0.0F;
+        for (Direction direction : Direction.Type.HORIZONTAL) {
+            BlockPos fluidPos = getPos().offset(direction);
+            FluidState fluidState = Objects.requireNonNull(getWorld()).getFluidState(fluidPos);
+            if (fluidState.isEmpty()) {
+                continue;
+            }
+            Vec3d flow = fluidState.getVelocity(getWorld(), fluidPos).multiply(MAX_SPEED);
+            switch (direction) {
+                /*
+                 * 				North (-Z)
+                 *
+                 * West (-X)					East (+X)
+                 *
+                 * 				South (+Z)
+                 *
+                 * Because counter-clockwise is positive rotation, the flow for both north and east must be negated
+                 */
+                case EAST -> flowSpeed += (float) -flow.getZ();
+                case NORTH -> flowSpeed += (float) -flow.getX();
+                case WEST -> flowSpeed += (float) flow.getZ();
+                case SOUTH ->  flowSpeed += (float) flow.getX();
+                default -> throw new IllegalStateException(String.format("SteelWaterWheelBlockEntity: Invalid direction: %s", direction));
+            }
+        }
+        setSpeed(flowSpeed / MAX_NUMBER_OF_SIDES_WITH_WATER);
+    }
 
     //region Block Entity Renderer Methods
     public float getAnimationProgress(float tickProgress) { return shaftAnimator.getShaftAngle(tickProgress); }

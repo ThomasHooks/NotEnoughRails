@@ -45,7 +45,7 @@ public class SteelWaterWheelBlockEntityRenderer implements BlockEntityRenderer<S
     public void updateRenderState(SteelWaterWheelBlockEntity blockEntity, RotatingShaftRenderState state, float tickProgress, Vec3d cameraPos, ModelCommandRenderer.@Nullable CrumblingOverlayCommand crumblingOverlay) {
         BlockEntityRenderer.super.updateRenderState(blockEntity, state, tickProgress, cameraPos, crumblingOverlay);
         state.tickProgress = tickProgress;
-        state.rotationAngle = 0.0F; // TODO: get rotation angle
+        state.rotationAngle = blockEntity.getAnimationProgress(tickProgress);
     }
 
     @Override
