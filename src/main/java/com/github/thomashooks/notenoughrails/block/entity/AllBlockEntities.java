@@ -33,6 +33,8 @@ public class AllBlockEntities {
             FabricBlockEntityTypeBuilder.create(LockingRailBlockEntity::new, AllBlocks.LOCKING_RAIL).build());
     public static final BlockEntityType<QuernBlockEntity> QUERN = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("quern"),
             FabricBlockEntityTypeBuilder.create(QuernBlockEntity::new, AllBlocks.QUERN).build());
+    public static final BlockEntityType<SteelWaterWheelBlockEntity> WATERWHEEL_STEEL = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("waterwheel_steel"),
+            FabricBlockEntityTypeBuilder.create(SteelWaterWheelBlockEntity::new, AllBlocks.WATERWHEEL_STEEL).build());
 
     public static void registerAll() {
         // We have to do this otherwise the block entities won't get created

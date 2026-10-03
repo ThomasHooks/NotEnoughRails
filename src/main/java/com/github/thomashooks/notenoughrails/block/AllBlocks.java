@@ -315,7 +315,7 @@ public class AllBlocks {
                     .solidBlock(Blocks::never)
             ));
     public static final Block WATERWHEEL_STEEL = registerBlock("waterwheel_steel",
-            settings -> new WaterWheelSteel(settings
+            settings -> new SteelWaterWheelBlock(settings
                     .strength(5.0F, 6.0F)
                     .sounds(BlockSoundGroup.NETHERITE)
                     .mapColor(MapColor.BLACK)

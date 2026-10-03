@@ -15,23 +15,31 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.block;
 
+import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
+import com.github.thomashooks.notenoughrails.block.entity.LazyTickingBlockEntity;
 import com.github.thomashooks.notenoughrails.util.VoxelShapeHelper;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import org.jspecify.annotations.Nullable;
 
-public class WaterWheelSteel extends Block {
-    public static final MapCodec<WaterWheelSteel> CODEC = createCodec(WaterWheelSteel::new);
+public class SteelWaterWheelBlock extends Block implements BlockEntityProvider {
+    public static final MapCodec<SteelWaterWheelBlock> CODEC = createCodec(SteelWaterWheelBlock::new);
     private static final VoxelShape HUB_VOXEL_SHAPE = Block.createCuboidShape(5.0, 2.0, 5.0, 11.0, 14.0, 11.0);
     private static final VoxelShape TRIL_VOXEL_SHAPE = Block.createCuboidShape(0.0, 3.0, 0.0, 16.0, 13.0, 16.0);
 
-    public WaterWheelSteel(Settings settings) {
+    public SteelWaterWheelBlock(Settings settings) {
         super(settings);
     }
 
@@ -45,5 +53,15 @@ public class WaterWheelSteel extends Block {
                 TRIL_VOXEL_SHAPE,
                 VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.Y)]
         ).simplify();
+    }
+
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return LazyTickingBlockEntity.getTicker(world);
+    }
+
+    @Override
+    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return AllBlockEntities.WATERWHEEL_STEEL.instantiate(pos, state);
     }
 }
