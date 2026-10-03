@@ -194,9 +194,9 @@ public class AllBlocks {
 
     public static final Block QUERN = registerBlock("quern",
             settings -> new QuernBlock(settings
-                    .strength(2.8F, 3.0F)
+                    .strength(5.0F, 6.0F)
                     .sounds(BlockSoundGroup.STONE)
-                    .mapColor(MapColor.STONE_GRAY)
+                    .mapColor(MapColor.BLACK)
                     .requiresTool()
                     .pistonBehavior(PistonBehavior.BLOCK)
                     .nonOpaque()

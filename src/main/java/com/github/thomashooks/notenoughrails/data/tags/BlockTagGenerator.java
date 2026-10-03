@@ -136,6 +136,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.VERMILION_CONDUIT)
         ;
         valueLookupBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(AllBlocks.QUERN)
                 .add(AllBlocks.STEEL_BARS)
                 .add(AllBlocks.STEEL_BLOCK)
                 .add(AllBlocks.STEEL_CHISELED_BLOCK)
