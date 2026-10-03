@@ -1,0 +1,146 @@
+{
+	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"1": "notenoughrails:block/quern_bedstone_side",
+		"2": "notenoughrails:block/quern_bedstone_top",
+		"3": "notenoughrails:block/quern_runnerstone_side",
+		"4": "notenoughrails:block/quern_bedstone_bottom",
+		"5": "notenoughrails:block/quern_runnerstone_top",
+		"6": "notenoughrails:block/axle",
+		"particle": "notenoughrails:block/quern_bedstone_side"
+	},
+	"elements": [
+		{
+			"name": "top",
+			"from": [0, 1, 0],
+			"to": [16, 8, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [0, 8, 16, 15], "texture": "#1"},
+				"east": {"uv": [0, 8, 16, 15], "texture": "#1"},
+				"south": {"uv": [0, 8, 16, 15], "texture": "#1"},
+				"west": {"uv": [0, 8, 16, 15], "texture": "#1"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#4", "cullface": "down"}
+			}
+		},
+		{
+			"name": "north",
+			"from": [0, 0, 0],
+			"to": [16, 1, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [0, 15, 16, 16], "texture": "#1"},
+				"east": {"uv": [11, 15, 16, 16], "texture": "#1"},
+				"south": {"uv": [0, 15, 16, 16], "texture": "#1"},
+				"west": {"uv": [0, 15, 5, 16], "texture": "#1"},
+				"down": {"uv": [0, 11, 16, 16], "texture": "#4", "cullface": "down"}
+			}
+		},
+		{
+			"name": "south",
+			"from": [0, 0, 11],
+			"to": [16, 1, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [0, 15, 16, 16], "texture": "#1"},
+				"east": {"uv": [0, 15, 5, 16], "texture": "#1"},
+				"south": {"uv": [0, 15, 16, 16], "texture": "#1"},
+				"west": {"uv": [11, 15, 16, 16], "texture": "#1"},
+				"down": {"uv": [0, 0, 16, 5], "texture": "#4", "cullface": "down"}
+			}
+		},
+		{
+			"name": "west",
+			"from": [0, 0, 5],
+			"to": [5, 1, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 13]},
+			"faces": {
+				"east": {"uv": [5, 15, 11, 16], "texture": "#1"},
+				"west": {"uv": [5, 15, 11, 16], "texture": "#1"},
+				"down": {"uv": [11, 5, 16, 11], "rotation": 180, "texture": "#4", "cullface": "down"}
+			}
+		},
+		{
+			"name": "east",
+			"from": [11, 0, 5],
+			"to": [16, 1, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [19, 8, 13]},
+			"faces": {
+				"east": {"uv": [5, 15, 11, 16], "texture": "#1"},
+				"west": {"uv": [5, 15, 11, 16], "texture": "#1"},
+				"down": {"uv": [0, 5, 5, 11], "rotation": 180, "texture": "#4", "cullface": "down"}
+			}
+		},
+		{
+			"name": "runnerstone",
+			"from": [0, 8, 0],
+			"to": [16, 12, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 10, 8]},
+			"faces": {
+				"north": {"uv": [0, 12, 16, 16], "texture": "#3"},
+				"east": {"uv": [0, 12, 16, 16], "texture": "#3"},
+				"south": {"uv": [0, 12, 16, 16], "texture": "#3"},
+				"west": {"uv": [0, 12, 16, 16], "texture": "#3"},
+				"up": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#5"}
+			}
+		},
+		{
+			"name": "axle",
+			"from": [6, 0, 6],
+			"to": [10, 16, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, 0, 6]},
+			"faces": {
+				"north": {"uv": [6, 0, 10, 16], "texture": "#6"},
+				"east": {"uv": [6, 0, 10, 16], "texture": "#6"},
+				"south": {"uv": [6, 0, 10, 16], "texture": "#6"},
+				"west": {"uv": [6, 0, 10, 16], "texture": "#6"},
+				"up": {"uv": [6, 0, 10, 4], "texture": "#6"},
+				"down": {"uv": [6, 12, 10, 16], "texture": "#6"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [68, 45, 0],
+			"translation": [0, 3, 0],
+			"scale": [0.38, 0.38, 0.38]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [68, 45, 0],
+			"translation": [0, 3, 0],
+			"scale": [0.38, 0.38, 0.38]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 45, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"ground": {
+			"translation": [0, 2.5, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [22.5, 45, 0],
+			"scale": [0.66, 0.66, 0.66]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	},
+	"groups": [
+		{
+			"name": "bedstone",
+			"origin": [8, 8, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [0, 1, 2, 3, 4]
+		},
+		5,
+		6
+	]
+}

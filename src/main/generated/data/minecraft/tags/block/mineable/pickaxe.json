@@ -1,5 +1,6 @@
 {
   "values": [
+    "notenoughrails:bloomery",
     "notenoughrails:braking_rail",
     "notenoughrails:buffer_stop_rail",
     "notenoughrails:check_rail",
@@ -66,6 +67,7 @@
     "notenoughrails:fluxstone_smooth_stairs",
     "notenoughrails:iron_plate_block",
     "notenoughrails:locking_rail",
+    "notenoughrails:quern",
     "notenoughrails:steel_activator_rail",
     "notenoughrails:steel_buffer_stop_rail",
     "notenoughrails:steel_bars",
@@ -82,7 +84,6 @@
     "notenoughrails:steel_powered_rail",
     "notenoughrails:steel_rail",
     "notenoughrails:steel_trapdoor",
-    "notenoughrails:bloomery",
     "notenoughrails:vermilion_block",
     "notenoughrails:vermilion_conduit"
   ]

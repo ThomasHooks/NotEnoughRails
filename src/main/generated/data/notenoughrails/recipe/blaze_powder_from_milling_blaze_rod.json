@@ -1,0 +1,10 @@
+{
+  "type": "notenoughrails:milling",
+  "bonus": 0.12,
+  "ingredient": "minecraft:blaze_rod",
+  "milling_time": 200,
+  "result": {
+    "count": 4,
+    "id": "minecraft:blaze_powder"
+  }
+}

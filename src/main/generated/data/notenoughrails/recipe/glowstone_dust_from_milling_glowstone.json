@@ -1,0 +1,10 @@
+{
+  "type": "notenoughrails:milling",
+  "bonus": 0.0,
+  "ingredient": "minecraft:glowstone",
+  "milling_time": 200,
+  "result": {
+    "count": 4,
+    "id": "minecraft:glowstone_dust"
+  }
+}

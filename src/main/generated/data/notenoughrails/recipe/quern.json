@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:quern",
+  "key": {
+    "#": "notenoughrails:wooden_frame",
+    "=": "minecraft:obsidian",
+    "v": "minecraft:hopper",
+    "x": "notenoughrails:gear"
+  },
+  "pattern": [
+    "=x=",
+    "===",
+    "#v#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:quern"
+  }
+}

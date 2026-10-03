@@ -1,0 +1,10 @@
+{
+  "type": "notenoughrails:milling",
+  "bonus": 0.0,
+  "ingredient": "minecraft:coarse_dirt",
+  "milling_time": 200,
+  "result": {
+    "count": 1,
+    "id": "minecraft:flint"
+  }
+}

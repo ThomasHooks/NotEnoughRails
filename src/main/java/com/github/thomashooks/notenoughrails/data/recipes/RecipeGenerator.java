@@ -237,6 +237,8 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
                         .offerTo(exporter);
 
+                buildMillingRecipes();
+
                 // endregion
 
                 //--------------------------------------------------------------------------------------------------------------
@@ -856,6 +858,19 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(AllItems.FLAX), conditionsFromItem(AllItems.FLAX))
                         .offerTo(exporter);
 
+                //Quern
+                createShaped(RecipeCategory.MISC, AllBlocks.QUERN, 1)
+                        .input('x', AllItems.GEAR)
+                        .input('=', Items.OBSIDIAN)
+                        .input('#', AllBlocks.WOODEN_FRAME)
+                        .input('v', Items.HOPPER)
+                        .pattern("=x=")
+                        .pattern("===")
+                        .pattern("#v#")
+                        .group(NotEnoughRails.MOD_ID + ":quern")
+                        .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
+                        .offerTo(exporter);
+
                 //Wooden Frame
                 createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.WOODEN_FRAME, 8)
                         .input('x', ItemTags.PLANKS)
@@ -1080,6 +1095,81 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .offerTo(exporter);
                 // endregion
             }
+
+            //region Milling Recipes
+            public void buildMillingRecipes() {
+                NotEnoughRails.LOGGER.info("Building Milling Recipes");
+
+                //region Building Blocks
+                offerMilling(exporter, List.of(Items.STONE, Items.CRACKED_STONE_BRICKS, Items.SMOOTH_STONE), Items.COBBLESTONE, 400);
+                offerMilling(exporter, List.of(Items.STONE_BRICKS, Items.CHISELED_STONE_BRICKS), Items.CRACKED_STONE_BRICKS, 400);
+                offerMilling(exporter, Items.COBBLESTONE, Items.GRAVEL, 400);
+                offerMilling(exporter, Items.MOSSY_STONE_BRICKS, Items.MOSSY_COBBLESTONE, 400);
+                offerMilling(exporter, List.of(Items.RED_SANDSTONE, Items.CHISELED_RED_SANDSTONE, Items.CUT_RED_SANDSTONE, Items.SMOOTH_RED_SANDSTONE), Items.RED_SAND, 200);
+                offerMilling(exporter, List.of(Items.SANDSTONE, Items.CHISELED_SANDSTONE, Items.SMOOTH_SANDSTONE, Items.CUT_SANDSTONE), Items.SAND, 200);
+                //endregion
+
+                //region Dust
+                offerMilling(exporter, Items.RAW_COPPER, AllItems.CRUSHED_COPPER_ORE, 2, 400, 0.22F);
+                offerMilling(exporter, Items.RAW_GOLD, AllItems.CRUSHED_GOLD_ORE, 2, 400, 0.22F);
+                offerMilling(exporter, Items.RAW_IRON, AllItems.CRUSHED_IRON_ORE, 2, 400, 0.22F);
+                offerMilling(exporter, Items.GLOWSTONE, Items.GLOWSTONE_DUST, 4, 200);
+                //endregion
+
+                //region Dye
+                offerMilling(exporter, List.of(Items.INK_SAC, Items.WITHER_ROSE), Items.BLACK_DYE, 2, 200);
+                offerMilling(exporter, Items.LAPIS_LAZULI, Items.BLUE_DYE, 3, 200);
+                offerMilling(exporter, Items.CORNFLOWER, Items.BLUE_DYE, 2, 200);
+                offerMilling(exporter, Items.COCOA_BEANS, Items.BROWN_DYE, 2, 200);
+                offerMilling(exporter, Items.CACTUS, Items.GREEN_DYE, 2, 200);
+                offerMilling(exporter, List.of(Items.BLUE_ORCHID), Items.LIGHT_BLUE_DYE, 2, 200);
+                offerMilling(exporter, List.of(Items.AZURE_BLUET, Items.OXEYE_DAISY, Items.WHITE_TULIP), Items.LIGHT_GRAY_DYE, 2, 200);
+                offerMilling(exporter, List.of(Items.LILAC, Items.ALLIUM), Items.MAGENTA_DYE, 2, 200);
+                offerMilling(exporter, Items.ORANGE_TULIP, Items.ORANGE_DYE, 2, 200);
+                offerMilling(exporter, List.of(Items.PINK_TULIP, Items.PEONY, Items.CACTUS_FLOWER), Items.PINK_DYE, 2, 200);
+                offerMilling(exporter, List.of(Items.POPPY, Items.RED_TULIP, Items.BEETROOT, Items.ROSE_BUSH), Items.RED_DYE, 2, 200);
+                offerMilling(exporter, List.of(Items.BONE_MEAL, Items.LILY_OF_THE_VALLEY), Items.WHITE_DYE, 2, 200);
+                offerMilling(exporter, List.of(Items.DANDELION, Items.SUNFLOWER, Items.WILDFLOWERS), Items.YELLOW_DYE, 2, 200);
+                //endregion
+
+                //region Other Minerals
+                offerMilling(exporter, List.of(Items.MUD, Items.MUDDY_MANGROVE_ROOTS), Items.CLAY_BALL, 4, 200, 0.33F);
+                offerMilling(exporter, Items.DIRT, Items.CLAY_BALL, 2, 200, 0.33F);
+                offerMilling(exporter, AllItems.FLAX, AllItems.FLAX_STRING, 2, 200);
+                offerMilling(exporter, Items.GRAVEL, Items.FLINT, 400);
+                offerMilling(exporter, Items.COARSE_DIRT, Items.FLINT, 200);
+                offerMilling(exporter, Items.ANCIENT_DEBRIS, Items.NETHERITE_SCRAP, 2, 800, 0.03F);
+                offerMilling(exporter, Items.NETHER_QUARTZ_ORE, Items.QUARTZ, 2, 400, 0.22F);
+                offerMilling(exporter, Items.COBWEB, Items.STRING, 200);
+                offerMilling(exporter,
+                        List.of(Items.WHITE_WOOL, Items.ORANGE_WOOL, Items.MAGENTA_WOOL, Items.LIGHT_BLUE_WOOL,
+                                Items.YELLOW_WOOL, Items.LIME_WOOL, Items.PINK_WOOL, Items.GRAY_WOOL,
+                                Items.LIGHT_GRAY_WOOL, Items.CYAN_WOOL, Items.PURPLE_WOOL, Items.BLUE_WOOL,
+                                Items.BROWN_WOOL, Items.GREEN_WOOL, Items.RED_WOOL, Items.BLACK_WOOL),
+                        Items.STRING, 4, 200);
+                //endregion
+
+                //region Powder
+                offerMilling(exporter, Items.BLAZE_ROD, Items.BLAZE_POWDER, 4, 200, 0.12F);
+                offerMilling(exporter, Items.BONE, Items.BONE_MEAL, 6, 200);
+                offerMilling(exporter, AllBlocks.FLUXSTONE, AllItems.FLUX, 400);
+                offerMilling(exporter, Items.SUGAR_CANE, Items.SUGAR, 2, 200);
+                //endregion
+
+                //region Raw Ore
+                offerMilling(exporter, Items.AMETHYST_CLUSTER, Items.AMETHYST_SHARD, 5, 400, 0.12F);
+                offerMilling(exporter, List.of(Items.COAL_ORE, Items.DEEPSLATE_COAL_ORE), Items.COAL, 2, 400, 0.33F);
+                offerMilling(exporter, List.of(Items.DIAMOND_ORE, Items.DEEPSLATE_DIAMOND_ORE), Items.DIAMOND, 2, 400, 0.07F);
+                offerMilling(exporter, List.of(Items.EMERALD_ORE, Items.DEEPSLATE_EMERALD_ORE), Items.EMERALD, 2, 400, 0.07F);
+                offerMilling(exporter, Items.NETHER_GOLD_ORE, Items.GOLD_NUGGET, 6, 400, 0.22F);
+                offerMilling(exporter, List.of(Items.LAPIS_ORE, Items.DEEPSLATE_LAPIS_ORE), Items.LAPIS_LAZULI, 9, 400, 0.33F);
+                offerMilling(exporter, List.of(Items.COPPER_ORE, Items.DEEPSLATE_COPPER_ORE), Items.RAW_COPPER, 5, 800, 0.22F);
+                offerMilling(exporter, List.of(Items.GOLD_ORE, Items.DEEPSLATE_GOLD_ORE), Items.RAW_GOLD, 1, 800, 0.22F);
+                offerMilling(exporter, List.of(Items.IRON_ORE, Items.DEEPSLATE_IRON_ORE), Items.RAW_IRON, 1, 800, 0.22F);
+                offerMilling(exporter, List.of(Items.REDSTONE_ORE, Items.DEEPSLATE_REDSTONE_ORE), Items.REDSTONE, 6, 400, 0.33F);
+                //endregion
+            }
+            //endregion
         };
     }
 
@@ -1110,5 +1200,32 @@ public class RecipeGenerator extends FabricRecipeProvider {
     private void offerCoking(RecipeExporter exporter, Ingredient inputs, ItemConvertible result, int cookingTime) {
         CokingRecipeBuilder.create(inputs, result.asItem().getDefaultStack(), cookingTime)
                 .offerTo(exporter, AllItems.getItemPath(result) + "_from_coking");
+    }
+
+    private void offerMilling(RecipeExporter exporter, List<ItemConvertible> inputs, ItemConvertible result, int count, int millingTime, float bonus) {
+        for (ItemConvertible input : inputs) {
+            MillingRecipeBuilder.create(Ingredient.ofItem(input), result.asItem(), count, millingTime, bonus)
+                    .offerTo(exporter, AllItems.getItemPath(result) + "_from_milling_" + AllItems.getItemPath(input));
+        }
+    }
+
+    private void offerMilling(RecipeExporter exporter, ItemConvertible input, ItemConvertible result, int count, int millingTime, float bonus) {
+        offerMilling(exporter, List.of(input), result, count, millingTime, bonus);
+    }
+
+    private void offerMilling(RecipeExporter exporter, List<ItemConvertible> inputs, ItemConvertible result, int count, int millingTime) {
+        offerMilling(exporter, inputs, result, count, millingTime, 0.0F);
+    }
+
+    private void offerMilling(RecipeExporter exporter, ItemConvertible input, ItemConvertible result, int count, int millingTime) {
+        offerMilling(exporter, List.of(input), result, count, millingTime);
+    }
+
+    private void offerMilling(RecipeExporter exporter, List<ItemConvertible> inputs, ItemConvertible result, int millingTime) {
+        offerMilling(exporter, inputs, result, 1, millingTime, 0.0F);
+    }
+
+    private void offerMilling(RecipeExporter exporter, ItemConvertible input, ItemConvertible result, int millingTime) {
+        offerMilling(exporter, List.of(input), result, millingTime);
     }
 }

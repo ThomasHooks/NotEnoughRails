@@ -17,17 +17,23 @@ package com.github.thomashooks.notenoughrails;
 
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
 import com.github.thomashooks.notenoughrails.block.VermilionConduitBlock;
+import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
 import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.CokeOvenScreen;
 import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.BloomeryScreen;
+import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.QuernScreen;
+import com.github.thomashooks.notenoughrails.client.render.block.entity.QuernBlockEntityRenderer;
+import com.github.thomashooks.notenoughrails.client.render.block.entity.model.QuernBlockModel;
 import com.github.thomashooks.notenoughrails.screen.AllScreenHandlers;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.minecraft.block.RedstoneWireBlock;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.BlockRenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 
 @Environment(EnvType.CLIENT)
 public class NotEnoughRailsClient implements ClientModInitializer {
@@ -35,6 +41,8 @@ public class NotEnoughRailsClient implements ClientModInitializer {
     public void onInitializeClient() {
         registerBlockRenderLayer();
         registerColorProviderBlock();
+        registerModelLayers();
+        registerBlockEntityRenderers();
         registerScreens();
     }
 
@@ -111,7 +119,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
     }
 
     private void registerColorProviderBlock() {
-        NotEnoughRails.LOGGER.info("Registering BlockColorProvider");
+        NotEnoughRails.LOGGER.info("Registering Block Color Provider");
 
         ColorProviderRegistry.BLOCK.register(
                 (state, view, pos, tintIndex) -> RedstoneWireBlock.getWireColor(state.get(RedstoneWireBlock.POWER)),
@@ -123,10 +131,23 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         );
     }
 
+    private void registerModelLayers() {
+        NotEnoughRails.LOGGER.info("Registering All Model Layers");
+
+        EntityModelLayerRegistry.registerModelLayer(QuernBlockModel.LAYER_LOCATION, QuernBlockModel::getTexturedModelData);
+    }
+
+    private void registerBlockEntityRenderers() {
+        NotEnoughRails.LOGGER.info("Registering All Block Entity Renderers");
+
+        BlockEntityRendererFactories.register(AllBlockEntities.QUERN, QuernBlockEntityRenderer::new);
+    }
+
     private void registerScreens() {
         NotEnoughRails.LOGGER.info("Binding all screens");
 
-        HandledScreens.register(AllScreenHandlers.COKE_OVEN, CokeOvenScreen::new);
         HandledScreens.register(AllScreenHandlers.BLOOMERY, BloomeryScreen::new);
+        HandledScreens.register(AllScreenHandlers.COKE_OVEN, CokeOvenScreen::new);
+        HandledScreens.register(AllScreenHandlers.QUERN, QuernScreen::new);
     }
 }

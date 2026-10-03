@@ -1,5 +1,6 @@
 {
   "values": [
+    "notenoughrails:bloomery",
     "notenoughrails:coke_block",
     "notenoughrails:coke_oven",
     "notenoughrails:fluxstone",
@@ -7,7 +8,6 @@
     "notenoughrails:fluxstone_smooth",
     "notenoughrails:fluxstone_smooth_slab",
     "notenoughrails:fluxstone_smooth_stairs",
-    "notenoughrails:iron_plate_block",
-    "notenoughrails:bloomery"
+    "notenoughrails:iron_plate_block"
   ]
 }

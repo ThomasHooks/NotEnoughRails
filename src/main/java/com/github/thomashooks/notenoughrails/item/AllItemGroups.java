@@ -98,15 +98,16 @@ public class AllItemGroups {
 
         //Ore Blocks
 
-        //Machine Blocks - Power Transfer
-
-        //Machine Blocks - Power Generators
-
-        //Machine Blocks - Mills/Processors
-
         //Furnaces
         entries.add(AllBlocks.COKE_OVEN);
         entries.add(AllBlocks.BLOOMERY);
+
+        //Mills
+        entries.add(AllBlocks.QUERN);
+
+        //Machine Blocks - Power Generators
+
+        //Machine Blocks - Power Transfer
 
         //Ladders/Scaffolding
 

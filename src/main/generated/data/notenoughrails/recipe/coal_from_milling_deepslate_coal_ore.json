@@ -1,0 +1,10 @@
+{
+  "type": "notenoughrails:milling",
+  "bonus": 0.33,
+  "ingredient": "minecraft:deepslate_coal_ore",
+  "milling_time": 400,
+  "result": {
+    "count": 2,
+    "id": "minecraft:coal"
+  }
+}
