@@ -15,6 +15,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.data.loot.table;
 
+import com.github.thomashooks.notenoughrails.NotEnoughRails;
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
 import com.github.thomashooks.notenoughrails.block.FlaxCropBlock;
 import com.github.thomashooks.notenoughrails.item.AllItems;
@@ -38,6 +39,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
+        NotEnoughRails.LOGGER.info("Generating custom block loot tables");
         RegistryWrapper.Impl<Enchantment> impl = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
         addDrop(AllBlocks.BLOOMERY);
         addDrop(AllBlocks.BRAKING_RAIL);
@@ -156,6 +158,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(AllBlocks.QUERN);
         addDrop(AllBlocks.VERMILION_BLOCK);
         addDrop(AllBlocks.VERMILION_CONDUIT);
+        addDrop(AllBlocks.WATERWHEEL_STEEL);
         addDrop(AllBlocks.WOODEN_FRAME);
     }
 }

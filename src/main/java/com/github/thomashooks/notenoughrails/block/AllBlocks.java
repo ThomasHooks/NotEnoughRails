@@ -314,6 +314,15 @@ public class AllBlocks {
                     .requiresTool()
                     .solidBlock(Blocks::never)
             ));
+    public static final Block WATERWHEEL_STEEL = registerBlock("waterwheel_steel",
+            settings -> new WaterWheelSteel(settings
+                    .strength(5.0F, 6.0F)
+                    .sounds(BlockSoundGroup.NETHERITE)
+                    .mapColor(MapColor.BLACK)
+                    .requiresTool()
+                    .pistonBehavior(PistonBehavior.BLOCK)
+                    .nonOpaque()
+            ));
     public static final Block WOODEN_FRAME = registerBlock("wooden_frame",
             settings -> new Block(settings
                     .strength(2.0F, 3.0F)
@@ -721,6 +730,7 @@ public class AllBlocks {
 
         //region Building Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
+            NotEnoughRails.LOGGER.info("Adding custom blocks to the Building Blocks item group");
             //Wood Blocks
             //Order: full block -> stairs -> slab -> wall -> fence -> fence gate -> door -> trapdoor -> pressure plate -> button
             entries.add(AllBlocks.WOODEN_FRAME);
@@ -758,6 +768,7 @@ public class AllBlocks {
 
         //region Colored Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register(entries -> {
+            NotEnoughRails.LOGGER.info("Adding custom blocks to the Colored Blocks item group");
             //Cloth Blocks
             entries.add(AllBlocks.LINEN_BLOCK);
             entries.add(AllBlocks.LINEN_BLOCK_WHITE);
@@ -781,14 +792,17 @@ public class AllBlocks {
 
         //region Functional Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
+            NotEnoughRails.LOGGER.info("Adding custom blocks to the Functional Blocks item group");
             entries.addAfter(Blocks.BLAST_FURNACE, AllBlocks.COKE_OVEN);
             entries.addAfter(AllBlocks.COKE_OVEN, AllBlocks.BLOOMERY);
             entries.addAfter(AllBlocks.BLOOMERY, AllBlocks.QUERN);
+            entries.addAfter(AllBlocks.QUERN, AllBlocks.WATERWHEEL_STEEL);
         });
         //endregion
 
         //region Natural Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
+            NotEnoughRails.LOGGER.info("Adding custom blocks to the Natural Blocks item group");
             //Natural Stone Blocks
             entries.add(AllBlocks.FLUXSTONE);
         });
@@ -796,6 +810,7 @@ public class AllBlocks {
 
         //region Redstone Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
+            NotEnoughRails.LOGGER.info("Adding custom blocks to the Redstone Blocks item group");
             //Order: standard -> crossover -> buffer stop -> powered -> braking -> check -> detector -> chime -> activator -> locking
             //region Iron Rails
             entries.addAfter(Blocks.RAIL, AllBlocks.CROSSOVER_RAIL);
@@ -830,6 +845,7 @@ public class AllBlocks {
 
         //region Tool Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
+            NotEnoughRails.LOGGER.info("Adding custom blocks to the Tool Blocks item group");
             //Order: standard -> crossover -> buffer stop -> powered -> braking -> check -> detector -> chime -> activator -> locking
             //region Iron Rails
             entries.addAfter(Blocks.RAIL, AllBlocks.CROSSOVER_RAIL);

@@ -39,6 +39,7 @@ public class AllItemGroups {
     }
 
     private static void displayItems(ItemGroup.DisplayContext displayContext, ItemGroup.Entries entries) {
+        NotEnoughRails.LOGGER.info("Generating the " + NotEnoughRails.MOD_NAME + " item group");
         //Wood Blocks
         //Order: full block -> stairs -> slab -> wall -> fence -> fence gate -> door -> trapdoor -> pressure plate -> button
         entries.add(AllBlocks.WOODEN_FRAME);
@@ -106,6 +107,7 @@ public class AllItemGroups {
         entries.add(AllBlocks.QUERN);
 
         //Machine Blocks - Power Generators
+        entries.add(AllBlocks.WATERWHEEL_STEEL);
 
         //Machine Blocks - Power Transfer
 

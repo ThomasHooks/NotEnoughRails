@@ -15,6 +15,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.data.tags;
 
+import com.github.thomashooks.notenoughrails.NotEnoughRails;
 import com.github.thomashooks.notenoughrails.block.AllBlocks;
 import com.github.thomashooks.notenoughrails.util.AllBlockTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -32,6 +33,8 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.@NotNull WrapperLookup wrapperLookup) {
+        NotEnoughRails.LOGGER.info("Adding custom blocks to the block tags");
+        //region Pickaxe Mineable Blocks
         valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(AllBlocks.BLOOMERY)
                 .add(AllBlocks.BRAKING_RAIL)
@@ -119,7 +122,8 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.STEEL_TRAPDOOR)
                 .add(AllBlocks.VERMILION_BLOCK)
                 .add(AllBlocks.VERMILION_CONDUIT)
-        ;
+                .add(AllBlocks.WATERWHEEL_STEEL);
+
         valueLookupBuilder(BlockTags.NEEDS_STONE_TOOL)
                 .add(AllBlocks.BLOOMERY)
                 .add(AllBlocks.COKE_BLOCK)
@@ -129,12 +133,12 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.FLUXSTONE_SMOOTH)
                 .add(AllBlocks.FLUXSTONE_SMOOTH_SLAB)
                 .add(AllBlocks.FLUXSTONE_SMOOTH_STAIRS)
-                .add(AllBlocks.IRON_PLATE_BLOCK)
-        ;
+                .add(AllBlocks.IRON_PLATE_BLOCK);
+
         valueLookupBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(AllBlocks.VERMILION_BLOCK)
-                .add(AllBlocks.VERMILION_CONDUIT)
-        ;
+                .add(AllBlocks.VERMILION_CONDUIT);
+
         valueLookupBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(AllBlocks.QUERN)
                 .add(AllBlocks.STEEL_BARS)
@@ -147,16 +151,18 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.STEEL_GRATE)
                 .add(AllBlocks.STEEL_PLATE_BLOCK)
                 .add(AllBlocks.STEEL_TRAPDOOR)
-        ;
+                .add(AllBlocks.WATERWHEEL_STEEL);
+        //endregion
 
+        //region Block That Should Connect To
         valueLookupBuilder(BlockTags.WALLS)
-                .add(AllBlocks.FIRE_BRICKS_WALL)
-        ;
+                .add(AllBlocks.FIRE_BRICKS_WALL);
 
         valueLookupBuilder(BlockTags.BARS)
-                .add(AllBlocks.STEEL_BARS)
-        ;
+                .add(AllBlocks.STEEL_BARS);
+        //endregion
 
+        //region Rail Blocks
         valueLookupBuilder(BlockTags.RAILS)
                 .add(AllBlocks.BRAKING_RAIL)
                 .add(AllBlocks.BUFFER_STOP_RAIL)
@@ -217,9 +223,10 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.STEEL_DETECTOR_RAIL)
                 .add(AllBlocks.STEEL_CROSSOVER_RAIL)
                 .add(AllBlocks.STEEL_POWERED_RAIL)
-                .add(AllBlocks.STEEL_RAIL)
-        ;
+                .add(AllBlocks.STEEL_RAIL);
+        //endregion
 
+        //region Prevent Mobs From Spawning Inside
         valueLookupBuilder(BlockTags.PREVENT_MOB_SPAWNING_INSIDE)
                 .add(AllBlocks.BRAKING_RAIL)
                 .add(AllBlocks.BUFFER_STOP_RAIL)
@@ -282,8 +289,11 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.STEEL_CROSSOVER_RAIL)
                 .add(AllBlocks.STEEL_POWERED_RAIL)
                 .add(AllBlocks.STEEL_RAIL)
-        ;
+                .add(AllBlocks.WATERWHEEL_STEEL);
+        //endregion
 
+        //region Custom Block Tags
+        NotEnoughRails.LOGGER.info("Generating custom block tags");
         valueLookupBuilder(AllBlockTags.COPPER_POWERED_RAILS)
                 .add(AllBlocks.COPPER_POWERED_RAIL)
                 .add(AllBlocks.COPPER_POWERED_RAIL_EXPOSED)
@@ -292,8 +302,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.COPPER_POWERED_RAIL_WAXED)
                 .add(AllBlocks.COPPER_POWERED_RAIL_EXPOSED_WAXED)
                 .add(AllBlocks.COPPER_POWERED_RAIL_WEATHERED_WAXED)
-                .add(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED)
-        ;
+                .add(AllBlocks.COPPER_POWERED_RAIL_OXIDIZED_WAXED);
 
         valueLookupBuilder(AllBlockTags.COPPER_ACTIVATOR_RAILS)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL)
@@ -303,7 +312,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL_WAXED)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED_WAXED)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED_WAXED)
-                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED)
-        ;
+                .add(AllBlocks.COPPER_ACTIVATOR_RAIL_OXIDIZED_WAXED);
+        //endregion
     }
 }
