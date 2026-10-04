@@ -19,6 +19,8 @@ import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
 import com.github.thomashooks.notenoughrails.block.entity.LazyTickingBlockEntity;
 import com.github.thomashooks.notenoughrails.block.entity.QuernBlockEntity;
 import com.github.thomashooks.notenoughrails.block.property.AllProperties;
+import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
+import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import com.github.thomashooks.notenoughrails.util.VoxelShapeHelper;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
@@ -43,9 +45,12 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.Nullable;
 
-public class QuernBlock extends Block implements BlockEntityProvider {
+import java.util.ArrayList;
+
+public class QuernBlock extends Block implements BlockEntityProvider, KinematicBlockProvider {
     public static final MapCodec<QuernBlock> CODEC = createCodec(QuernBlock::new);
     public static final BooleanProperty IS_MILLING = AllProperties.IS_MILLING;
     private static final VoxelShape RUNNER_STONE_VOXEL_SHAPE = Block.createCuboidShape(0.0, 8.0, 0.0, 16.0, 12.0, 16.0);
@@ -59,6 +64,29 @@ public class QuernBlock extends Block implements BlockEntityProvider {
 
     @Override
     protected MapCodec<? extends Block> getCodec() { return CODEC; }
+
+    @Override
+    public float getSpeed(@NotNull World world, @NotNull BlockPos pos) {
+        if (world.getBlockEntity(pos) instanceof QuernBlockEntity blockEntity) {
+            return blockEntity.getSpeed();
+        }
+        return 0.0F;
+    }
+
+    @Override
+    public void changeSpeed(@NotNull World world, @NotNull BlockPos pos, @NotNull BlockPos driverPos, float speedIn) {
+        if (world.getBlockEntity(pos) instanceof QuernBlockEntity blockEntity) {
+            blockEntity.setSpeed(driverPos, speedIn);
+        }
+    }
+
+    @Override
+    public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections(@NotNull World world, @NotNull BlockPos pos, @NotNull BlockState state) {
+        if (world.getBlockEntity(pos) instanceof QuernBlockEntity blockEntity) {
+            return blockEntity.getMechanicalConnections();
+        }
+        return new ArrayList<>();
+    }
 
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {

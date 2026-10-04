@@ -15,9 +15,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.block.entity;
 
-import com.github.thomashooks.notenoughrails.NotEnoughRails;
-import com.github.thomashooks.notenoughrails.block.entity.behaviors.IRotatingShaftProvider;
+import com.github.thomashooks.notenoughrails.block.entity.behaviors.Kinematics;
+import com.github.thomashooks.notenoughrails.block.entity.behaviors.RotatingShaftProvider;
 import com.github.thomashooks.notenoughrails.block.entity.behaviors.RotatingShaftAnimator;
+import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
+import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.nbt.NbtCompound;
@@ -29,19 +31,30 @@ import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
-public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implements IRotatingShaftProvider {
-    public static final float MAX_NUMBER_OF_SIDES_WITH_WATER = 3.0F;
-    private final RotatingShaftAnimator shaftAnimator = new RotatingShaftAnimator();
+public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implements RotatingShaftProvider {
+    //region Kinematics Anonymous Class
+    private final Kinematics kinematics = new Kinematics() {
+        @Override
+        public void markDirty() { updateAndNotifyAll(); }
 
-    private float speed;
+        @Override
+        public void stop() {
+            // Do nothing
+        }
+    };
+    private final ArrayList<MechanicalConnection> connections = MechanicalConnection.makeMonoAxle(getPos(), Direction.Axis.Y);
+    public static final float MAX_NUMBER_OF_SIDES_WITH_WATER = 3.0F;
     public static final double MAX_SPEED = 12.0;
-    private static final String SPEED_TAG = NotEnoughRails.MOD_ID + ":speed";
+    //endregion
+
+    private final RotatingShaftAnimator shaftAnimator = new RotatingShaftAnimator();
 
     public SteelWaterWheelBlockEntity(BlockPos pos, BlockState state) {
         super(AllBlockEntities.WATERWHEEL_STEEL, pos, state);
@@ -49,6 +62,13 @@ public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implement
     }
 
     //region Lazy Ticking Methods
+    @Override
+    protected void tick() {
+        super.tick();
+
+        propagateSpeed();
+    }
+
     @Override
     protected void lazyTick() {
         updateFlows();
@@ -58,17 +78,17 @@ public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implement
     protected void clientTick() {
         super.clientTick();
 
-        shaftAnimator.step(getSpeed());
+        this.shaftAnimator.step(getSpeed());
     }
     //endregion
 
-    public float getSpeed() { return speed; }
+    //region Kinematics Methods
+    public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections() { return connections; }
 
-    private void setSpeed(float speedIn) {
-        if (!MathHelper.approximatelyEquals(speedIn, this.speed)) {
-            this.speed = speedIn;
-            updateAndNotifyAll();
-        }
+    public float getSpeed() { return this.kinematics.getSpeed(); }
+
+    protected void propagateSpeed() {
+        this.kinematics.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), getWorld(), getPos());
     }
 
     private void updateFlows() {
@@ -98,8 +118,9 @@ public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implement
                 default -> throw new IllegalStateException(String.format("SteelWaterWheelBlockEntity: Invalid direction: %s", direction));
             }
         }
-        setSpeed(flowSpeed / MAX_NUMBER_OF_SIDES_WITH_WATER);
+        this.kinematics.setSpeed(getPos(),flowSpeed / MAX_NUMBER_OF_SIDES_WITH_WATER);
     }
+    //endregion
 
     //region Block Entity Renderer Methods
     public float getRotatingShaftProgress(float tickProgress) { return shaftAnimator.getShaftAngle(tickProgress); }
@@ -117,15 +138,13 @@ public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implement
     @Override
     protected void readData(ReadView view) {
         super.readData(view);
-        if (view.contains(SPEED_TAG)) {
-            this.speed = view.getFloat(SPEED_TAG, 0.0F);
-        }
+        this.kinematics.readData(view);
     }
 
     @Override
     protected void writeData(WriteView view) {
         super.writeData(view);
-        view.putFloat(SPEED_TAG, this.speed);
+        this.kinematics.writeData(view);
     }
     //endregion
 }

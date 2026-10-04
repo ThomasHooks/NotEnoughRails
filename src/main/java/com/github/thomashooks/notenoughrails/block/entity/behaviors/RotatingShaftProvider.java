@@ -15,7 +15,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.block.entity.behaviors;
 
-public interface IRotatingShaftProvider {
+public interface RotatingShaftProvider {
     /**
      * Gets the current angle of this shaft
      * @param tickProgress The fraction of a tick that has passed

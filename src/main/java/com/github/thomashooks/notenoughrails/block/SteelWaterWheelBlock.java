@@ -17,6 +17,9 @@ package com.github.thomashooks.notenoughrails.block;
 
 import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
 import com.github.thomashooks.notenoughrails.block.entity.LazyTickingBlockEntity;
+import com.github.thomashooks.notenoughrails.block.entity.SteelWaterWheelBlockEntity;
+import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
+import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import com.github.thomashooks.notenoughrails.util.VoxelShapeHelper;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
@@ -29,9 +32,12 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.Nullable;
 
-public class SteelWaterWheelBlock extends Block implements BlockEntityProvider {
+import java.util.ArrayList;
+
+public class SteelWaterWheelBlock extends Block implements BlockEntityProvider, KinematicBlockProvider {
     public static final MapCodec<SteelWaterWheelBlock> CODEC = createCodec(SteelWaterWheelBlock::new);
     private static final VoxelShape HUB_VOXEL_SHAPE = Block.createCuboidShape(5.0, 2.0, 5.0, 11.0, 14.0, 11.0);
     private static final VoxelShape TRIL_VOXEL_SHAPE = Block.createCuboidShape(0.0, 3.0, 0.0, 16.0, 13.0, 16.0);
@@ -42,6 +48,27 @@ public class SteelWaterWheelBlock extends Block implements BlockEntityProvider {
 
     @Override
     protected MapCodec<? extends Block> getCodec() { return CODEC; }
+
+    @Override
+    public float getSpeed(@NotNull World world, @NotNull BlockPos pos) {
+        if (world.getBlockEntity(pos) instanceof SteelWaterWheelBlockEntity blockEntity) {
+            return blockEntity.getSpeed();
+        }
+        return 0.0F;
+    }
+
+    @Override
+    public void changeSpeed(@NotNull World world, @NotNull BlockPos pos, @NotNull BlockPos driverPos, float speedIn) {
+        // The steel water wheel is an engine, so it cannot be changed by other blocks
+    }
+
+    @Override
+    public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections(@NotNull World world, @NotNull BlockPos pos, @NotNull BlockState state) {
+        if (world.getBlockEntity(pos) instanceof SteelWaterWheelBlockEntity blockEntity) {
+            return blockEntity.getMechanicalConnections();
+        }
+        return new ArrayList<>();
+    }
 
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {

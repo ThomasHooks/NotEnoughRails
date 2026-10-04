@@ -17,8 +17,11 @@ package com.github.thomashooks.notenoughrails.block.entity;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
 import com.github.thomashooks.notenoughrails.block.QuernBlock;
-import com.github.thomashooks.notenoughrails.block.entity.behaviors.IRotatingShaftProvider;
+import com.github.thomashooks.notenoughrails.block.entity.behaviors.Kinematics;
+import com.github.thomashooks.notenoughrails.block.entity.behaviors.RotatingShaftProvider;
 import com.github.thomashooks.notenoughrails.block.entity.behaviors.RotatingShaftAnimator;
+import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
+import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import com.github.thomashooks.notenoughrails.inventory.SidedSimpleInventory;
 import com.github.thomashooks.notenoughrails.network.BlockPosPayload;
 import com.github.thomashooks.notenoughrails.recipe.AllRecipes;
@@ -51,13 +54,15 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
+import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
-public class QuernBlockEntity extends LazyTickingBlockEntity implements ExtendedScreenHandlerFactory<BlockPosPayload>, IRotatingShaftProvider {
+public class QuernBlockEntity extends LazyTickingBlockEntity implements ExtendedScreenHandlerFactory<BlockPosPayload>, RotatingShaftProvider {
     //region Sided Inventory Anonymous Class
     public static final int INPUT_SLOTS = 1;
     public static final int OUTPUT_SLOTS = 1;
@@ -107,7 +112,7 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
             return switch (index) {
                 case PROPERTY_DELEGATE_PROGRESS_INDEX -> QuernBlockEntity.this.progress;
                 case PROPERTY_DELEGATE_MAX_PROGRESS_INDEX -> QuernBlockEntity.this.maxProgress;
-                case PROPERTY_DELEGATE_SPEED_INDEX -> Math.round(QuernBlockEntity.this.speed); // TODO: change this to a % int ie. 0 to 100
+                case PROPERTY_DELEGATE_SPEED_INDEX -> Math.round(QuernBlockEntity.this.kinematics.getSpeed()); // TODO: change this to a % int ie. 0 to 100
                 default -> 0;
             };
         }
@@ -136,11 +141,15 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
 
     private final RotatingShaftAnimator shaftAnimator = new RotatingShaftAnimator();
 
-    // These data fields are temporary
-    private float speed;
+    //region Kinematics Anonymous Class
+    private final ArrayList<MechanicalConnection> connections = MechanicalConnection.makeMonoAxle(getPos(), Direction.Axis.Y);
     public static final int MIN_SPEED = 16;
     public static final int MAX_SPEED = 32;
-    private static final String SPEED_TAG = NotEnoughRails.MOD_ID + ":speed";
+    private final Kinematics kinematics = new Kinematics() {
+        @Override
+        public void markDirty() { updateAndNotifyAll(); }
+    };
+    //endregion
 
     protected QuernBlockEntity(BlockPos pos, BlockState state) {
         super(AllBlockEntities.QUERN, pos, state);
@@ -151,15 +160,6 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
     }
 
     public SimpleInventory getInventory() { return inventory; }
-
-    public float getSpeed() { return speed; }
-
-    protected void setSpeed(float speed) {
-        if (!MathHelper.approximatelyEquals(speed, this.speed)) {
-            this.speed = speed;
-            updateAndNotifyAll();
-        }
-    }
 
     @Override
     public void onBlockReplaced(BlockPos pos, BlockState oldState) {
@@ -174,6 +174,8 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
     protected void tick() {
         super.tick();
 
+        propagateSpeed();
+
         boolean wasMilling = isMilling();
 
         ItemStack inputItemStack = this.inventory.getStack(INPUT_SLOT_INDEX).copy();
@@ -181,14 +183,12 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
         ItemStack outputItemStack = this.inventory.getStack(OUTPUT_SLOT_INDEX).copy();
         boolean canCraft = canCraftRecipe(inputItemStack, outputItemStack, recipe);
         // TODO: Add a requirement to be powered
-        if (canCraft) {
+        if (canCraft && isMoving()) {
             this.progress++;
             this.maxProgress = recipe.millingTime();
-            setSpeed(32.0F); // REMOVE - this is for testing only
         } else if (isMilling()) {
             this.progress = 0;
             this.maxProgress = DEFAULT_MILLING_TIME;
-            setSpeed(0.0F); // REMOVE - this is for testing only
         }
 
         boolean hasChanged = false;
@@ -197,7 +197,6 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
                 this.progress = 0;
                 this.maxProgress = DEFAULT_MILLING_TIME;
                 hasChanged = true;
-                setSpeed(0.0F); // REMOVE - this is for testing only
             }
         }
 
@@ -292,6 +291,20 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
     }
     //endregion
 
+    //region Kinematics Methods
+    public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections() { return connections; }
+
+    public float getSpeed() { return this.kinematics.getSpeed(); }
+
+    public void setSpeed(BlockPos driverPosIn, float speedIn) { this.kinematics.setSpeed(driverPosIn, speedIn); }
+
+    public boolean isMoving() { return this.kinematics.isMoving(); }
+
+    protected void propagateSpeed() {
+        this.kinematics.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), getWorld(), getPos());
+    }
+    //endregion
+
     //region Screen Methods
     @Override
     public @NonNull BlockPosPayload getScreenOpeningData(@NonNull ServerPlayerEntity player) {
@@ -346,9 +359,7 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
         if (view.contains(MAX_PROGRESS_TAG)) {
             this.maxProgress = view.getInt(MAX_PROGRESS_TAG, DEFAULT_MILLING_TIME);
         }
-        if (view.contains(SPEED_TAG)) {
-            this.speed = view.getFloat(SPEED_TAG, 0.0F);
-        }
+        this.kinematics.readData(view);
         Inventories.readData(view, this.inventory.getHeldStacks());
     }
 
@@ -357,7 +368,7 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
         super.writeData(view);
         view.putInt(PROGRESS_TAG, this.progress);
         view.putInt(MAX_PROGRESS_TAG, this.maxProgress);
-        view.putFloat(SPEED_TAG, this.speed);
+        this.kinematics.writeData(view);
         Inventories.writeData(view, this.inventory.getHeldStacks());
     }
     //endregion
