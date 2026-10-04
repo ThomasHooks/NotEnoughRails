@@ -25,6 +25,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
 public class AllBlockEntities {
+    public static final BlockEntityType<AxleBlockEntity> AXLE = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("axle"),
+            FabricBlockEntityTypeBuilder.create(AxleBlockEntity::new, AllBlocks.AXLE).build());
     public static final BlockEntityType<BloomeryBlockEntity> BLOOMERY = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("bloomery"),
             FabricBlockEntityTypeBuilder.create(BloomeryBlockEntity::new, AllBlocks.BLOOMERY).build());
     public static final BlockEntityType<CokeOvenBlockEntity> COKE_OVEN = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("coke_oven"),
