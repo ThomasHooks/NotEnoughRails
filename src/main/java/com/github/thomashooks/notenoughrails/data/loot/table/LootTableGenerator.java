@@ -40,7 +40,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         NotEnoughRails.LOGGER.info("Generating custom block loot tables");
-        RegistryWrapper.Impl<Enchantment> impl = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
+        addDrop(AllBlocks.AXLE);
         addDrop(AllBlocks.BLOOMERY);
         addDrop(AllBlocks.BRAKING_RAIL);
         addDrop(AllBlocks.BUFFER_STOP_RAIL);
@@ -118,6 +118,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(AllBlocks.FIRE_BRICKS_SLAB, slabDrops(AllBlocks.FIRE_BRICKS_SLAB));
         addDrop(AllBlocks.FIRE_BRICKS_STAIRS);
         addDrop(AllBlocks.FIRE_BRICKS_WALL);
+        RegistryWrapper.Impl<Enchantment> enchantmentImpl = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
         BlockStatePropertyLootCondition.Builder flaxCropBuilder = BlockStatePropertyLootCondition.builder(AllBlocks.FLAX_CROP)
                 .properties(StatePredicate.Builder.create().exactMatch(FlaxCropBlock.AGE, FlaxCropBlock.MAX_AGE));
         addDrop(AllBlocks.FLAX_CROP, cropDrops(AllBlocks.FLAX_CROP, AllItems.FLAX, AllItems.FLAXSEEDS, flaxCropBuilder));
@@ -127,7 +128,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
                         addSurvivesExplosionCondition(
                                 block,
                                 ItemEntry.builder(AllItems.FLUX)
-                                        .conditionally(TableBonusLootCondition.builder(impl.getOrThrow(Enchantments.FORTUNE), 0.1F, 0.14285715F, 0.25F, 1.0F))
+                                        .conditionally(TableBonusLootCondition.builder(enchantmentImpl.getOrThrow(Enchantments.FORTUNE), 0.1F, 0.14285715F, 0.25F, 1.0F))
                                         .alternatively(ItemEntry.builder(block))
                         )
                 )

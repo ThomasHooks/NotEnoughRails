@@ -33,6 +33,13 @@ import net.minecraft.sound.BlockSoundGroup;
 import java.util.function.Function;
 
 public class AllBlocks {
+    public static final Block AXLE = registerBlock("axle",
+            settings -> new AxleBlock(settings
+                    .strength(1.8F, 2.0F)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .mapColor(MapColor.OAK_TAN)
+                    .pistonBehavior(PistonBehavior.BLOCK)
+            ));
     public static final Block BLOOMERY = registerBlock("bloomery",
             settings -> new BloomeryBlock(settings
                     .strength(3.5F, 3.5F)
@@ -797,6 +804,7 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.COKE_OVEN, AllBlocks.BLOOMERY);
             entries.addAfter(AllBlocks.BLOOMERY, AllBlocks.QUERN);
             entries.addAfter(AllBlocks.QUERN, AllBlocks.WATERWHEEL_STEEL);
+            entries.addAfter(AllBlocks.WATERWHEEL_STEEL, AllBlocks.AXLE);
         });
         //endregion
 

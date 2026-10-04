@@ -257,6 +257,16 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                         .offerTo(exporter);
 
+                //Axle
+                createShaped(RecipeCategory.MISC, AllBlocks.AXLE, 3)
+                        .input('=', AllItemTags.STRIPPED_LOGS)
+                        .input('o', AllItems.LINSEED_OIL)
+                        .pattern(" o ")
+                        .pattern("===")
+                        .group(NotEnoughRails.MOD_ID + ":axle")
+                        .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
+                        .offerTo(exporter);
+
                 //Braking Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.BRAKING_RAIL, 16)
                         .input('i', AllItemTags.IRON_RODS)

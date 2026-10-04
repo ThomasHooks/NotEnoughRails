@@ -36,6 +36,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         NotEnoughRails.LOGGER.info("Adding custom blocks to the block tags");
         //region Pickaxe Mineable Blocks
         valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
+                .add(AllBlocks.AXLE)
                 .add(AllBlocks.BLOOMERY)
                 .add(AllBlocks.BRAKING_RAIL)
                 .add(AllBlocks.BUFFER_STOP_RAIL)
@@ -154,6 +155,12 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.WATERWHEEL_STEEL);
         //endregion
 
+        //region Axe Mineable Blocks
+        valueLookupBuilder(BlockTags.AXE_MINEABLE)
+                .add(AllBlocks.AXLE)
+                .add(AllBlocks.WOODEN_FRAME);
+        //endregion
+
         //region Block That Should Connect To
         valueLookupBuilder(BlockTags.WALLS)
                 .add(AllBlocks.FIRE_BRICKS_WALL);
@@ -228,6 +235,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
 
         //region Prevent Mobs From Spawning Inside
         valueLookupBuilder(BlockTags.PREVENT_MOB_SPAWNING_INSIDE)
+                .add(AllBlocks.AXLE)
                 .add(AllBlocks.BRAKING_RAIL)
                 .add(AllBlocks.BUFFER_STOP_RAIL)
                 .add(AllBlocks.CHECK_RAIL)

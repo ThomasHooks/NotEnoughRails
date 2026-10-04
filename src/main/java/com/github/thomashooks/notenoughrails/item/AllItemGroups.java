@@ -106,10 +106,11 @@ public class AllItemGroups {
         //Mills
         entries.add(AllBlocks.QUERN);
 
-        //Machine Blocks - Power Generators
+        //Power Engines
         entries.add(AllBlocks.WATERWHEEL_STEEL);
 
-        //Machine Blocks - Power Transfer
+        //Power Linkages
+        entries.add(AllBlocks.AXLE);
 
         //Ladders/Scaffolding
 
