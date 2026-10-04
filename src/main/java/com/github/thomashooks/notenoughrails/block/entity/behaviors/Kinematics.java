@@ -29,7 +29,6 @@ public abstract class Kinematics {
     public static final float MAX_SPEED = 512.0F;
     public static final float MIN_SPEED = -MAX_SPEED;
     protected float speed;
-    protected boolean speedChanged = false;
     protected BlockPos driverPos;
     protected static final String SPEED_TAG = NotEnoughRails.MOD_ID + ":speed";
     protected static final String DRIVER_POS_TAG = NotEnoughRails.MOD_ID + ":driver_pos";
@@ -51,7 +50,6 @@ public abstract class Kinematics {
 
         this.speed = speedIn;
         this.driverPos = driverPosIn;
-        this.speedChanged = true;
         markDirty();
     }
 
@@ -77,11 +75,6 @@ public abstract class Kinematics {
      * @param pos           The block position of this kinematic block
      */
     public void propagateSpeed(KinematicBlockProvider blockProvider, World world, BlockPos pos) {
-        if (!this.speedChanged) {
-            return;
-        }
-        this.speedChanged = false;
-
         for (MechanicalConnection connection : blockProvider.getMechanicalConnections(world, pos, world.getBlockState(pos))) {
             if (connection.pos().equals(getDriverPos())) {
                 continue;
