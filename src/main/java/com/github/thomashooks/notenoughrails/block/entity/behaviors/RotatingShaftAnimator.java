@@ -13,7 +13,7 @@ AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
 ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.github.thomashooks.notenoughrails.block.entity;
+package com.github.thomashooks.notenoughrails.block.entity.behaviors;
 
 import net.minecraft.util.math.MathHelper;
 
@@ -25,7 +25,6 @@ public class RotatingShaftAnimator {
     public void step(float speedIn) {
         shaftSpeed = speedIn;
         if (MathHelper.approximatelyEquals(shaftSpeed, 0.0F)) {
-            ticks = 0;
             return;
         }
 
@@ -33,9 +32,7 @@ public class RotatingShaftAnimator {
         shaftAngle = (ticks * shaftSpeed * 0.3F) % 360.0F;
     }
 
-    public float getShaftAngle(float tickProgress) {
-        return shaftAngle + (tickProgress * shaftSpeed * 0.3F) % 360.0F;
-    }
+    public float getShaftAngle(float tickProgress) { return shaftAngle + (tickProgress * shaftSpeed * 0.3F) % 360.0F; }
 
     public float getShaftAngle() { return shaftAngle; }
 }

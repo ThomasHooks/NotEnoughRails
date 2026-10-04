@@ -45,7 +45,7 @@ public class QuernBlockEntityRenderer implements BlockEntityRenderer<QuernBlockE
     public void updateRenderState(QuernBlockEntity blockEntity, RotatingShaftRenderState state, float tickProgress, Vec3d cameraPos, ModelCommandRenderer.@Nullable CrumblingOverlayCommand crumblingOverlay) {
         BlockEntityRenderer.super.updateRenderState(blockEntity, state, tickProgress, cameraPos, crumblingOverlay);
         state.tickProgress = tickProgress;
-        state.rotationAngle = blockEntity.getAnimationProgress(tickProgress);
+        state.rotationAngle = blockEntity.getRotatingShaftProgress(tickProgress);
     }
 
     @Override

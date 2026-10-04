@@ -17,6 +17,8 @@ package com.github.thomashooks.notenoughrails.block.entity;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
 import com.github.thomashooks.notenoughrails.block.QuernBlock;
+import com.github.thomashooks.notenoughrails.block.entity.behaviors.IRotatingShaftProvider;
+import com.github.thomashooks.notenoughrails.block.entity.behaviors.RotatingShaftAnimator;
 import com.github.thomashooks.notenoughrails.inventory.SidedSimpleInventory;
 import com.github.thomashooks.notenoughrails.network.BlockPosPayload;
 import com.github.thomashooks.notenoughrails.recipe.AllRecipes;
@@ -55,7 +57,7 @@ import org.jspecify.annotations.Nullable;
 import java.util.Objects;
 import java.util.Optional;
 
-public class QuernBlockEntity extends LazyTickingBlockEntity implements ExtendedScreenHandlerFactory<BlockPosPayload> {
+public class QuernBlockEntity extends LazyTickingBlockEntity implements ExtendedScreenHandlerFactory<BlockPosPayload>, IRotatingShaftProvider {
     //region Sided Inventory Anonymous Class
     public static final int INPUT_SLOTS = 1;
     public static final int OUTPUT_SLOTS = 1;
@@ -323,7 +325,7 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
     //endregion
 
     //region Block Entity Renderer Methods
-    public float getAnimationProgress(float tickProgress) { return shaftAnimator.getShaftAngle(tickProgress); }
+    public float getRotatingShaftProgress(float tickProgress) { return shaftAnimator.getShaftAngle(tickProgress); }
     //endregion
 
     //region Serialize and Deserialize Methods

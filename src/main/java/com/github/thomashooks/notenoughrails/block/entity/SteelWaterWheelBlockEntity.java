@@ -16,6 +16,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.block.entity;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
+import com.github.thomashooks.notenoughrails.block.entity.behaviors.IRotatingShaftProvider;
+import com.github.thomashooks.notenoughrails.block.entity.behaviors.RotatingShaftAnimator;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.nbt.NbtCompound;
@@ -33,7 +35,7 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.Objects;
 
-public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity {
+public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implements IRotatingShaftProvider {
     public static final float MAX_NUMBER_OF_SIDES_WITH_WATER = 3.0F;
     private final RotatingShaftAnimator shaftAnimator = new RotatingShaftAnimator();
 
@@ -100,7 +102,7 @@ public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity {
     }
 
     //region Block Entity Renderer Methods
-    public float getAnimationProgress(float tickProgress) { return shaftAnimator.getShaftAngle(tickProgress); }
+    public float getRotatingShaftProgress(float tickProgress) { return shaftAnimator.getShaftAngle(tickProgress); }
     //endregion
 
     //region Serialize and Deserialize Methods
