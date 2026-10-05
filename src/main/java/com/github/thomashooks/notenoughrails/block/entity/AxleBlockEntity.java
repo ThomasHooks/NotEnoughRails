@@ -16,6 +16,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.block.entity;
 
 import com.github.thomashooks.notenoughrails.block.entity.behaviors.Kinematics;
+import com.github.thomashooks.notenoughrails.block.entity.behaviors.RotatingShaftAnimator;
 import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
 import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import net.minecraft.block.BlockState;
@@ -42,13 +43,14 @@ public class AxleBlockEntity extends LazyTickingBlockEntity {
     private final ArrayList<MechanicalConnection> connections = MechanicalConnection.makeMonoAxle(getPos(), Direction.Axis.Y);
     //endregion
 
+    private final RotatingShaftAnimator shaftAnimator = new RotatingShaftAnimator();
+
     public AxleBlockEntity(BlockPos pos, BlockState state) {
         super(AllBlockEntities.AXLE, pos, state);
         setLazyTickRate(30);
     }
 
     //region Lazy Ticking Methods
-
     @Override
     protected void tick() {
         super.tick();
@@ -56,6 +58,12 @@ public class AxleBlockEntity extends LazyTickingBlockEntity {
         propagateSpeed();
     }
 
+    @Override
+    protected void clientTick() {
+        super.clientTick();
+
+        shaftAnimator.step(getSpeed());
+    }
     //endregion
 
     //region Kinematics Methods
@@ -70,6 +78,10 @@ public class AxleBlockEntity extends LazyTickingBlockEntity {
     }
     //endregion
 
+    //region Block Entity Renderer Methods
+    public float getRotatingShaftProgress(float tickProgress) { return shaftAnimator.getShaftAngle(tickProgress); }
+    //endregion
+
     //region Serialize and Deserialize Methods
     @Override
     public @Nullable Packet<ClientPlayPacketListener> toUpdatePacket() {
@@ -82,11 +94,13 @@ public class AxleBlockEntity extends LazyTickingBlockEntity {
     @Override
     protected void readData(ReadView view) {
         super.readData(view);
+        this.kinematics.readData(view);
     }
 
     @Override
     protected void writeData(WriteView view) {
         super.writeData(view);
+        this.kinematics.writeData(view);
     }
     //endregion
 }

@@ -21,8 +21,10 @@ import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
 import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.CokeOvenScreen;
 import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.BloomeryScreen;
 import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.QuernScreen;
+import com.github.thomashooks.notenoughrails.client.render.block.entity.AxleBlockEntityRenderer;
 import com.github.thomashooks.notenoughrails.client.render.block.entity.QuernBlockEntityRenderer;
 import com.github.thomashooks.notenoughrails.client.render.block.entity.SteelWaterWheelBlockEntityRenderer;
+import com.github.thomashooks.notenoughrails.client.render.block.entity.model.AxleBlockModel;
 import com.github.thomashooks.notenoughrails.client.render.block.entity.model.QuernBlockModel;
 import com.github.thomashooks.notenoughrails.client.render.block.entity.model.SteelWaterWheelBlockModel;
 import com.github.thomashooks.notenoughrails.screen.AllScreenHandlers;
@@ -48,6 +50,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         registerScreens();
     }
 
+    //region Register Block Render Layers
     private void registerBlockRenderLayer() {
         NotEnoughRails.LOGGER.info("Registering BlockRenderLayer");
 
@@ -119,7 +122,9 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(AllBlocks.LOCKING_RAIL, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(AllBlocks.VERMILION_CONDUIT, BlockRenderLayer.CUTOUT);
     }
+    //endregion
 
+    //region Register Block Color Providers
     private void registerColorProviderBlock() {
         NotEnoughRails.LOGGER.info("Registering Block Color Provider");
 
@@ -132,21 +137,29 @@ public class NotEnoughRailsClient implements ClientModInitializer {
                 AllBlocks.VERMILION_CONDUIT
         );
     }
+    //endregion
 
+    //region Register Block Model Layers
     private void registerModelLayers() {
         NotEnoughRails.LOGGER.info("Registering All Model Layers");
 
+        EntityModelLayerRegistry.registerModelLayer(AxleBlockModel.LAYER_LOCATION, AxleBlockModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(QuernBlockModel.LAYER_LOCATION, QuernBlockModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(SteelWaterWheelBlockModel.LAYER_LOCATION, SteelWaterWheelBlockModel::getTexturedModelData);
     }
+    //endregion
 
+    //region Register Block Entity Renderers
     private void registerBlockEntityRenderers() {
         NotEnoughRails.LOGGER.info("Registering All Block Entity Renderers");
 
+        BlockEntityRendererFactories.register(AllBlockEntities.AXLE, AxleBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(AllBlockEntities.QUERN, QuernBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(AllBlockEntities.WATERWHEEL_STEEL, SteelWaterWheelBlockEntityRenderer::new);
     }
+    //endregion
 
+    //region Register Screens
     private void registerScreens() {
         NotEnoughRails.LOGGER.info("Binding all screens");
 
@@ -154,4 +167,5 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         HandledScreens.register(AllScreenHandlers.COKE_OVEN, CokeOvenScreen::new);
         HandledScreens.register(AllScreenHandlers.QUERN, QuernScreen::new);
     }
+    //endregion
 }
