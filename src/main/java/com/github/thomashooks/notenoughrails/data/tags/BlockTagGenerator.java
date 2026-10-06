@@ -42,6 +42,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.BUFFER_STOP_RAIL)
                 .add(AllBlocks.CHECK_RAIL)
                 .add(AllBlocks.CHIME_RAIL)
+                .add(AllBlocks.LANTERN_PINION)
                 .add(AllBlocks.COKE_BLOCK)
                 .add(AllBlocks.COKE_OVEN)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL)
@@ -158,6 +159,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         //region Axe Mineable Blocks
         valueLookupBuilder(BlockTags.AXE_MINEABLE)
                 .add(AllBlocks.AXLE)
+                .add(AllBlocks.LANTERN_PINION)
                 .add(AllBlocks.WOODEN_FRAME);
         //endregion
 
@@ -240,6 +242,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.BUFFER_STOP_RAIL)
                 .add(AllBlocks.CHECK_RAIL)
                 .add(AllBlocks.CHIME_RAIL)
+                .add(AllBlocks.LANTERN_PINION)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL_WEATHERED)

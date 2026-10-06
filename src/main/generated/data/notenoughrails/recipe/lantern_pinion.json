@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:lantern_pinion",
+  "key": {
+    "g": "notenoughrails:gear",
+    "|": "notenoughrails:axle"
+  },
+  "pattern": [
+    "g",
+    "|",
+    "g"
+  ],
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:lantern_pinion"
+  }
+}

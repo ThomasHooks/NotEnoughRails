@@ -48,6 +48,13 @@ public class AllBlocks {
                     .requiresTool()
                     .luminance(Blocks.createLightLevelFromLitBlockState(13))
             ));
+    public static final Block LANTERN_PINION = registerBlock("lantern_pinion",
+            settings -> new LanternPinionBlock(settings
+                    .strength(1.8F, 2.0F)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .mapColor(MapColor.OAK_TAN)
+                    .pistonBehavior(PistonBehavior.BLOCK)
+            ));
     public static final Block COKE_BLOCK = registerBlock("coke_block",
             settings -> new Block(settings
                     .strength(5.0F, 6.0F)
@@ -805,6 +812,7 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.BLOOMERY, AllBlocks.QUERN);
             entries.addAfter(AllBlocks.QUERN, AllBlocks.WATERWHEEL_STEEL);
             entries.addAfter(AllBlocks.WATERWHEEL_STEEL, AllBlocks.AXLE);
+            entries.addAfter(AllBlocks.AXLE, AllBlocks.LANTERN_PINION);
         });
         //endregion
 

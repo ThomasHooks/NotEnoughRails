@@ -324,6 +324,17 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
                         .offerTo(exporter, ":chime_rail_from_detector_rails");
 
+                //Cogwheel Tiny
+                createShaped(RecipeCategory.MISC, AllBlocks.LANTERN_PINION, 1)
+                        .input('g', AllItems.GEAR)
+                        .input('|', AllBlocks.AXLE)
+                        .pattern("g")
+                        .pattern("|")
+                        .pattern("g")
+                        .group(NotEnoughRails.MOD_ID + ":lantern_pinion")
+                        .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
+                        .offerTo(exporter);
+
                 //Coke Oven
                 createShaped(RecipeCategory.MISC, AllBlocks.COKE_OVEN, 1)
                         .input('#', AllBlocks.FIRE_BRICKS)

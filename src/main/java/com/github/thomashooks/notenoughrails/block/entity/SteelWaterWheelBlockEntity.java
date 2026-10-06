@@ -55,7 +55,7 @@ public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implement
 
         @Override
         public void setSpeed(BlockPos driverPosIn, float speedIn) {
-            if (MathHelper.approximatelyEquals(getSpeed(), speedIn)) {
+            if (MathHelper.approximatelyEquals(getSpeed(), speedIn) || !getDriverPos().equals(driverPosIn)) {
                 return;
             }
 
