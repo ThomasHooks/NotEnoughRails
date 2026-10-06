@@ -26,12 +26,17 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
 public abstract class Kinematics {
-    public static final float MAX_SPEED = 512.0F;
-    public static final float MIN_SPEED = -MAX_SPEED;
     protected float speed;
     protected BlockPos driverPos;
     protected static final String SPEED_TAG = NotEnoughRails.MOD_ID + ":speed";
     protected static final String DRIVER_POS_TAG = NotEnoughRails.MOD_ID + ":driver_pos";
+
+    /**
+     * @return Gets the block position of the kinematic block that is powering this block
+     */
+    public BlockPos getDriverPos() { return this.driverPos; }
+
+    protected void setDriverPos(BlockPos driverPosIn) { this.driverPos = driverPosIn; }
 
     /**
      * @return Gets the current speed of this kinematic block
@@ -44,19 +49,18 @@ public abstract class Kinematics {
      * @param speedIn     The new speed for this kinematic block
      */
     public void setSpeed(BlockPos driverPosIn, float speedIn) {
-        if (MathHelper.approximatelyEquals(getSpeed(), speedIn)) {
+        if (MathHelper.approximatelyEquals(getSpeed(), speedIn) || (getDriverPos() != null && !getDriverPos().equals(driverPosIn))) {
             return;
         }
 
         this.speed = speedIn;
-        this.driverPos = driverPosIn;
+        if (MathHelper.approximatelyEquals(0.0F, speedIn)) {
+            setDriverPos(null);
+        } else {
+            setDriverPos(driverPosIn);
+        }
         markDirty();
     }
-
-    /**
-     * @return Gets the block position of the driving kinematic block
-     */
-    public BlockPos getDriverPos() { return this.driverPos; }
 
     /**
      * @return Gets if this kinematic block is moving
@@ -66,7 +70,11 @@ public abstract class Kinematics {
     /**
      * Stops this kinematic block's movement
      */
-    public void stop() { this.speed = 0.0f; }
+    public void stop() {
+        this.speed = 0.0f;
+        setDriverPos(null);
+        markDirty();
+    }
 
     /**
      * Attempts to drive the next kinematic block that is attached to this kinematic block
@@ -75,6 +83,10 @@ public abstract class Kinematics {
      * @param pos           The block position of this kinematic block
      */
     public void propagateSpeed(KinematicBlockProvider blockProvider, World world, BlockPos pos) {
+        if (!isDriverPresent(world)) {
+            stop();
+        }
+
         for (MechanicalConnection connection : blockProvider.getMechanicalConnections(world, pos, world.getBlockState(pos))) {
             if (connection.pos().equals(getDriverPos())) {
                 continue;
@@ -92,6 +104,15 @@ public abstract class Kinematics {
                 neighborBlockProvider.changeSpeed(world, connection.pos(), pos, getSpeed() * -gearRatio);
             }
         }
+    }
+
+    /**
+     * Checks if the driving kinematic block is still present
+     * @param world The world that the kinematic block is in
+     * @return True if the driving kinematic block is still present
+     */
+    protected boolean isDriverPresent(World world) {
+        return getDriverPos() != null && world.getBlockState(getDriverPos()).getBlock() instanceof  KinematicBlockProvider;
     }
 
     /**

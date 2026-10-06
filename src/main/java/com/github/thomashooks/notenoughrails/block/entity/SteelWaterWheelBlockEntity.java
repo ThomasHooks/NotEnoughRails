@@ -31,6 +31,7 @@ import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.Nullable;
@@ -43,6 +44,24 @@ public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implement
     private final Kinematics kinematics = new Kinematics() {
         @Override
         public void markDirty() { updateAndNotifyAll(); }
+
+        @Override
+        public BlockPos getDriverPos() { return getPos(); }
+
+        @Override
+        protected void setDriverPos(BlockPos driverPosIn) {
+            // The steel water wheel is its own driver
+        }
+
+        @Override
+        public void setSpeed(BlockPos driverPosIn, float speedIn) {
+            if (MathHelper.approximatelyEquals(getSpeed(), speedIn)) {
+                return;
+            }
+
+            this.speed = speedIn;
+            markDirty();
+        }
 
         @Override
         public void stop() {
