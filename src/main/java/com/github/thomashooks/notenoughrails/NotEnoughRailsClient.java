@@ -22,9 +22,11 @@ import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.CokeOvenSc
 import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.BloomeryScreen;
 import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.QuernScreen;
 import com.github.thomashooks.notenoughrails.client.render.block.entity.AxleBlockEntityRenderer;
+import com.github.thomashooks.notenoughrails.client.render.block.entity.LanternPinionBlockEntityRenderer;
 import com.github.thomashooks.notenoughrails.client.render.block.entity.QuernBlockEntityRenderer;
 import com.github.thomashooks.notenoughrails.client.render.block.entity.SteelWaterWheelBlockEntityRenderer;
 import com.github.thomashooks.notenoughrails.client.render.block.entity.model.AxleBlockModel;
+import com.github.thomashooks.notenoughrails.client.render.block.entity.model.LanternPinionBlockModel;
 import com.github.thomashooks.notenoughrails.client.render.block.entity.model.QuernBlockModel;
 import com.github.thomashooks.notenoughrails.client.render.block.entity.model.SteelWaterWheelBlockModel;
 import com.github.thomashooks.notenoughrails.screen.AllScreenHandlers;
@@ -151,6 +153,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         NotEnoughRails.LOGGER.info("Registering All Model Layers");
 
         EntityModelLayerRegistry.registerModelLayer(AxleBlockModel.LAYER_LOCATION, AxleBlockModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(LanternPinionBlockModel.LAYER_LOCATION, LanternPinionBlockModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(QuernBlockModel.LAYER_LOCATION, QuernBlockModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(SteelWaterWheelBlockModel.LAYER_LOCATION, SteelWaterWheelBlockModel::getTexturedModelData);
     }
@@ -161,6 +164,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         NotEnoughRails.LOGGER.info("Registering All Block Entity Renderers");
 
         BlockEntityRendererFactories.register(AllBlockEntities.AXLE, AxleBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(AllBlockEntities.LANTERN_PINION, LanternPinionBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(AllBlockEntities.QUERN, QuernBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(AllBlockEntities.WATERWHEEL_STEEL, SteelWaterWheelBlockEntityRenderer::new);
     }

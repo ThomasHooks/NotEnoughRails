@@ -22,10 +22,7 @@ import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
 import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import com.github.thomashooks.notenoughrails.util.VoxelShapeHelper;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -58,6 +55,9 @@ public class LanternPinionBlock extends Block implements BlockEntityProvider, Ki
                 HUB_VOXEL_SHAPE
         ).simplify();
     }
+
+    @Override
+    protected BlockRenderType getRenderType(BlockState state) { return BlockRenderType.INVISIBLE; }
 
     //region Kinematic Block Provider Methods
     @Override
