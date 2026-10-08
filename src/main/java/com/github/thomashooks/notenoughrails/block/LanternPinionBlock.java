@@ -15,18 +15,32 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.block;
 
+import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
+import com.github.thomashooks.notenoughrails.block.entity.LazyTickingBlockEntity;
+import com.github.thomashooks.notenoughrails.energy.KinematicBlockEntity;
+import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
+import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import com.github.thomashooks.notenoughrails.util.VoxelShapeHelper;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.Nullable;
 
-public class LanternPinionBlock extends Block {
+import java.util.ArrayList;
+
+public class LanternPinionBlock extends Block implements BlockEntityProvider, KinematicBlockProvider {
     public static final MapCodec<LanternPinionBlock> CODEC = createCodec(LanternPinionBlock::new);
     private static final VoxelShape HUB_VOXEL_SHAPE = Block.createCuboidShape(2.0, 3.0, 2.0, 14.0, 13.0, 14.0);
 
@@ -44,4 +58,44 @@ public class LanternPinionBlock extends Block {
                 HUB_VOXEL_SHAPE
         ).simplify();
     }
+
+    //region Kinematic Block Provider Methods
+    @Override
+    public float getSpeed(@NotNull World world, @NotNull BlockPos pos) {
+        if (world.getBlockEntity(pos) instanceof KinematicBlockEntity blockEntity) {
+            return blockEntity.getSpeed();
+        }
+        return 0.0F;
+    }
+
+    @Override
+    public void changeSpeed(@NotNull World world, @NotNull BlockPos pos, @NotNull BlockPos driverPos, float speedIn) {
+        if (world.getBlockEntity(pos) instanceof KinematicBlockEntity blockEntity) {
+            blockEntity.setSpeed(driverPos, speedIn);
+        }
+    }
+
+    @Override
+    public float getNumberOfTeeth() { return 4.0F; }
+
+    @Override
+    public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections(@NotNull World world, @NotNull BlockPos pos, @NotNull BlockState state) {
+        if (world.getBlockEntity(pos) instanceof KinematicBlockEntity blockEntity) {
+            return blockEntity.getMechanicalConnections();
+        }
+        return new ArrayList<>();
+    }
+    //endregion
+
+    //region Block Entity Provider Methods
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return LazyTickingBlockEntity.getTicker(world);
+    }
+
+    @Override
+    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return AllBlockEntities.LANTERN_PINION.instantiate(pos, state);
+    }
+    //endregion
 }

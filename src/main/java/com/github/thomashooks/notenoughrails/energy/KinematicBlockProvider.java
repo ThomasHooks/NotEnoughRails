@@ -24,6 +24,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
+/**
+ * An interface implemented by blocks with kinematics.
+ */
 public interface KinematicBlockProvider {
     /**
      * @param world The kinematic block's world
