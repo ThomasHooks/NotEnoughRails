@@ -22,6 +22,7 @@ import com.github.thomashooks.notenoughrails.item.AllItemGroups;
 import com.github.thomashooks.notenoughrails.item.AllItems;
 import com.github.thomashooks.notenoughrails.recipe.AllRecipes;
 import com.github.thomashooks.notenoughrails.screen.AllScreenHandlers;
+import com.github.thomashooks.notenoughrails.util.ClientTimer;
 import com.github.thomashooks.notenoughrails.world.gen.OverworldBiomeGenerator;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
@@ -38,6 +39,7 @@ public class NotEnoughRails implements ModInitializer {
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
+	public static ClientTimer CLIENT_TIMER = new ClientTimer();
 
 	@Override
 	public void onInitialize() {

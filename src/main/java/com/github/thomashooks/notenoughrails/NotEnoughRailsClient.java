@@ -31,6 +31,7 @@ import com.github.thomashooks.notenoughrails.screen.AllScreenHandlers;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
@@ -48,6 +49,12 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         registerModelLayers();
         registerBlockEntityRenderers();
         registerScreens();
+
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            if (client.player != null && !client.isPaused()) {
+                NotEnoughRails.CLIENT_TIMER.tick();
+            }
+        });
     }
 
     //region Register Block Render Layers

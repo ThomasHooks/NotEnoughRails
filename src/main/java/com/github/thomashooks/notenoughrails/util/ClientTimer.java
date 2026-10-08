@@ -13,27 +13,12 @@ AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
 ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.github.thomashooks.notenoughrails.block.entity.behaviors;
+package com.github.thomashooks.notenoughrails.util;
 
-import com.github.thomashooks.notenoughrails.NotEnoughRails;
-import net.minecraft.util.math.MathHelper;
+public class ClientTimer {
+    private static long ticks = 0;
 
-public class RotatingShaftAnimator {
-    private float shaftAngle = 0.0F;
-    private float shaftSpeed = 0.0F;
+    public void tick() { ticks++; }
 
-    public void step(float speedIn) {
-        if (MathHelper.approximatelyEquals(speedIn, 0.0F)) {
-            shaftSpeed = 0.0F;
-            return;
-        }
-
-        shaftSpeed = speedIn;
-        long ticks = NotEnoughRails.CLIENT_TIMER.getTicks();
-        shaftAngle = (ticks * shaftSpeed * 0.3F) % 360.0F;
-    }
-
-    public float getShaftAngle(float tickProgress) { return shaftAngle + (tickProgress * shaftSpeed * 0.3F) % 360.0F; }
-
-    public float getShaftAngle() { return shaftAngle; }
+    public long getTicks() { return ticks; }
 }
