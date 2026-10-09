@@ -17,9 +17,8 @@ package com.github.thomashooks.notenoughrails.block.entity;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
 import com.github.thomashooks.notenoughrails.block.QuernBlock;
-import com.github.thomashooks.notenoughrails.block.entity.behaviors.Kinematics;
-import com.github.thomashooks.notenoughrails.block.entity.behaviors.RotatingShaftProvider;
-import com.github.thomashooks.notenoughrails.block.entity.behaviors.RotatingShaftAnimator;
+import com.github.thomashooks.notenoughrails.energy.KinematicBlockEntity;
+import com.github.thomashooks.notenoughrails.energy.KinematicsController;
 import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
 import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import com.github.thomashooks.notenoughrails.inventory.SidedSimpleInventory;
@@ -62,7 +61,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
-public class QuernBlockEntity extends LazyTickingBlockEntity implements ExtendedScreenHandlerFactory<BlockPosPayload>, RotatingShaftProvider {
+public class QuernBlockEntity extends LazyTickingBlockEntity implements ExtendedScreenHandlerFactory<BlockPosPayload>, KinematicBlockEntity {
     //region Sided Inventory Anonymous Class
     public static final int INPUT_SLOTS = 1;
     public static final int OUTPUT_SLOTS = 1;
@@ -112,7 +111,7 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
             return switch (index) {
                 case PROPERTY_DELEGATE_PROGRESS_INDEX -> QuernBlockEntity.this.progress;
                 case PROPERTY_DELEGATE_MAX_PROGRESS_INDEX -> QuernBlockEntity.this.maxProgress;
-                case PROPERTY_DELEGATE_SPEED_INDEX -> Math.round(QuernBlockEntity.this.kinematics.getSpeed()); // TODO: change this to a % int ie. 0 to 100
+                case PROPERTY_DELEGATE_SPEED_INDEX -> Math.round(QuernBlockEntity.this.kinematicsController.getSpeed()); // TODO: change this to a % int ie. 0 to 100
                 default -> 0;
             };
         }
@@ -139,13 +138,11 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
     private static final String MAX_PROGRESS_TAG = NotEnoughRails.MOD_ID + ":max_progress";
     public static final Text SCREEN_TITLE = Text.translatable("container." + NotEnoughRails.MOD_ID + ".quern");
 
-    private final RotatingShaftAnimator shaftAnimator = new RotatingShaftAnimator();
-
     //region Kinematics Anonymous Class
     private final ArrayList<MechanicalConnection> connections = MechanicalConnection.makeMonoAxle(getPos(), Direction.Axis.Y);
     public static final int MIN_SPEED = 16;
     public static final int MAX_SPEED = 32;
-    private final Kinematics kinematics = new Kinematics() {
+    private final KinematicsController kinematicsController = new KinematicsController() {
         @Override
         public void markDirty() { updateAndNotifyAll(); }
     };
@@ -216,7 +213,7 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
     protected void clientTick() {
         super.clientTick();
 
-        shaftAnimator.step(getSpeed());
+        this.kinematicsController.stepRotatingShaft();
     }
     //endregion
 
@@ -292,16 +289,23 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
     //endregion
 
     //region Kinematics Methods
+    @Override
     public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections() { return connections; }
 
-    public float getSpeed() { return this.kinematics.getSpeed(); }
+    @Override
+    public float getSpeed() { return this.kinematicsController.getSpeed(); }
 
-    public void setSpeed(BlockPos driverPosIn, float speedIn) { this.kinematics.setSpeed(driverPosIn, speedIn); }
+    @Override
+    public void setSpeed(BlockPos driverPosIn, float speedIn) { this.kinematicsController.setSpeed(driverPosIn, speedIn); }
 
-    public boolean isMoving() { return this.kinematics.isMoving(); }
+    public boolean isMoving() { return this.kinematicsController.isMoving(); }
 
     protected void propagateSpeed() {
-        this.kinematics.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), getWorld(), getPos());
+        this.kinematicsController.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), getWorld(), getPos());
+    }
+
+    public float getRotatingShaftProgress(float tickProgress) {
+        return this.kinematicsController.getRotatingShaftProgress(tickProgress);
     }
     //endregion
 
@@ -337,10 +341,6 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
     }
     //endregion
 
-    //region Block Entity Renderer Methods
-    public float getRotatingShaftProgress(float tickProgress) { return shaftAnimator.getShaftAngle(tickProgress); }
-    //endregion
-
     //region Serialize and Deserialize Methods
     @Override
     public @Nullable Packet<ClientPlayPacketListener> toUpdatePacket() {
@@ -359,7 +359,7 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
         if (view.contains(MAX_PROGRESS_TAG)) {
             this.maxProgress = view.getInt(MAX_PROGRESS_TAG, DEFAULT_MILLING_TIME);
         }
-        this.kinematics.readData(view);
+        this.kinematicsController.readData(view);
         Inventories.readData(view, this.inventory.getHeldStacks());
     }
 
@@ -368,7 +368,7 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
         super.writeData(view);
         view.putInt(PROGRESS_TAG, this.progress);
         view.putInt(MAX_PROGRESS_TAG, this.maxProgress);
-        this.kinematics.writeData(view);
+        this.kinematicsController.writeData(view);
         Inventories.writeData(view, this.inventory.getHeldStacks());
     }
     //endregion

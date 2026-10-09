@@ -13,11 +13,9 @@ AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
 ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.github.thomashooks.notenoughrails.block.entity.behaviors;
+package com.github.thomashooks.notenoughrails.energy;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
-import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
-import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
 import net.minecraft.util.math.BlockPos;
@@ -25,9 +23,10 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
-public abstract class Kinematics {
-    protected float speed;
+public abstract class KinematicsController {
+    protected float speed = 0.0F;
     protected BlockPos driverPos;
+    protected float shaftAngle = 0.0F;
     protected static final String SPEED_TAG = NotEnoughRails.MOD_ID + ":speed";
     protected static final String DRIVER_POS_TAG = NotEnoughRails.MOD_ID + ":driver_pos";
 
@@ -36,6 +35,10 @@ public abstract class Kinematics {
      */
     public BlockPos getDriverPos() { return this.driverPos; }
 
+    /**
+     *  Sets the block position of the kinematic block that is powering this block
+     * @param driverPosIn The new position of the kinematic block that is powering this block
+     */
     protected void setDriverPos(BlockPos driverPosIn) { this.driverPos = driverPosIn; }
 
     /**
@@ -74,6 +77,26 @@ public abstract class Kinematics {
         this.speed = 0.0f;
         setDriverPos(null);
         markDirty();
+    }
+
+    /**
+     * @param partialTick The fraction of a tick that has passed
+     * @return Gets the fractional change in angle of the shaft
+     */
+    public float getRotatingShaftProgress(float partialTick) {
+        return this.shaftAngle + (partialTick * getSpeed() * 0.3F) % 360.0F;
+    }
+
+    /**
+     *
+     */
+    public void stepRotatingShaft() {
+        if (MathHelper.approximatelyEquals(getSpeed(), 0.0F)) {
+            return;
+        }
+
+        long ticks = NotEnoughRails.CLIENT_TIMER.getTicks();
+        this.shaftAngle = (ticks * getSpeed() * 0.3F) % 360.0F;
     }
 
     /**

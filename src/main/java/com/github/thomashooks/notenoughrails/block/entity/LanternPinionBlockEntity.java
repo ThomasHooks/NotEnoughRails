@@ -15,10 +15,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.block.entity;
 
-import com.github.thomashooks.notenoughrails.block.entity.behaviors.Kinematics;
+import com.github.thomashooks.notenoughrails.energy.KinematicsController;
 import com.github.thomashooks.notenoughrails.energy.KinematicBlockEntity;
-import com.github.thomashooks.notenoughrails.block.entity.behaviors.RotatingShaftAnimator;
-import com.github.thomashooks.notenoughrails.block.entity.behaviors.RotatingShaftProvider;
 import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
 import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import net.minecraft.block.BlockState;
@@ -36,16 +34,14 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 
-public class LanternPinionBlockEntity extends LazyTickingBlockEntity implements KinematicBlockEntity, RotatingShaftProvider {
+public class LanternPinionBlockEntity extends LazyTickingBlockEntity implements KinematicBlockEntity {
     //region Kinematics Anonymous Class
-    private final Kinematics kinematics = new Kinematics() {
+    private final KinematicsController kinematicsController = new KinematicsController() {
         @Override
         public void markDirty() { updateAndNotifyAll(); }
     };
     private final ArrayList<MechanicalConnection> connections = MechanicalConnection.makeSmallCogwheel(getPos(), Direction.Axis.Y); // This is for testing
     //endregion
-
-    private final RotatingShaftAnimator shaftAnimator = new RotatingShaftAnimator();
 
     protected LanternPinionBlockEntity(BlockPos pos, BlockState state) {
         super(AllBlockEntities.LANTERN_PINION, pos, state);
@@ -64,7 +60,7 @@ public class LanternPinionBlockEntity extends LazyTickingBlockEntity implements 
     protected void clientTick() {
         super.clientTick();
 
-        shaftAnimator.step(getSpeed());
+        this.kinematicsController.stepRotatingShaft();
     }
     //endregion
 
@@ -73,19 +69,18 @@ public class LanternPinionBlockEntity extends LazyTickingBlockEntity implements 
     public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections() { return connections; }
 
     @Override
-    public float getSpeed() { return this.kinematics.getSpeed(); }
+    public float getSpeed() { return this.kinematicsController.getSpeed(); }
 
     @Override
-    public void setSpeed(BlockPos driverPosIn, float speedIn) { this.kinematics.setSpeed(driverPosIn, speedIn); }
+    public void setSpeed(BlockPos driverPosIn, float speedIn) { this.kinematicsController.setSpeed(driverPosIn, speedIn); }
 
     protected void propagateSpeed() {
-        this.kinematics.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), getWorld(), getPos());
+        this.kinematicsController.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), getWorld(), getPos());
     }
-    //endregion
 
-    //region Block Entity Renderer Methods
-    @Override
-    public float getRotatingShaftProgress(float tickProgress) { return shaftAnimator.getShaftAngle(tickProgress); }
+    public float getRotatingShaftProgress(float tickProgress) {
+        return this.kinematicsController.getRotatingShaftProgress(tickProgress);
+    }
     //endregion
 
     //region Serialize and Deserialize Methods
@@ -100,13 +95,13 @@ public class LanternPinionBlockEntity extends LazyTickingBlockEntity implements 
     @Override
     protected void readData(ReadView view) {
         super.readData(view);
-        this.kinematics.readData(view);
+        this.kinematicsController.readData(view);
     }
 
     @Override
     protected void writeData(WriteView view) {
         super.writeData(view);
-        this.kinematics.writeData(view);
+        this.kinematicsController.writeData(view);
     }
     //endregion
 }

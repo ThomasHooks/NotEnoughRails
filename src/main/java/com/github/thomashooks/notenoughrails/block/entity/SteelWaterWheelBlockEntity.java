@@ -15,9 +15,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.block.entity;
 
-import com.github.thomashooks.notenoughrails.block.entity.behaviors.Kinematics;
-import com.github.thomashooks.notenoughrails.block.entity.behaviors.RotatingShaftProvider;
-import com.github.thomashooks.notenoughrails.block.entity.behaviors.RotatingShaftAnimator;
+import com.github.thomashooks.notenoughrails.energy.KinematicBlockEntity;
+import com.github.thomashooks.notenoughrails.energy.KinematicsController;
 import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
 import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import net.minecraft.block.BlockState;
@@ -39,9 +38,9 @@ import org.jspecify.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implements RotatingShaftProvider {
+public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implements KinematicBlockEntity {
     //region Kinematics Anonymous Class
-    private final Kinematics kinematics = new Kinematics() {
+    private final KinematicsController kinematicsController = new KinematicsController() {
         @Override
         public void markDirty() { updateAndNotifyAll(); }
 
@@ -73,8 +72,6 @@ public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implement
     public static final double MAX_SPEED = 12.0;
     //endregion
 
-    private final RotatingShaftAnimator shaftAnimator = new RotatingShaftAnimator();
-
     public SteelWaterWheelBlockEntity(BlockPos pos, BlockState state) {
         super(AllBlockEntities.WATERWHEEL_STEEL, pos, state);
         setLazyTickRate(30);
@@ -97,17 +94,22 @@ public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implement
     protected void clientTick() {
         super.clientTick();
 
-        this.shaftAnimator.step(getSpeed());
+        this.kinematicsController.stepRotatingShaft();
     }
     //endregion
 
     //region Kinematics Methods
+    @Override
     public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections() { return connections; }
 
-    public float getSpeed() { return this.kinematics.getSpeed(); }
+    @Override
+    public float getSpeed() { return this.kinematicsController.getSpeed(); }
+
+    @Override
+    public void setSpeed(BlockPos driverPosIn, float speedIn) { }
 
     protected void propagateSpeed() {
-        this.kinematics.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), getWorld(), getPos());
+        this.kinematicsController.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), getWorld(), getPos());
     }
 
     private void updateFlows() {
@@ -137,12 +139,12 @@ public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implement
                 default -> throw new IllegalStateException(String.format("SteelWaterWheelBlockEntity: Invalid direction: %s", direction));
             }
         }
-        this.kinematics.setSpeed(getPos(),flowSpeed / MAX_NUMBER_OF_SIDES_WITH_WATER);
+        this.kinematicsController.setSpeed(getPos(),flowSpeed / MAX_NUMBER_OF_SIDES_WITH_WATER);
     }
-    //endregion
 
-    //region Block Entity Renderer Methods
-    public float getRotatingShaftProgress(float tickProgress) { return shaftAnimator.getShaftAngle(tickProgress); }
+    public float getRotatingShaftProgress(float tickProgress) {
+        return this.kinematicsController.getRotatingShaftProgress(tickProgress);
+    }
     //endregion
 
     //region Serialize and Deserialize Methods
@@ -157,13 +159,13 @@ public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implement
     @Override
     protected void readData(ReadView view) {
         super.readData(view);
-        this.kinematics.readData(view);
+        this.kinematicsController.readData(view);
     }
 
     @Override
     protected void writeData(WriteView view) {
         super.writeData(view);
-        this.kinematics.writeData(view);
+        this.kinematicsController.writeData(view);
     }
     //endregion
 }
