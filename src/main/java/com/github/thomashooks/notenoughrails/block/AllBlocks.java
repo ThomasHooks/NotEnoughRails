@@ -48,6 +48,13 @@ public class AllBlocks {
                     .requiresTool()
                     .luminance(Blocks.createLightLevelFromLitBlockState(13))
             ));
+    public static final Block COGWHEEL_SMALL = registerBlock("cogwheel_small",
+            settings -> new CogwheelSmallBlock(settings
+                    .strength(1.8F, 2.0F)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .mapColor(MapColor.OAK_TAN)
+                    .pistonBehavior(PistonBehavior.BLOCK)
+            ));
     public static final Block LANTERN_PINION = registerBlock("lantern_pinion",
             settings -> new LanternPinionBlock(settings
                     .strength(1.8F, 2.0F)
@@ -813,6 +820,7 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.QUERN, AllBlocks.WATERWHEEL_STEEL);
             entries.addAfter(AllBlocks.WATERWHEEL_STEEL, AllBlocks.AXLE);
             entries.addAfter(AllBlocks.AXLE, AllBlocks.LANTERN_PINION);
+            entries.addAfter(AllBlocks.LANTERN_PINION, AllBlocks.COGWHEEL_SMALL);
         });
         //endregion
 

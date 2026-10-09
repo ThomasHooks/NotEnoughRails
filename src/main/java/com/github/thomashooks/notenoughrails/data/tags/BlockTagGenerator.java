@@ -40,6 +40,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.BLOOMERY)
                 .add(AllBlocks.BRAKING_RAIL)
                 .add(AllBlocks.BUFFER_STOP_RAIL)
+                .add(AllBlocks.COGWHEEL_SMALL)
                 .add(AllBlocks.CHECK_RAIL)
                 .add(AllBlocks.CHIME_RAIL)
                 .add(AllBlocks.LANTERN_PINION)
@@ -159,6 +160,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         //region Axe Mineable Blocks
         valueLookupBuilder(BlockTags.AXE_MINEABLE)
                 .add(AllBlocks.AXLE)
+                .add(AllBlocks.COGWHEEL_SMALL)
                 .add(AllBlocks.LANTERN_PINION)
                 .add(AllBlocks.WOODEN_FRAME);
         //endregion

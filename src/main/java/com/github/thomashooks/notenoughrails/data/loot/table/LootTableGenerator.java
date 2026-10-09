@@ -44,6 +44,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(AllBlocks.BLOOMERY);
         addDrop(AllBlocks.BRAKING_RAIL);
         addDrop(AllBlocks.BUFFER_STOP_RAIL);
+        addDrop(AllBlocks.COGWHEEL_SMALL);
         addDrop(AllBlocks.CHECK_RAIL);
         addDrop(AllBlocks.CHIME_RAIL);
         addDrop(AllBlocks.LANTERN_PINION);

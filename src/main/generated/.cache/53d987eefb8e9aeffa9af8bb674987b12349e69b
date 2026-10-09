@@ -1,7 +1,7 @@
 // 1.21.11	-999999999-01-01T00:00:00	Not Enough Rails/Tags for minecraft:block
 290a79c864f8e3bf50b0f9f17b1ba497a30da039 data/minecraft/tags/block/bars.json
-cce1c581661b338d1b1b33fe4be90d1d3458a4b6 data/minecraft/tags/block/mineable/axe.json
-523bbcaf7a4e7bccd89dc7307a0261b5790461d6 data/minecraft/tags/block/mineable/pickaxe.json
+aa24d3a07f67af8136c76d02777dfaaab09577da data/minecraft/tags/block/mineable/axe.json
+fa02ec3f8db7d635cb5d1787f494f3244ef92a15 data/minecraft/tags/block/mineable/pickaxe.json
 8bd410ea8ba1eb38715f6ebc7ef085e912f20dcf data/minecraft/tags/block/needs_diamond_tool.json
 c5b31e117e082e82c27b82a4dd9214450f2ce5e8 data/minecraft/tags/block/needs_iron_tool.json
 a718bf8a27cbb59155935a59f5c33d4b2d23c576 data/minecraft/tags/block/needs_stone_tool.json
