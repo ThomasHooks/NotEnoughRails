@@ -25,10 +25,10 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.state.property.Properties;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.Nullable;
 
@@ -41,7 +41,7 @@ public class CogwheelSmallBlockEntity extends LazyTickingBlockEntity implements 
         @Override
         public void markDirty() { updateAndNotifyAll(); }
     };
-    private final ArrayList<MechanicalConnection> connections = MechanicalConnection.makeSmallCogwheel(getPos(), Direction.Axis.Y);
+    private ArrayList<MechanicalConnection> connections;
     //endregion
 
     public CogwheelSmallBlockEntity(BlockPos pos, BlockState state) {
@@ -67,7 +67,12 @@ public class CogwheelSmallBlockEntity extends LazyTickingBlockEntity implements 
 
     //region Kinematics Methods
     @Override
-    public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections() { return connections; }
+    public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections() {
+        if (this.connections == null) {
+            this.connections = MechanicalConnection.makeSmallCogwheel(getPos(), getCachedState().get(Properties.AXIS));
+        }
+        return this.connections;
+    }
 
     @Override
     public float getSpeed() { return this.kinematicsController.getSpeed(); }
