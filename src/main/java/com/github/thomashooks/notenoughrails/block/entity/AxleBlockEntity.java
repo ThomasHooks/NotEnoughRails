@@ -72,7 +72,7 @@ public class AxleBlockEntity extends LazyTickingBlockEntity implements Kinematic
         if (this.connections == null) {
             this.connections = MechanicalConnection.makeMonoAxle(getPos(), getCachedState().get(Properties.AXIS));
         }
-        return connections;
+        return this.connections;
     }
 
     @Override

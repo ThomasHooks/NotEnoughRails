@@ -27,6 +27,9 @@ import net.minecraft.client.render.command.ModelCommandRenderer;
 import net.minecraft.client.render.command.OrderedRenderCommandQueue;
 import net.minecraft.client.render.state.CameraRenderState;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.state.property.Properties;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3d;
 import org.jspecify.annotations.Nullable;
 
@@ -46,12 +49,27 @@ public class LanternPinionBlockEntityRenderer implements BlockEntityRenderer<Lan
         BlockEntityRenderer.super.updateRenderState(blockEntity, state, tickProgress, cameraPos, crumblingOverlay);
         state.tickProgress = tickProgress;
         state.rotationAngle = blockEntity.getRotatingShaftProgress(tickProgress);
+        state.axis = blockEntity.getCachedState().get(Properties.AXIS);
     }
 
     @Override
     public void render(RotatingShaftRenderState renderState, MatrixStack matrices, OrderedRenderCommandQueue queue, CameraRenderState cameraState) {
         matrices.push();
 
+        if (renderState.axis != Direction.Axis.Y) {
+            matrices.translate(0.5F, 0.5F, 0.5F);
+            switch (renderState.axis) {
+                case X:
+                    matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(-90.0F));
+                    break;
+                case Z:
+                    matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-90.0F));
+                    break;
+                case Y:
+                    break;
+            }
+            matrices.translate(-0.5F, -0.5F, -0.5F);
+        }
         matrices.translate(0.5F, 0.0F, 0.5F);
         queue.submitModel(model,
                 renderState.rotationAngle,

@@ -25,6 +25,10 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -35,26 +39,59 @@ import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class LanternPinionBlock extends RotatingShaftBlock implements BlockEntityProvider {
     public static final MapCodec<LanternPinionBlock> CODEC = createCodec(LanternPinionBlock::new);
-    private static final VoxelShape HUB_VOXEL_SHAPE = Block.createCuboidShape(2.0, 3.0, 2.0, 14.0, 13.0, 14.0);
+    public static final EnumProperty<Direction.Axis> AXIS = Properties.AXIS;
+    private static final VoxelShape HUB_VOXEL_SHAPE_X = Block.createCuboidShape(3.0, 2.0, 2.0, 13.0, 14.0, 14.0);
+    private static final VoxelShape HUB_VOXEL_SHAPE_Y = Block.createCuboidShape(2.0, 3.0, 2.0, 14.0, 13.0, 14.0);
+    private static final VoxelShape HUB_VOXEL_SHAPE_Z = Block.createCuboidShape(2.0, 2.0, 3.0, 14.0, 14.0, 13.0);
 
-    public LanternPinionBlock(Settings settings) { super(settings); }
+    public LanternPinionBlock(Settings settings) {
+        super(settings);
+        this.setDefaultState(this.stateManager.getDefaultState()
+                .with(SHAFT_IS_SHIFTED, false)
+                .with(AXIS, Direction.Axis.Y)
+        );
+    }
 
     @Override
     protected MapCodec<? extends Block> getCodec() { return CODEC; }
 
+    //region Block Methods
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return Objects.requireNonNull(super.getPlacementState(ctx)).with(AXIS, ctx.getSide().getAxis());
+    }
+
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return VoxelShapes.union(
-                VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.Y)],
-                HUB_VOXEL_SHAPE
-        ).simplify();
+        return switch (state.get(AXIS)) {
+            case X -> VoxelShapes.union(
+                    VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.X)],
+                    HUB_VOXEL_SHAPE_X
+            ).simplify();
+            case Y -> VoxelShapes.union(
+                    VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.Y)],
+                    HUB_VOXEL_SHAPE_Y
+            ).simplify();
+            case Z -> VoxelShapes.union(
+                    VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.Z)],
+                    HUB_VOXEL_SHAPE_Z
+            ).simplify();
+        };
     }
 
     @Override
     protected BlockRenderType getRenderType(BlockState state) { return BlockRenderType.INVISIBLE; }
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        super.appendProperties(builder);
+        builder.add(AXIS);
+    }
+    //endregion
 
     //region Kinematic Block Provider Methods
     @Override
