@@ -28,6 +28,7 @@ import net.minecraft.util.math.MathHelper;
 public class QuernScreen extends HandledScreen<QuernScreenHandler> {
     public static final Identifier SCREEN_TEXTURE = NotEnoughRails.identifier("textures/gui/container/simple_mill_gui.png");
     public static final Identifier POWER_GAUGE_TEXTURE = NotEnoughRails.identifier("textures/gui/container/power_gauge.png");
+    public static final Identifier POWER_GAUGE_OVERLOADED_TEXTURE = NotEnoughRails.identifier("textures/gui/container/power_gauge_overloaded.png");
     private static final Identifier MILLING_PROGRESS_TEXTURE = Identifier.ofVanilla("container/furnace/burn_progress");
 
     public QuernScreen(QuernScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -46,7 +47,11 @@ public class QuernScreen extends HandledScreen<QuernScreenHandler> {
     @Override
     protected void drawBackground(DrawContext context, float deltaTicks, int mouseX, int mouseY) {
         context.drawTexture(RenderPipelines.GUI_TEXTURED, SCREEN_TEXTURE, this.x, this.y, 0.0F, 0.0F, this.backgroundWidth, this.backgroundHeight, 256, 256);
-        if (this.handler.getPowerGauge() > 0.0F) {
+        if (this.handler.isOverloaded()) {
+            int textureHeight = 16;
+            int textureWidth = 16;
+            context.drawTexture(RenderPipelines.GUI_TEXTURED, POWER_GAUGE_OVERLOADED_TEXTURE, this.x + 56, this.y + 41, 0, 0, textureWidth, textureHeight, textureWidth, textureHeight);
+        } else if (this.handler.getPowerGauge() > 0.0F) {
             int textureHeight = 16;
             int textureWidth = 16;
             int gauge = MathHelper.ceil((handler.getPowerGauge()) * 16.0F);

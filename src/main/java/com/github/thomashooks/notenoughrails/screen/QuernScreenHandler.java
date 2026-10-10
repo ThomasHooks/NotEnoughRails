@@ -138,7 +138,11 @@ public class QuernScreenHandler extends ScreenHandler {
         if (speed == 0) {
             return 0.0F;
         }
-        return MathHelper.clamp((float) speed / (float) QuernBlockEntity.MAX_SPEED, 0.0F, 1.0F);
+        return MathHelper.clamp((float) speed / 100.0F, 0.0F, 1.0F);
+    }
+
+    public boolean isOverloaded() {
+        return this.delegate.get(QuernBlockEntity.PROPERTY_DELEGATE_SPEED_INDEX) > 101;
     }
 
     protected boolean isMillable(@Nullable Slot slot, ItemStack stack) {

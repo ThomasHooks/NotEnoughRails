@@ -111,7 +111,7 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
             return switch (index) {
                 case PROPERTY_DELEGATE_PROGRESS_INDEX -> QuernBlockEntity.this.progress;
                 case PROPERTY_DELEGATE_MAX_PROGRESS_INDEX -> QuernBlockEntity.this.maxProgress;
-                case PROPERTY_DELEGATE_SPEED_INDEX -> Math.round(QuernBlockEntity.this.kinematicsController.getSpeed()); // TODO: change this to a % int ie. 0 to 100
+                case PROPERTY_DELEGATE_SPEED_INDEX -> getPowerGauge();
                 default -> 0;
             };
         }
@@ -140,8 +140,8 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
 
     //region Kinematics Anonymous Class
     private final ArrayList<MechanicalConnection> connections = MechanicalConnection.makeMonoAxle(getPos(), Direction.Axis.Y);
-    public static final int MIN_SPEED = 16;
-    public static final int MAX_SPEED = 32;
+    public static final float MIN_SPEED = 80.0F;
+    public static final float MAX_SPEED = 120.0F;
     private final KinematicsController kinematicsController = new KinematicsController() {
         @Override
         public void markDirty() { updateAndNotifyAll(); }
@@ -179,10 +179,13 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
         MillingRecipe recipe = getRecipe(inputItemStack).map(RecipeEntry::value).orElse(null);
         ItemStack outputItemStack = this.inventory.getStack(OUTPUT_SLOT_INDEX).copy();
         boolean canCraft = canCraftRecipe(inputItemStack, outputItemStack, recipe);
-        // TODO: Add a requirement to be powered
-        if (canCraft && isMoving()) {
+        if (canCraft && hasEnoughPower()) {
             this.progress++;
-            this.maxProgress = recipe.millingTime();
+            if (getPowerGauge() >= 50) {
+                this.maxProgress = Math.round((float) recipe.millingTime() / 2.0F);
+            } else {
+                this.maxProgress = recipe.millingTime();
+            }
         } else if (isMilling()) {
             this.progress = 0;
             this.maxProgress = DEFAULT_MILLING_TIME;
@@ -200,6 +203,17 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
         if (wasMilling != isMilling()) {
             if (getWorld() != null) {
                 getWorld().setBlockState(getPos(), getCachedState().with(QuernBlock.IS_MILLING, isMilling()), Block.NOTIFY_ALL);
+                hasChanged = true;
+            }
+        }
+        if (getPowerGauge() > 100 && !getCachedState().get(QuernBlock.IS_OVERLOADED)) {
+            if (getWorld() != null) {
+                getWorld().setBlockState(getPos(), getCachedState().with(QuernBlock.IS_OVERLOADED, true), Block.NOTIFY_ALL);
+                hasChanged = true;
+            }
+        } else if (getPowerGauge() < 101 && getCachedState().get(QuernBlock.IS_OVERLOADED)) {
+            if (getWorld() != null) {
+                getWorld().setBlockState(getPos(), getCachedState().with(QuernBlock.IS_OVERLOADED, false), Block.NOTIFY_ALL);
                 hasChanged = true;
             }
         }
@@ -298,7 +312,22 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
     @Override
     public void setSpeed(BlockPos driverPosIn, float speedIn) { this.kinematicsController.setSpeed(driverPosIn, speedIn); }
 
-    public boolean isMoving() { return this.kinematicsController.isMoving(); }
+    protected boolean hasEnoughPower() {
+        int amount = getPowerGauge();
+        return amount > 0 && amount < 101;
+    }
+
+    /**
+     * @return Gets the power gauge as a whole number percentage
+     */
+    protected int getPowerGauge() {
+        float speed = Math.abs(getSpeed());
+        if (speed < QuernBlockEntity.MIN_SPEED) {
+            return 0;
+        } else {
+            return Math.round(((speed - QuernBlockEntity.MIN_SPEED) / (QuernBlockEntity.MAX_SPEED - QuernBlockEntity.MIN_SPEED)) * 100.0F);
+        }
+    }
 
     protected void propagateSpeed() {
         this.kinematicsController.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), getWorld(), getPos());

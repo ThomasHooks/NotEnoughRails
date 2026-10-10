@@ -30,11 +30,15 @@ public class AllProperties {
             shape -> shape != RailShape.NORTH_EAST && shape != RailShape.NORTH_WEST && shape != RailShape.SOUTH_EAST && shape != RailShape.SOUTH_WEST
                     && shape != RailShape.ASCENDING_NORTH && shape != RailShape.ASCENDING_EAST && shape != RailShape.ASCENDING_SOUTH && shape != RailShape.ASCENDING_WEST
     );
+    public static final EnumProperty<PowerDirection> POWER_DIRECTION =  EnumProperty.of("power_direction", PowerDirection.class);
     /**
      * A property that specifies if a block is milling an item.
      */
     public static final BooleanProperty IS_MILLING = BooleanProperty.of("is_milling");
-    public static final EnumProperty<PowerDirection> POWER_DIRECTION =  EnumProperty.of("power_direction", PowerDirection.class);
+    /**
+     * A property that specifies if a kinematic block is spinning to fast
+     */
+    public static final BooleanProperty IS_OVERLOADED = BooleanProperty.of("is_overloaded");
     /**
      * A property that specifies if a kinematic block shaft is shifted by 22.5 degrees
      */
