@@ -36,7 +36,7 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 
-public class AxleBlock extends Block implements BlockEntityProvider, KinematicBlockProvider {
+public class AxleBlock extends RotatingShaftBlock implements BlockEntityProvider, KinematicBlockProvider {
     public static final MapCodec<AxleBlock> CODEC = createCodec(AxleBlock::new);
     public AxleBlock(Settings settings) {
         super(settings);
@@ -45,6 +45,12 @@ public class AxleBlock extends Block implements BlockEntityProvider, KinematicBl
     @Override
     protected MapCodec<? extends Block> getCodec() { return CODEC; }
 
+    @Override
+    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.Y)].simplify();
+    }
+
+    //region Kinematic Block Provider Methods
     @Override
     public float getSpeed(@NotNull World world, @NotNull BlockPos pos) {
         if (world.getBlockEntity(pos) instanceof AxleBlockEntity blockEntity) {
@@ -67,15 +73,12 @@ public class AxleBlock extends Block implements BlockEntityProvider, KinematicBl
         }
         return new ArrayList<>();
     }
-
-    @Override
-    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.Y)].simplify();
-    }
+    //endregion
 
     @Override
     protected BlockRenderType getRenderType(BlockState state) { return BlockRenderType.INVISIBLE; }
 
+    //region Block Entity Provider Methods
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return LazyTickingBlockEntity.getTicker(world);
@@ -85,4 +88,5 @@ public class AxleBlock extends Block implements BlockEntityProvider, KinematicBl
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return AllBlockEntities.AXLE.instantiate(pos, state);
     }
+    //endregion
 }

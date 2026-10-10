@@ -37,7 +37,7 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 
-public class SteelWaterWheelBlock extends Block implements BlockEntityProvider, KinematicBlockProvider {
+public class SteelWaterWheelBlock extends RotatingShaftBlock implements BlockEntityProvider, KinematicBlockProvider {
     public static final MapCodec<SteelWaterWheelBlock> CODEC = createCodec(SteelWaterWheelBlock::new);
     private static final VoxelShape HUB_VOXEL_SHAPE = Block.createCuboidShape(5.0, 2.0, 5.0, 11.0, 14.0, 11.0);
     private static final VoxelShape TRIL_VOXEL_SHAPE = Block.createCuboidShape(0.0, 3.0, 0.0, 16.0, 13.0, 16.0);
@@ -49,6 +49,19 @@ public class SteelWaterWheelBlock extends Block implements BlockEntityProvider, 
     @Override
     protected MapCodec<? extends Block> getCodec() { return CODEC; }
 
+    @Override
+    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return VoxelShapes.union(
+                HUB_VOXEL_SHAPE,
+                TRIL_VOXEL_SHAPE,
+                VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.Y)]
+        ).simplify();
+    }
+
+    @Override
+    protected BlockRenderType getRenderType(BlockState state) { return BlockRenderType.INVISIBLE; }
+
+    //region Kinematic Block Provider Methods
     @Override
     public float getSpeed(@NotNull World world, @NotNull BlockPos pos) {
         if (world.getBlockEntity(pos) instanceof SteelWaterWheelBlockEntity blockEntity) {
@@ -69,19 +82,9 @@ public class SteelWaterWheelBlock extends Block implements BlockEntityProvider, 
         }
         return new ArrayList<>();
     }
+    //endregion
 
-    @Override
-    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return VoxelShapes.union(
-                HUB_VOXEL_SHAPE,
-                TRIL_VOXEL_SHAPE,
-                VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.Y)]
-        ).simplify();
-    }
-
-    @Override
-    protected BlockRenderType getRenderType(BlockState state) { return BlockRenderType.INVISIBLE; }
-
+    //region Block Entity Provider Methods
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return LazyTickingBlockEntity.getTicker(world);
@@ -91,4 +94,5 @@ public class SteelWaterWheelBlock extends Block implements BlockEntityProvider, 
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return AllBlockEntities.WATERWHEEL_STEEL.instantiate(pos, state);
     }
+    //endregion
 }

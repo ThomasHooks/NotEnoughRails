@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 /**
- * An interface implemented by block entities with kinematics.
+ * An interface implemented by block entities with kinematic controller.
  */
 public interface KinematicBlockEntity {
     /**

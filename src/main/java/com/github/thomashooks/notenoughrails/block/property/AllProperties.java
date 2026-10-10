@@ -35,4 +35,8 @@ public class AllProperties {
      */
     public static final BooleanProperty IS_MILLING = BooleanProperty.of("is_milling");
     public static final EnumProperty<PowerDirection> POWER_DIRECTION =  EnumProperty.of("power_direction", PowerDirection.class);
+    /**
+     * A property that specifies if a kinematic block shaft is shifted by 22.5 degrees
+     */
+    public static final BooleanProperty SHAFT_IS_SHIFTED = BooleanProperty.of("shaft_is_shifted");
 }

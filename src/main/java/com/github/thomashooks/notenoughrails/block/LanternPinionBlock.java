@@ -37,7 +37,7 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 
-public class LanternPinionBlock extends Block implements BlockEntityProvider, KinematicBlockProvider {
+public class LanternPinionBlock extends RotatingShaftBlock implements BlockEntityProvider, KinematicBlockProvider {
     public static final MapCodec<LanternPinionBlock> CODEC = createCodec(LanternPinionBlock::new);
     private static final VoxelShape HUB_VOXEL_SHAPE = Block.createCuboidShape(2.0, 3.0, 2.0, 14.0, 13.0, 14.0);
 
