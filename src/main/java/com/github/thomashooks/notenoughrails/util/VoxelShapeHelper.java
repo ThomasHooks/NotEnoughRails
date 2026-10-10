@@ -38,7 +38,7 @@ public class VoxelShapeHelper {
     public static final VoxelShape[] AXLE = new VoxelShape[]{
             Block.createCuboidShape(0.0, 6.0, 6.0, 16.0, 10.0, 10.0), // X-axis
             Block.createCuboidShape(6.0, 0.0, 6.0, 10.0, 16.0, 10.0), // Y-axis
-            Block.createCuboidShape(6.0, 6.0, 0.0, 16.0, 10.0, 16.0)  // Z-axis
+            Block.createCuboidShape(6.0, 6.0, 0.0, 10.0, 10.0, 16.0)  // Z-axis
     };
 
     /**

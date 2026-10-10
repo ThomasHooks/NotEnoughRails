@@ -18,11 +18,13 @@ package com.github.thomashooks.notenoughrails.client.render.block.entity.state;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.block.entity.state.BlockEntityRenderState;
+import net.minecraft.util.math.Direction;
 
 @Environment(EnvType.CLIENT)
 public class RotatingShaftRenderState extends BlockEntityRenderState {
     public float rotationAngle = 0.0f;
     public float tickProgress = 0.0f;
+    public Direction.Axis axis = Direction.Axis.Y;
 
     public RotatingShaftRenderState() {
         super();

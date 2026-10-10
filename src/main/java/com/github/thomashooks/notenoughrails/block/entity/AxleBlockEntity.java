@@ -25,6 +25,7 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.state.property.Properties;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
 import net.minecraft.util.math.BlockPos;
@@ -41,7 +42,7 @@ public class AxleBlockEntity extends LazyTickingBlockEntity implements Kinematic
         @Override
         public void markDirty() { updateAndNotifyAll(); }
     };
-    private final ArrayList<MechanicalConnection> connections = MechanicalConnection.makeMonoAxle(getPos(), Direction.Axis.Y);
+    private ArrayList<MechanicalConnection> connections = MechanicalConnection.makeMonoAxle(getPos(), Direction.Axis.Y);
     //endregion
 
     public AxleBlockEntity(BlockPos pos, BlockState state) {
@@ -67,7 +68,12 @@ public class AxleBlockEntity extends LazyTickingBlockEntity implements Kinematic
 
     //region Kinematics Methods
     @Override
-    public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections() { return connections; }
+    public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections() {
+        if (this.connections == null) {
+            this.connections = MechanicalConnection.makeMonoAxle(getPos(), getCachedState().get(Properties.AXIS));
+        }
+        return connections;
+    }
 
     @Override
     public float getSpeed() { return this.kinematicsController.getSpeed(); }
