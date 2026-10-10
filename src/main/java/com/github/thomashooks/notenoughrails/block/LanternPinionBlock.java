@@ -18,7 +18,6 @@ package com.github.thomashooks.notenoughrails.block;
 import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
 import com.github.thomashooks.notenoughrails.block.entity.LazyTickingBlockEntity;
 import com.github.thomashooks.notenoughrails.energy.KinematicBlockEntity;
-import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
 import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import com.github.thomashooks.notenoughrails.util.VoxelShapeHelper;
 import com.mojang.serialization.MapCodec;
@@ -37,13 +36,11 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 
-public class LanternPinionBlock extends RotatingShaftBlock implements BlockEntityProvider, KinematicBlockProvider {
+public class LanternPinionBlock extends RotatingShaftBlock implements BlockEntityProvider {
     public static final MapCodec<LanternPinionBlock> CODEC = createCodec(LanternPinionBlock::new);
     private static final VoxelShape HUB_VOXEL_SHAPE = Block.createCuboidShape(2.0, 3.0, 2.0, 14.0, 13.0, 14.0);
 
-    public LanternPinionBlock(Settings settings) {
-        super(settings);
-    }
+    public LanternPinionBlock(Settings settings) { super(settings); }
 
     @Override
     protected MapCodec<? extends Block> getCodec() { return CODEC; }

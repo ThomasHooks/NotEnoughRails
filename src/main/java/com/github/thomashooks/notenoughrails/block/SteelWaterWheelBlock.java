@@ -18,7 +18,6 @@ package com.github.thomashooks.notenoughrails.block;
 import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
 import com.github.thomashooks.notenoughrails.block.entity.LazyTickingBlockEntity;
 import com.github.thomashooks.notenoughrails.block.entity.SteelWaterWheelBlockEntity;
-import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
 import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import com.github.thomashooks.notenoughrails.util.VoxelShapeHelper;
 import com.mojang.serialization.MapCodec;
@@ -37,14 +36,12 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 
-public class SteelWaterWheelBlock extends RotatingShaftBlock implements BlockEntityProvider, KinematicBlockProvider {
+public class SteelWaterWheelBlock extends RotatingShaftBlock implements BlockEntityProvider {
     public static final MapCodec<SteelWaterWheelBlock> CODEC = createCodec(SteelWaterWheelBlock::new);
     private static final VoxelShape HUB_VOXEL_SHAPE = Block.createCuboidShape(5.0, 2.0, 5.0, 11.0, 14.0, 11.0);
     private static final VoxelShape TRIL_VOXEL_SHAPE = Block.createCuboidShape(0.0, 3.0, 0.0, 16.0, 13.0, 16.0);
 
-    public SteelWaterWheelBlock(Settings settings) {
-        super(settings);
-    }
+    public SteelWaterWheelBlock(Settings settings) { super(settings); }
 
     @Override
     protected MapCodec<? extends Block> getCodec() { return CODEC; }

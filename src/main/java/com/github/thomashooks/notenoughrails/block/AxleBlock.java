@@ -18,7 +18,6 @@ package com.github.thomashooks.notenoughrails.block;
 import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
 import com.github.thomashooks.notenoughrails.block.entity.AxleBlockEntity;
 import com.github.thomashooks.notenoughrails.block.entity.LazyTickingBlockEntity;
-import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
 import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import com.github.thomashooks.notenoughrails.util.VoxelShapeHelper;
 import com.mojang.serialization.MapCodec;
@@ -36,11 +35,9 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 
-public class AxleBlock extends RotatingShaftBlock implements BlockEntityProvider, KinematicBlockProvider {
+public class AxleBlock extends RotatingShaftBlock implements BlockEntityProvider {
     public static final MapCodec<AxleBlock> CODEC = createCodec(AxleBlock::new);
-    public AxleBlock(Settings settings) {
-        super(settings);
-    }
+    public AxleBlock(Settings settings) { super(settings); }
 
     @Override
     protected MapCodec<? extends Block> getCodec() { return CODEC; }
@@ -49,6 +46,9 @@ public class AxleBlock extends RotatingShaftBlock implements BlockEntityProvider
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.Y)].simplify();
     }
+
+    @Override
+    protected BlockRenderType getRenderType(BlockState state) { return BlockRenderType.INVISIBLE; }
 
     //region Kinematic Block Provider Methods
     @Override
@@ -74,9 +74,6 @@ public class AxleBlock extends RotatingShaftBlock implements BlockEntityProvider
         return new ArrayList<>();
     }
     //endregion
-
-    @Override
-    protected BlockRenderType getRenderType(BlockState state) { return BlockRenderType.INVISIBLE; }
 
     //region Block Entity Provider Methods
     @Override
