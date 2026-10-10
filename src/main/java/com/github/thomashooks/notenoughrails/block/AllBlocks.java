@@ -40,6 +40,13 @@ public class AllBlocks {
                     .mapColor(MapColor.OAK_TAN)
                     .pistonBehavior(PistonBehavior.BLOCK)
             ));
+    public static final Block AXLE_ENCLOSED = registerBlock("axle_enclosed",
+            settings -> new AxleEnclosedBlock(settings
+                    .strength(1.8F, 2.0F)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .mapColor(MapColor.OAK_TAN)
+                    .pistonBehavior(PistonBehavior.BLOCK)
+            ));
     public static final Block BLOOMERY = registerBlock("bloomery",
             settings -> new BloomeryBlock(settings
                     .strength(3.5F, 3.5F)
@@ -819,7 +826,8 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.BLOOMERY, AllBlocks.QUERN);
             entries.addAfter(AllBlocks.QUERN, AllBlocks.WATERWHEEL_STEEL);
             entries.addAfter(AllBlocks.WATERWHEEL_STEEL, AllBlocks.AXLE);
-            entries.addAfter(AllBlocks.AXLE, AllBlocks.LANTERN_PINION);
+            entries.addAfter(AllBlocks.AXLE, AllBlocks.AXLE_ENCLOSED);
+            entries.addAfter(AllBlocks.AXLE_ENCLOSED, AllBlocks.LANTERN_PINION);
             entries.addAfter(AllBlocks.LANTERN_PINION, AllBlocks.COGWHEEL_SMALL);
         });
         //endregion

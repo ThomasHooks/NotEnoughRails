@@ -111,6 +111,7 @@ public class AllItemGroups {
 
         //Power Linkages
         entries.add(AllBlocks.AXLE);
+        entries.add(AllBlocks.AXLE_ENCLOSED);
         entries.add(AllBlocks.LANTERN_PINION);
         entries.add(AllBlocks.COGWHEEL_SMALL);
 

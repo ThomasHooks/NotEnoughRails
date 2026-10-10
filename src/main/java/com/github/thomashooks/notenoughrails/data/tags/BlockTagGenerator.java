@@ -37,6 +37,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         //region Pickaxe Mineable Blocks
         valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(AllBlocks.AXLE)
+                .add(AllBlocks.AXLE_ENCLOSED)
                 .add(AllBlocks.BLOOMERY)
                 .add(AllBlocks.BRAKING_RAIL)
                 .add(AllBlocks.BUFFER_STOP_RAIL)
@@ -160,6 +161,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         //region Axe Mineable Blocks
         valueLookupBuilder(BlockTags.AXE_MINEABLE)
                 .add(AllBlocks.AXLE)
+                .add(AllBlocks.AXLE_ENCLOSED)
                 .add(AllBlocks.COGWHEEL_SMALL)
                 .add(AllBlocks.LANTERN_PINION)
                 .add(AllBlocks.WOODEN_FRAME);
@@ -240,6 +242,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         //region Prevent Mobs From Spawning Inside
         valueLookupBuilder(BlockTags.PREVENT_MOB_SPAWNING_INSIDE)
                 .add(AllBlocks.AXLE)
+                .add(AllBlocks.AXLE_ENCLOSED)
                 .add(AllBlocks.BRAKING_RAIL)
                 .add(AllBlocks.BUFFER_STOP_RAIL)
                 .add(AllBlocks.CHECK_RAIL)

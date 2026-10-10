@@ -41,6 +41,7 @@ public class LootTableGenerator extends FabricBlockLootTableProvider {
     public void generate() {
         NotEnoughRails.LOGGER.info("Generating custom block loot tables");
         addDrop(AllBlocks.AXLE);
+        addDrop(AllBlocks.AXLE_ENCLOSED);
         addDrop(AllBlocks.BLOOMERY);
         addDrop(AllBlocks.BRAKING_RAIL);
         addDrop(AllBlocks.BUFFER_STOP_RAIL);

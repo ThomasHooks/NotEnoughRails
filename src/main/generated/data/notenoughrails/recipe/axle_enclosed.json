@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:axle_enclosed",
+  "key": {
+    "=": "notenoughrails:axle",
+    "x": "notenoughrails:wooden_frame"
+  },
+  "pattern": [
+    "xxx",
+    "===",
+    "xxx"
+  ],
+  "result": {
+    "count": 3,
+    "id": "notenoughrails:axle_enclosed"
+  }
+}
