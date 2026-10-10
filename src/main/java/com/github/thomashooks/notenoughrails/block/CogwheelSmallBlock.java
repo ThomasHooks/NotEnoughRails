@@ -75,6 +75,9 @@ public class CogwheelSmallBlock extends RotatingShaftBlock implements BlockEntit
     }
 
     @Override
+    public boolean isCogwheel(@NotNull World world, @NotNull BlockPos pos) { return true; }
+
+    @Override
     public float getNumberOfTeeth() { return 8.0F; }
 
     @Override

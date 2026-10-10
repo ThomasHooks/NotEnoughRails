@@ -227,7 +227,7 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
     protected void clientTick() {
         super.clientTick();
 
-        this.kinematicsController.stepRotatingShaft();
+        this.kinematicsController.stepRotatingShaft(Objects.requireNonNull(getWorld()), getPos());
     }
     //endregion
 
@@ -330,7 +330,7 @@ public class QuernBlockEntity extends LazyTickingBlockEntity implements Extended
     }
 
     protected void propagateSpeed() {
-        this.kinematicsController.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), getWorld(), getPos());
+        this.kinematicsController.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), Objects.requireNonNull(getWorld()), getPos());
     }
 
     public float getRotatingShaftProgress(float tickProgress) {

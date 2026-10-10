@@ -53,7 +53,7 @@ public abstract class RotatingShaftBlock extends Block implements KinematicBlock
             }
 
             boolean shifted = neighborState.get(SHAFT_IS_SHIFTED);
-            if (!connection.isAxle()) {
+            if (connection.isCog() && neighborBlockProvider.isCogwheel(world, connection.pos())) {
                 world.setBlockState(pos, state.with(SHAFT_IS_SHIFTED, !shifted));
             }  else {
                 world.setBlockState(pos, state.with(SHAFT_IS_SHIFTED, shifted));

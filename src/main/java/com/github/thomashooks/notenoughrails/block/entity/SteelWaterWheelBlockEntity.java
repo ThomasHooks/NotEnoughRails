@@ -94,7 +94,7 @@ public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implement
     protected void clientTick() {
         super.clientTick();
 
-        this.kinematicsController.stepRotatingShaft();
+        this.kinematicsController.stepRotatingShaft(Objects.requireNonNull(getWorld()), getPos());
     }
     //endregion
 
@@ -109,7 +109,7 @@ public class SteelWaterWheelBlockEntity extends LazyTickingBlockEntity implement
     public void setSpeed(BlockPos driverPosIn, float speedIn) { }
 
     protected void propagateSpeed() {
-        this.kinematicsController.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), getWorld(), getPos());
+        this.kinematicsController.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), Objects.requireNonNull(getWorld()), getPos());
     }
 
     private void updateFlows() {

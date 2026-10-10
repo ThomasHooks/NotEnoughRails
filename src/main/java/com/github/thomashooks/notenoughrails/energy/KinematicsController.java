@@ -16,17 +16,20 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.energy;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
+import com.github.thomashooks.notenoughrails.block.property.AllProperties;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class KinematicsController {
-    protected float speed = 0.0F;
+    protected float speed;
     protected BlockPos driverPos;
-    protected float shaftAngle = 0.0F;
+    protected float shaftAngle;
+    private boolean wasShifted = false;
     protected static final String SPEED_TAG = NotEnoughRails.MOD_ID + ":speed";
     protected static final String DRIVER_POS_TAG = NotEnoughRails.MOD_ID + ":driver_pos";
 
@@ -84,20 +87,34 @@ public abstract class KinematicsController {
      * @return Gets the fractional change in angle of the shaft
      */
     public float getRotatingShaftProgress(float partialTick) {
-        return this.shaftAngle + (partialTick * getSpeed() * 0.3F) % 360.0F;
+        if (MathHelper.approximatelyEquals(getSpeed(), 0.0F)) {
+            return this.shaftAngle;
+        } else {
+            return this.shaftAngle + (partialTick * getSpeed() * 0.3F) % 360.0F;
+        }
     }
 
     /**
-     *
+     * Updates the angle of the shaft each tick
      */
-    public void stepRotatingShaft() {
+    public void stepRotatingShaft(@NotNull World world, @NotNull BlockPos pos) {
         if (MathHelper.approximatelyEquals(getSpeed(), 0.0F)) {
+            if (this.wasShifted != world.getBlockState(pos).get(AllProperties.SHAFT_IS_SHIFTED)) {
+                this.shaftAngle = 22.5F;
+                this.wasShifted = world.getBlockState(pos).get(AllProperties.SHAFT_IS_SHIFTED);
+            }
             return;
         }
 
+        float shifted = 0.0F;
+        if (world.getBlockState(pos).get(AllProperties.SHAFT_IS_SHIFTED)) {
+            shifted = 22.5F;
+        }
         long ticks = NotEnoughRails.CLIENT_TIMER.getTicks();
-        this.shaftAngle = (ticks * getSpeed() * 0.3F) % 360.0F;
+        this.shaftAngle = (shifted + (ticks * getSpeed() * 0.3F)) % 360.0F;
     }
+
+    public void shiftShaft() { this.shaftAngle = 22.5F; }
 
     /**
      * Attempts to drive the next kinematic block that is attached to this kinematic block
@@ -105,7 +122,7 @@ public abstract class KinematicsController {
      * @param world         The world that this kinematic block is in
      * @param pos           The block position of this kinematic block
      */
-    public void propagateSpeed(KinematicBlockProvider blockProvider, World world, BlockPos pos) {
+    public void propagateSpeed(@NotNull KinematicBlockProvider blockProvider, @NotNull World world, @NotNull BlockPos pos) {
         if (!isDriverPresent(world)) {
             stop();
         }
@@ -121,8 +138,7 @@ public abstract class KinematicsController {
 
             if (connection.isAxle()) {
                 neighborBlockProvider.changeSpeed(world, connection.pos(), pos, getSpeed());
-            }
-            else if (connection.isCog()) {
+            } else if (connection.isCog() || connection.isPinion()) {
                 float gearRatio = blockProvider.getNumberOfTeeth() / neighborBlockProvider.getNumberOfTeeth();
                 neighborBlockProvider.changeSpeed(world, connection.pos(), pos, getSpeed() * -gearRatio);
             }
@@ -134,7 +150,7 @@ public abstract class KinematicsController {
      * @param world The world that the kinematic block is in
      * @return True if the driving kinematic block is still present
      */
-    protected boolean isDriverPresent(World world) {
+    protected boolean isDriverPresent(@NotNull World world) {
         return getDriverPos() != null && world.getBlockState(getDriverPos()).getBlock() instanceof  KinematicBlockProvider;
     }
 
@@ -147,7 +163,7 @@ public abstract class KinematicsController {
      * Reads data from NBT
      * @param view The NBT storage to read from
      */
-    public void readData(ReadView view) {
+    public void readData(@NotNull ReadView view) {
         if (view.contains(SPEED_TAG)) {
             this.speed = view.getFloat(SPEED_TAG, 0.0F);
         }
@@ -160,7 +176,7 @@ public abstract class KinematicsController {
      * Writes data to NBT
      * @param view The NBT storage to write to
      */
-    public void writeData(WriteView view) {
+    public void writeData(@NotNull WriteView view) {
         view.putFloat(SPEED_TAG, this.speed);
         if (this.driverPos != null) {
             view.put(DRIVER_POS_TAG, Vec3i.CODEC, new Vec3i(this.driverPos.getX(), this.driverPos.getY(), this.driverPos.getZ()));

@@ -45,6 +45,14 @@ public interface KinematicBlockProvider {
     void changeSpeed(@NotNull World world, @NotNull BlockPos pos, @NotNull BlockPos driverPos, float speedIn);
 
     /**
+     * Checks if this kinematic block is a cogwheel
+     * @param world The kinematic block's world
+     * @param pos   The kinematic block's position
+     * @return True if this kinematic block is a cogwheel, false otherwise
+     */
+    default boolean isCogwheel(@NotNull World world, @NotNull BlockPos pos) { return false; }
+
+    /**
      * Sets the number of teeth for this kinematic block
      * <p>
      * Note: This method is only used by kinematic block's with cog mechanical connections
@@ -72,9 +80,7 @@ public interface KinematicBlockProvider {
     default boolean isAlignedWith(@NotNull World world, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull MechanicalConnection neighborConnection) {
         for (MechanicalConnection connection : getMechanicalConnections(world, pos, state)) {
             boolean sameFacing = connection.facing() == neighborConnection.facing().getOpposite();
-            boolean areBothAxles = connection.isAxle() && neighborConnection.isAxle();
-            boolean areBothCogs = connection.isCog() && neighborConnection.isCog();
-            if (!sameFacing || (!areBothAxles && !areBothCogs)) {
+            if (!sameFacing || !connection.type().canConnect(neighborConnection.type())) {
                 continue;
             }
 

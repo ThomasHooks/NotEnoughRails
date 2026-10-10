@@ -33,6 +33,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class AxleBlockEntity extends LazyTickingBlockEntity implements KinematicBlockEntity {
     //region Kinematics Anonymous Class
@@ -60,7 +61,7 @@ public class AxleBlockEntity extends LazyTickingBlockEntity implements Kinematic
     protected void clientTick() {
         super.clientTick();
 
-        this.kinematicsController.stepRotatingShaft();
+        this.kinematicsController.stepRotatingShaft(Objects.requireNonNull(getWorld()), getPos());
     }
     //endregion
 
@@ -75,7 +76,7 @@ public class AxleBlockEntity extends LazyTickingBlockEntity implements Kinematic
     public void setSpeed(BlockPos driverPosIn, float speedIn) { this.kinematicsController.setSpeed(driverPosIn, speedIn); }
 
     protected void propagateSpeed() {
-        this.kinematicsController.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), getWorld(), getPos());
+        this.kinematicsController.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), Objects.requireNonNull(getWorld()), getPos());
     }
 
     public float getRotatingShaftProgress(float tickProgress) {

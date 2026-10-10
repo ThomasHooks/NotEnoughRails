@@ -33,6 +33,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class LanternPinionBlockEntity extends LazyTickingBlockEntity implements KinematicBlockEntity {
     //region Kinematics Anonymous Class
@@ -40,7 +41,7 @@ public class LanternPinionBlockEntity extends LazyTickingBlockEntity implements 
         @Override
         public void markDirty() { updateAndNotifyAll(); }
     };
-    private final ArrayList<MechanicalConnection> connections = MechanicalConnection.makeSmallCogwheel(getPos(), Direction.Axis.Y); // This is for testing
+    private final ArrayList<MechanicalConnection> connections = MechanicalConnection.makeLanternPinion(getPos(), Direction.Axis.Y);
     //endregion
 
     protected LanternPinionBlockEntity(BlockPos pos, BlockState state) {
@@ -60,7 +61,7 @@ public class LanternPinionBlockEntity extends LazyTickingBlockEntity implements 
     protected void clientTick() {
         super.clientTick();
 
-        this.kinematicsController.stepRotatingShaft();
+        this.kinematicsController.stepRotatingShaft(Objects.requireNonNull(getWorld()), getPos());
     }
     //endregion
 
@@ -75,7 +76,7 @@ public class LanternPinionBlockEntity extends LazyTickingBlockEntity implements 
     public void setSpeed(BlockPos driverPosIn, float speedIn) { this.kinematicsController.setSpeed(driverPosIn, speedIn); }
 
     protected void propagateSpeed() {
-        this.kinematicsController.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), getWorld(), getPos());
+        this.kinematicsController.propagateSpeed((KinematicBlockProvider) getCachedState().getBlock(), Objects.requireNonNull(getWorld()), getPos());
     }
 
     public float getRotatingShaftProgress(float tickProgress) {
