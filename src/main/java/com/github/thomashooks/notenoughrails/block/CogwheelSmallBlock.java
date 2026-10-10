@@ -21,10 +21,7 @@ import com.github.thomashooks.notenoughrails.block.entity.LazyTickingBlockEntity
 import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import com.github.thomashooks.notenoughrails.util.VoxelShapeHelper;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -58,6 +55,9 @@ public class CogwheelSmallBlock extends RotatingShaftBlock implements BlockEntit
         ).simplify();
     }
 
+    @Override
+    protected BlockRenderType getRenderType(BlockState state) { return BlockRenderType.INVISIBLE; }
+
     //region Kinematic Block Provider Methods
     @Override
     public float getSpeed(@NotNull World world, @NotNull BlockPos pos) {
@@ -73,6 +73,9 @@ public class CogwheelSmallBlock extends RotatingShaftBlock implements BlockEntit
             blockEntity.setSpeed(driverPos, speedIn);
         }
     }
+
+    @Override
+    public float getNumberOfTeeth() { return 8.0F; }
 
     @Override
     public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections(@NotNull World world, @NotNull BlockPos pos, @NotNull BlockState state) {
