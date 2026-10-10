@@ -25,10 +25,6 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -39,11 +35,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class CogwheelSmallBlock extends RotatingShaftBlock implements BlockEntityProvider {
     public static final MapCodec<CogwheelSmallBlock> CODEC = createCodec(CogwheelSmallBlock::new);
-    public static final EnumProperty<Direction.Axis> AXIS = Properties.AXIS;
     private static final VoxelShape COG_VOXEL_SHAPE_X = Block.createCuboidShape(6.0, 0.0, 0.0, 10.0, 16.0, 16.0);
     private static final VoxelShape COG_VOXEL_SHAPE_Y = Block.createCuboidShape(0.0, 6.0, 0.0, 16.0, 10.0, 16.0);
     private static final VoxelShape COG_VOXEL_SHAPE_Z = Block.createCuboidShape(0.0, 0.0, 6.0, 16.0, 16.0, 10.0);
@@ -53,21 +47,12 @@ public class CogwheelSmallBlock extends RotatingShaftBlock implements BlockEntit
 
     public CogwheelSmallBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState()
-                .with(SHAFT_IS_SHIFTED, false)
-                .with(AXIS, Direction.Axis.Y)
-        );
     }
 
     @Override
     protected MapCodec<? extends Block> getCodec() { return CODEC; }
 
     //region Block Methods
-    @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return Objects.requireNonNull(super.getPlacementState(ctx)).with(AXIS, ctx.getSide().getAxis());
-    }
-
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return switch (state.get(AXIS)) {
@@ -91,12 +76,6 @@ public class CogwheelSmallBlock extends RotatingShaftBlock implements BlockEntit
 
     @Override
     protected BlockRenderType getRenderType(BlockState state) { return BlockRenderType.INVISIBLE; }
-
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
-        builder.add(AXIS);
-    }
     //endregion
 
     //region Kinematic Block Provider Methods

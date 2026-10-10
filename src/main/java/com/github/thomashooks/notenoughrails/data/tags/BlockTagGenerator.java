@@ -244,6 +244,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.BUFFER_STOP_RAIL)
                 .add(AllBlocks.CHECK_RAIL)
                 .add(AllBlocks.CHIME_RAIL)
+                .add(AllBlocks.COGWHEEL_SMALL)
                 .add(AllBlocks.LANTERN_PINION)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED)

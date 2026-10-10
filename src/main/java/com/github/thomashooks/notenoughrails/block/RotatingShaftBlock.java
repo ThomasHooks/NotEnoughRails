@@ -21,21 +21,34 @@ import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jspecify.annotations.Nullable;
 
+import java.util.Objects;
+
 public abstract class RotatingShaftBlock extends Block implements KinematicBlockProvider {
     public static final BooleanProperty SHAFT_IS_SHIFTED = AllProperties.SHAFT_IS_SHIFTED;
+    public static final EnumProperty<Direction.Axis> AXIS = Properties.AXIS;
 
     protected RotatingShaftBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState()
                 .with(SHAFT_IS_SHIFTED, false)
+                .with(AXIS, Direction.Axis.Y)
         );
+    }
+
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return Objects.requireNonNull(super.getPlacementState(ctx)).with(AXIS, ctx.getSide().getAxis());
     }
 
     @Override
@@ -63,5 +76,7 @@ public abstract class RotatingShaftBlock extends Block implements KinematicBlock
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) { builder.add(SHAFT_IS_SHIFTED); }
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(SHAFT_IS_SHIFTED, AXIS);
+    }
 }
