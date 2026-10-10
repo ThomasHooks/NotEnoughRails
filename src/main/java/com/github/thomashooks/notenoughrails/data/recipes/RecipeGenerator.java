@@ -900,6 +900,17 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
                         .offerTo(exporter);
 
+                //Steel Waterwheel
+                createShaped(RecipeCategory.MISC, AllBlocks.WATERWHEEL_STEEL, 1)
+                        .input('=', AllItemTags.STEEL_PLATES)
+                        .input('o', AllBlocks.COGWHEEL_SMALL)
+                        .pattern("===")
+                        .pattern("=o=")
+                        .pattern("===")
+                        .group(NotEnoughRails.MOD_ID + ":waterwheel_steel")
+                        .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
+                        .offerTo(exporter);
+
                 //Wooden Frame
                 createShaped(RecipeCategory.BUILDING_BLOCKS, AllBlocks.WOODEN_FRAME, 8)
                         .input('x', ItemTags.PLANKS)

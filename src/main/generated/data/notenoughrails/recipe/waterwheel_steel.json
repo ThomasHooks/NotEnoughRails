@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:waterwheel_steel",
+  "key": {
+    "=": "#c:plates/steel",
+    "o": "notenoughrails:cogwheel_small"
+  },
+  "pattern": [
+    "===",
+    "=o=",
+    "==="
+  ],
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:waterwheel_steel"
+  }
+}
