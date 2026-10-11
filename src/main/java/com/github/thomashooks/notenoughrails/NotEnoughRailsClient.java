@@ -159,6 +159,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         NotEnoughRails.LOGGER.info("Registering All Block Entity Renderers");
 
         BlockEntityRendererFactories.register(AllBlockEntities.AXLE, AxleBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(AllBlockEntities.AXLE_ENCLOSED, AxleEnclosedBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(AllBlockEntities.COGWHEEL_SMALL, CogwheelSmallBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(AllBlockEntities.LANTERN_PINION, LanternPinionBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(AllBlockEntities.QUERN, QuernBlockEntityRenderer::new);

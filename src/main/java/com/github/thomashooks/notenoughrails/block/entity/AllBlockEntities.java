@@ -27,6 +27,8 @@ import net.minecraft.registry.Registry;
 public class AllBlockEntities {
     public static final BlockEntityType<AxleBlockEntity> AXLE = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("axle"),
             FabricBlockEntityTypeBuilder.create(AxleBlockEntity::new, AllBlocks.AXLE).build());
+    public static final BlockEntityType<AxleEnclosedBlockEntity> AXLE_ENCLOSED = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("axle_enclosed"),
+            FabricBlockEntityTypeBuilder.create(AxleEnclosedBlockEntity::new, AllBlocks.AXLE_ENCLOSED).build());
     public static final BlockEntityType<BloomeryBlockEntity> BLOOMERY = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("bloomery"),
             FabricBlockEntityTypeBuilder.create(BloomeryBlockEntity::new, AllBlocks.BLOOMERY).build());
     public static final BlockEntityType<CogwheelSmallBlockEntity> COGWHEEL_SMALL = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("cogwheel_small"),

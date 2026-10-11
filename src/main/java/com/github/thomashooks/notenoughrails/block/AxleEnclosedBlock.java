@@ -15,10 +15,25 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.block;
 
+import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
+import com.github.thomashooks.notenoughrails.block.entity.AxleEnclosedBlockEntity;
+import com.github.thomashooks.notenoughrails.block.entity.LazyTickingBlockEntity;
+import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.Nullable;
 
-public class AxleEnclosedBlock extends Block {
+import java.util.ArrayList;
+
+public class AxleEnclosedBlock extends RotatingShaftBlock implements BlockEntityProvider {
     public static final MapCodec<AxleEnclosedBlock> CODEC = createCodec(AxleEnclosedBlock::new);
 
     public AxleEnclosedBlock(Settings settings) {
@@ -27,4 +42,41 @@ public class AxleEnclosedBlock extends Block {
 
     @Override
     protected MapCodec<? extends Block> getCodec() { return CODEC; }
+
+    //region Kinematic Block Provider Methods
+    @Override
+    public float getSpeed(@NotNull World world, @NotNull BlockPos pos) {
+        if (world.getBlockEntity(pos) instanceof AxleEnclosedBlockEntity blockEntity) {
+            return blockEntity.getSpeed();
+        }
+        return 0.0F;
+    }
+
+    @Override
+    public void changeSpeed(@NotNull World world, @NotNull BlockPos pos, @NotNull BlockPos driverPos, float speedIn) {
+        if (world.getBlockEntity(pos) instanceof AxleEnclosedBlockEntity blockEntity) {
+            blockEntity.setSpeed(driverPos, speedIn);
+        }
+    }
+
+    @Override
+    public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections(@NotNull World world, @NotNull BlockPos pos, @NotNull BlockState state) {
+        if (world.getBlockEntity(pos) instanceof AxleEnclosedBlockEntity blockEntity) {
+            return blockEntity.getMechanicalConnections();
+        }
+        return new ArrayList<>();
+    }
+    //endregion
+
+    //region Block Entity Provider Methods
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return LazyTickingBlockEntity.getTicker(world);
+    }
+
+    @Override
+    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return AllBlockEntities.AXLE_ENCLOSED.instantiate(pos, state);
+    }
+    //endregion
 }

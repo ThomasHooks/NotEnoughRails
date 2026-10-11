@@ -45,6 +45,7 @@ public class AllBlocks {
                     .strength(1.8F, 2.0F)
                     .sounds(BlockSoundGroup.WOOD)
                     .mapColor(MapColor.OAK_TAN)
+                    .nonOpaque()
                     .pistonBehavior(PistonBehavior.BLOCK)
             ));
     public static final Block BLOOMERY = registerBlock("bloomery",

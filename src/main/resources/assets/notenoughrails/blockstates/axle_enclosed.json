@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "notenoughrails:block/axle_enclosed" }
+    "axis=x": { "model": "notenoughrails:block/axle_enclosed_base", "z": 90 },
+    "axis=y": { "model": "notenoughrails:block/axle_enclosed_base" },
+    "axis=z": { "model": "notenoughrails:block/axle_enclosed_base", "x": 90  }
   }
 }
