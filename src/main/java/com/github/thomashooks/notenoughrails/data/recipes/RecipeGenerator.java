@@ -793,6 +793,17 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
                         .offerTo(exporter);
 
+                //Gearbox
+                createShaped(RecipeCategory.MISC, AllBlocks.GEARBOX, 1)
+                        .input('x', AllItems.GEAR)
+                        .input('#', AllBlocks.WOODEN_FRAME)
+                        .pattern("#x#")
+                        .pattern("x x")
+                        .pattern("#x#")
+                        .group(NotEnoughRails.MOD_ID + ":gearbox")
+                        .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
+                        .offerTo(exporter);
+
                 //Linen Blocks
                 createShaped(RecipeCategory.DECORATIONS, AllBlocks.LINEN_BLOCK, 1)
                         .input('#', AllItems.LINEN)

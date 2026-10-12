@@ -1,11 +1,11 @@
 // 1.21.11	-999999999-01-01T00:00:00	Not Enough Rails/Tags for minecraft:block
 290a79c864f8e3bf50b0f9f17b1ba497a30da039 data/minecraft/tags/block/bars.json
-dc14dfd228f2f6d95d3fef92a4ae43e1ef31e492 data/minecraft/tags/block/mineable/axe.json
-88eb11c525c3171c0fb989100166ae6f7909e733 data/minecraft/tags/block/mineable/pickaxe.json
+b365450a5ee2a6b6189b2a6e842e3f432770dbee data/minecraft/tags/block/mineable/axe.json
+dfb5dc1b294da30257147ad9c7b9103aebe95ec0 data/minecraft/tags/block/mineable/pickaxe.json
 8bd410ea8ba1eb38715f6ebc7ef085e912f20dcf data/minecraft/tags/block/needs_diamond_tool.json
 c5b31e117e082e82c27b82a4dd9214450f2ce5e8 data/minecraft/tags/block/needs_iron_tool.json
 a718bf8a27cbb59155935a59f5c33d4b2d23c576 data/minecraft/tags/block/needs_stone_tool.json
-ce60c0f438b6a4c5d4dbbbc669b03d2a9bf34135 data/minecraft/tags/block/prevent_mob_spawning_inside.json
+2a99a2bf9c18d003df295832a3b397faf5fd704e data/minecraft/tags/block/prevent_mob_spawning_inside.json
 9c7d953585e1ee3597c5f31d8dafe3ec1cd3dc09 data/minecraft/tags/block/rails.json
 15ad5e17e5e3efa4f354a5887490087728aae9dd data/minecraft/tags/block/walls.json
 09d9d6fae4fc26d1ee09e648de0220d30a25393d data/notenoughrails/tags/block/copper_activator_rails.json

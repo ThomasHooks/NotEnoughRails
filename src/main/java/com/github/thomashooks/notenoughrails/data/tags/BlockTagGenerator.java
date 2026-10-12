@@ -105,6 +105,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.FLUXSTONE_SMOOTH)
                 .add(AllBlocks.FLUXSTONE_SMOOTH_SLAB)
                 .add(AllBlocks.FLUXSTONE_SMOOTH_STAIRS)
+                .add(AllBlocks.GEARBOX)
                 .add(AllBlocks.IRON_PLATE_BLOCK)
                 .add(AllBlocks.LOCKING_RAIL)
                 .add(AllBlocks.QUERN)
@@ -163,6 +164,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.AXLE)
                 .add(AllBlocks.AXLE_ENCLOSED)
                 .add(AllBlocks.COGWHEEL_SMALL)
+                .add(AllBlocks.GEARBOX)
                 .add(AllBlocks.LANTERN_PINION)
                 .add(AllBlocks.WOODEN_FRAME);
         //endregion
@@ -298,6 +300,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.COPPER_RAIL_WEATHERED_WAXED)
                 .add(AllBlocks.COPPER_RAIL_OXIDIZED_WAXED)
                 .add(AllBlocks.CROSSOVER_RAIL)
+                .add(AllBlocks.GEARBOX)
                 .add(AllBlocks.LOCKING_RAIL)
                 .add(AllBlocks.QUERN)
                 .add(AllBlocks.STEEL_ACTIVATOR_RAIL)

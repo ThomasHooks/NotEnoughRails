@@ -63,13 +63,6 @@ public class AllBlocks {
                     .mapColor(MapColor.OAK_TAN)
                     .pistonBehavior(PistonBehavior.BLOCK)
             ));
-    public static final Block LANTERN_PINION = registerBlock("lantern_pinion",
-            settings -> new LanternPinionBlock(settings
-                    .strength(1.8F, 2.0F)
-                    .sounds(BlockSoundGroup.WOOD)
-                    .mapColor(MapColor.OAK_TAN)
-                    .pistonBehavior(PistonBehavior.BLOCK)
-            ));
     public static final Block COKE_BLOCK = registerBlock("coke_block",
             settings -> new Block(settings
                     .strength(5.0F, 6.0F)
@@ -137,6 +130,14 @@ public class AllBlocks {
 
     //------------------------------------------------------------------------------------------------------------------
 
+    public static final Block GEARBOX = registerBlock("gearbox",
+            settings -> new GearBoxBlock(settings
+                    .strength(1.8F, 2.0F)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .mapColor(MapColor.OAK_TAN)
+                    .nonOpaque()
+                    .pistonBehavior(PistonBehavior.BLOCK)
+            ));
     public static final Block IRON_PLATE_BLOCK = registerBlock("iron_plate_block",
             settings -> new PillarBlock(settings
                     .strength(5.0F, 6.0F)
@@ -144,6 +145,13 @@ public class AllBlocks {
                     .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
                     .mapColor(MapColor.IRON_GRAY)
                     .requiresTool()
+            ));
+    public static final Block LANTERN_PINION = registerBlock("lantern_pinion",
+            settings -> new LanternPinionBlock(settings
+                    .strength(1.8F, 2.0F)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .mapColor(MapColor.OAK_TAN)
+                    .pistonBehavior(PistonBehavior.BLOCK)
             ));
 
     //------------------------------------------------------------------------------------------------------------------
@@ -828,7 +836,8 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.QUERN, AllBlocks.WATERWHEEL_STEEL);
             entries.addAfter(AllBlocks.WATERWHEEL_STEEL, AllBlocks.AXLE);
             entries.addAfter(AllBlocks.AXLE, AllBlocks.AXLE_ENCLOSED);
-            entries.addAfter(AllBlocks.AXLE_ENCLOSED, AllBlocks.LANTERN_PINION);
+            entries.addAfter(AllBlocks.AXLE_ENCLOSED, AllBlocks.GEARBOX);
+            entries.addAfter(AllBlocks.GEARBOX, AllBlocks.LANTERN_PINION);
             entries.addAfter(AllBlocks.LANTERN_PINION, AllBlocks.COGWHEEL_SMALL);
         });
         //endregion

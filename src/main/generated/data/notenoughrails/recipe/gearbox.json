@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:gearbox",
+  "key": {
+    "#": "notenoughrails:wooden_frame",
+    "x": "notenoughrails:gear"
+  },
+  "pattern": [
+    "#x#",
+    "x x",
+    "#x#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:gearbox"
+  }
+}
