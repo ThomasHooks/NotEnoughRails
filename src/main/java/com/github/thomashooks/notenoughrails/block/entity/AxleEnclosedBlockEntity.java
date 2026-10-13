@@ -29,7 +29,6 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.Nullable;
 
@@ -42,7 +41,7 @@ public class AxleEnclosedBlockEntity extends LazyTickingBlockEntity implements K
         @Override
         public void markDirty() { updateAndNotifyAll(); }
     };
-    private ArrayList<MechanicalConnection> connections = MechanicalConnection.makeMonoAxle(getPos(), Direction.Axis.Y);
+    private ArrayList<MechanicalConnection> connections;
     //endregion
 
     public AxleEnclosedBlockEntity(BlockPos pos, BlockState state) {
