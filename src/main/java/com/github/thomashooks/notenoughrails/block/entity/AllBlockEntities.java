@@ -35,6 +35,8 @@ public class AllBlockEntities {
             FabricBlockEntityTypeBuilder.create(CogwheelSmallBlockEntity::new, AllBlocks.COGWHEEL_SMALL).build());
     public static final BlockEntityType<CokeOvenBlockEntity> COKE_OVEN = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("coke_oven"),
             FabricBlockEntityTypeBuilder.create(CokeOvenBlockEntity::new, AllBlocks.COKE_OVEN).build());
+    public static final BlockEntityType<GearBoxBlockEntity> GEARBOX = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("gearbox"),
+            FabricBlockEntityTypeBuilder.create(GearBoxBlockEntity::new, AllBlocks.GEARBOX).build());
     public static final BlockEntityType<LanternPinionBlockEntity> LANTERN_PINION = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("lantern_pinion"),
             FabricBlockEntityTypeBuilder.create(LanternPinionBlockEntity::new, AllBlocks.LANTERN_PINION).build());
     public static final BlockEntityType<LockingRailBlockEntity> LOCKING_RAIL = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("locking_rail"),

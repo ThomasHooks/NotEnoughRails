@@ -161,6 +161,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         BlockEntityRendererFactories.register(AllBlockEntities.AXLE, AxleBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(AllBlockEntities.AXLE_ENCLOSED, AxleEnclosedBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(AllBlockEntities.COGWHEEL_SMALL, CogwheelSmallBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(AllBlockEntities.GEARBOX, GearBoxBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(AllBlockEntities.LANTERN_PINION, LanternPinionBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(AllBlockEntities.QUERN, QuernBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(AllBlockEntities.WATERWHEEL_STEEL, SteelWaterWheelBlockEntityRenderer::new);

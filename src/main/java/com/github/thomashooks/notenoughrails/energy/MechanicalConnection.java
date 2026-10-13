@@ -62,8 +62,6 @@ public record MechanicalConnection(BlockPos pos, Direction facing, MechanicalCon
 
     /**
      * Creates a new 2-way axle mechanical connection array
-     * <p>
-     * The axis must be known ahead of time, and must never change
      * @param pos  The position of the kinematic block
      * @param axis The axis that the kinematic block is aligned with
      * @return The new mechanical connection array
@@ -86,9 +84,36 @@ public record MechanicalConnection(BlockPos pos, Direction facing, MechanicalCon
     }
 
     /**
+     * Creates a new 4-way axle mechanical connection array
+     * @param pos The position of the kinematic block
+     * @param axis The axis that the kinematic block is aligned with
+     * @return The new mechanical connection array
+     */
+    public static ArrayList<MechanicalConnection> makeBiAxle(BlockPos pos, Direction.Axis axis) {
+        return switch (axis) {
+            case X -> new ArrayList<>(Arrays.asList(
+                    new MechanicalConnection(pos.up(), Direction.UP, Type.AXLE),
+                    new MechanicalConnection(pos.down(), Direction.DOWN, Type.AXLE),
+                    new MechanicalConnection(pos.north(), Direction.NORTH, Type.AXLE),
+                    new MechanicalConnection(pos.south(), Direction.SOUTH, Type.AXLE)
+            ));
+            case Y -> new ArrayList<>(Arrays.asList(
+                    new MechanicalConnection(pos.east(), Direction.EAST, Type.AXLE),
+                    new MechanicalConnection(pos.west(), Direction.WEST, Type.AXLE),
+                    new MechanicalConnection(pos.north(), Direction.NORTH, Type.AXLE),
+                    new MechanicalConnection(pos.south(), Direction.SOUTH, Type.AXLE)
+            ));
+            case Z -> new ArrayList<>(Arrays.asList(
+                    new MechanicalConnection(pos.east(), Direction.EAST, Type.AXLE),
+                    new MechanicalConnection(pos.west(), Direction.WEST, Type.AXLE),
+                    new MechanicalConnection(pos.up(), Direction.UP, Type.AXLE),
+                    new MechanicalConnection(pos.down(), Direction.DOWN, Type.AXLE)
+            ));
+        };
+    }
+
+    /**
      * Creates a new lantern pinion mechanical connection array
-     * <p>
-     * The axis must be known ahead of time and must never change
      * @param pos  The position of the kinematic block
      * @param axis The axis that the kinematic block is aligned with
      * @return The new mechanical connection array
@@ -124,8 +149,6 @@ public record MechanicalConnection(BlockPos pos, Direction facing, MechanicalCon
 
     /**
      * Creates a new small cogwheel mechanical connection array
-     * <p>
-     * The axis must be known ahead of time and must never change
      * @param pos  The position of the kinematic block
      * @param axis The axis that the kinematic block is aligned with
      * @return The new mechanical connection array
