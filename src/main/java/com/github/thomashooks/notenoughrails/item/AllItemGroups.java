@@ -115,6 +115,7 @@ public class AllItemGroups {
         entries.add(AllBlocks.GEARBOX);
         entries.add(AllBlocks.LANTERN_PINION);
         entries.add(AllBlocks.COGWHEEL_SMALL);
+        entries.add(AllBlocks.COGWHEEL_SMALL_SHAFTLESS);
 
         //Ladders/Scaffolding
 

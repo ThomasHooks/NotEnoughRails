@@ -44,8 +44,6 @@ public class CogwheelSmallBlockModel extends Model<Float> {
 		ModelPartData main = modelPartData.addChild(MAIN,
 				ModelPartBuilder
 						.create()
-						.uv(0, 16)
-						.cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 16.0F, 4.0F, new Dilation(0.0F))
 						.uv(0, 0)
 						.cuboid(-5.0F, 5.0F, -5.0F, 10.0F, 6.0F, 10.0F, new Dilation(0.0F)),
 				ModelTransform.origin(0.0F, 0.0F, 0.0F)

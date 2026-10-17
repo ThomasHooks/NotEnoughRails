@@ -285,6 +285,18 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .group(NotEnoughRails.MOD_ID + ":cogwheel_small")
                         .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
                         .offerTo(exporter);
+                createShapeless(RecipeCategory.MISC, AllBlocks.COGWHEEL_SMALL, 1)
+                        .input(AllBlocks.COGWHEEL_SMALL_SHAFTLESS, 1)
+                        .group(NotEnoughRails.MOD_ID + ":cogwheel_small")
+                        .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
+                        .offerTo(exporter, ":cogwheel_small_from_cogwheel_small_shaftless");
+
+                //Cogwheel Small Shaftless
+                createShapeless(RecipeCategory.MISC, AllBlocks.COGWHEEL_SMALL_SHAFTLESS, 1)
+                        .input(AllBlocks.COGWHEEL_SMALL, 1)
+                        .group(NotEnoughRails.MOD_ID + ":cogwheel_small_shaftless")
+                        .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
+                        .offerTo(exporter);
 
                 //Braking Rail
                 createShaped(RecipeCategory.TRANSPORTATION, AllBlocks.BRAKING_RAIL, 16)

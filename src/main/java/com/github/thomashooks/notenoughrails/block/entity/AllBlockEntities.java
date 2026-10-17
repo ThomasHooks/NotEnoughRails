@@ -32,7 +32,7 @@ public class AllBlockEntities {
     public static final BlockEntityType<BloomeryBlockEntity> BLOOMERY = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("bloomery"),
             FabricBlockEntityTypeBuilder.create(BloomeryBlockEntity::new, AllBlocks.BLOOMERY).build());
     public static final BlockEntityType<CogwheelSmallBlockEntity> COGWHEEL_SMALL = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("cogwheel_small"),
-            FabricBlockEntityTypeBuilder.create(CogwheelSmallBlockEntity::new, AllBlocks.COGWHEEL_SMALL).build());
+            FabricBlockEntityTypeBuilder.create(CogwheelSmallBlockEntity::new, AllBlocks.COGWHEEL_SMALL, AllBlocks.COGWHEEL_SMALL_SHAFTLESS).build());
     public static final BlockEntityType<CokeOvenBlockEntity> COKE_OVEN = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("coke_oven"),
             FabricBlockEntityTypeBuilder.create(CokeOvenBlockEntity::new, AllBlocks.COKE_OVEN).build());
     public static final BlockEntityType<GearBoxBlockEntity> GEARBOX = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("gearbox"),

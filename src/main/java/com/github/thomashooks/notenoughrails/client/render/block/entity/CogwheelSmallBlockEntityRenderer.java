@@ -16,6 +16,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.client.render.block.entity;
 
 import com.github.thomashooks.notenoughrails.block.entity.CogwheelSmallBlockEntity;
+import com.github.thomashooks.notenoughrails.client.render.block.entity.model.AxleBlockModel;
 import com.github.thomashooks.notenoughrails.client.render.block.entity.model.CogwheelSmallBlockModel;
 import com.github.thomashooks.notenoughrails.client.render.block.entity.state.RotatingShaftRenderState;
 import net.fabricmc.api.EnvType;
@@ -35,10 +36,12 @@ import org.jspecify.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
 public class CogwheelSmallBlockEntityRenderer implements BlockEntityRenderer<CogwheelSmallBlockEntity, RotatingShaftRenderState> {
-    private final CogwheelSmallBlockModel model;
+    private final CogwheelSmallBlockModel cogwheelModel;
+    private final AxleBlockModel shaftModel;
 
     public CogwheelSmallBlockEntityRenderer(BlockEntityRendererFactory.Context context) {
-        this.model = new CogwheelSmallBlockModel(context.getLayerModelPart(CogwheelSmallBlockModel.LAYER_LOCATION));
+        this.cogwheelModel = new CogwheelSmallBlockModel(context.getLayerModelPart(CogwheelSmallBlockModel.LAYER_LOCATION));
+        this.shaftModel = new AxleBlockModel(context.getLayerModelPart(AxleBlockModel.LAYER_LOCATION));
     }
 
     @Override
@@ -50,6 +53,7 @@ public class CogwheelSmallBlockEntityRenderer implements BlockEntityRenderer<Cog
         state.tickProgress = tickProgress;
         state.rotationAngle = blockEntity.getRotatingShaftProgress(tickProgress);
         state.axis = blockEntity.getCachedState().get(Properties.AXIS);
+        state.hasShaft = blockEntity.hasShaft();
     }
 
     @Override
@@ -71,9 +75,19 @@ public class CogwheelSmallBlockEntityRenderer implements BlockEntityRenderer<Cog
             matrices.translate(-0.5F, -0.5F, -0.5F);
         }
         matrices.translate(0.5F, 0.0F, 0.5F);
-        queue.submitModel(model,
+        if (renderState.hasShaft) {
+            queue.submitModel(shaftModel,
+                    renderState.rotationAngle,
+                    matrices, shaftModel.getLayer(AxleBlockModel.TEXTURE_LOCATION),
+                    renderState.lightmapCoordinates,
+                    OverlayTexture.DEFAULT_UV,
+                    0,
+                    renderState.crumblingOverlay
+            );
+        }
+        queue.submitModel(cogwheelModel,
                 renderState.rotationAngle,
-                matrices, model.getLayer(CogwheelSmallBlockModel.TEXTURE_LOCATION),
+                matrices, cogwheelModel.getLayer(CogwheelSmallBlockModel.TEXTURE_LOCATION),
                 renderState.lightmapCoordinates,
                 OverlayTexture.DEFAULT_UV,
                 0,

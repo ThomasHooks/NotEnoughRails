@@ -181,4 +181,33 @@ public record MechanicalConnection(BlockPos pos, Direction facing, MechanicalCon
             ));
         };
     }
+
+    /**
+     * Creates a new small shaftless cogwheel mechanical connection array
+     * @param pos  The position of the kinematic block
+     * @param axis The axis that the kinematic block is aligned with
+     * @return The new mechanical connection array
+     */
+    public static ArrayList<MechanicalConnection> makeSmallShaftlessCogwheel(BlockPos pos, Direction.Axis axis) {
+        return switch (axis) {
+            case X -> new ArrayList<>(Arrays.asList(
+                    new MechanicalConnection(pos.north(), Direction.NORTH, Type.COG),
+                    new MechanicalConnection(pos.south(), Direction.SOUTH, Type.COG),
+                    new MechanicalConnection(pos.up(), Direction.UP, Type.COG),
+                    new MechanicalConnection(pos.down(), Direction.DOWN, Type.COG)
+            ));
+            case Y -> new ArrayList<>(Arrays.asList(
+                    new MechanicalConnection(pos.east(), Direction.EAST, Type.COG),
+                    new MechanicalConnection(pos.west(), Direction.WEST, Type.COG),
+                    new MechanicalConnection(pos.north(), Direction.NORTH, Type.COG),
+                    new MechanicalConnection(pos.south(), Direction.SOUTH, Type.COG)
+            ));
+            case Z -> new ArrayList<>(Arrays.asList(
+                    new MechanicalConnection(pos.east(), Direction.EAST, Type.COG),
+                    new MechanicalConnection(pos.west(), Direction.WEST, Type.COG),
+                    new MechanicalConnection(pos.up(), Direction.UP, Type.COG),
+                    new MechanicalConnection(pos.down(), Direction.DOWN, Type.COG)
+            ));
+        };
+    }
 }

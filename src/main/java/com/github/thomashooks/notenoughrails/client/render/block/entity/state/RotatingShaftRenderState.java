@@ -25,6 +25,7 @@ public class RotatingShaftRenderState extends BlockEntityRenderState {
     public float rotationAngle = 0.0f;
     public float tickProgress = 0.0f;
     public Direction.Axis axis = Direction.Axis.Y;
+    public boolean hasShaft = true;
 
     public RotatingShaftRenderState() {
         super();

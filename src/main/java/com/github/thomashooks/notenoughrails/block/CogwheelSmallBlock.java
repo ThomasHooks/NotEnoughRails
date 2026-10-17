@@ -20,7 +20,9 @@ import com.github.thomashooks.notenoughrails.block.entity.CogwheelSmallBlockEnti
 import com.github.thomashooks.notenoughrails.block.entity.LazyTickingBlockEntity;
 import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import com.github.thomashooks.notenoughrails.util.VoxelShapeHelper;
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -37,41 +39,65 @@ import org.jspecify.annotations.Nullable;
 import java.util.ArrayList;
 
 public class CogwheelSmallBlock extends RotatingShaftBlock implements BlockEntityProvider {
-    public static final MapCodec<CogwheelSmallBlock> CODEC = createCodec(CogwheelSmallBlock::new);
+public static final MapCodec<CogwheelSmallBlock> CODEC = RecordCodecBuilder.mapCodec(
+        instance -> instance.group(
+                Codec.BOOL.fieldOf("has_shaft").forGetter(block -> block.hasShaft),
+                createSettingsCodec()
+        ).apply(instance, CogwheelSmallBlock::new)
+);
     private static final VoxelShape COG_VOXEL_SHAPE_X = Block.createCuboidShape(6.0, 0.0, 0.0, 10.0, 16.0, 16.0);
     private static final VoxelShape COG_VOXEL_SHAPE_Y = Block.createCuboidShape(0.0, 6.0, 0.0, 16.0, 10.0, 16.0);
     private static final VoxelShape COG_VOXEL_SHAPE_Z = Block.createCuboidShape(0.0, 0.0, 6.0, 16.0, 16.0, 10.0);
     private static final VoxelShape HUB_VOXEL_SHAPE_X = Block.createCuboidShape(5.0, 3.0, 3.0, 11.0, 13.0, 13.0);
     private static final VoxelShape HUB_VOXEL_SHAPE_Y = Block.createCuboidShape(3.0, 5.0, 3.0, 13.0, 11.0, 13.0);
     private static final VoxelShape HUB_VOXEL_SHAPE_Z = Block.createCuboidShape(3.0, 3.0, 5.0, 13.0, 13.0, 11.0);
+    private final boolean hasShaft;
 
-    public CogwheelSmallBlock(Settings settings) {
+    public CogwheelSmallBlock(boolean hasShaft, Settings settings) {
         super(settings);
+        this.hasShaft = hasShaft;
     }
 
     @Override
     protected MapCodec<? extends Block> getCodec() { return CODEC; }
 
+    public boolean hasShaft() { return this.hasShaft; }
+
     //region Block Methods
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return switch (state.get(AXIS)) {
+        VoxelShape shape = switch (state.get(AXIS)) {
             case X -> VoxelShapes.union(
-                    VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.X)],
                     HUB_VOXEL_SHAPE_X,
                     COG_VOXEL_SHAPE_X
             ).simplify();
             case Y -> VoxelShapes.union(
-                    VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.Y)],
                     HUB_VOXEL_SHAPE_Y,
                     COG_VOXEL_SHAPE_Y
             ).simplify();
             case Z -> VoxelShapes.union(
-                    VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.Z)],
                     HUB_VOXEL_SHAPE_Z,
                     COG_VOXEL_SHAPE_Z
             ).simplify();
         };
+
+        if (hasShaft()) {
+            shape = switch (state.get(AXIS)) {
+                case X -> VoxelShapes.union(
+                        VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.X)],
+                        shape
+                ).simplify();
+                case Y -> VoxelShapes.union(
+                        VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.Y)],
+                        shape
+                ).simplify();
+                case Z -> VoxelShapes.union(
+                        VoxelShapeHelper.AXLE[VoxelShapeHelper.getAxisIndex(Direction.Axis.Z)],
+                        shape
+                ).simplify();
+            };
+        }
+        return shape;
     }
 
     @Override

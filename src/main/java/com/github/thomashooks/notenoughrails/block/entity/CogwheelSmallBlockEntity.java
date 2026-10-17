@@ -15,6 +15,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.block.entity;
 
+import com.github.thomashooks.notenoughrails.block.CogwheelSmallBlock;
 import com.github.thomashooks.notenoughrails.energy.KinematicBlockEntity;
 import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
 import com.github.thomashooks.notenoughrails.energy.KinematicsController;
@@ -69,7 +70,11 @@ public class CogwheelSmallBlockEntity extends LazyTickingBlockEntity implements 
     @Override
     public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections() {
         if (this.connections == null) {
-            this.connections = MechanicalConnection.makeSmallCogwheel(getPos(), getCachedState().get(Properties.AXIS));
+            if (hasShaft()) {
+                this.connections = MechanicalConnection.makeSmallCogwheel(getPos(), getCachedState().get(Properties.AXIS));
+            } else {
+                this.connections = MechanicalConnection.makeSmallShaftlessCogwheel(getPos(), getCachedState().get(Properties.AXIS));
+            }
         }
         return this.connections;
     }
@@ -88,6 +93,13 @@ public class CogwheelSmallBlockEntity extends LazyTickingBlockEntity implements 
 
     public float getRotatingShaftProgress(float tickProgress) {
         return this.kinematicsController.getRotatingShaftProgress(tickProgress);
+    }
+
+    public boolean hasShaft() {
+        if (getCachedState().getBlock() instanceof CogwheelSmallBlock cogwheelBlock) {
+            return cogwheelBlock.hasShaft();
+        }
+        return true;
     }
     //endregion
 

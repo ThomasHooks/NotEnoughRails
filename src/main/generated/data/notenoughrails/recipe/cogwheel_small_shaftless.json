@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "notenoughrails:cogwheel_small_shaftless",
+  "ingredients": [
+    "notenoughrails:cogwheel_small"
+  ],
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:cogwheel_small_shaftless"
+  }
+}

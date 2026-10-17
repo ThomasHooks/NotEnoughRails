@@ -42,6 +42,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.BRAKING_RAIL)
                 .add(AllBlocks.BUFFER_STOP_RAIL)
                 .add(AllBlocks.COGWHEEL_SMALL)
+                .add(AllBlocks.COGWHEEL_SMALL_SHAFTLESS)
                 .add(AllBlocks.CHECK_RAIL)
                 .add(AllBlocks.CHIME_RAIL)
                 .add(AllBlocks.LANTERN_PINION)
@@ -164,6 +165,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.AXLE)
                 .add(AllBlocks.AXLE_ENCLOSED)
                 .add(AllBlocks.COGWHEEL_SMALL)
+                .add(AllBlocks.COGWHEEL_SMALL_SHAFTLESS)
                 .add(AllBlocks.GEARBOX)
                 .add(AllBlocks.LANTERN_PINION)
                 .add(AllBlocks.WOODEN_FRAME);
@@ -250,6 +252,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.CHECK_RAIL)
                 .add(AllBlocks.CHIME_RAIL)
                 .add(AllBlocks.COGWHEEL_SMALL)
+                .add(AllBlocks.COGWHEEL_SMALL_SHAFTLESS)
                 .add(AllBlocks.LANTERN_PINION)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL)
                 .add(AllBlocks.COPPER_ACTIVATOR_RAIL_EXPOSED)

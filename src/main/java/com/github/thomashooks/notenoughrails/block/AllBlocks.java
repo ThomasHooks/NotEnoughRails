@@ -57,7 +57,14 @@ public class AllBlocks {
                     .luminance(Blocks.createLightLevelFromLitBlockState(13))
             ));
     public static final Block COGWHEEL_SMALL = registerBlock("cogwheel_small",
-            settings -> new CogwheelSmallBlock(settings
+            settings -> new CogwheelSmallBlock(true, settings
+                    .strength(1.8F, 2.0F)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .mapColor(MapColor.OAK_TAN)
+                    .pistonBehavior(PistonBehavior.BLOCK)
+            ));
+    public static final Block COGWHEEL_SMALL_SHAFTLESS = registerBlock("cogwheel_small_shaftless",
+            settings -> new CogwheelSmallBlock(false, settings
                     .strength(1.8F, 2.0F)
                     .sounds(BlockSoundGroup.WOOD)
                     .mapColor(MapColor.OAK_TAN)
@@ -839,6 +846,7 @@ public class AllBlocks {
             entries.addAfter(AllBlocks.AXLE_ENCLOSED, AllBlocks.GEARBOX);
             entries.addAfter(AllBlocks.GEARBOX, AllBlocks.LANTERN_PINION);
             entries.addAfter(AllBlocks.LANTERN_PINION, AllBlocks.COGWHEEL_SMALL);
+            entries.addAfter(AllBlocks.COGWHEEL_SMALL, AllBlocks.COGWHEEL_SMALL_SHAFTLESS);
         });
         //endregion
 
