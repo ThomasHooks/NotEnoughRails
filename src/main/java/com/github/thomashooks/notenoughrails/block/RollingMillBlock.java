@@ -15,15 +15,28 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package com.github.thomashooks.notenoughrails.block;
 
+import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
+import com.github.thomashooks.notenoughrails.block.entity.LazyTickingBlockEntity;
+import com.github.thomashooks.notenoughrails.block.entity.RollingMillBlockEntity;
+import com.github.thomashooks.notenoughrails.block.property.AllProperties;
+import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
+import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import com.github.thomashooks.notenoughrails.util.VoxelShapeHelper;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.BlockPos;
@@ -31,17 +44,24 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.Nullable;
 
-public class RollingMillBlock extends Block {
+import java.util.ArrayList;
+
+public class RollingMillBlock extends Block implements BlockEntityProvider, KinematicBlockProvider {
     public static final MapCodec<RollingMillBlock> CODEC = createCodec(RollingMillBlock::new);
     private static final VoxelShape BASE_X_VOXEL_SHAPE = Block.createCuboidShape(2.0, 0.0, 0.0, 14.0, 15.0, 16.0);
     private static final VoxelShape BASE_Z_VOXEL_SHAPE = Block.createCuboidShape(0.0, 0.0, 2.0, 16.0, 15.0, 14.0);
-    public static final EnumProperty<Direction> FACING = HorizontalFacingBlock.FACING;
+    public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
+    public static final BooleanProperty SHAFT_IS_SHIFTED = AllProperties.SHAFT_IS_SHIFTED;
 
     public RollingMillBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState()
                 .with(FACING, Direction.NORTH)
+                .with(SHAFT_IS_SHIFTED, false)
         );
     }
 
@@ -52,6 +72,26 @@ public class RollingMillBlock extends Block {
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+    }
+
+    @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+        super.onPlaced(world, pos, state, placer, itemStack);
+        if (world.isClient()) {
+            return;
+        }
+
+        for (MechanicalConnection connection : getMechanicalConnections(world, pos, state)) {
+            KinematicBlockProvider neighborBlockProvider = KinematicBlockProvider.getKinematicBlock(world, connection.pos());
+            BlockState neighborState = world.getBlockState(connection.pos());
+            if (neighborBlockProvider == null || !neighborBlockProvider.isAlignedWith(world, connection.pos(), neighborState, connection)) {
+                continue;
+            }
+
+            boolean shifted = neighborState.get(SHAFT_IS_SHIFTED);
+            world.setBlockState(pos, state.with(SHAFT_IS_SHIFTED, shifted));
+            break;
+        }
     }
 
     @Override
@@ -80,6 +120,43 @@ public class RollingMillBlock extends Block {
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) { builder.add(FACING); }
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) { builder.add(FACING, SHAFT_IS_SHIFTED); }
+    //endregion
+
+    //region Kinematic Block Provider Methods
+    @Override
+    public float getSpeed(@NotNull World world, @NotNull BlockPos pos) {
+        if (world.getBlockEntity(pos) instanceof RollingMillBlockEntity blockEntity) {
+            return blockEntity.getSpeed();
+        }
+        return 0.0F;
+    }
+
+    @Override
+    public void changeSpeed(@NotNull World world, @NotNull BlockPos pos, @NotNull BlockPos driverPos, float speedIn) {
+        if (world.getBlockEntity(pos) instanceof RollingMillBlockEntity blockEntity) {
+            blockEntity.setSpeed(driverPos, speedIn);
+        }
+    }
+
+    @Override
+    public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections(@NotNull World world, @NotNull BlockPos pos, @NotNull BlockState state) {
+        if (world.getBlockEntity(pos) instanceof RollingMillBlockEntity blockEntity) {
+            return blockEntity.getMechanicalConnections();
+        }
+        return new ArrayList<>();
+    }
+    //endregion
+
+    //region Block Entity Provider Methods
+    @Override
+    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return AllBlockEntities.ROLLING_MILL.instantiate(pos, state);
+    }
+
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return LazyTickingBlockEntity.getTicker(world);
+    }
     //endregion
 }

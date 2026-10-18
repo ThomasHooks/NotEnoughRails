@@ -43,6 +43,8 @@ public class AllBlockEntities {
             FabricBlockEntityTypeBuilder.create(LockingRailBlockEntity::new, AllBlocks.LOCKING_RAIL).build());
     public static final BlockEntityType<QuernBlockEntity> QUERN = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("quern"),
             FabricBlockEntityTypeBuilder.create(QuernBlockEntity::new, AllBlocks.QUERN).build());
+    public static final BlockEntityType<RollingMillBlockEntity> ROLLING_MILL = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("rolling_mill"),
+            FabricBlockEntityTypeBuilder.create(RollingMillBlockEntity::new, AllBlocks.ROLLING_MILL).build());
     public static final BlockEntityType<SteelWaterWheelBlockEntity> WATERWHEEL_STEEL = Registry.register(Registries.BLOCK_ENTITY_TYPE, NotEnoughRails.identifier("waterwheel_steel"),
             FabricBlockEntityTypeBuilder.create(SteelWaterWheelBlockEntity::new, AllBlocks.WATERWHEEL_STEEL).build());
 
@@ -64,6 +66,10 @@ public class AllBlockEntities {
         ItemStorage.SIDED.registerForBlockEntity(
                 (blockEntity, direction) -> InventoryStorage.of(blockEntity.getInventory(), direction),
                 AllBlockEntities.QUERN
+        );
+        ItemStorage.SIDED.registerForBlockEntity(
+                (blockEntity, direction) -> InventoryStorage.of(blockEntity.getInventory(), direction),
+                AllBlockEntities.ROLLING_MILL
         );
     }
 }
