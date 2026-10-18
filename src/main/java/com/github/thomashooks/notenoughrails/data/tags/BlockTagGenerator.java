@@ -110,6 +110,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.IRON_PLATE_BLOCK)
                 .add(AllBlocks.LOCKING_RAIL)
                 .add(AllBlocks.QUERN)
+                .add(AllBlocks.ROLLING_MILL)
                 .add(AllBlocks.STEEL_ACTIVATOR_RAIL)
                 .add(AllBlocks.STEEL_BUFFER_STOP_RAIL)
                 .add(AllBlocks.STEEL_BARS)
@@ -168,6 +169,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.COGWHEEL_SMALL_SHAFTLESS)
                 .add(AllBlocks.GEARBOX)
                 .add(AllBlocks.LANTERN_PINION)
+                .add(AllBlocks.ROLLING_MILL)
                 .add(AllBlocks.WOODEN_FRAME);
         //endregion
 
@@ -306,6 +308,7 @@ public class BlockTagGenerator extends FabricTagProvider.BlockTagProvider {
                 .add(AllBlocks.GEARBOX)
                 .add(AllBlocks.LOCKING_RAIL)
                 .add(AllBlocks.QUERN)
+                .add(AllBlocks.ROLLING_MILL)
                 .add(AllBlocks.STEEL_ACTIVATOR_RAIL)
                 .add(AllBlocks.STEEL_BUFFER_STOP_RAIL)
                 .add(AllBlocks.STEEL_DETECTOR_RAIL)

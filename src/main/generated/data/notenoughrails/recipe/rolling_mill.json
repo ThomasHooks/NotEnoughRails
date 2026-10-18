@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "notenoughrails:rolling_mill",
+  "key": {
+    "#": "notenoughrails:wooden_frame",
+    "=": "#c:ingots/steel",
+    "v": "minecraft:hopper",
+    "x": "notenoughrails:gear"
+  },
+  "pattern": [
+    "#=#",
+    "x=x",
+    "#v#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:rolling_mill"
+  }
+}

@@ -245,6 +245,13 @@ public class AllBlocks {
                     .pistonBehavior(PistonBehavior.BLOCK)
                     .nonOpaque()
             ));
+    public static final Block ROLLING_MILL = registerBlock("rolling_mill",
+            settings -> new RollingMillBlock(settings
+                    .strength(2.0F, 3.0F)
+                    .sounds(BlockSoundGroup.WOOD)
+                    .mapColor(MapColor.OAK_TAN)
+                    .pistonBehavior(PistonBehavior.BLOCK)
+            ));
 
     //------------------------------------------------------------------------------------------------------------------
 
@@ -840,7 +847,8 @@ public class AllBlocks {
             entries.addAfter(Blocks.BLAST_FURNACE, AllBlocks.COKE_OVEN);
             entries.addAfter(AllBlocks.COKE_OVEN, AllBlocks.BLOOMERY);
             entries.addAfter(AllBlocks.BLOOMERY, AllBlocks.QUERN);
-            entries.addAfter(AllBlocks.QUERN, AllBlocks.WATERWHEEL_STEEL);
+            entries.addAfter(AllBlocks.QUERN, AllBlocks.ROLLING_MILL);
+            entries.addAfter(AllBlocks.ROLLING_MILL, AllBlocks.WATERWHEEL_STEEL);
             entries.addAfter(AllBlocks.WATERWHEEL_STEEL, AllBlocks.AXLE);
             entries.addAfter(AllBlocks.AXLE, AllBlocks.AXLE_ENCLOSED);
             entries.addAfter(AllBlocks.AXLE_ENCLOSED, AllBlocks.GEARBOX);

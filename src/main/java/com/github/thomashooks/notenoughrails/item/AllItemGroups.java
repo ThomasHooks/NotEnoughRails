@@ -105,6 +105,7 @@ public class AllItemGroups {
 
         //Mills
         entries.add(AllBlocks.QUERN);
+        entries.add(AllBlocks.ROLLING_MILL);
 
         //Power Engines
         entries.add(AllBlocks.WATERWHEEL_STEEL);

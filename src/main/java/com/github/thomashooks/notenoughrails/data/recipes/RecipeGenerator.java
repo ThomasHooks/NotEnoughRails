@@ -934,6 +934,19 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
                         .offerTo(exporter);
 
+                //Rolling Mill
+                createShaped(RecipeCategory.MISC, AllBlocks.ROLLING_MILL, 1)
+                        .input('x', AllItems.GEAR)
+                        .input('=', AllItemTags.STEEL_INGOTS)
+                        .input('#', AllBlocks.WOODEN_FRAME)
+                        .input('v', Items.HOPPER)
+                        .pattern("#=#")
+                        .pattern("x=x")
+                        .pattern("#v#")
+                        .group(NotEnoughRails.MOD_ID + ":rolling_mill")
+                        .criterion(hasItem(AllItems.FLAXSEEDS), conditionsFromItem(AllItems.FLAXSEEDS))
+                        .offerTo(exporter);
+
                 //Steel Waterwheel
                 createShaped(RecipeCategory.MISC, AllBlocks.WATERWHEEL_STEEL, 1)
                         .input('=', AllItemTags.STEEL_PLATES)
