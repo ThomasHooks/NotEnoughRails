@@ -150,6 +150,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(CogwheelSmallBlockModel.LAYER_LOCATION, CogwheelSmallBlockModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(LanternPinionBlockModel.LAYER_LOCATION, LanternPinionBlockModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(QuernBlockModel.LAYER_LOCATION, QuernBlockModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(RollerBlockModel.LAYER_LOCATION, RollerBlockModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(SteelWaterWheelBlockModel.LAYER_LOCATION, SteelWaterWheelBlockModel::getTexturedModelData);
     }
     //endregion
@@ -164,6 +165,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         BlockEntityRendererFactories.register(AllBlockEntities.GEARBOX, GearBoxBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(AllBlockEntities.LANTERN_PINION, LanternPinionBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(AllBlockEntities.QUERN, QuernBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(AllBlockEntities.ROLLING_MILL, RollingMillBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(AllBlockEntities.WATERWHEEL_STEEL, SteelWaterWheelBlockEntityRenderer::new);
     }
     //endregion

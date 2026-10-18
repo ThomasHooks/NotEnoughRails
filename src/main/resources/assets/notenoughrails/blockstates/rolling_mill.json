@@ -1,18 +1,18 @@
 {
   "variants": {
     "facing=east": {
-      "model": "notenoughrails:block/rolling_mill",
+      "model": "notenoughrails:block/rolling_mill_base",
       "y": 90
     },
     "facing=north": {
-      "model": "notenoughrails:block/rolling_mill"
+      "model": "notenoughrails:block/rolling_mill_base"
     },
     "facing=south": {
-      "model": "notenoughrails:block/rolling_mill",
+      "model": "notenoughrails:block/rolling_mill_base",
       "y": 180
     },
     "facing=west": {
-      "model": "notenoughrails:block/rolling_mill",
+      "model": "notenoughrails:block/rolling_mill_base",
       "y": 270
     }
   }

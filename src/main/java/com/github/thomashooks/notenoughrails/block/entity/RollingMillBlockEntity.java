@@ -133,8 +133,7 @@ public class RollingMillBlockEntity extends LazyTickingBlockEntity implements Ki
     @Override
     public @NotNull ArrayList<MechanicalConnection> getMechanicalConnections() {
         if (this.connections == null) {
-            Direction facing = getCachedState().get(Properties.HORIZONTAL_FACING);
-            this.connections = MechanicalConnection.makeMonoAxle(getPos(), facing.rotateYClockwise().getAxis());
+            this.connections = MechanicalConnection.makeMonoAxle(getPos(), getAxis());
         }
         return this.connections;
     }
@@ -168,6 +167,11 @@ public class RollingMillBlockEntity extends LazyTickingBlockEntity implements Ki
 
     public float getRotatingShaftProgress(float tickProgress) {
         return this.kinematicsController.getRotatingShaftProgress(tickProgress);
+    }
+
+    public Direction.Axis getAxis() {
+        Direction facing = getCachedState().get(Properties.HORIZONTAL_FACING);
+        return facing.rotateYClockwise().getAxis();
     }
     //endregion
 
