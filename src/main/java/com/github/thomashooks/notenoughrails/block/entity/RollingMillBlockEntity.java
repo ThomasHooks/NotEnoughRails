@@ -21,8 +21,12 @@ import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
 import com.github.thomashooks.notenoughrails.energy.KinematicsController;
 import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import com.github.thomashooks.notenoughrails.inventory.SidedSimpleInventory;
+import com.github.thomashooks.notenoughrails.network.BlockPosPayload;
+import com.github.thomashooks.notenoughrails.screen.RollingMillScreenHandler;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
@@ -31,20 +35,26 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.screen.PropertyDelegate;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.property.Properties;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
+import net.minecraft.text.Text;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class RollingMillBlockEntity extends LazyTickingBlockEntity implements KinematicBlockEntity {
+public class RollingMillBlockEntity extends LazyTickingBlockEntity implements KinematicBlockEntity, ExtendedScreenHandlerFactory<BlockPosPayload> {
     //region Sided Inventory Anonymous Class
     public static final int INPUT_SLOTS = 1;
     public static final int OUTPUT_SLOTS = 1;
@@ -83,6 +93,36 @@ public class RollingMillBlockEntity extends LazyTickingBlockEntity implements Ki
     };
     //endregion
 
+    //region Property Delegate Anonymous Class
+    public static final int PROPERTY_DELEGATE_SIZE = 3;
+    public static final int PROPERTY_DELEGATE_PROGRESS_INDEX = 0;
+    public static final int PROPERTY_DELEGATE_MAX_PROGRESS_INDEX = 1;
+    public static final int PROPERTY_DELEGATE_SPEED_INDEX = 2;
+    protected final PropertyDelegate delegate = new PropertyDelegate() {
+        @Override
+        public int get(int index) {
+            return switch (index) {
+                case PROPERTY_DELEGATE_PROGRESS_INDEX -> progress;
+                case PROPERTY_DELEGATE_MAX_PROGRESS_INDEX -> maxProgress;
+                case PROPERTY_DELEGATE_SPEED_INDEX -> getPowerGauge();
+                default -> 0;
+            };
+        }
+
+        @Override
+        public void set(int index, int value) {
+            switch (index) {
+                case PROPERTY_DELEGATE_PROGRESS_INDEX -> progress = value;
+                case PROPERTY_DELEGATE_MAX_PROGRESS_INDEX -> maxProgress = value;
+                default -> {}
+            }
+        }
+
+        @Override
+        public int size() { return PROPERTY_DELEGATE_SIZE; }
+    };
+    //endregion
+
     //region Kinematics Anonymous Class
     public static final float MIN_SPEED = 40.0F;
     public static final float MAX_SPEED = 80.0F;
@@ -98,6 +138,7 @@ public class RollingMillBlockEntity extends LazyTickingBlockEntity implements Ki
     private int maxProgress;
     private static final String PROGRESS_TAG = NotEnoughRails.MOD_ID + ":progress";
     private static final String MAX_PROGRESS_TAG = NotEnoughRails.MOD_ID + ":max_progress";
+    public static final Text SCREEN_TITLE = Text.translatable("container." + NotEnoughRails.MOD_ID + ".rolling_mill");
 
     protected RollingMillBlockEntity(BlockPos pos, BlockState state) {
         super(AllBlockEntities.ROLLING_MILL, pos, state);
@@ -172,6 +213,38 @@ public class RollingMillBlockEntity extends LazyTickingBlockEntity implements Ki
     public Direction.Axis getAxis() {
         Direction facing = getCachedState().get(Properties.HORIZONTAL_FACING);
         return facing.rotateYClockwise().getAxis();
+    }
+    //endregion
+
+    //region Screen Methods
+    @Override
+    public @NonNull BlockPosPayload getScreenOpeningData(@NonNull ServerPlayerEntity player) {
+        return new BlockPosPayload(getPos());
+    }
+
+    @Override
+    public Text getDisplayName() { return SCREEN_TITLE; }
+
+    @Override
+    public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
+        return new RollingMillScreenHandler(syncId, playerInventory, this, this.delegate);
+    }
+
+    public int calculateComparatorOutput() {
+        if (inventory == null) {
+            return 0;
+        }
+
+        float signalStrength = 0.0F;
+        for (int i = 0; i < inventory.size(); i++) {
+            ItemStack itemStack = inventory.getStack(i).copy();
+            if (!itemStack.isEmpty()) {
+                signalStrength += (float) itemStack.getCount() / (float) inventory.getMaxCount(itemStack);
+            }
+        }
+
+        signalStrength /= (float) inventory.size();
+        return MathHelper.lerpPositive(signalStrength, 0, 15);
     }
     //endregion
 

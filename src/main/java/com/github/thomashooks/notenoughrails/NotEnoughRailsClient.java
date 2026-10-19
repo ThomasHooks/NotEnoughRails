@@ -21,6 +21,7 @@ import com.github.thomashooks.notenoughrails.block.entity.AllBlockEntities;
 import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.CokeOvenScreen;
 import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.BloomeryScreen;
 import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.QuernScreen;
+import com.github.thomashooks.notenoughrails.client.gui.screen.ingame.RollingMillScreen;
 import com.github.thomashooks.notenoughrails.client.render.block.entity.*;
 import com.github.thomashooks.notenoughrails.client.render.block.entity.model.*;
 import com.github.thomashooks.notenoughrails.screen.AllScreenHandlers;
@@ -177,6 +178,7 @@ public class NotEnoughRailsClient implements ClientModInitializer {
         HandledScreens.register(AllScreenHandlers.BLOOMERY, BloomeryScreen::new);
         HandledScreens.register(AllScreenHandlers.COKE_OVEN, CokeOvenScreen::new);
         HandledScreens.register(AllScreenHandlers.QUERN, QuernScreen::new);
+        HandledScreens.register(AllScreenHandlers.ROLLING_MILL, RollingMillScreen::new);
     }
     //endregion
 }

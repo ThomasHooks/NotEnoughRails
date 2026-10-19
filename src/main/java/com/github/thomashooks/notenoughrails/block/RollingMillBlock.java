@@ -31,14 +31,17 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -92,6 +95,28 @@ public class RollingMillBlock extends Block implements BlockEntityProvider, Kine
             world.setBlockState(pos, state.with(SHAFT_IS_SHIFTED, shifted));
             break;
         }
+    }
+
+    @Override
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        if (!world.isClient()) {
+            if (world.getBlockEntity(pos) instanceof RollingMillBlockEntity blockEntity) {
+                player.openHandledScreen(blockEntity);
+            }
+        }
+        return ActionResult.SUCCESS;
+    }
+
+    @Override
+    protected boolean hasComparatorOutput(BlockState state) { return true; }
+
+    @Override
+    protected int getComparatorOutput(BlockState state, World world, BlockPos pos, Direction direction) {
+        int signalStrength = 0;
+        if (world.getBlockEntity(pos) instanceof RollingMillBlockEntity blockEntity) {
+            signalStrength = blockEntity.calculateComparatorOutput();
+        }
+        return signalStrength;
     }
 
     @Override
