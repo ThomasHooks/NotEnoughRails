@@ -1,0 +1,9 @@
+{
+  "type": "notenoughrails:rolling",
+  "ingredient": "minecraft:iron_ingot",
+  "milling_time": 400,
+  "result": {
+    "count": 1,
+    "id": "notenoughrails:iron_plate"
+  }
+}

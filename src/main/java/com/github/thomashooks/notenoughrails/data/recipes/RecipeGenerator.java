@@ -238,6 +238,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                         .offerTo(exporter);
 
                 buildMillingRecipes();
+                buildRollingRecipes();
 
                 // endregion
 
@@ -1257,6 +1258,30 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 //endregion
             }
             //endregion
+
+            //region Rolling Recipes
+            public void buildRollingRecipes() {
+                NotEnoughRails.LOGGER.info("Building Rolling Recipes");
+
+                //region Plates
+                offerRolling(exporter, Items.COPPER_INGOT, AllItems.COPPER_PLATE, 200);
+                offerRolling(exporter, Items.IRON_INGOT, AllItems.IRON_PLATE, 400);
+                offerRolling(exporter, AllItems.STEEL_INGOT, AllItems.STEEL_PLATE, 400);
+                //endregion
+
+                //region Rods
+                offerRolling(exporter, AllItems.COPPER_PLATE, AllItems.COPPER_ROD, 3, 200);
+                offerRolling(exporter, Items.GOLD_INGOT, AllItems.GOLD_ROD, 3, 200);
+                offerRolling(exporter, AllItems.IRON_PLATE, AllItems.IRON_ROD, 3, 400);
+                offerRolling(exporter, AllItems.STEEL_INGOT, AllItems.STEEL_ROD, 3, 400);
+                offerRolling(exporter, AllItems.VERMILION_INGOT, AllItems.VERMILION_ROD, 3, 200);
+                //endregion
+
+                //region Miscellaneous
+                offerRolling(exporter, Items.WET_SPONGE, Items.SPONGE, 200);
+                //endregion
+            }
+            //endregion
         };
     }
 
@@ -1314,5 +1339,20 @@ public class RecipeGenerator extends FabricRecipeProvider {
 
     private void offerMilling(RecipeExporter exporter, ItemConvertible input, ItemConvertible result, int millingTime) {
         offerMilling(exporter, List.of(input), result, millingTime);
+    }
+
+    private void offerRolling(RecipeExporter exporter, List<ItemConvertible> inputs, ItemConvertible result, int count, int millingTime) {
+        for (ItemConvertible input : inputs) {
+            RollingRecipeBuilder.create(Ingredient.ofItem(input), result.asItem(), count, millingTime)
+                    .offerTo(exporter, AllItems.getItemPath(result) + "_from_rolling_" + AllItems.getItemPath(input));
+        }
+    }
+
+    private void offerRolling(RecipeExporter exporter, ItemConvertible input, ItemConvertible result, int count, int millingTime) {
+        offerRolling(exporter, List.of(input), result, count, millingTime);
+    }
+
+    private void offerRolling(RecipeExporter exporter, ItemConvertible input, ItemConvertible result, int millingTime) {
+        offerRolling(exporter, List.of(input), result, 1, millingTime);
     }
 }

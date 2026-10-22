@@ -1,0 +1,9 @@
+{
+  "type": "notenoughrails:rolling",
+  "ingredient": "notenoughrails:iron_plate",
+  "milling_time": 400,
+  "result": {
+    "count": 3,
+    "id": "notenoughrails:iron_rod"
+  }
+}

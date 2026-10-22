@@ -28,6 +28,7 @@ public class AllRecipes {
         public static final RecipeType<BlastingRecipe> BLASTING = register("blasting", BlastingRecipe.Type.INSTANCE);
         public static final RecipeType<CokingRecipe> COKING = register("coking", CokingRecipe.Type.INSTANCE);
         public static final RecipeType<MillingRecipe> MILLING = register("milling", MillingRecipe.Type.INSTANCE);
+        public static final RecipeType<RollingRecipe> ROLLING = register("rolling", RollingRecipe.Type.INSTANCE);
 
         public static <T extends Recipe<?>> RecipeType<T> register(String id, RecipeType<T> type) {
             return Registry.register(Registries.RECIPE_TYPE, NotEnoughRails.identifier(id), type);
@@ -42,6 +43,7 @@ public class AllRecipes {
         public static final RecipeSerializer<BlastingRecipe> BLASTING = register("blasting", BlastingRecipe.Serializer.INSTANCE);
         public static final RecipeSerializer<CokingRecipe> COKING = register("coking", CokingRecipe.Serializer.INSTANCE);
         public static final RecipeSerializer<MillingRecipe> MILLING = register("milling", MillingRecipe.Serializer.INSTANCE);
+        public static final RecipeSerializer<RollingRecipe> ROLLING = register("rolling", RollingRecipe.Serializer.INSTANCE);
 
         public static <T extends Recipe<?>> RecipeSerializer<T> register(String id, RecipeSerializer<T> type) {
             return Registry.register(Registries.RECIPE_SERIALIZER, NotEnoughRails.identifier(id), type);

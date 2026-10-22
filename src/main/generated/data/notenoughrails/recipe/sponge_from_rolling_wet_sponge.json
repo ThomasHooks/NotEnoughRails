@@ -1,0 +1,9 @@
+{
+  "type": "notenoughrails:rolling",
+  "ingredient": "minecraft:wet_sponge",
+  "milling_time": 200,
+  "result": {
+    "count": 1,
+    "id": "minecraft:sponge"
+  }
+}
