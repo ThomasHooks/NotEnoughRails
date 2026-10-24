@@ -16,14 +16,19 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.github.thomashooks.notenoughrails.block.entity;
 
 import com.github.thomashooks.notenoughrails.NotEnoughRails;
+import com.github.thomashooks.notenoughrails.block.property.AllProperties;
 import com.github.thomashooks.notenoughrails.energy.KinematicBlockEntity;
 import com.github.thomashooks.notenoughrails.energy.KinematicBlockProvider;
 import com.github.thomashooks.notenoughrails.energy.KinematicsController;
 import com.github.thomashooks.notenoughrails.energy.MechanicalConnection;
 import com.github.thomashooks.notenoughrails.inventory.SidedSimpleInventory;
 import com.github.thomashooks.notenoughrails.network.BlockPosPayload;
+import com.github.thomashooks.notenoughrails.recipe.AllRecipes;
+import com.github.thomashooks.notenoughrails.recipe.RollingRecipe;
+import com.github.thomashooks.notenoughrails.recipe.input.SimpleRecipeInput;
 import com.github.thomashooks.notenoughrails.screen.RollingMillScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -34,6 +39,8 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.recipe.RecipeEntry;
+import net.minecraft.recipe.ServerRecipeManager;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -53,6 +60,7 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Optional;
 
 public class RollingMillBlockEntity extends LazyTickingBlockEntity implements KinematicBlockEntity, ExtendedScreenHandlerFactory<BlockPosPayload> {
     //region Sided Inventory Anonymous Class
@@ -138,10 +146,15 @@ public class RollingMillBlockEntity extends LazyTickingBlockEntity implements Ki
     private int maxProgress;
     private static final String PROGRESS_TAG = NotEnoughRails.MOD_ID + ":progress";
     private static final String MAX_PROGRESS_TAG = NotEnoughRails.MOD_ID + ":max_progress";
+    private final ServerRecipeManager.MatchGetter<SimpleRecipeInput, RollingRecipe>  matchGetter;
     public static final Text SCREEN_TITLE = Text.translatable("container." + NotEnoughRails.MOD_ID + ".rolling_mill");
 
     protected RollingMillBlockEntity(BlockPos pos, BlockState state) {
         super(AllBlockEntities.ROLLING_MILL, pos, state);
+        this.matchGetter = ServerRecipeManager.createCachedMatchGetter(AllRecipes.Types.ROLLING);
+        this.progress = 0;
+        this.maxProgress = DEFAULT_MILLING_TIME;
+        setLazyTickRate(20);
     }
 
     public SimpleInventory getInventory() { return inventory; }
@@ -160,6 +173,55 @@ public class RollingMillBlockEntity extends LazyTickingBlockEntity implements Ki
         super.tick();
 
         propagateSpeed();
+
+        boolean wasMilling = isMilling();
+
+        ItemStack inputItemStack = this.inventory.getStack(INPUT_SLOT_INDEX).copy();
+        RollingRecipe recipe = getRecipe(inputItemStack).map(RecipeEntry::value).orElse(null);
+        ItemStack outputItemStack = this.inventory.getStack(OUTPUT_SLOT_INDEX).copy();
+        boolean canCraft = canCraftRecipe(inputItemStack, outputItemStack, recipe);
+        if (canCraft && hasEnoughPower()) {
+            this.progress++;
+            if (getPowerGauge() >= 50) {
+                this.maxProgress = Math.round((float) recipe.millingTime() / 2.0F);
+            } else {
+                this.maxProgress = recipe.millingTime();
+            }
+        } else if (isMilling()) {
+            this.progress = 0;
+            this.maxProgress = DEFAULT_MILLING_TIME;
+        }
+
+        boolean hasChanged = false;
+        if (canCraft && this.progress >= this.maxProgress) {
+            if (craftRecipe(recipe)) {
+                this.progress = 0;
+                this.maxProgress = DEFAULT_MILLING_TIME;
+                hasChanged = true;
+            }
+        }
+
+        if (wasMilling != isMilling()) {
+            if (getWorld() != null) {
+                getWorld().setBlockState(getPos(), getCachedState().with(AllProperties.IS_MILLING, isMilling()), Block.NOTIFY_ALL);
+                hasChanged = true;
+            }
+        }
+        if (getPowerGauge() > 100 && !getCachedState().get(AllProperties.IS_OVERLOADED)) {
+            if (getWorld() != null) {
+                getWorld().setBlockState(getPos(), getCachedState().with(AllProperties.IS_OVERLOADED, true), Block.NOTIFY_ALL);
+                hasChanged = true;
+            }
+        } else if (getPowerGauge() < 101 && getCachedState().get(AllProperties.IS_OVERLOADED)) {
+            if (getWorld() != null) {
+                getWorld().setBlockState(getPos(), getCachedState().with(AllProperties.IS_OVERLOADED, false), Block.NOTIFY_ALL);
+                hasChanged = true;
+            }
+        }
+
+        if (hasChanged) {
+            updateAndNotifyAll();
+        }
     }
 
     @Override
@@ -167,6 +229,57 @@ public class RollingMillBlockEntity extends LazyTickingBlockEntity implements Ki
         super.clientTick();
 
         this.kinematicsController.stepRotatingShaft(Objects.requireNonNull(getWorld()), getPos());
+    }
+    //endregion
+
+    //region Crafting Methods
+    private boolean isMilling() { return this.progress > 0; }
+
+    public ItemStack getMillingItemStack() { return this.inventory.getStack(INPUT_SLOT_INDEX).copy(); }
+
+    private Optional<RecipeEntry<RollingRecipe>> getRecipe(ItemStack input) {
+        if (input.isEmpty()) {
+            return Optional.empty();
+        }
+
+        SimpleRecipeInput recipeInput = new SimpleRecipeInput(input);
+        if (getWorld() instanceof ServerWorld serverWorld) {
+            return this.matchGetter.getFirstMatch(recipeInput, serverWorld);
+        }
+        return Optional.empty();
+    }
+
+    private boolean craftRecipe(RollingRecipe recipe) {
+        ItemStack input = this.inventory.getStack(INPUT_SLOT_INDEX);
+        ItemStack output = this.inventory.getStack(OUTPUT_SLOT_INDEX);
+        ItemStack result = recipe.result().copy();
+        if (canCraftRecipe(input, output, recipe)) {
+            if (output.isEmpty()) {
+                this.inventory.setStack(OUTPUT_SLOT_INDEX, result.copy());
+            } else if (ItemStack.areItemsEqual(output, result)) {
+                output.increment(result.getCount());
+            } else {
+                throw new IllegalStateException("Fix the Rolling Mill crafting!");
+            }
+            input.decrement(1); // All recipes only use one input
+            return true;
+        }
+        return false;
+    }
+
+    private boolean canCraftRecipe(ItemStack input, ItemStack output, RollingRecipe recipe) {
+        if (recipe == null || input.isEmpty()) {
+            return false;
+        }
+
+        ItemStack result = recipe.result().copy();
+        if (output.isEmpty()) {
+            return true;
+        } else if (!ItemStack.areItemsEqual(output, result)) {
+            return false;
+        } else {
+            return output.getCount() + result.getCount() <= output.getMaxCount();
+        }
     }
     //endregion
 

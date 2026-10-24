@@ -34,6 +34,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ItemStackParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
@@ -44,6 +46,7 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -59,12 +62,16 @@ public class RollingMillBlock extends Block implements BlockEntityProvider, Kine
     private static final VoxelShape BASE_Z_VOXEL_SHAPE = Block.createCuboidShape(0.0, 0.0, 2.0, 16.0, 15.0, 14.0);
     public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty SHAFT_IS_SHIFTED = AllProperties.SHAFT_IS_SHIFTED;
+    public static final BooleanProperty IS_MILLING = AllProperties.IS_MILLING;
+    public static final BooleanProperty IS_OVERLOADED = AllProperties.IS_OVERLOADED;
 
     public RollingMillBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState()
                 .with(FACING, Direction.NORTH)
                 .with(SHAFT_IS_SHIFTED, false)
+                .with(IS_MILLING, false)
+                .with(IS_OVERLOADED, false)
         );
     }
 
@@ -120,6 +127,39 @@ public class RollingMillBlock extends Block implements BlockEntityProvider, Kine
     }
 
     @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        double xPos = pos.getX() + 0.5;
+        double yPos = pos.getY() + 0.5;
+        double zPos = pos.getZ() + 0.5;
+
+        if (state.get(IS_OVERLOADED)) {
+            double randomShift = random.nextDouble() * 0.6 - 0.3;
+            double yAxisOffset = random.nextDouble() * 0.375;
+            world.addParticleClient(ParticleTypes.LARGE_SMOKE, xPos + randomShift, yPos + yAxisOffset, zPos + randomShift, 0.0, 0.0, 0.0);
+        } else if (state.get(IS_MILLING) && world.getBlockEntity(pos) instanceof RollingMillBlockEntity blockEntity) {
+            ItemStack itemStack = blockEntity.getMillingItemStack();
+            if (itemStack.isEmpty()) {
+                return;
+            }
+
+            Direction facing = state.get(FACING);
+            double randomShift = random.nextDouble() * 0.6 - 0.3;
+            double xAxisOffset = facing.getAxis() == Direction.Axis.X ? facing.getOffsetX() * 0.52 : randomShift;
+            double zAxisOffset = facing.getAxis() == Direction.Axis.Z ? facing.getOffsetZ() * 0.52 : randomShift;
+            double yAxisOffset = random.nextDouble() * 0.125;
+            double xVelocity = 0.0;
+            double zVelocity = 0.0;
+            switch (facing) {
+                case EAST ->  xVelocity = Math.abs(randomShift * 0.52);
+                case WEST -> xVelocity = -Math.abs(randomShift * 0.52);
+                case NORTH ->  zVelocity = -Math.abs(randomShift * 0.52);
+                case SOUTH ->  zVelocity = Math.abs(randomShift * 0.52);
+            }
+            world.addParticleClient(new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack), xPos + xAxisOffset, yPos + yAxisOffset, zPos + zAxisOffset, xVelocity, 0.0, zVelocity);
+        }
+    }
+
+    @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return switch (state.get(FACING)) {
             case SOUTH, NORTH -> VoxelShapes.union(
@@ -145,7 +185,9 @@ public class RollingMillBlock extends Block implements BlockEntityProvider, Kine
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) { builder.add(FACING, SHAFT_IS_SHIFTED); }
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(FACING, SHAFT_IS_SHIFTED, IS_MILLING, IS_OVERLOADED);
+    }
     //endregion
 
     //region Kinematic Block Provider Methods
